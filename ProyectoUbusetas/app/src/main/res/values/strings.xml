@@ -1,0 +1,15 @@
+<resources>
+    <!--Elementos generales -->
+    <!--Nombre de la aplicación -->
+    <string name="app_name">Proyecto Ubusetas</string>
+
+    <!--Cadenas de los elementos de la actividad principal-->
+    <!--Botón hacer foto -->
+    <string name="boton_hacer_foto">Hacer foto</string>
+    <!--Botón guardar foto -->
+    <string name="boton_guardar_foto">Guardar foto</string>
+    <!--Botón galería  -->
+    <string name="boton_galería">Acceder Galería</string>
+    <!--Botón clasificar  -->
+    <string name="boton_clasificar">Clasificar</string>
+</resources>

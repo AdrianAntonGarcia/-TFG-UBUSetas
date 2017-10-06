@@ -12,4 +12,14 @@
     <string name="boton_galería">Acceder Galería</string>
     <!--Botón clasificar  -->
     <string name="boton_clasificar">Clasificar</string>
+
+    <!--Cadenas de los elementos de la actividad mostrar resultado-->
+    <!--Botón volver -->
+
+    <string name="boton_volver_principal">Volver</string>
+
+    <!--Cadena del encabezado de la lista de resultaos-->
+    <!--Encabezado -->
+    <string name="header_lista">Resultados:</string>
+    <string name="refrescar_resultados">Refrescar</string>
 </resources>

@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="@string/boton_galería"
         android:textSize="10dp"
-
         android:layout_marginTop="16dp"
         android:layout_below="@+id/boton_hacer_foto" />
 

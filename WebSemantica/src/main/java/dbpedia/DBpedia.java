@@ -1,60 +1,98 @@
 package dbpedia;
 
-
-
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 
-public class DBpedia {
-	
-	QueryExecution lanzadorQuery=null;
-	public DBpedia(){
-		
-	}
-	
-	public static void main(String[] args){
-		
-		
-		DBpedia dp= new DBpedia();
-		
-		String query = dp.getDataQuerySpecie("Amanitaregalis");
-		
-		ResultSet resultados=dp.lanzarConsulta(query);
+/**
+ * @name DBpedia
+ * @author Adrian Anton Garcia
+ * @category class
+ * @Description Clase que contiene los métodos necesarios realizar consultas a
+ *              la web semantica dbpedia
+ */
 
-		
-		ResultSetFormatter.out(System.out,resultados);
-		System.out.println(query);
-		dp.close();
-		
+public class DBpedia {
+
+	QueryExecution lanzadorQuery = null;
+
+	/**
+	 * @name DBpedia
+	 * @author Adrian Anton Garcia
+	 * @category constructor
+	 * @Description Constructor que inicializa la clase DBpedia
+	 */
+
+	public DBpedia() {
+
 	}
-	
-	public ResultSet lanzarConsulta(String query){
-		lanzadorQuery=QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query);
-		ResultSet resultados= lanzadorQuery.execSelect();
-		
+
+	/**
+	 * @name lanzarConsulta
+	 * @author Adrian Anton Garcia
+	 * @category metodo
+	 * @Description metodo que lanza la consulta pasada por parametro a la
+	 *              dbpedia
+	 * @param String,
+	 *            consulta a lanzar
+	 * @return ResultSet, resultset que contiene el resultado de la consulta
+	 */
+
+	public ResultSet lanzarConsulta(String query) {
+		lanzadorQuery = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query);
+		ResultSet resultados = lanzadorQuery.execSelect();
+
 		return resultados;
+
 	}
+
+	/**
+	 * @name getDataQueryDescriptionEsp
+	 * @author Adrian Anton Garcia
+	 * @category metodo
+	 * @Description metodo que consigue la descripcion en español de la seta
+	 *              introducida como parametro
+	 * @param String,
+	 *            seta a consultar
+	 * @return String, Descripcion conseguida de la web Semántica
+	 */
+
+	public String getDataQueryDescriptionEsp(String nombreEspecie) {
+		return "PREFIX dbpediaResource: <http://es.dbpedia.org/resource/>" + "PREFIX dbo:<http://dbpedia.org/ontology/>"
+				+ "SELECT ?descripcion " + "WHERE { " + "dbpediaResource:" + nombreEspecie
+				+ " dbo:abstract ?descripcion." + "FILTER ( lang(?descripcion)=\"es\" )." // ||
+																							// lang(?descripcion)=\"en\"
+				+ "}";
+	}
+
+	/**
+	 * @name getDataQueryDescriptionEn
+	 * @author Adrian Anton Garcia
+	 * @category metodo
+	 * @Description metodo que consigue la descripcion en ingles de la seta
+	 *              introducida como parametro
+	 * @param String,
+	 *            seta a consultar
+	 * @return String, Descripcion conseguida de la web Semántica
+	 */
+
+	public String getDataQueryDescriptionEn(String nombreEspecie) {
+		return "PREFIX dbpediaResource: <http://dbpedia.org/resource/>" + "PREFIX dbo:<http://dbpedia.org/ontology/>"
+				+ "SELECT ?descripcion " + "WHERE { " + "dbpediaResource:" + nombreEspecie
+				+ " dbo:abstract ?descripcion." + "FILTER ( lang(?descripcion)=\"en\" )." // ||
+																							// lang(?descripcion)=\"es\"
+				+ "}";
+	}
+
+	/**
+	 * @name close
+	 * @author Adrian Anton Garcia
+	 * @category procedimiento
+	 * @Description Procedimiento que cierra la conexion con la web semantica
+	 */
 	
-	public void close(){
+	public void close() {
 		lanzadorQuery.close();
 	}
-	
-	public String getDataQuerySpecie(String nombreEspecie) {
-		return "PREFIX : <http://dbpedia.org/resource/>"
-				+ "PREFIX dbpedia2: <http://dbpedia.org/property/>"
-				+ "PREFIX dbo:<http://dbpedia.org/ontology/>"
-				+ "SELECT ?genero ?especie ?descripcion "
-				+ "WHERE { "
-				+ ":"
-				+ nombreEspecie
-				+ " dbo:abstract ?descripcion."
-				+ "FILTER ( lang(?descripcion)=\"es\" || lang(?descripcion)=\"en\")."
-				+ ":" + nombreEspecie + " dbpedia2:genus ?genero ."
-				+ "FILTER langMatches (lang(?genero),'en')" + ":"
-				+ nombreEspecie + " dbpedia2:species ?especie." + 
-				"}";
-	}
-
 }

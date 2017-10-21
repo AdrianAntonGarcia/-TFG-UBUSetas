@@ -22,4 +22,11 @@
     <!--Encabezado -->
     <string name="header_lista">Resultados:</string>
     <string name="refrescar_resultados">Refrescar</string>
+
+    <!--Cadenas de los elementos de la actividad mostrar informacion seta-->
+    <string name="boton_volver_mostrar">Volver</string>
+    <string name="descripcion_seta">Descripción seta:</string>
+
+    <!--Cadenas de los elementos de la actividad MostrarComparativa -->
+    <string name="texto_comparativa">Comparativa entre las imagenes:</string>
 </resources>

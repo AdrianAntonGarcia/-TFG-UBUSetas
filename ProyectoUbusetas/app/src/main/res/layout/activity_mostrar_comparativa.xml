@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.MostrarComparativa">
+
+    <TextView
+        android:id="@+id/TextView_Comparativa"
+        android:text="@string/texto_comparativa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/ImageView_Comparativa_1"
+        android:layout_below="@+id/TextView_Comparativa"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/ImageView_Comparativa_2"
+        android:layout_below="@+id/ImageView_Comparativa_1"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"/>
+    <Button
+        android:id="@+id/boton_volver_comparativa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/boton_volver_mostrar"
+        android:layout_below="@+id/ImageView_Comparativa_2"/>
+</RelativeLayout>

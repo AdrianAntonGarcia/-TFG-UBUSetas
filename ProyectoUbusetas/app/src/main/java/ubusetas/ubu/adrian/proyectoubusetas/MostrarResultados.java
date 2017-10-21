@@ -1,35 +1,24 @@
 package ubusetas.ubu.adrian.proyectoubusetas;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 /*
 * @name: MostrarResultados
@@ -39,11 +28,11 @@ import java.util.concurrent.ThreadLocalRandom;
 * clasificar una foto
 * */
 
-public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
 
     //widgets
-    ImageView imageViewImagenResultado1;
-    ImageView imageViewImagenResultadoLista;
+    //ImageView imageViewImagenResultado1;
+
     TextView textViewTextoResultados;
     Button botonVolverMostrarPrincipal;
     Button botonRefrescarResultados;
@@ -77,7 +66,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         botonRefrescarResultados = (Button) findViewById(R.id.boton_refrescar_resultados);
         botonRefrescarResultados.setOnClickListener(this);
         botonVolverMostrarPrincipal.setOnClickListener(this);
-        imageViewImagenResultado1 = (ImageView) findViewById(R.id.imageView_imagen_resultado1);
+        //imageViewImagenResultado1 = (ImageView) findViewById(R.id.imageView_imagen_resultado1);
         textViewTextoResultados = (TextView) findViewById(R.id.textView_textoResultados);
         listViewListaResultados = (ListView) findViewById(R.id.listView_lista_resultados);
 
@@ -89,8 +78,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         //cargo la imágen introducida por el usuario
 
         bitmapImagen = (Bitmap) datosRecibidos.get("fotoBitmap");
+        //imageViewImagenResultado1.setImageBitmap(bitmapImagen);
+
+        //Cargamos el contador de refresco
+
         posImagenSeta = (int) datosRecibidos.get("posImagenSeta");
-        imageViewImagenResultado1.setImageBitmap(bitmapImagen);
+
 
         //inicializo las listas
 
@@ -115,7 +108,10 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
 
         listViewListaResultados.addHeaderView(header);
         listViewListaResultados.setAdapter(adaptador);
+        //activo que la lista este pendiente de ser pulsada
         listViewListaResultados.setOnItemClickListener(this);
+        //activo que la lista este pendiente de pulsaciones largas
+        listViewListaResultados.setOnItemLongClickListener(this);
     }
 
     /*
@@ -155,6 +151,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         Random rand = new Random();
         int i = 0;
         for (String s : resultadosSinNum) {
+            //path + nombre
             listaSetas.add(new SetasLista("imagenesSetas/" + nombresSetas.get(i).trim() + "/" + nombresSetas.get(i) + "(" + posImagenSeta + ")" + ".jpg", s));
             i++;
         }
@@ -182,8 +179,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             Bitmap bit = BitmapFactory.decodeStream(is);
             if (bit != null) {
                 //asocio el bitmap al imageview
-                imageViewImagenResultado1.setImageBitmap(bit);
-
+                Intent mostrarComparativa = new Intent(MostrarResultados.this, MostrarComparativa.class);
+                mostrarComparativa.putExtra("fotoBitmap", bitmapImagen);
+                mostrarComparativa.putExtra("fotoSeta",bit);
+                mostrarComparativa.putExtra("posImagenSeta", posImagenSeta);
+                mostrarComparativa.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
+                startActivity(mostrarComparativa);
             } else {
                 Toast.makeText(this, "bitmap null", Toast.LENGTH_LONG).show();
             }
@@ -192,6 +193,41 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
+    /*
+     * @name: onItemLongClick
+     * @Author: Adrián Antón García
+     * @category: procedure
+     * @Description: Procedimiento que se ejecuta cuando se mantiene pulsado sobre algún elemento del listView
+     * */
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        String path = listaSetas.get(position - 1).path;
+        //cargo la imagen asociada a ese path
+        if (path != null) {
+            InputStream is = null;
+            try {
+                is = this.getResources().getAssets().open(path);
+            } catch (IOException e) {
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+            Bitmap bit = BitmapFactory.decodeStream(is);
+            if (bit != null) {
+                //asocio el bitmap al imageview
+                Intent mostrarInfoSeta = new Intent(MostrarResultados.this, MostrarInformacionSeta.class);
+                mostrarInfoSeta.putExtra("nombreSeta", nombresSetas.get(position-1));
+                mostrarInfoSeta.putExtra("fotoBitmap", bitmapImagen);
+                mostrarInfoSeta.putExtra("fotoSeta",bit);
+                mostrarInfoSeta.putExtra("posImagenSeta", posImagenSeta);
+                mostrarInfoSeta.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
+                startActivity(mostrarInfoSeta);
+            } else {
+                Toast.makeText(this, "bitmap null", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, "Error en la carga de la imágen", Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
     /*
      * @name: onClick
      * @Author: Adrián Antón García
@@ -202,11 +238,11 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.boton_volver_mostrar_principal: //volver a la actividad principal
+            case R.id.boton_volver_mostrar_principal: //Volver a la actividad principal
                 Intent cambioActividad = new Intent(MostrarResultados.this, ActividadPrincipal.class);
                 startActivity(cambioActividad);
                 break;
-            case R.id.boton_refrescar_resultados: //REFRESCAR
+            case R.id.boton_refrescar_resultados: //Refrescar
                 Intent refresco = getIntent();
                 refresco.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
                 refresco.putExtra("fotoBitmap", bitmapImagen);
@@ -221,4 +257,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
+
+
 }

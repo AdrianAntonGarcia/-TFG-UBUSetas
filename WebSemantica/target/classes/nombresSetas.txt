@@ -92,9 +92,9 @@ Polyporus_squamosus
 Pseudohydnum_gelatinosum
 Pycnoporus_cinnabarinus
 Pycnoporus_coccineus
-Tamalina_farinacea
-Tamalina_menziesii
-Thizocarpon_geographicum
+Ramalina_farinacea
+Ramalina_menziesii
+Rhizocarpon_geographicum
 Sarcoscypha_coccinea
 Schizophyllum_commune
 Scleroderma_citrinum

@@ -2,7 +2,6 @@ package ubusetas.ubu.adrian.proyectoubusetas;
 
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -27,6 +26,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Classifier;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.MostrarResultados;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.TensorFlowImageClassifier;
 
 /*
 * @name: ActividadPrincipal

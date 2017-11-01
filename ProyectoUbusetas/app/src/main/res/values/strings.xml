@@ -17,6 +17,8 @@
     <!--Botón volver -->
 
     <string name="boton_volver_principal">Volver</string>
+    <string name="boton_clave">Ir a la clave</string>
+    <string name="texto_lista">Resultados obtenidos:</string>
 
     <!--Cadena del encabezado de la lista de resultaos-->
     <!--Encabezado -->
@@ -29,4 +31,9 @@
 
     <!--Cadenas de los elementos de la actividad MostrarComparativa -->
     <string name="texto_comparativa">Comparativa entre las imagenes:</string>
+
+    <!--Cadenas de los elementos de la actividad claveDicotomica -->
+    <string name="boton_volver_clave">Volver</string>
+    <string name="boton_anterior">Pregunta Anterior</string>
+    <string name="texto_pregunta">Seleccione la clave que mas se adecue a la seta:</string>
 </resources>

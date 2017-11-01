@@ -5,53 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.MostrarResultados">
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.clasificador.MostrarResultados">
 
-    <TextView
+    <!--TextView
         android:id="@+id/textView_textoResultados"
+        android:text="@string/texto_lista"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /-->
 
     <ListView
         android:id="@+id/listView_lista_resultados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></ListView>
+        ></ListView>
 
-    <!--ImageView
-        android:id="@+id/imageView_imagen_resultado1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_below="@+id/textView_textoResultados"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="304dp" />
--->
+    <Button
+        android:id="@+id/boton_clave"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/boton_clave"
+        android:layout_below="@+id/listView_lista_resultados"
+        />
+
     <Button
         android:id="@+id/boton_volver_mostrar_principal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
         android:text="@string/boton_volver_principal"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="143dp" />
+        android:layout_below="@+id/boton_clave"
+        />
 
     <Button
         android:id="@+id/boton_refrescar_resultados"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/boton_volver_mostrar_principal"
-        android:layout_alignBottom="@+id/boton_volver_mostrar_principal"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="@string/refrescar_resultados"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="143dp" />
+        android:text="@string/refrescar_resultados" />
 </RelativeLayout>

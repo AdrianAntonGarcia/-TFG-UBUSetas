@@ -24,9 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MostrarResultados" />
-        <activity android:name=".MostrarInformacionSeta" />
-        <activity android:name=".MostrarComparativa"></activity>
+        <activity android:name=".clasificador.MostrarResultados" />
+        <activity android:name=".clasificador.MostrarInformacionSeta" />
+        <activity android:name=".clasificador.MostrarComparativa" />
+        <activity android:name=".clavedicotomica.ClaveDicotomica">
+
+        </activity>
     </application>
 
 </manifest>

@@ -8,11 +8,10 @@
 
     <Button
         android:id="@+id/boton_galeria"
-        android:layout_width="157dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="@string/boton_galería"
         android:textSize="10dp"
-        android:layout_marginTop="16dp"
         android:layout_below="@+id/boton_hacer_foto" />
 
     <Button
@@ -28,7 +27,7 @@
     <Button
         android:id="@+id/boton_guardar_foto"
         android:textSize="10dp"
-        android:layout_width="158dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="@string/boton_guardar_foto"
         android:layout_alignParentTop="true"
@@ -37,7 +36,7 @@
 
     <Button
         android:id="@+id/boton_clasificar"
-        android:layout_width="158dp"
+        android:layout_width="160dp"
         android:textSize="10dp"
         android:text="@string/boton_clasificar"
         android:layout_height="wrap_content"

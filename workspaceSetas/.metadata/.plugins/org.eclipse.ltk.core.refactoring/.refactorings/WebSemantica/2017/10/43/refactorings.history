@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;webscraping.PruebaWebScraping&apos; to &apos;ClaveDicotomica&apos;&#x0D;&#x0A;- Original project: &apos;WebSemantica&apos;&#x0D;&#x0A;- Original element: &apos;webscraping.PruebaWebScraping&apos;&#x0D;&#x0A;- Renamed element: &apos;webscraping.ClaveDicotomica&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PruebaWebScraping&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;webscraping{PruebaWebScraping.java[PruebaWebScraping" matchStrategy="1" name="ClaveDicotomica" qualified="false" references="true" similarDeclarations="false" stamp="1508834404807" textual="false" version="1.0"/>
+</session>

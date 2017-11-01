@@ -1,0 +1,99 @@
+package webscraping;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+
+import org.apache.log4j.Logger;
+
+
+public class GeneradorClaves implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
+
+	private final static Logger logger = Logger.getLogger(GeneradorClaves.class);
+	
+	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\WebSemantica\\src\\main\\java\\generosEnlaces.txt";
+	
+	private String nombreFichero="claves.dat";
+	
+	private String nodoInicial="1";
+	
+	public GeneradorClaves(){
+		
+	}
+	
+	public static void main(String[] args) {
+		GeneradorClaves generador = new GeneradorClaves();
+		TreeMap<String,String> generosEnlaces=generador.leerFichero();
+		for(String genero:generosEnlaces.keySet()){
+			System.out.println(generosEnlaces.get(genero));
+		}
+		System.out.println(generosEnlaces.size());
+	}
+
+	/**
+	 * @name generarClavesFichero
+	 * @author Adrian Anton Garcia
+	 * @category constructor
+	 * @Description Metodo que serializa las claves en 
+	 * @param String,
+	 *            la url de la clave a cargar.
+	 */
+
+	public void generarClavesFichero(){
+		TreeMap<String,ArrayList<Object>> claves= new TreeMap<String,ArrayList<Object>>(); 
+		TreeMap<String,String> generosEnlaces=this.leerFichero();
+		for(String genero:generosEnlaces.keySet()){
+		    String enlace=generosEnlaces.get(genero);
+			ClaveDicotomica clave = new ClaveDicotomica(enlace, nodoInicial);
+			clave.cargarClaveDicotomica(nodoInicial);
+			ArrayList<Object> mapas = clave.devolverMapas();
+			claves.put(genero, mapas);
+			System.out.println(generosEnlaces.get(genero));
+		}
+		try {
+            ObjectOutputStream ficheroSalida = new ObjectOutputStream(new FileOutputStream(nombreFichero));
+            ficheroSalida.writeObject(mapas);
+            ficheroSalida.flush();
+            ficheroSalida.close();
+            System.out.println("Claves guardadas correctamente...");
+ 
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("Error: El fichero no existe. ");
+        } catch (IOException ioe) {
+            System.out.println("Error: Fallo en la escritura en el fichero. ");
+        }
+		
+	}
+	
+	public TreeMap<String,String> leerFichero() {
+		ArrayList<String> generosEnlaces = null;
+		try {
+			generosEnlaces = new ArrayList<String>();
+			String cadena;
+			FileReader f = new FileReader(urlFichero);
+			BufferedReader b = new BufferedReader(f);
+			while ((cadena = b.readLine()) != null) {
+				generosEnlaces.add(cadena.trim());
+			}
+			b.close();
+		} catch (FileNotFoundException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		TreeMap<String,String> mapa = new TreeMap<String,String>();
+		for(String e : generosEnlaces){
+			mapa.put(e.split(" ")[0], e.split(" ")[1]);
+		}
+		return mapa;
+	}
+}

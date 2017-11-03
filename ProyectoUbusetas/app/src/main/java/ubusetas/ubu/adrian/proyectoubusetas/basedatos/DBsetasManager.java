@@ -72,7 +72,7 @@ public class DBsetasManager {
     }
 
     /*
-    * @name: getDescripcionEsp
+    * @name: getDescripcionEn
     * @Author: Adrián Antón García
     * @category: method
     * @Description: Metodo que devuelve la descripcion  en inglés asociada al nombre introducido de la seta

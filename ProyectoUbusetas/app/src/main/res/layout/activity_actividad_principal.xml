@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.ActividadPrincipal">
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.lanzador.ActividadPrincipal">
 
     <Button
         android:id="@+id/boton_galeria"

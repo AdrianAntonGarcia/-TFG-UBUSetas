@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.MostrarResultados;
+import ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarResultados;
 
 /*
 * @name: ClaveDicotomica

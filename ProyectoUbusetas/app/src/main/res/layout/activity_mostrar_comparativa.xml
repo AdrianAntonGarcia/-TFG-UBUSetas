@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.clasificador.MostrarComparativa">
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarComparativa">
 
     <TextView
         android:id="@+id/TextView_Comparativa"

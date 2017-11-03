@@ -17,16 +17,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActividadPrincipal">
+        <activity android:name=".lanzador.ActividadPrincipal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".clasificador.MostrarResultados" />
-        <activity android:name=".clasificador.MostrarInformacionSeta" />
-        <activity android:name=".clasificador.MostrarComparativa" />
+        <activity android:name=".interfaces.MostrarResultados" />
+        <activity android:name=".interfaces.MostrarInformacionSeta" />
+        <activity android:name=".interfaces.MostrarComparativa" />
         <activity android:name=".clavedicotomica.ClaveDicotomica">
 
         </activity>

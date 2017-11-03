@@ -143,7 +143,7 @@ public class CreadorBD {
 		bd.crearTablaEspecies(nombreTablaGeneros);
 
 		bd.borrarTablaSetas(nombreTablaEnlaces);
-		bd.crearTablaEspecies(nombreTablaEnlaces);
+		bd.crearTablaEnlaces(nombreTablaEnlaces);
 
 		bd.borrarTablaSetas(nombreTablaComestible);
 		bd.crearTablaComestible(nombreTablaComestible);

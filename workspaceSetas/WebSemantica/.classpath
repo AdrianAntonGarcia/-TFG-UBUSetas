@@ -35,7 +35,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sqlite"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Json"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jaunt"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jaunt"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Sqlite"/>
 	<classpathentry kind="output" path="target/classes"/>

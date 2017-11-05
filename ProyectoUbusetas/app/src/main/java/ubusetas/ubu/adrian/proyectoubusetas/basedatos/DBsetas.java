@@ -12,7 +12,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 * */
 
 public class DBsetas extends SQLiteAssetHelper {
-    private static final String DATABASE_NAME = "prueba1.db";
+    private static final String DATABASE_NAME = "prueba2.db";
     private static final int DATABASE_VERSION = 1;
 
     public DBsetas(Context context) {

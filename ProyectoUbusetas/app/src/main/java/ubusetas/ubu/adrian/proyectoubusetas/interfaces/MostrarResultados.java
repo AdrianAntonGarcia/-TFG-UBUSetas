@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 * clasificar una foto
 * */
 
-public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
+public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     //widgets
     //ImageView imageViewImagenResultado1;
@@ -66,7 +67,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
 
         botonVolverMostrarPrincipal = (Button) findViewById(R.id.boton_volver_mostrar_principal);
         botonRefrescarResultados = (Button) findViewById(R.id.boton_refrescar_resultados);
-        boton_clave=(Button) findViewById(R.id.boton_clave);
+        boton_clave = (Button) findViewById(R.id.boton_clave);
         botonRefrescarResultados.setOnClickListener(this);
         botonVolverMostrarPrincipal.setOnClickListener(this);
         boton_clave.setOnClickListener(this);
@@ -185,7 +186,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 //asocio el bitmap al imageview
                 Intent mostrarComparativa = new Intent(MostrarResultados.this, MostrarComparativa.class);
                 mostrarComparativa.putExtra("fotoBitmap", bitmapImagen);
-                mostrarComparativa.putExtra("fotoSeta",bit);
+                mostrarComparativa.putExtra("fotoSeta", bit);
                 mostrarComparativa.putExtra("posImagenSeta", posImagenSeta);
                 mostrarComparativa.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
                 startActivity(mostrarComparativa);
@@ -218,9 +219,9 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             if (bit != null) {
                 //asocio el bitmap al imageview
                 Intent mostrarInfoSeta = new Intent(MostrarResultados.this, MostrarInformacionSeta.class);
-                mostrarInfoSeta.putExtra("nombreSeta", nombresSetas.get(position-1));
+                mostrarInfoSeta.putExtra("nombreSeta", nombresSetas.get(position - 1));
                 mostrarInfoSeta.putExtra("fotoBitmap", bitmapImagen);
-                mostrarInfoSeta.putExtra("fotoSeta",bit);
+                mostrarInfoSeta.putExtra("fotoSeta", bit);
                 mostrarInfoSeta.putExtra("posImagenSeta", posImagenSeta);
                 mostrarInfoSeta.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
                 startActivity(mostrarInfoSeta);
@@ -270,7 +271,6 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
-
 
 
 }

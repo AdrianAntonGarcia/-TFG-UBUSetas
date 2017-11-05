@@ -28,12 +28,18 @@ public class MostrarInformacionSeta extends AppCompatActivity implements View.On
     private Bitmap fotoSeta;
     private Bitmap fotoBitmap;
     private int posImagenSeta;
-    private String descripcionEsp;
+    private String descripcionEs;
+    private String comestibilidadEs;
+    private String enlace;
+    private String genero;
     private List<String> resultados;
 
     //elementos
     private ImageView imageViewSetaDescrita;
     private TextView textViewTextoDescripcionSeta;
+    private TextView textViewTextoGeneroSeta;
+    private TextView textViewTextoComestibilidadSeta;
+    private TextView textViewTextoEnlaceSeta;
     private Button botonVolverMostrar;
 
     //Base de datos
@@ -59,6 +65,10 @@ public class MostrarInformacionSeta extends AppCompatActivity implements View.On
         botonVolverMostrar.setOnClickListener(this);
         imageViewSetaDescrita = (ImageView) findViewById(R.id.imageView_setaDescrita);
         textViewTextoDescripcionSeta = (TextView) findViewById(R.id.textView_textoDescripcionSeta);
+        textViewTextoGeneroSeta = (TextView) findViewById(R.id.textView_textoGeneroSeta);
+        textViewTextoComestibilidadSeta = (TextView) findViewById(R.id.textView_textoComestibilidadSeta);
+        textViewTextoEnlaceSeta = (TextView) findViewById(R.id.textView_textoEnlaceSeta);
+
 
         //recojo los datos provenientes de la actividad mostrar resultados
 
@@ -79,11 +89,23 @@ public class MostrarInformacionSeta extends AppCompatActivity implements View.On
 
         baseDatos=new DBsetasManager(this);
         baseDatos.open();
-        descripcionEsp=baseDatos.getDescripcionEsp(nombreSeta);
+        descripcionEs=baseDatos.getDescripcionEsp(nombreSeta);
+        comestibilidadEs=baseDatos.getComestibilidadEs(nombreSeta);
+        enlace = baseDatos.getEnlace(nombreSeta);
+        genero = baseDatos.getGenero(nombreSeta);
         baseDatos.close();
-        textViewTextoDescripcionSeta.setText(descripcionEsp);
-
+        textViewTextoDescripcionSeta.setText(descripcionEs);
+        textViewTextoGeneroSeta.setText(genero);
+        textViewTextoComestibilidadSeta.setText(comestibilidadEs);
+        textViewTextoEnlaceSeta.setText(enlace);
     }
+
+    /*
+    * @name: onClick
+    * @Author: Adrián Antón García
+    * @category: procedure
+    * @Description: Procedimiento que se ejecuta al pinchar sobre algún botón
+    * */
 
     @Override
     public void onClick(View v) {

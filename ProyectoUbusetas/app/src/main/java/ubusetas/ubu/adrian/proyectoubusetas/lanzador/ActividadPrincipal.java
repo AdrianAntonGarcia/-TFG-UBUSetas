@@ -202,6 +202,7 @@ public class ActividadPrincipal extends AppCompatActivity implements View.OnClic
                     //creo el bitmap de la foto
                     imageViewMostrarFoto.buildDrawingCache();
                     bitmapClasificar = imageViewMostrarFoto.getDrawingCache();
+
                     bitmapClasificar = Bitmap.createScaledBitmap(bitmapClasificar, INPUT_SIZE, INPUT_SIZE, false);
 
                     imageViewMostrarFoto.setImageBitmap(bitmapClasificar);

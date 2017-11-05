@@ -28,6 +28,9 @@
     <!--Cadenas de los elementos de la actividad mostrar informacion seta-->
     <string name="boton_volver_mostrar">Volver</string>
     <string name="descripcion_seta">Descripción seta:</string>
+    <string name="genero_seta">Género seta:</string>
+    <string name="comestibilidad_seta">Comestibilidad seta:</string>
+    <string name="enlace_seta">Enlace seta:</string>
 
     <!--Cadenas de los elementos de la actividad MostrarComparativa -->
     <string name="texto_comparativa">Comparativa entre las imagenes:</string>

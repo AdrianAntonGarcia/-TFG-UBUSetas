@@ -40,7 +40,9 @@ import ubusetas.ubu.adrian.proyectoubusetas.clasificador.TensorFlowImageClassifi
 * */
 
 public class ActividadPrincipal extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = ActividadPrincipal.class.getSimpleName();
 
+    private Bitmap bmap=null;
     //Elementos
 
     private Button botonHacerFoto;
@@ -117,8 +119,53 @@ public class ActividadPrincipal extends AppCompatActivity implements View.OnClic
         botonClasificar.setOnClickListener(this);
 
         inicializarClasificador();
+        restaurarCampos(savedInstanceState);
 
+    }
 
+    /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedure
+     * @Description: Metodo que se restaura el bitmap al girar la pantalla
+     * */
+
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            //Recupero la foto
+            bmap= savedInstanceState.getParcelable("bmap");
+            fotoPath = savedInstanceState.getString("fotoPath");
+            if (bmap != null) {
+                imageViewMostrarFoto.setImageBitmap(bmap);
+            } else {
+                Log.d(TAG, "No restaura el campo");
+            }
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedure
+    * @Description: Metodo que se ejecuta cuando se destruye la actividad
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        imageViewMostrarFoto.buildDrawingCache();
+        if(imageViewMostrarFoto.getDrawingCache()!=null) {
+            Bitmap foto = imageViewMostrarFoto.getDrawingCache();
+            bmap = foto.copy(foto.getConfig(), false);
+
+            // Metemos en el bundle lo que queremos conservar
+            outState.putParcelable("bmap", bmap);
+            outState.putString("fotoPath",fotoPath);
+        }else {
+            Log.d(TAG, "No guarda el bitmap al girar");
+        }
     }
 
     /*
@@ -185,7 +232,6 @@ public class ActividadPrincipal extends AppCompatActivity implements View.OnClic
                         Log.e("ERROR", e.getMessage());
                         Toast.makeText(this, "Error en la creacion de la imagen, revisar permisos escritura", Toast.LENGTH_LONG).show();
                     }
-                    //textoImagen.setText("En construcción");
                 }
                 ;
                 break;
@@ -217,7 +263,7 @@ public class ActividadPrincipal extends AppCompatActivity implements View.OnClic
                         Intent cambioActividad = new Intent(ActividadPrincipal.this, MostrarResultados.class);
                         cambioActividad.putStringArrayListExtra("resultados", (ArrayList<String>) resultadosTexto);
                         cambioActividad.putExtra("fotoBitmap", bitmapClasificar);
-                        cambioActividad.putExtra("posImagenSeta",1);
+                        cambioActividad.putExtra("posImagenSeta", 1);
                         startActivity(cambioActividad);
                     } else {
                         textoImagen.setText("No se ha podido clasificar la imágen");

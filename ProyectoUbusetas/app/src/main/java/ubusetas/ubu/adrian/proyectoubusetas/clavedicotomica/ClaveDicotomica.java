@@ -139,6 +139,8 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         TextViewClaveMostrada.setText("Clave: "+NOMBRECLAVE +"Genero:"+generoActual);
     }
 
+
+
     public void comprobarGenero(String generoComprobar){
         if(generosDeLaClaveGeneral.contains(generoComprobar)){
             TextViewInformacionClave.setText("La clave dicotomica general contempla este genero. ");
@@ -232,7 +234,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
       * @name: readFromFile
       * @Author: Adrián Antón García
       * @category: Metodo
-      * @Description: Metodo que lee la estructura de las claves del archivo .dat
+      * @Description: Metodo que lee la estructura de las claves del archivo claves.dat
       * */
 
     public static TreeMap<String, ArrayList<Object>> readFromFile(Context context, String nombreClave) {

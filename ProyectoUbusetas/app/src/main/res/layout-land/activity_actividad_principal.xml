@@ -1,59 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="horizontal"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.lanzador.ActividadPrincipal">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/accent">
 
-
-    <Button
-        android:id="@+id/boton_galeria"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="@string/boton_galería" />
-
-    <Button
-        android:id="@+id/boton_hacer_foto"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/boton_galeria"
-        android:text="@string/boton_hacer_foto"
-        />
-
-    <Button
-        android:id="@+id/boton_guardar_foto"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/boton_hacer_foto"
-        android:text="@string/boton_guardar_foto" />
-
-    <Button
-        android:id="@+id/boton_clasificar"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/boton_guardar_foto"
-        android:text="@string/boton_clasificar" />
-
-    <TextView
-        android:id="@+id/textView_textoImagen"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/boton_clasificar" />
-    <!--android:text="@string/boton_hacer_foto"-->
-    <ImageView
-        android:id="@+id/imageView_mostrar_imagen"
-        android:layout_width="400px"
-        android:layout_height="400px"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
-        android:layout_toEndOf="@+id/boton_galeria"
-        android:layout_toRightOf="@+id/boton_galeria"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:context="ubusetas.ubu.adrian.proyectoubusetas.lanzador.ActividadPrincipal">
 
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/boton_galeria"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_galería" />
 
+        <Button
+            android:id="@+id/boton_hacer_foto"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/boton_galeria"
+            android:text="@string/boton_hacer_foto" />
+
+        <Button
+            android:id="@+id/boton_guardar_foto"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/boton_hacer_foto"
+            android:text="@string/boton_guardar_foto" />
+
+        <Button
+            android:id="@+id/boton_clasificar"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/boton_guardar_foto"
+            android:text="@string/boton_clasificar" />
+
+        <TextView
+            android:id="@+id/textView_textoImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boton_clasificar" />
+        <!--android:text="@string/boton_hacer_foto"-->
+        <ImageView
+            android:id="@+id/imageView_mostrar_imagen"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="43dp"
+            android:layout_marginStart="43dp"
+            android:layout_toEndOf="@+id/boton_galeria"
+            android:layout_toRightOf="@+id/boton_galeria"
+            android:src="@mipmap/ic_launcher" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

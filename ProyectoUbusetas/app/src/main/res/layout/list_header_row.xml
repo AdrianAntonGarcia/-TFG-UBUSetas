@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="@string/header_lista"
         android:textSize="20sp"
-        android:background="#234562"
-        android:textColor="#ffffff"/>
+        android:background="@color/primary_light"
+        android:textColor="@color/text_primary"/>
 
 </LinearLayout>

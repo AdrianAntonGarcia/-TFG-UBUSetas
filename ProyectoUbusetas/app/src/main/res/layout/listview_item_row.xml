@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:layout_weight="10"
     android:orientation="horizontal"
+    android:background="@color/primary_light"
     >
 
     <ImageView

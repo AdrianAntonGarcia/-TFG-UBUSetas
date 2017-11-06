@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/accent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:gravity="top"
     android:orientation="vertical"
+
     tools:context="ubusetas.ubu.adrian.proyectoubusetas.lanzador.ActividadPrincipal">
 
 
@@ -40,8 +47,10 @@
         android:id="@+id/textView_textoImagen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/boton_clasificar" />
+        android:layout_below="@+id/boton_clasificar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     <!--android:text="@string/boton_hacer_foto"-->
+
     <ImageView
         android:id="@+id/imageView_mostrar_imagen"
         android:layout_width="400px"
@@ -50,6 +59,6 @@
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic_launcher" />
 
-
 </RelativeLayout>
 
+</ScrollView>

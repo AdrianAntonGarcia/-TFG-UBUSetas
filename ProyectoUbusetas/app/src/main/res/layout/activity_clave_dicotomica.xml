@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/accent"
     tools:context="ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica">
 
     <TextView
         android:id="@+id/TextView_ClaveMostrada"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/TextView_Pregunta"
-        android:text="@string/texto_pregunta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/TextView_ClaveMostrada"/>
+        android:layout_below="@id/TextView_ClaveMostrada"
+        android:text="@string/texto_pregunta" />
 
     <ListView
         android:id="@+id/listView_claveDicotomica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/TextView_Pregunta"/>
+        android:layout_below="@id/TextView_Pregunta" />
 
     <TextView
         android:id="@+id/TextView_InformacionClave"
-        android:layout_below="@id/listView_claveDicotomica"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listView_claveDicotomica" />
+
     <Button
         android:id="@+id/boton_volver_clave"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@string/boton_volver_clave"
-        android:layout_below="@id/TextView_InformacionClave"/>
+        android:layout_below="@id/TextView_InformacionClave"
+        android:text="@string/boton_volver_clave" />
 
     <Button
         android:id="@+id/boton_anterior"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@string/boton_anterior"
         android:layout_alignBaseline="@+id/boton_volver_clave"
         android:layout_alignParentRight="true"
-        />
+        android:text="@string/boton_anterior" />
 
 </RelativeLayout>

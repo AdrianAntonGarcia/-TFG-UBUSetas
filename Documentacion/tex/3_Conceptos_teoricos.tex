@@ -1,83 +1,85 @@
 \capitulo{3}{Conceptos teóricos}
 
-En aquellos proyectos que necesiten para su comprensión y desarrollo de unos conceptos teóricos de una determinada materia o de un determinado dominio de conocimiento, debe existir un apartado que sintetice dichos conceptos.
+Para la correcta comprensión del proyecto se van a explicar a continuación una serie de conceptos teóricos mínimos necesarios.
 
-Algunos conceptos teóricos de \LaTeX \footnote{Créditos a los proyectos de Álvaro López Cantero: Configurador de Presupuestos y Roberto Izquierdo Amo: PLQuiz}.
+\section{Micología}
 
-\section{Secciones}
+La micología es la ciencia que se dedica al estudio de los hongos. Es una de las áreas de la ciencia más extensas y diversificadas que aporta avances significativos a la investigación científica y al desarrollo tecnológico. \cite{wiki:micologia}
 
-Las secciones se incluyen con el comando section.
+Tiene varios aplicaciones y objetivos, además de explorar nuevas especies de flora y fauna se usa para determinar que especies de hongos son comestibles o no y si podrían usarse para diferentes tratamientos médicos.
 
-\subsection{Subsecciones}
+\section{Hongos}
 
-Además de secciones tenemos subsecciones.
+El hongo es el nombre común de los organismos del reino Fungi. El término Fungi en Biología se refiere a un grupo de organismos eucariotas \footnote{Aquellos organismos formados por células con núcleo verdadero} que se clasifican en un reino distinto al de las plantas, animales y protistas. Se diferencian de las plantas en que son Heterótrofos \footnote{Seres vivos que necesitan de otros para alimentarse} y de los animales en que tienen paredes celulares, como las plantas, pero compuestas de quitina \footnote{https://es.wikipedia.org/wiki/Quitina} en vez de celulosa.
 
-\subsubsection{Subsubsecciones}
+Los hongos se reproducen de forma sexual o asexual mediante esporas, que se dispersan en un estado latente y solo se interrumpe cuando se dan las condiciones adecuadas para su germinación. \cite{wiki:fungi}
 
-Y subsecciones. 
+La mayoría de los hongos están formados por estructuras microscópicas, filamentosas y ramificadas llamadas hifas.El conjunto de estas hifas forma una red a la que llamaremos micelio. Cuando la acumulación de hifas es grande se pueden observar como una red algonodosa que se pueden reconocer por ejemplo cuando los alimentos empiezan a descomponerse. \cite{setas}
 
+\section{Setas}
 
-\section{Referencias}
+Las setas son los cuerpos fructíferos de algunos tipos de hongos (no todos los hongos producen setas), en otras palabras, son la parte reproductiva de los hongos. La principal función de la seta es dispersar las esporas del hongo. Normalmente es la parte visible del hongo ya que este suele estar bajo tierra.
 
-Las referencias se incluyen en el texto usando cite \cite{wiki:latex}. Para citar webs, artículos o libros \cite{koza92}.
+\subsection{Partes de las setas}
 
-
-\section{Imágenes}
-
-Se pueden incluir imágenes con los comandos standard de \LaTeX, pero esta plantilla dispone de comandos propios como por ejemplo el siguiente:
-
-\imagen{escudoInfor}{Autómata para una expresión vacía}
-
-
-
-\section{Listas de items}
-
-Existen tres posibilidades:
+A continuación se van a describir las partes más características de una seta que se usan para su clasificación.
 
 \begin{itemize}
-	\item primer item.
-	\item segundo item.
+	\item{Sombrero}: Situado sobre el pie, ejerce la función de protección en la formación y desarrollo de las esporas. El sombrero es un elemento clave a la hora de diferenciar las especies ya que puede adoptar diferentes formas, aspectos y colores.
+	\item{Himenio}: Es la parte situada justo debajo del sobrero y que puede adoptar diferentes formas(láminas, tubos, aguijones o pliegues), estas diferentes formas nos ayudarán a diferenciar entre las especies. La función principal de esta parte es la de crear, desarrollar, almacenar y dispersar las esporas que generan nuevos hongos.
+	\item{Pie}: Elemento que no tiene por que aparecer en todas las setas y que sujeta al sombrero e himenio.
+	\item{Volva}: Es un fragmento en forma de membrana que envuelve la base del pie en algunas setas. Es un error común cortar el pie de la seta y no conservar la volva que nos podría dar indicios de a que especie pertenece la seta.\cite{partesSeta}
 \end{itemize}
 
-\begin{enumerate}
-	\item primer item.
-	\item segundo item.
-\end{enumerate}
+En la siguiente figura se muestran las partes más relevantes de una seta.
+\imagen{partesDeLaSeta}{Partes de una seta}
 
-\begin{description}
-	\item[Primer item] más información sobre el primer item.
-	\item[Segundo item] más información sobre el segundo item.
-\end{description}
-	
+\section{Redes neuronales}
+
+En esta sección se explicarán algunos conceptos teóricos sobre redes neuronales necesarios para entender el funcionamiento de los modelos mobilenet e inception usados para clasificar imágenes.
+
+\subsection{Modelo de neurona artificial}
+
+Una neurona artificial de forma general se puede describir según el modelo de Rumelhart y McClelland (1986), el cual define la neurona o elemento de proceso(EP) como un dispostivo el cuál a partir de un conjunto de entradas, vector x, genera una única salida y.
+
+\imagen{modeloNeuronaArtificial}{Modelo de una neurona artificial}
+
+La neurona artifial consta de los siguientes elementos:
+
 \begin{itemize}
-\item 
+	\item{Conjunto de entradas x}: El vector x.
+	\item{Conjunto de pesos sinápticos wij}: Representan la relación entre la neurona i y j.
+	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma:
+	hi(t)=Sumatorio(wij*xj)
+	\item{Función de activación a}: proporciona el estado de activación en función del estado anterior y el potencial postsináptico.
+	\item{Función de salida y}: proporciona la salida y en función del valor de activación.
 \end{itemize}
 
-\section{Tablas}
+\subsection{Red Neuronal Artificial RNA}
 
-Igualmente se pueden usar los comandos específicos de \LaTeX o bien usar alguno de los comandos de la plantilla.
 
-\tablaSmall{Herramientas y tecnologías utilizadas en cada parte del proyecto}{l c c c c}{herramientasportipodeuso}
-{ \multicolumn{1}{l}{Herramientas} & App AngularJS & API REST & BD & Memoria \\}{ 
-HTML5 & X & & &\\
-CSS3 & X & & &\\
-BOOTSTRAP & X & & &\\
-JavaScript & X & & &\\
-AngularJS & X & & &\\
-Bower & X & & &\\
-PHP & & X & &\\
-Karma + Jasmine & X & & &\\
-Slim framework & & X & &\\
-Idiorm & & X & &\\
-Composer & & X & &\\
-JSON & X & X & &\\
-PhpStorm & X & X & &\\
-MySQL & & & X &\\
-PhpMyAdmin & & & X &\\
-Git + BitBucket & X & X & X & X\\
-Mik\TeX{} & & & & X\\
-\TeX{}Maker & & & & X\\
-Astah & & & & X\\
-Balsamiq Mockups & X & & &\\
-VersionOne & X & X & X & X\\
-} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

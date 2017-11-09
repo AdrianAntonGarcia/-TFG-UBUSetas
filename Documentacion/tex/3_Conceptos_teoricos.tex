@@ -57,14 +57,75 @@ La neurona artifial consta de los siguientes elementos:
 
 \subsection{Red Neuronal Artificial RNA}
 
+Una red neuronal Artificial RNA es un grafo dirigido en el que las neuronas artificiales estas conectadas con otras y los enlaces pueden aumentar o disminuir el estado de activación de las neuronas conectadas. Cada neurona opera de forma individual mediante operaciones de suma.
+
+Estas neuronas se organizan en capas o layers formando diferentes filtros para generar algoritmos que puedan resolver diferentes problemas. Dentro de una misma capa las neuronas suelen ser del mismo tipo y podemos diferenciar de forma general 3 tipos distintos de capas:
+
+\begin{itemize}
+	\item{De entrada}:Reciben datos o señales externos del entorno.
+	\item{De salida}:Proporcionan las respuestas de la red ante los estímulos recibidos por las capas de entrada.
+	\item{Ocultas}:No interaccionan con el entorno, son nodos intermedios que ejecutan las operaciones internas de la red.
+\end{itemize}
 
 
+\imagen{RNA}{Grafo de una RNA}
 
+Como se puede observar en la figura 3.3, las neuronas representadas como nodos se organizan en las diferentes capas pudiéndose interconectar con varias neuronas a la vez. Estas redes pueden tener un número de capas y neuronas ilimitados. Pueden tener un número ilimitado de enlaces o solo estar conectadas con unas pocas.
 
+\subsection{Redes neuronales convolucionales}
 
+Este tipo de redes neuronales son muy parecidas a las RNA normales pero tienen dos cambios significativos. El primero es que parten de la idea de que las entradas son imágenes lo que permite programar optimizaciones a los algoritmos para que se adecuen a este tipo de entradas, el segundo cambio es que intentan reducir en la mayor medida posible el número de parametros utilizados en cada capa.
 
+\imagen{RNAvsConvolucional}{Izquierda: grafo de una RNA. Derecha: Grafo de una Red neuronal convolucional.}
 
+%http://cs231n.github.io/convolutional-networks/#conv
 
+Las redes neuronales convolucionales organizan sus neuronas en capas de 3 dimensiones normalmente coincidiendo con las características de la imágen, siendo height la altura de la foto, width el ancho y depth los colores de la imágen. Por ejemplo se podría apicar a imágenes de 32x32x3.
+
+\subsection{Tipos de capas}
+
+En este apartado se van a explicar los tres tipos de capas más importantes a la hora de elabora las redes neuronales convolucionales:
+%https://ccc.inaoep.mx/~pgomez/deep/presentations/2016Loncomilla.pdf
+\subsubsection{Capas convolucionales}
+
+En estas capas los pixeles de salida son combinaciones lineales de diferentes pixeles de entrada lo que generan nuevos mapas de pixeles mas sencillos y que no son tan sensibles a cambios en las entradas. Las convoluciones se pueden producir teniendo en cuenta solo 2 dimensiones(el alto y ancho) o teniendo en cuenta las 3 dimensiones (alto, ancho y profundidad). En algunas arquitecturas son llamadas capas RELU, ejecutan la función de activación de las neuronas.
+ \imagen{convolucion}{Figura que muestra una convolución en dos dimensiones.} \footnote{Los kernels definen el área sobre el que se va a aplicar la convolucion, en el ejemplo 3x3}
+
+\subsubsection{Capas de pooling}
+
+Las capas de pooling o reescalado tiene el objetivo de disminuir el número de parámetros o pixeles de los mapas, para ello se aplican técnicas como la explicada en la siguiente figura.
+
+Estas capas van a tener un gran peso en los modelos de Mobilenet e Inception, ya que no van a permitir ajustar el número de operaciones realizadas por los modelos para que se puedan ajustar correctamente a las limitaciones hardware de los teléfonos móviles.
+
+\imagen{pooling}{Técnica de pooling}
+
+En la figura se puede observar que los diferentes pixeles se agrupan eligiendo sólo aquellos de mayor valor para el nuevo mapa.
+
+\subsubsection{Capas totalmente conectadas}
+
+En este tipo de capas las neuronas están totalmente conectadas con las neuronas de la capa anterior y tienen una profundidad igual al número de clases que se quieran clasificar. Por ejemplo si tenemos 10 clases diferentes, el último layer podría se de tamaño 32x32x10. Estas capas son las encargadas de producir la señal de salida y clasificar la imagen eligiendo una de las clases. 
+
+Cuando re entrenamos un modelo, normalmente lo que estamos haciendo es modificar estas últimas capas que se encargan de clasificar las clases en vez de tener que re entrenar todas las demás capas que forman el modelo.
+
+\section{Modelo Inception}
+
+El modelo Inception es una red neuronal convolucional que se usa para la clasificación de imagenes. Inception ha sido desarrollado por Google y parte de la pregunta de que tipo de convolución aplicar en cada capa o  filtro del modelo. Es decir, preguntarse que tamaño de convulsión sería el adecuado para cada etapa, ¿3x3?,¿1x1?,¿5x5?.
+
+Ante esta pregunta, la respuesta que han aplicado es la de ejecutar los diferentes tamaños de convoluciones en cada capa de manera paralela y concatenar los diferentes mapas en uno solo que es el que se pasa a la siguiente capa del modelo. La idea es ejecutar todos los tipos de convulciones a la vez y elegir el que mejor funcione.
+
+\imagen{inception}{Ejemplo de un nodo Inception}
+
+En la figura podemos observar como se aplican las diferentes convoluciones en pararelo. Además podemos observar que se aplican unas convoluciones de 1x1, estas convoluciones tienen el objetivo de reducir el número de parámetros que se usan ya que aunque no reducen el área de los mapas si reducen la profundidad de las capas.
+
+Los modelos inception se construyen concatenando estos bloques o nodos Inception, en teoría cuanta más profundidad se de a estos modelos y más se concatenen más precisos deberían ser los modelos pero esto tiene un coste alto de computación (Aún reduciendo los computos con las convoluciones 1x1) y se corre el riesgo de sobreajustar los modelos.
+
+Actualmente se pueden entrenar diferentes versiones de Inception, en el proyecto hemos trabajado reentrenando la versión 3 del modelo mediante Tensorflow.
+
+Este modelo se sigue desarrollando y los desarrolladores lo van evolucionando por lo que no es de extrañar que en un futuro cercano aparezcan nuevas versiones mas optimizadas de este modelo.
+
+\imagen{convolicionReduccion}{Aplicación de una convolucion 1x1 antes de ejecutar la convolucion 5x5}
+
+En la imagen anterior se puede observar el efecto de aplicar una convolucion 1x1 antes de efectuar la convolucion 5x5.
 
 
 

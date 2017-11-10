@@ -34,6 +34,50 @@ A continuación se van a describir las partes más características de una seta 
 En la siguiente figura se muestran las partes más relevantes de una seta.
 \imagen{partesDeLaSeta}{Partes de una seta}
 
+\section{Inteligencia Artificial}
+%https://luismejias21.files.wordpress.com/2017/09/inteligencia-artificial-un-enfoque-moderno-stuart-j-russell.pdf
+Hay muchas definiciones para definir lo que es la inteligencia artificial, normalmente aparece bajo las siglas IA o AI(Del iglés Artificial Intelligence), pero de forma general la podemos definir como el desarrollo de algoritmos y métodos que otorgan a las computadoras la capacidad de realizar acciones o tareas como las realizaría un ser humano. La inteligencia artificial se aplica en multitud de campos como puede ser la robótica, automovilismo, reconocimiento de imágenes, medicina, sistemas de apoyo...
+
+Stuart Russell y Peter Norving diferencian estos cuatro tipos de inteligencia artificial:
+
+\begin{itemize}
+	\item{Sistemas que piensan como humanos}: Son sistemas que intentan emular el pensamiento humano automatizando actividades que relacionamos con los procesos de pensamiento humano(toma de decisiones, resolución de problemas...), por ejemplo las redes neuronales artificiales.
+	\item{Sistemas que actúan como humanos}: Este tipo de sistemas intentan imitar el comportamiento humano, por ejemplo la robótica.
+	\item{Sistemas que piensan racionalmente}: Tratan de imitar con lógica el pensamiento lógico racional del ser humano, por ejemplo los sistemas expertos.
+	\item{Sistemas que actúan racionalmente}:Intentan emular de forma racional el comportamiento humano.
+\end{itemize}\cite{wiki:tiposInteligenciaArtificial}
+
+Algunos de estos sistemas necesitan desarrollar una capacidad de aprendizaje para poder imitar de forma correcta el comportamiento humano.
+
+\subsection{Aprendizaje automático}
+
+El aprendizaje automático (del inglés Machine Learning) es una rama de la inteligencia artificial que se encarga de desarrollar los algoritmos que permitan a las computadoras aprender\footnote{Adquirir conocimiento por medio de la experiencia}. Para ello, se entrenan los sistemas con una serie de ejemplos, o información de entrenamiento, para generalizar comportamientos que deben realizar ante diferentes casos de entrada.
+
+Hay una gran variedad de algoritmos de aprendizaje automático, a continuación se presentan algunos de los tipos más extendidos:
+\begin{itemize}
+
+	\item{Aprendizaje supervisado}: En estos algoritmos se intenta crear una función que nos de la correspondencia entre los datos de entrada y una de las salidas deseadas. En este tipo de algoritmos se tiene información tanto de los valores de entrada como del los valores deseados.Para entrenar se suelen usar pares en los que un componente son los datos de entrada y otro los valores deseados. Los valores deseados suelen ser denominados como clases.\cite{wiki:aprendizaheSupervisado}
+	
+	El valor de salida de la función puede ser un número(Regresión) o una etiqueta de clase(Clasificación).
+	\item{Aprendizaje no supervisado}: El aprendizaje no supervisado se diferencia del supervisado en que no se conoce a priori los resultados deseados. En este tipo de aprendizaje, normalmente, se tratan los datos de entrada como una serie de datos aleatorios y se intentan buscar relaciones ocultas entre ellos.
+	Una forma de aprendizaje no supervisado es el clustering, el cuál se encarga de organizar los datos de entrada en grupos en los que comparten propiedades y los diferencian del resto.\cite{wiki:aprendizajeNoSupervisado}
+	
+	\item{Aprendizaje semisupervisado}: Este tipo de aprendizaje mezcla las dos técnicas descritas anteriormente. Se usa cuando tenemos tanto datos conocidos como datos de los que no tenemos conocimiento.
+	
+	\item{Aprendizaje por refuerzo}: Este tipo de algoritmos realiza una aprendizaje mediante el modelo de prueba-error, es decir, el algoritmo realiza acciones y a partir de los resultados de estas el algoritmo evalúa cual han sido beneficiosas y cuales no.
+\end{itemize}
+	
+En nuestro proyecto se hace uso del aprendizaje supervisado para entrenar el clasificador de imágenes que reconocerá las especies de las setas.
+\cite{wiki:aprendizajeAutomatico}
+
+\section{minería de datos}
+
+La minería de datos consiste en la aplicación de técnicas de inteligencia artificial sobre grandes cantidades de datos con el objetivo de descubrir patrones o relaciones ocultas entre los datos. La parte de la minería de datos más relevante para nuestro proyecto don los clasificadores previamente introducidos. Básicamente los clasificadores se basan en la hipótesis del aprendizaje inductivo:
+
+Cualquier hipótesis que aproxime bien una función objetivo sobre un conjunto de ejemplos de entrenamiento suficientemente grande también aproximará bien la función objetivo en ejemplos no observados //CITAR UBU
+
+//PASOS MINERÍA
+
 \section{Redes neuronales}
 
 En esta sección se explicarán algunos conceptos teóricos sobre redes neuronales necesarios para entender el funcionamiento de los modelos mobilenet e inception usados para clasificar imágenes.
@@ -127,7 +171,11 @@ Este modelo se sigue desarrollando y los desarrolladores lo van evolucionando po
 
 En la imagen anterior se puede observar el efecto de aplicar una convolucion 1x1 antes de efectuar la convolucion 5x5.
 
+\section{Modelo Mobilenet}
 
+\section{Web Semántica}
+
+\section{Web Scraping}
 
 
 

@@ -1,6 +1,160 @@
 \capitulo{4}{Técnicas y herramientas}
 
-Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
-No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
+%Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
+%No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
 
+\section{Java}
+
+Java es un lenguaje de programación desarrollado por James Gosling de Sun Microsystems y publicado en 1995.
+
+Es un lenguaje de programación orientado a objetos, de propósito general y orientado a objetos que fue diseñado con el objetivo de tener la menor cantidad de dependencias de implementación posibles. Un programa java es un programa multiplataforma que solo necesita ser compilado una vez para ser ejecutado en diferentes máquinas. Esto se consigue ya que el programa se ejecuta sobre una máquina virtual java(JVM), elemento que debe estar disponible en el sistema sobre el que se va a ejecutar el programa.
+
+Java cuenta con una gran cantidad de documentación en línea así como una gran variedad de librerías de código abierto creadas por la comunidad que extienden el uso de Java a muchas aplicaciones diferentes, mejorando la funcionalidad original de Java. En este proyecto por ejemplo nos ha servido para realizar la parte de Web Scraping y de la Web Semántica.
+
+Url de la herramienta: \url{<https://www.java.com/es/download/faq/whatis_java.xml>}
+
+\section{Eclipse}
+
+Eclipse es un entorno de desarrollo integrado (IDE, Integrated Development Environment) disponible para varios lenguajes de programación aunque el de uso más extendido sea el de Java. 
+
+En este proyecto se ha trabajado con el IDE de Java denominado Java EE (Eclipse IDE for Java EE Developers) en su versión "Neon.3".
+
+Url de la herramienta: \url{<https://www.eclipse.org/ide/>}
+
+\section{Android}
+
+Android es un sistema operativo basado en Linux. Fue diseñado con el objetivo de operar en dispositivos móviles con patalla táctil, empezando por los teléfonos inteligentes y tabletas y después extendiéndose a nuevos dispositivos como relojes inteligentes, televisores y automóviles. Fue desarrollado por Android Inc., empresa respaldada económicamente por Google que en 2005 la compró. Android fue se lanzo en 2007 junto a la fundación Open Handset Alliance, que es un consorcio de compañias hardware, software y de telecomunicaciones.
+
+Los principales componentes del sistema operativo Android son los siguientes:
+
+\begin{itemize}
+	\item{Aplicaciones}: Todas están escritas en el lenguaje de programación Java.
+	\item{Marco de trabajo de aplicaciones}: Todos los desarrolladores tienen acceso al mismo entorno de trabajo donde cualquier aplicación puede publicar sus capacidades y luego cualquier otra aplicación puede hacer uso de estas capacidades. Este mecanismo a su vez permite que los componentes sean reemplazados por el usuario.
+	\item{Bibliotecas}:Android dispone de una serie de bibiliotecas del sistema escritas en C/C++ cuyas características se ponen a disposición de los desarrolladores a través del marco de trabajo.
+	\item{Runtime de Android}: Android proporciona un set de librerías que proporcional la funcionalidad base de Java. Cada aplicación se ejecuta en una máquina virtual Dalvik.
+	\item{Núcleo Linux}: Android depende de Linux para los servicios base del sistema.
+\end{itemize}
+\cite{wiki:android}
+
+Url de la herramienta: \url{<https://developer.android.com/index.html?hl=es-419>}
+
+\section{Android Studio}
+
+Android Studio es el entorno de desarrollo integrado(IDE) oficial de Android. Tiene el objetivo de facilitar el desarrollo en Android proporcionando herramientas personalizadas a los usuarios así como herramientas completas de edición, depuración, pruebas y perfilamiento de código.
+
+Url de la herramienta: \url{<https://developer.android.com/studio/index.html?hl=es-419>}
+
+\section{JavaScript}
+
+JavaScript es un lenguaje de programación orientado a objetos, basado en prototipos, débilmente tipado y dinámico. Puede ser aplicado sobre un documentos HTML con el fin de crear interactividad dinámica con las páginas Web.
+
+JavaScript se desarrollo inicialmente con una sintaxis parecida a C y adopta nombres y convenciones del lenguaje de programación Java.\cite{wiki:javascript}
+
+Url de la herramienta: \url{<https://www.javascript.com/>}
+
+\section{SLF4J}
+
+SLF4J(The Simple Logging Facade for Java) proporciona una API de registro a Java mediante un patrón de fachada que se aplica a varios marcos de registro (logging frameworks) que permite al usuario mostrar el marco de registro deseado en el momento de desplieque de la aplicación.
+
+SLF4J nos permite filtrar los mensajes de log para visualizar de una forma más oportuna la información que nos muestra Java.
+
+Url de la herramienta: \url{<https://www.slf4j.org/>}
+
+\section{Apache Maven}
+
+Apache Maven es una herramienta para manejar e interpretar nuestros proyectos software mediante un archivo de configuración XML. Maven se basa en el concepto de \textit{project object model (POM)} para describir como y en que orden se van a construir los elementos de un proyecto y para manejar las dependencias de ese proyecto.
+
+Apache Maven permite manejar estás dependencias por Internet descargando y actualizado los diferentes repositorios.\cite{wiki:maven}
+
+Url de la herramienta: \url{<https://maven.apache.org/>}
+
+\section{RDF}
+
+El Resource Description Framework (RDF) es una definición de tipo de documento de XML, es decir, una series de metadatos que usan XML para poder relacionar contenidos entre las diferentes páginas web.
+
+Los objetos de información o recursos se describen a través de un conjunto de propiedades denominadas "descripción RDF" (<rdf:description>). Estas propiedades se pueden entender como atributos de los recursos correspondiéndose a los pares atributo-valor tradicionales.
+
+En el modelo de datos de RDF podemos distinguir tres tipos de objetos:
+
+\begin{itemize}
+	\item{Recursos}: Cualquier recurso Web identificado unívocamente por un URI.
+	\item{Propiedades}: Son características o atributos usadas para describir los recursos. En ellas se definen los valores permitidos y sobre que recursos se pueden aplicar.
+	\item{Descripciones}: Son una triada formada por un recurso, un nombre de propiedad y un valor para esa propiedad. (Sujeto, predicado y objeto).
+Ver siguiente figura:
+\imagen{DescripcionRDF}{Descripciones RDF}
+\end{itemize}
+
+RDF usa la sintaxis básica de XML1.0. Ejemplo: "<xmlns:rdf="http://www.w3.org/TR/REC-rdf-syntax">"
+
+El modelo de datos y la sintaxis no son necesarios para definir la relción entre los diferentes recursos y predicados, por ello hace falta un esquema.
+Un esquema son una serie de informaciones relativas a la clase a la que pertenecen los recursos para establecer relaciones jerárquicas entre ellos.
+
+\section{Apache Jena}
+
+Apache Jena es un entorno de desarrollo de código abierto para Java cuyo objetivo es el de permitir construir aplicaciones que hagan uso de la Web semántica y del \textit{Linked Data}\footnote{Método por el cuál se publican datos estructurados para que puedan ser interconectados con facilidad.}. 
+
+El framework hace uso de diferentes APIs para extraer y escribir información en grafos RDF\footnote{Modelo de datos para los metadatos basado en triadas de información}.\cite{wiki:jena}
+
+La arquitectura de Apache Jena contempla las siguientes características:
+
+\begin{itemize}
+	\item{Arquitectura para manejar (leer, procesar, escribir) las ontologías RDF y OWL.}
+	\item{Motor para razonar sobre estas ontologías RDF y OWL.}
+	\item{API para almacenar las tripletas RDF en ficheros o en memoria.}
+	\item{Motor de queries para realizar consultas bajo la especificación SPARQL.}\cite{jena}
+\end{itemize}
+
+En la siguiente figura se muestra un esquema de la arquitectura de Apache Jena.
+
+%URL imagen= https://unpocodejava.com/2012/07/27/que-es-apache-jena/
+\imagen{ApacheJena}{Arquitectura de Apache Jena}
+%\figuraConPosicion{1}{ApacheJena.jpg}{Arquitectura de Apache Jena}{figJena}{height=5cm}{t}
+
+Url de la herramienta: \url{<https://jena.apache.org/>}
+
+\section{JSON}
+
+JSON (acrónimo de JavaScrip Object Notation) es un formato de texto ligero para el intercambio de datos. Es un subconjunto de la notación de JavaScript pero debido a la extensión de su uso como alternativa a XML se considera como un formato de lenguaje independiente.
+
+La principal ventaja que ofrece JSON es la fácilidad para crear analizadores sintácticos (parsers). \cite{wiki:JSON}
+
+Url de la herramienta: \url{<https://www.json.org/json-es.html>}
+
+\section{Jaunt}
+
+Jaunt es una librería gratuita de Java desarrollada para tareas de Web Scraping y automatización Web así como la realización de consultas JSON. Con Jaunt los programas Java pueden operar a nivel de navegador, documento o operaciones DOM (Del inglés Document Object Model).
+
+JSON esta diseñado para realizar las siguientes tareas:
+\begin{itemize}
+	\item{Completar y enviar formularios Web.}
+	\item{Crear programas automáticos Web o programas de Web-Scraping.}
+	\item{Escribir clientes http para REST-APIS o Web-apps(JSON,HTML,XHTML o XML).}
+\end{itemize}
+
+Url de la herramienta: \url{<http://jaunt-api.com/>}
+\section{SQLite}
+
+SQlite es un sistema de gestión de bases de datos relacional que contempla las características ACID(Atomicidiad, Consistencia, Aislamiento,Durabilidad/Persistencia). SQlite esta contenida en una pequeña librerñia escrita en C que se enlaza con el propio programa pasando a ser parte del mismo, a diferencia de otros sistemas gestores de bases de datos que se ejecutan en un proceso separado e independiente al programa.
+
+SQlite destaca por crear bases de datos ligeras que se almacenan en un único fichero, en la propia máquina donde se ejecuta. Además reduce la latencia ya que los accesos a la base de datos se realizan mediante subrutinas o funciones que implementan la funcionalidad SQL, en vez de realizar comunicación entre procesos como ocurre con otros gestores.\cite{wiki:SQlite}
+
+Url de la herramienta: \url{<https://www.sqlite.org/>}
+
+\section{SPARQL}
+
+\section{DBpedia}
+
+\section{Tensorflow}
+
+\section{Git}
+
+\section{GitHub}
+
+\section{Zenhub}
+
+\section{SourceTree}
+
+\section{MikTex}
+
+\section{TextMaker}
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Opciones">
+        <menu>
+            <item
+                android:id="@+id/menu_clasificar"
+                android:icon="@drawable/clasificar_menu"
+                android:title="@string/clasificar" />
+            <item
+                android:id="@+id/menu_ir_claves"
+                android:icon="@drawable/ir_claves"
+                android:title="@string/claves" />
+            <item
+                android:id="@+id/menu_informacion"
+                android:icon="@drawable/informacion"
+                android:title="@string/informacion" />
+
+        </menu>
+    </item>
+
+    <!--item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item-->
+
+</menu>

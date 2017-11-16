@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/accent"
-        tools:context="ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarInformacionSeta">
+        tools:context="ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta">
 
         <TextView
             android:id="@+id/textView_DescripcionSeta"

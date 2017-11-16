@@ -17,20 +17,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lanzador.ActividadPrincipal"
-            android:screenOrientation="fullSensor">
+        <activity
+            android:name=".interfaces.Recoger"
+            android:screenOrientation="fullSensor"></activity>
+        <activity android:name=".interfaces.MostrarResultados" />
+        <activity android:name=".informacion.MostrarInformacionSeta" />
+        <activity android:name=".interfaces.MostrarComparativa" />
+        <activity android:name=".clavedicotomica.ClaveDicotomica" />
+        <activity
+            android:name=".lanzador.Lanzadora"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".interfaces.MostrarResultados" />
-        <activity android:name=".interfaces.MostrarInformacionSeta" />
-        <activity android:name=".interfaces.MostrarComparativa" />
-        <activity android:name=".clavedicotomica.ClaveDicotomica">
-
-        </activity>
+        <activity android:name=".informacion.MostrarSetas"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

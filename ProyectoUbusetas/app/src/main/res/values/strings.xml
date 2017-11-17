@@ -55,4 +55,59 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+
+    <!--Nombres de las setaas -->
+
+    <string-array name="names_array">
+        <item>Agaricus urinascens</item>
+        <item>Agrocybe parasitica</item>
+        <item>Aleuria aurantia</item>
+        <item>Amanita flavoconia</item>
+        <item>Amanita muscaria</item>
+        <item>Amanita muscaria guessowii</item>
+        <item>Amanita pantherina</item>
+        <item>Amanita phalloides</item>
+        <item>Amanita velosa</item>
+        <item>Annulohypoxylon thouarsianum</item>
+        <item>Apiosporina morbosa</item>
+        <item>Armillaria mellea</item>
+        <item>Artomyces pyxidatus</item>
+        <item>Aseroe rubra</item>
+        <item>Astraeus hygrometricus</item>
+        <item>Auricularia auricula</item>
+        <item>Auricularia cornea</item>
+        <item>Auriscalpium vulgare</item>
+        <item>Bisporella citrina</item>
+        <item>Bolbitius titubans</item>
+        <item>Boletus edulis</item>
+        <item>Bovista nigrescens</item>
+        <item>Calocera cornea</item>
+        <item>Calvatia gigantea</item>
+        <item>Cantharellus cibarius</item>
+        <item>Cantharellus cinnabarinus</item>
+        <item>Chalciporus piperatus</item>
+        <item>Chlorophyllum molybdites</item>
+        <item>Chroogomphus rutilus</item>
+        <item>Cladonia cristatella</item>
+        <item>Cladonia rangiferina</item>
+        <item>Clathrus ruber</item>
+        <item>Clavaria fragilis</item>
+        <item>Clavariadelphus truncatus</item>
+        <item>Clitocybe nuda</item>
+        <item>Clitopilus prunulus</item>
+        <item>Collybia cirrhata</item>
+        <item>Coprinellus disseminatus</item>
+        <item>Coprinellus micaceus</item>
+        <item>Coprinopsis atramentaria</item>
+        <item>Coprinopsis lagopus</item>
+        <item>Coprinus comatus</item>
+        <item>Cortinarius violaceus</item>
+        <item>Craterellus cornucopioides</item>
+        <item>Crucibulum laeve</item>
+        <item>Cryptoporus volvatus</item>
+        <item>Cryptothecia rubrocincta</item>
+        <item>Cyathus striatus</item>
+        <item>Cystoderma amianthinum</item>
+        <item>Dacrymyces palmatus</item>
+    </string-array>
 </resources>

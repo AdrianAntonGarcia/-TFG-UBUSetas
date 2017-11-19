@@ -11,17 +11,35 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.interfaces.Recoger;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
+
+/*
+* @name: Lanzadora
+* @Author: Adrián Antón García
+* @category: class
+* @Description: Clase que arranca la aplicación.
+* */
 
 public class Lanzadora extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    /*
+      * @name: onCreate
+      * @Author: Adrián Antón García
+      * @category: Procedimiento
+      * @Description: Procedimiento que inicializa la actividad lanzadora.
+      * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lanzadora);
+
+        //parte del menu lateral
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_lanzadora);
+        //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
         //Boton flotante
@@ -33,7 +51,7 @@ public class Lanzadora extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });*/
-
+    //cargamos el layout del menu y lo inicializamos
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_lanzadora);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -76,23 +94,28 @@ public class Lanzadora extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }*/
 
+    /*
+    * @name: onNavigationItemSelected
+    * @Author: Adrián Antón García
+    * @category: Metodo
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.menu_clasificar) {
             Intent cambioActividad = new Intent(Lanzadora.this, Recoger.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_ir_claves) {
-
+            Intent cambioActividad = new Intent(Lanzadora.this, MostrarClaves.class);
+            startActivity(cambioActividad);
         } else if (id == R.id.menu_informacion) {
             Intent cambioActividad = new Intent(Lanzadora.this, MostrarSetas.class);
             startActivity(cambioActividad);
-
         }
-
+        //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_lanzadora);
         drawer.closeDrawer(GravityCompat.START);
         return true;

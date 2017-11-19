@@ -9,19 +9,11 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas"
-    tools:showIn="@layout/layout_mostrar_setas">
-
-    <TextView
-        android:id="@+id/textView_contenido_mostrar_setas"
-        android:text="@string/texto_informativo_mostrar_setas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves"
+    tools:showIn="@layout/layout_mostrar_claves">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/textView_contenido_mostrar_setas"
-        android:layout_marginTop="10dp"
-        android:id="@+id/recycler_view_lista_setas"
+        android:id="@+id/recycler_view_lista_claves"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />

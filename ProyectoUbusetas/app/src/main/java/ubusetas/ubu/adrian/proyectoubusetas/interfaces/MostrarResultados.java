@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;

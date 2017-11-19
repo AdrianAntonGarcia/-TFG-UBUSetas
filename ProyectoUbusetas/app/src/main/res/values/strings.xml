@@ -46,19 +46,21 @@
 
     <!--Cadenas de los elementos de la actividad mostrar setas -->
     <string name="titulo_mostrar_setas">Mostrar setas</string>
+    <string name="texto_informativo_mostrar_setas">Seleccione una tarjeta para mostrar la información de esa seta:</string>
 
     <!-- Elementos del menú -->
 
     <string name="clasificar">Clasificar</string>
     <string name="claves">Ir claves dicotomicas</string>
     <string name="informacion">Informacion setas</string>
+    <string name="home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
     <!--Nombres de las setaas -->
 
-    <string-array name="names_array">
+    <string-array name="nombres_setas">
         <item>Agaricus urinascens</item>
         <item>Agrocybe parasitica</item>
         <item>Aleuria aurantia</item>
@@ -109,5 +111,126 @@
         <item>Cyathus striatus</item>
         <item>Cystoderma amianthinum</item>
         <item>Dacrymyces palmatus</item>
+        <item>Dacryopinax spathularia</item>
+        <item>Discina ancilis</item>
+        <item>Entoloma hochstetteri</item>
+        <item>Evernia prunastri</item>
+        <item>Exidia glandulosa</item>
+        <item>Favolaschia calocera</item>
+        <item>Flammulina velutipes</item>
+        <item>Flavoparmelia caperata</item>
+        <item>Fomes fomentarius</item>
+        <item>Fomitopsis pinicola</item>
+        <item>Galerina marginata</item>
+        <item>Ganoderma applanatum</item>
+        <item>Ganoderma lucidum</item>
+        <item>Ganoderma tsugae</item>
+        <item>Geastrum saccatum</item>
+        <item>Gymnopilus junonius</item>
+        <item>Gymnosporangium juniperi virginianae</item>
+        <item>Gyromitra esculenta</item>
+        <item>Gyroporus castaneus</item>
+        <item>Hebeloma mesophaeum</item>
+        <item>Helvella dryophila</item>
+        <item>Hericium coralloides</item>
+        <item>Hericium erinaceus</item>
+        <item>Hohenbuehelia petaloides</item>
+        <item>Hydnellum ferrugineum</item>
+        <item>Hydnum umbilicatum</item>
+        <item>Hygrocybe coccinea</item>
+        <item>Hygrocybe conica</item>
+        <item>Hygrocybe flavescens</item>
+        <item>Hygrophoropsis aurantiaca</item>
+        <item>Hygrophorus agathosmus</item>
+        <item>Hypholoma fasciculare</item>
+        <item>Hypomyces lactifluorum</item>
+        <item>Ileodictyon cibarium</item>
+        <item>Inocybe rimosa</item>
+        <item>Inonotus hispidus</item>
+        <item>Laccaria amethystina</item>
+        <item>Lactarius alnicola</item>
+        <item>Lactarius indigo</item>
+        <item>Lactarius rubidus</item>
+        <item>Laetiporus gilbertsonii</item>
+        <item>Laetiporus sulphureus</item>
+        <item>Leccinum scabrum</item>
+        <item>Lentinus strigosus</item>
+        <item>Lenzites betulina</item>
+        <item>Lepiota cristata</item>
+        <item>Lepista flaccida</item>
+        <item>Leratiomyces ceres</item>
+        <item>Leratiomyces erythrocephalus</item>
+        <item>Letharia columbiana</item>
+        <item>Letharia vulpina</item>
+        <item>Leucoagaricus leucothites</item>
+        <item>Leucocoprinus birnbaumii</item>
+        <item>Lobaria pulmonaria</item>
+        <item>Lycoperdon perlatum</item>
+        <item>Lycoperdon pyriforme</item>
+        <item>Lyophyllum decastes</item>
+        <item>Macrolepiota procera</item>
+        <item>Marasmius plicatulus</item>
+        <item>Melanoleuca exscissa</item>
+        <item>Meripilus giganteus</item>
+        <item>Mitrophora semilibera</item>
+        <item>Morchella esculenta</item>
+        <item>Mutinus caninus</item>
+        <item>Mycena leaiana</item>
+        <item>Nidula niveotomentosa</item>
+        <item>Niebla homalea</item>
+        <item>Omphalotus illudens</item>
+        <item>Omphalotus olivascens</item>
+        <item>Otidea onotica</item>
+        <item>Panaeolus papilionaceus</item>
+        <item>Parasola plicatilis</item>
+        <item>Parmelia sulcata</item>
+        <item>Paxillus involutus</item>
+        <item>Peziza repanda</item>
+        <item>Phaeolus schweinitzii</item>
+        <item>Phallus impudicus</item>
+        <item>Phellinus igniarius</item>
+        <item>Pholiota squarrosa</item>
+        <item>Piptoporus betulinus</item>
+        <item>Pisolithus arhizus</item>
+        <item>Pleurotus ostreatus</item>
+        <item>Pluteus cervinus</item>
+        <item>Polyporus arcularius</item>
+        <item>Polyporus squamosus</item>
+        <item>Psathyrella corrugis</item>
+        <item>Pseudoclitocybe cyathiformis</item>
+        <item>Pseudohydnum gelatinosum</item>
+        <item>Pycnoporus cinnabarinus</item>
+        <item>Pycnoporus coccineus</item>
+        <item>Ramalina farinacea</item>
+        <item>Ramalina menziesii</item>
+        <item>Ramaria gracilis</item>
+        <item>Rhizocarpon geographicum</item>
+        <item>Russula virescens</item>
+        <item>Sarcodon imbricatus</item>
+        <item>Sarcoscypha coccinea</item>
+        <item>Schizophyllum commune</item>
+        <item>Scleroderma citrinum</item>
+        <item>Scutellinia scutellata</item>
+        <item>Sparassis crispa</item>
+        <item>Stereum hirsutum</item>
+        <item>Stereum ostrea</item>
+        <item>Strobilomyces floccopus</item>
+        <item>Stropharia ambigua</item>
+        <item>Suillus pungens</item>
+        <item>Teloschistes chrysophthalmus</item>
+        <item>Trametes versicolor</item>
+        <item>Tremella aurantia</item>
+        <item>Tremella fuciformis</item>
+        <item>Tremella mesenterica</item>
+        <item>Trichaptum biforme</item>
+        <item>Tricholoma ustale</item>
+        <item>Turbinellus floccosus</item>
+        <item>Umbilicaria mammulata</item>
+        <item>Usnea intermedia</item>
+        <item>Volvariella bombycina</item>
+        <item>Volvopluteus gloiocephalus</item>
+        <item>Xanthoria parietina</item>
+        <item>Xylaria hypoxylon</item>
+        <item>Xylaria polymorpha</item>
     </string-array>
 </resources>

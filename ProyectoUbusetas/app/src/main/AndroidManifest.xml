@@ -18,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".interfaces.Recoger"
-            android:screenOrientation="fullSensor"></activity>
+            android:name=".clasificador.Recoger"
+            android:screenOrientation="fullSensor" />
         <activity android:name=".interfaces.MostrarResultados" />
-        <activity android:name=".informacion.MostrarInformacionSeta" />
+        <activity
+            android:name=".informacion.MostrarInformacionSeta"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".interfaces.MostrarComparativa" />
         <activity android:name=".clavedicotomica.ClaveDicotomica" />
         <activity
@@ -34,9 +37,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".informacion.MostrarSetas"
+        <activity
+            android:name=".informacion.MostrarSetas"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".clavedicotomica.MostrarClaves"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

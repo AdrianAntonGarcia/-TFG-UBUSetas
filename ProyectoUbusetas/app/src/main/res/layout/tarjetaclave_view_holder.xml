@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_layout"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_margin="3dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="10dp">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relative_layout_tarjeta_clave"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:transitionName="layout_transition"
+        android:padding="16dp">
+
+        <!--TextView
+            android:id="@+id/inicial_tarjeta_clave"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="top"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" /-->
+
+        <TextView
+            android:id="@+id/nombre_tarjeta_clave"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:textSize="16dp"
+            android:textColor="@android:color/white"
+            android:gravity="center"/>
+        <!--android:layout_below="@id/inicial_tarjeta_clave"-->
+        <ImageView
+            android:id="@+id/imagen_tarjeta_clave"
+            android:layout_below="@id/nombre_tarjeta_clave"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

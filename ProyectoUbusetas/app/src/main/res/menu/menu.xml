@@ -17,6 +17,10 @@
                 android:id="@+id/menu_informacion"
                 android:icon="@drawable/informacion"
                 android:title="@string/informacion" />
+            <item
+                android:id="@+id/menu_home"
+                android:icon="@drawable/home"
+                android:title="@string/home" />
 
         </menu>
     </item>

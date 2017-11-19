@@ -1,4 +1,4 @@
-package ubusetas.ubu.adrian.proyectoubusetas.informacion;
+package ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,28 +20,29 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
-import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
+import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.AdaptadorTarjetasClaves;
+import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.TarjetaClave;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.AdaptadorTarjetasSetas;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
+import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.TarjetaSeta;
 
 /*
-* @name: MostrarSetas
+* @name: MostrarClaves
 * @Author: Adrián Antón García
 * @category: class
-* @Description: Clase que muestra las setas de la aplicación.
+* @Description: Clase que muestra las claves dicotomicas de la aplicación.
 * */
 
-public class MostrarSetas extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MostrarClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //RecyclerView que va a contener las tarjetas de las setas
+    //RecyclerView que va a contener las tarjetas de las claves
     private RecyclerView recyclerView;
     //Adaptador que va a enlazar las tarjetas con sus layout
-    private AdaptadorTarjetasSetas adapter;
+    private AdaptadorTarjetasClaves adapter;
     //Lista con las tarjetas
-    private ArrayList<TarjetaSeta> listaTarjetaSetas = new ArrayList<>();
+    private ArrayList<TarjetaClave> listaTarjetasClaves = new ArrayList<>();
     //Array con los colores de las tarjetas
     private int[] colors;
     //Array con los nombres de las tarjetas
@@ -51,13 +52,13 @@ public class MostrarSetas extends AppCompatActivity
     * @name: onCreate
     * @Author: Adrián Antón García
     * @category: Procedimiento
-    * @Description: Procedimiento que inicializa la actividad mostrar setas.
+    * @Description: Procedimiento que inicializa la actividad mostrar claves.
     * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostar_setas);
+        setContentView(R.layout.activity_mostrar_claves);
 
         //cargamos la lista de setas y los colores
         names = getResources().getStringArray(R.array.nombres_setas);
@@ -68,42 +69,43 @@ public class MostrarSetas extends AppCompatActivity
 
         //Creamos el adaptador entre las tarjetas y el layout de las tarjetas
         if (adapter == null) {
-            adapter = new AdaptadorTarjetasSetas(this, listaTarjetaSetas);
+            adapter = new AdaptadorTarjetasClaves(this, listaTarjetasClaves);
         }
 
         //a que recycler esta adapatado esta actividad
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_lista_setas);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_lista_claves);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //parte del menu lateral
-        Toolbar toolbar = (Toolbar) findViewById(R.id.barra_mostrar_setas);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.barra_mostrar_claves);
         //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
         //cargamos el layout del menu y lo inicializamos
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_setas);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_claves);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
-    /*
+        /*
      * @name: inicializarTarjetas
      * @Author: Adrián Antón García
      * @category: Procedimiento
      * @Description: Procedimiento que inicializa las tarjetas de las setas
      * */
-    
+
     private void inicializarTarjetas() {
-        //170 tarjetas
-        for (int i = 0; i < 171; i++) {
+        //49 tarjetas
+        for (int i = 0; i < 50; i++) {
             //Inicializamos la tarjeta
             String nombreSeta=names[i];
-            TarjetaSeta card = new TarjetaSeta();
+            TarjetaClave card = new TarjetaClave();
             card.setId((long) i);
             card.setName(nombreSeta);
             card.setColorResource(colors[i]);
@@ -118,10 +120,9 @@ public class MostrarSetas extends AppCompatActivity
             }
             Bitmap bit = BitmapFactory.decodeStream(is);
             card.setImagenSeta(bit);
-            listaTarjetaSetas.add(card);
+            listaTarjetasClaves.add(card);
         }
     }
-
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -131,7 +132,7 @@ public class MostrarSetas extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_setas);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_claves);
         //si el menu esta abierto
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             //lo cerramos
@@ -142,37 +143,30 @@ public class MostrarSetas extends AppCompatActivity
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
-        return true;
-    }*/
-
     /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
     * @Description: Metodo que se activa cuando pulsamos un botón del menú
     * */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.menu_clasificar) {
-            Intent cambioActividad = new Intent(MostrarSetas.this, Recoger.class);
+            Intent cambioActividad = new Intent(MostrarClaves.this, Recoger.class);
             startActivity(cambioActividad);
-        } else if (id == R.id.menu_ir_claves) {
-            Intent cambioActividad = new Intent(MostrarSetas.this, MostrarClaves.class);
+        } else if (id == R.id.menu_informacion) {
+            Intent cambioActividad = new Intent(MostrarClaves.this, MostrarSetas.class);
             startActivity(cambioActividad);
         }else if (id == R.id.menu_home) {
-            Intent cambioActividad = new Intent(MostrarSetas.this, Lanzadora.class);
+            Intent cambioActividad = new Intent(MostrarClaves.this, Lanzadora.class);
             startActivity(cambioActividad);
         }
         //Cerramos el menu lateral
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_setas);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_claves);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

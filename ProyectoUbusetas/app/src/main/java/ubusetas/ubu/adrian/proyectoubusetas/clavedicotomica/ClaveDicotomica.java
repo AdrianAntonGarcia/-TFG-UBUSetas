@@ -2,29 +2,34 @@ package ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarResultados;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
+import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
+import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 /*
 * @name: ClaveDicotomica
@@ -33,7 +38,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarResultados;
 * @Description: Clase que iplementa la funcionalidad para visualizar las claves dicotomicas de las setas
 * */
 
-public class ClaveDicotomica extends AppCompatActivity implements Serializable, AdapterView.OnItemClickListener,View.OnClickListener {
+public class ClaveDicotomica extends AppCompatActivity implements Serializable, AdapterView.OnItemClickListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = ClaveDicotomica.class.getSimpleName();
 
     //Estructura donde se almacenan las claves
@@ -60,23 +65,15 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     private static final String NODOINICIAL = "1";
     private static final String NOMBREFICHERO = "claves.dat";
 
-    //Elementos que vienen de mostrar Resultados y que hay que devolver al volver
-    private Bitmap bitmapImagen;
-    private int posImagenSeta;
-    private List<String> resultados;
-
     //Elementos de la interfaz
     private ListView listViewClaveDicotomica;
     private TextView TextViewClaveMostrada;
-    private TextView TextViewPregunta;
-    private TextView TextViewInformacionClave;
-    private Button boton_volver_clave;
-    private Button boton_anterior;
+    private FloatingActionButton boton_anterior;
 
     //Generos obtenidos en los resultados
     private ArrayList<String> generosDeLaClaveGeneral;
-    private ArrayList<String> nombresSetasResultados;
-    private String generoActual="general";
+    //private ArrayList<String> nombresSetasResultados;
+    private String generoActual = "general";
 
     /*
    * @name: onCreate
@@ -92,70 +89,76 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
         //Inicializo el nombre de la clave
 
-        NOMBRECLAVE="general";
+        NOMBRECLAVE = "general";
 
         //recojo los elementos que tengo que devolver a la actividad mostrarResultados al volver
 
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
-
-        bitmapImagen = (Bitmap) datosRecibidos.get("fotoBitmap");
-        posImagenSeta = (int) datosRecibidos.get("posImagenSeta");
-        resultados = (List<String>) datosRecibidos.get("resultados");
-
+        NOMBRECLAVE = datosRecibidos.getString("nombreClave");
         //Recojo los nombres de las setas resultados del clasificador
 
-        nombresSetasResultados = (ArrayList<String>) datosRecibidos.get("nombresSetas");
+        //nombresSetasResultados = (ArrayList<String>) datosRecibidos.get("nombresSetas");
 
         //Inicializo los elementos de la interfaz
 
-        TextViewClaveMostrada =(TextView) findViewById(R.id.TextView_ClaveMostrada);
-        TextViewPregunta = (TextView) findViewById(R.id.TextView_Pregunta);
-        TextViewInformacionClave=(TextView) findViewById(R.id.TextView_InformacionClave);
+        TextViewClaveMostrada = (TextView) findViewById(R.id.TextView_ClaveMostrada);
         listViewClaveDicotomica = (ListView) findViewById(R.id.listView_claveDicotomica);
-        boton_volver_clave=(Button) findViewById(R.id.boton_volver_clave);
-        boton_anterior=(Button) findViewById(R.id.boton_anterior);
+        boton_anterior = (FloatingActionButton) findViewById(R.id.boton_anterior);
         listViewClaveDicotomica.setOnItemClickListener(this);
-        boton_volver_clave.setOnClickListener(this);
         boton_anterior.setOnClickListener(this);
 
         //Leo todas las claves
         claves = readFromFile(this, NOMBREFICHERO);
 
         //cargo los generos recogidos por la clave
-        generosDeLaClaveGeneral=new ArrayList<String>();
-        for(String g:claves.keySet()){
+        /*generosDeLaClaveGeneral = new ArrayList<String>();
+        for (String g : claves.keySet()) {
             generosDeLaClaveGeneral.add(g);
-        }
+        }*/
         //Saco el genero del primer resultado
-        generoActual=nombresSetasResultados.get(0).split(" ")[0].trim();
+        //generoActual = nombresSetasResultados.get(0).split(" ")[0].trim();
 
 
         //cargo la clave
-        ArrayList<String> generosDeLaClaveGeneral=new ArrayList<>();
+        ArrayList<String> generosDeLaClaveGeneral = new ArrayList<>();
 
-        comprobarGenero(generoActual);
+        //comprobarGenero(generoActual);
         cargarClave();
-        TextViewClaveMostrada.setText("Clave: "+NOMBRECLAVE +"Genero:"+generoActual);
+        TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
+
+
+        //parte del menu lateral
+        Toolbar toolbar = (Toolbar) findViewById(R.id.barra_clave_dicotomica);
+        //cargamos la nueva barra
+        setSupportActionBar(toolbar);
+
+        //cargamos el layout del menu y lo inicializamos
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
-
-    public void comprobarGenero(String generoComprobar){
-        if(generosDeLaClaveGeneral.contains(generoComprobar)){
+    /*public void comprobarGenero(String generoComprobar) {
+        if (generosDeLaClaveGeneral.contains(generoComprobar)) {
             TextViewInformacionClave.setText("La clave dicotomica general contempla este genero. ");
-            Log.d(TAG,"CODIGO DE LA CLAVE: "+claves.get(generoComprobar));
-            if(claves.get(generoComprobar).get(0).equals("vacio")==false){
-                TextViewInformacionClave.setText(TextViewInformacionClave.getText()+"Además existe una clave especifica para ese genero");
-                NOMBRECLAVE=generoActual;
-                TextViewClaveMostrada.setText("Clave: "+NOMBRECLAVE);
-            }else{
-                TextViewInformacionClave.setText(TextViewInformacionClave.getText()+"No existe una clave especifica para ese genero");
+            Log.d(TAG, "CODIGO DE LA CLAVE: " + claves.get(generoComprobar));
+            if (claves.get(generoComprobar).get(0).equals("vacio") == false) {
+                TextViewInformacionClave.setText(TextViewInformacionClave.getText() + "Además existe una clave especifica para ese genero");
+                NOMBRECLAVE = generoActual;
+                TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
+            } else {
+                TextViewInformacionClave.setText(TextViewInformacionClave.getText() + "No existe una clave especifica para ese genero");
             }
-        }else{
+        } else {
             TextViewInformacionClave.setText("La clave dicotomica no contiene el genero clasificado");
         }
-    }
+    }*/
 
     /*
     * @name: cargarClave
@@ -179,11 +182,11 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         preguntas = new ArrayList<String>();
         preguntas.clear();
         hijosArbol = arbolNodos.get(NODOINICIAL);
-        nodoPadre=NODOINICIAL;
+        nodoPadre = NODOINICIAL;
         //cargo las preguntas de cada hijo
 
         for (String hijo : hijosArbol) {
-            if(contenidoNodos.containsKey(hijo)) {
+            if (contenidoNodos.containsKey(hijo)) {
                 preguntas.add(contenidoNodos.get(hijo).get(0));
             }
         }
@@ -194,15 +197,22 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         listViewClaveDicotomica.setAdapter(adaptador);
     }
 
+    /*
+    * @name: onItemClick
+    * @Author: Adrián Antón García
+    * @category: procedure
+    * @Description: Procedimiento que se activa cuando se pulsa sobre un elemento de la lista
+    * */
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         //recojo el nodo pulsado
 
         String hijoPulsado = hijosArbol.get(position);
-        nodoPadre=contenidoNodos.get(hijoPulsado).get(2);
+        nodoPadre = contenidoNodos.get(hijoPulsado).get(2);
 
-        Toast.makeText(this, hijoPulsado, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, hijoPulsado, Toast.LENGTH_LONG).show();
         //Si el hijo pulsado tiene hijos, es decir, es un nodo intermedio
         if (arbolNodos.containsKey(hijoPulsado)) {
             //recojo los hijos de ese nuevo nodo
@@ -263,15 +273,6 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.boton_volver_clave:
-                //envio todos los elementos necesarios para que la actividad mostrar resultados se inicialice correctamente
-                Intent mostrarResultados = new Intent(ClaveDicotomica.this, MostrarResultados.class);
-                mostrarResultados.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
-                mostrarResultados.putExtra("fotoBitmap", bitmapImagen);
-                mostrarResultados.putExtra("posImagenSeta", posImagenSeta);
-                finish();
-                startActivity(mostrarResultados);
-                break;
             case R.id.boton_anterior:
                 //recojo los hijos de ese nuevo nodo
                 hijosArbol = arbolNodos.get(nodoPadre);
@@ -280,7 +281,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 //recojo sus preguntas, si el nodo no es una hoja
                 preguntas.clear();
                 for (String hijo : hijosArbol) {
-                    if(contenidoNodos.containsKey(hijo)) {
+                    if (contenidoNodos.containsKey(hijo)) {
                         preguntas.add(contenidoNodos.get(hijo).get(0));
                     }
                 }
@@ -289,5 +290,55 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 listViewClaveDicotomica.setAdapter(adaptador);
                 break;
         }
+    }
+
+        /*
+    * @name: onCreate
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+    * */
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
+        //si el menu esta abierto
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            //lo cerramos
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            //si el menu esta cerrado llamamos al constructor padre
+            super.onBackPressed();
+        }
+    }
+        /*
+    * @name: onNavigationItemSelected
+    * @Author: Adrián Antón García
+    * @category: Metodo
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * */
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_clasificar) {
+            Intent cambioActividad = new Intent(ClaveDicotomica.this, RecogerFoto.class);
+            startActivity(cambioActividad);
+        } else if (id == R.id.menu_ir_claves) {
+            Intent cambioActividad = new Intent(ClaveDicotomica.this, MostrarClaves.class);
+            startActivity(cambioActividad);
+        } else if (id == R.id.menu_informacion) {
+            Intent cambioActividad = new Intent(ClaveDicotomica.this, MostrarSetas.class);
+            startActivity(cambioActividad);
+        } else if (id == R.id.menu_home) {
+            Intent cambioActividad = new Intent(ClaveDicotomica.this, Lanzadora.class);
+            startActivity(cambioActividad);
+        }
+        //Cerramos el menu lateral
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

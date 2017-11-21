@@ -20,7 +20,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.AdaptadorTarjetasSetas;
@@ -97,12 +97,12 @@ public class MostrarSetas extends AppCompatActivity
      * @category: Procedimiento
      * @Description: Procedimiento que inicializa las tarjetas de las setas
      * */
-    
+
     private void inicializarTarjetas() {
         //170 tarjetas
         for (int i = 0; i < 171; i++) {
             //Inicializamos la tarjeta
-            String nombreSeta=names[i];
+            String nombreSeta = names[i];
             TarjetaSeta card = new TarjetaSeta();
             card.setId((long) i);
             card.setName(nombreSeta);
@@ -110,7 +110,7 @@ public class MostrarSetas extends AppCompatActivity
 
             InputStream is = null;
             //Cargamos la imágen de esa tarjeta
-            String path="imagenesSetas/" + nombreSeta.toLowerCase() + "/"+ nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
+            String path = "imagenesSetas/" + nombreSeta.toLowerCase() + "/" + nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
             try {
                 is = this.getResources().getAssets().open(path);
             } catch (IOException e) {
@@ -162,12 +162,12 @@ public class MostrarSetas extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.menu_clasificar) {
-            Intent cambioActividad = new Intent(MostrarSetas.this, Recoger.class);
+            Intent cambioActividad = new Intent(MostrarSetas.this, RecogerFoto.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_ir_claves) {
             Intent cambioActividad = new Intent(MostrarSetas.this, MostrarClaves.class);
             startActivity(cambioActividad);
-        }else if (id == R.id.menu_home) {
+        } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarSetas.this, Lanzadora.class);
             startActivity(cambioActividad);
         }

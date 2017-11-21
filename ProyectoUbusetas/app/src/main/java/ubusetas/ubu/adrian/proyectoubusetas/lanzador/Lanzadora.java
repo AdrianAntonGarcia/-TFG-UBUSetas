@@ -11,9 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
 
 /*
 * @name: Lanzadora
@@ -106,7 +106,7 @@ public class Lanzadora extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_clasificar) {
-            Intent cambioActividad = new Intent(Lanzadora.this, Recoger.class);
+            Intent cambioActividad = new Intent(Lanzadora.this, RecogerFoto.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_ir_claves) {
             Intent cambioActividad = new Intent(Lanzadora.this, MostrarClaves.class);

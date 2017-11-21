@@ -48,6 +48,10 @@
     <string name="titulo_mostrar_setas">Mostrar setas</string>
     <string name="texto_informativo_mostrar_setas">Seleccione una tarjeta para mostrar la información de esa seta:</string>
 
+    <!--Cadenas de los elementos de la actividad mostrar claves -->
+    <string name="titulo_mostrar_claves">Mostrar claves</string>
+    <string name="texto_informativo_mostrar_claves">Seleccione una tarjeta para mostrar la clave dicotómica de ese género:</string>
+
     <!-- Elementos del menú -->
 
     <string name="clasificar">Clasificar</string>
@@ -58,7 +62,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
-    <!--Nombres de las setaas -->
+    <!--Nombres de las setas -->
 
     <string-array name="nombres_setas">
         <item>Agaricus urinascens</item>
@@ -233,4 +237,51 @@
         <item>Xylaria hypoxylon</item>
         <item>Xylaria polymorpha</item>
     </string-array>
+
+    <!--Nombres de las claves-->
+
+    <string-array name="nombres_claves">
+        <item>general</item>
+        <item>agaricus</item>
+        <item>agrocybe</item>
+        <item>amanita</item>
+        <item>armillaria</item>
+        <item>boletopsis</item>
+        <item>boletus</item>
+        <item>calocera</item>
+        <item>cantharellus</item>
+        <item>chroogomphus</item>
+        <item>clavariadelphus</item>
+        <item>coprinus</item>
+        <item>cortinarius</item>
+        <item>cystoderma</item>
+        <item>exidia</item>
+        <item>geastrum</item>
+        <item>gyromitra</item>
+        <item>gyroporus</item>
+        <item>helvella</item>
+        <item>hydnellum</item>
+        <item>hygrophorus</item>
+        <item>hypholoma</item>
+        <item>inocybe</item>
+        <item>laccaria</item>
+        <item>lactarius</item>
+        <item>leccinum</item>
+        <item>macrolepiota</item>
+        <item>marasmius</item>
+        <item>mycena</item>
+        <item>otidea</item>
+        <item>peziza</item>
+        <item>pluteus</item>
+        <item>polyporus</item>
+        <item>psathyrella</item>
+        <item>ramaria</item>
+        <item>sparassis</item>
+        <item>stereum</item>
+        <item>suillus</item>
+        <item>tricholoma</item>
+        <item>volvariella</item>
+        <item>xerocomus</item>
+    </string-array>
+
 </resources>

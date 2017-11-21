@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
@@ -244,7 +244,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.boton_volver_mostrar_principal: //Volver a la actividad principal
-                Intent cambioActividad = new Intent(MostrarResultados.this, Recoger.class);
+                Intent cambioActividad = new Intent(MostrarResultados.this, RecogerFoto.class);
                 startActivity(cambioActividad);
                 break;
             case R.id.boton_refrescar_resultados: //Refrescar

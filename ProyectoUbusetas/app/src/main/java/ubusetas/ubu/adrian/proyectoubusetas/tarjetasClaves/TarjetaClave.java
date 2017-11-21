@@ -7,7 +7,7 @@ public class TarjetaClave {
     private long id;
     private String name;
     private int color_resource;
-    private Bitmap imagenSeta;
+    //private Bitmap imagenSeta;
 
     public long getId() {
         return id;
@@ -21,12 +21,6 @@ public class TarjetaClave {
         return name;
     }
 
-    public void setImagenSeta(Bitmap imagen){
-        this.imagenSeta=imagen;
-    }
-    public Bitmap getImagenSeta(){
-        return imagenSeta;
-    }
     public void setName(String name) {
         this.name = name;
     }

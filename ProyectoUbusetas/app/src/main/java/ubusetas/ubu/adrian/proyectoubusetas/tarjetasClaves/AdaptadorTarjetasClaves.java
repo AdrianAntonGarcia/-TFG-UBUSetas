@@ -1,6 +1,7 @@
 package ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 
 /**
  * Created by adrit on 17/11/2017.
@@ -45,16 +47,20 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
     public void onBindViewHolder(AdaptadorTarjetasClaves.ViewHolder holder, int position) {
         String name = listaTarjetaClaves.get(position).getName();
         int color = listaTarjetaClaves.get(position).getColorResource();
-        Bitmap bit = listaTarjetaClaves.get(position).getImagenSeta();
+        long id = listaTarjetaClaves.get(position).getId();
+        //Bitmap bit = listaTarjetaClaves.get(position).getImagenSeta();
         //TextView inicial = holder.inicial;
         TextView nombre = holder.nombre;
-        ImageView imagenSeta = holder.imagenSeta;
+        TextView inicial = holder.inicial;
+        //ImageView imagenSeta = holder.imagenSeta;
         RelativeLayout layout = holder.layoutSeta;
         nombre.setText(name);
         nombre.setBackgroundColor(color);
+        inicial.setBackgroundColor(color);
+        inicial.setText(Character.toString(name.charAt(0))+"-"+id);
         //inicial.setBackgroundColor(color);
         //inicial.setText(Character.toString(name.charAt(0)));
-        imagenSeta.setImageBitmap(bit);
+        //imagenSeta.setImageBitmap(bit);
         layout.setBackgroundColor(color);
     }
 
@@ -69,15 +75,15 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        //private TextView inicial;
+        private TextView inicial;
         private TextView nombre;
-        private ImageView imagenSeta;
+        //private ImageView imagenSeta;
         private RelativeLayout layoutSeta;
         public ViewHolder(View v) {
             super(v);
-            //inicial = (TextView) v.findViewById(R.id.inicial_tarjeta);
+            inicial = (TextView) v.findViewById(R.id.inicial_tarjeta_clave);
             nombre = (TextView) v.findViewById(R.id.nombre_tarjeta_clave);
-            imagenSeta = (ImageView) v.findViewById(R.id.imagen_tarjeta_clave);
+            //imagenSeta = (ImageView) v.findViewById(R.id.imagen_tarjeta_clave);
             layoutSeta = (RelativeLayout) v.findViewById(R.id.relative_layout_tarjeta_clave) ;
 
             //Al pulsar una tarjeta
@@ -85,11 +91,10 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
                 @Override
                 public void onClick(View v) {
                     TextView nombre=(TextView) v.findViewById(R.id.nombre_tarjeta_clave);
-
                     Toast.makeText(context, nombre.getText(), Toast.LENGTH_SHORT).show();
-                    /*Intent mostrarSeta = new Intent(context, MostrarInformacionSeta.class);
-                    mostrarSeta.putExtra("nombreSeta",nombre.getText());
-                    context.startActivity(mostrarSeta);*/
+                    Intent mostrarSeta = new Intent(context,ClaveDicotomica.class);
+                    mostrarSeta.putExtra("nombreClave",nombre.getText());
+                    context.startActivity(mostrarSeta);
 
                 }
             });

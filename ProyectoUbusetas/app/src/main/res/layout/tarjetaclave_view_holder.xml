@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_layout"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="80dp"
     android:layout_margin="3dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -12,38 +12,38 @@
 
     <RelativeLayout
 
+        android:id="@+id/relative_layout_tarjeta_clave"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relative_layout_tarjeta_clave"
         android:background="@android:color/white"
         android:orientation="vertical"
-        android:transitionName="layout_transition"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:transitionName="layout_transition">
 
-        <!--TextView
+        <TextView
             android:id="@+id/inicial_tarjeta_clave"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="20dp"
             android:gravity="top"
             android:textColor="@android:color/white"
-            android:textSize="16dp" /-->
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/nombre_tarjeta_clave"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-
-            android:textSize="16dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/inicial_tarjeta_clave"
+            android:gravity="center"
             android:textColor="@android:color/white"
-            android:gravity="center"/>
-        <!--android:layout_below="@id/inicial_tarjeta_clave"-->
-        <ImageView
+            android:textSize="16dp" />
+
+        <!--ImageView
             android:id="@+id/imagen_tarjeta_clave"
             android:layout_below="@id/nombre_tarjeta_clave"
             android:layout_centerHorizontal="true"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            />
+            /-->
 
 
     </RelativeLayout>

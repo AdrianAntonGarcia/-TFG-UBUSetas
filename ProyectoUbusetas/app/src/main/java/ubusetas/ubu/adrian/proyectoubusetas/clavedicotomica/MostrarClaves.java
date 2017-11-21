@@ -1,8 +1,6 @@
 package ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,20 +11,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.AdaptadorTarjetasClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.TarjetaClave;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.AdaptadorTarjetasSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.clasificador.Recoger;
+import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.TarjetaSeta;
 
 /*
 * @name: MostrarClaves
@@ -61,7 +54,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_mostrar_claves);
 
         //cargamos la lista de setas y los colores
-        names = getResources().getStringArray(R.array.nombres_setas);
+        names = getResources().getStringArray(R.array.nombres_claves);
         colors = getResources().getIntArray(R.array.initial_colors_mostrar_setas);
 
         //inicializamos las tarjetas
@@ -97,29 +90,18 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
      * @name: inicializarTarjetas
      * @Author: Adrián Antón García
      * @category: Procedimiento
-     * @Description: Procedimiento que inicializa las tarjetas de las setas
+     * @Description: Procedimiento que inicializa las tarjetas de las claves
      * */
 
     private void inicializarTarjetas() {
-        //49 tarjetas
-        for (int i = 0; i < 50; i++) {
+        //40 tarjetas
+        for (int i = 0; i < 41; i++) {
             //Inicializamos la tarjeta
             String nombreSeta=names[i];
             TarjetaClave card = new TarjetaClave();
             card.setId((long) i);
             card.setName(nombreSeta);
             card.setColorResource(colors[i]);
-
-            InputStream is = null;
-            //Cargamos la imágen de esa tarjeta
-            String path="imagenesSetas/" + nombreSeta.toLowerCase() + "/"+ nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
-            try {
-                is = this.getResources().getAssets().open(path);
-            } catch (IOException e) {
-                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-            }
-            Bitmap bit = BitmapFactory.decodeStream(is);
-            card.setImagenSeta(bit);
             listaTarjetasClaves.add(card);
         }
     }
@@ -156,7 +138,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.menu_clasificar) {
-            Intent cambioActividad = new Intent(MostrarClaves.this, Recoger.class);
+            Intent cambioActividad = new Intent(MostrarClaves.this, RecogerFoto.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_informacion) {
             Intent cambioActividad = new Intent(MostrarClaves.this, MostrarSetas.class);

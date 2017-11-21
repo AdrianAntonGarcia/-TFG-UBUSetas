@@ -8,7 +8,7 @@
     <color name="primary_dark">#376f00</color>
     <color name="primary_light">#98cf65</color>
     <color name="accent">#64b5f6</color>
-    <color name="text_primary">#212121</color>
+    <color name="text_primary">#000000</color>
     <color name="text_secondary">#727272</color>
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
@@ -23,6 +23,8 @@
     <item name="light_green" type="color">#689f38</item>
     <item name="teal" type="color">#009688</item>
     <item name="pink" type="color">#e91e63</item>
+    <item name="white" type="color">#ffffff</item>
+    <item name="black" type="color">#000000</item>
 
     <integer-array name="initial_colors_mostrar_setas">
         <item>@color/blue</item>

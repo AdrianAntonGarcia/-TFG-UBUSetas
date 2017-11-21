@@ -17,33 +17,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".clasificador.Recoger"
-            android:screenOrientation="fullSensor" />
-        <activity android:name=".interfaces.MostrarResultados" />
-        <activity
-            android:name=".informacion.MostrarInformacionSeta"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".interfaces.MostrarComparativa" />
-        <activity android:name=".clavedicotomica.ClaveDicotomica" />
+
         <activity
             android:name=".lanzador.Lanzadora"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".clasificador.RecogerFoto"
+            android:screenOrientation="fullSensor"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".interfaces.MostrarResultados" />
+
+        <activity
+            android:name=".informacion.MostrarInformacionSeta"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".interfaces.MostrarComparativa" />
+
+        <activity
+            android:name=".clavedicotomica.ClaveDicotomica"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".informacion.MostrarSetas"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".clavedicotomica.MostrarClaves"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/app_name"></activity>
+
+        <activity
+            android:name=".clavedicotomica.MostrarClaves"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

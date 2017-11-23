@@ -2,7 +2,6 @@ package ubusetas.ubu.adrian.proyectoubusetas.informacion;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,13 +12,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
@@ -108,22 +105,18 @@ public class MostrarSetas extends AppCompatActivity
             card.setName(nombreSeta);
             card.setColorResource(colors[i]);
 
-            InputStream is = null;
+
             //Cargamos la imágen de esa tarjeta
             String path = "imagenesSetas/" + nombreSeta.toLowerCase() + "/" + nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
-            try {
-                is = this.getResources().getAssets().open(path);
-            } catch (IOException e) {
-                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-            }
-            Bitmap bit = BitmapFactory.decodeStream(is);
+            AccesoDatosExternos acceso = new AccesoDatosExternos();
+            Bitmap bit = acceso.accesoImagenPorPath(this,path);
             card.setImagenSeta(bit);
             listaTarjetaSetas.add(card);
         }
     }
 
     /*
-    * @name: onCreate
+    * @name: onBackPressed
     * @Author: Adrián Antón García
     * @category: Procedimiento
     * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.

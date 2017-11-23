@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/accent">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout_mostrar_comparativa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <!--Contenido de la página -->
+
+    <include
+        layout="@layout/layout_mostrar_comparativa"
         android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--Parte del menu -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:context="ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarComparativa">
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/encabezado_menu"
+        app:menu="@menu/menu" />
 
-        <TextView
-            android:id="@+id/TextView_Comparativa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/texto_comparativa" />
-
-        <ImageView
-            android:id="@+id/ImageView_Comparativa_1"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
-            android:layout_below="@+id/TextView_Comparativa"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/ImageView_Comparativa_2"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
-            android:layout_below="@+id/ImageView_Comparativa_1"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher" />
-
-        <Button
-            android:id="@+id/boton_volver_comparativa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ImageView_Comparativa_2"
-            android:layout_centerHorizontal="true"
-            android:text="@string/boton_volver_mostrar" />
-    </RelativeLayout>
-</ScrollView>
+</android.support.v4.widget.DrawerLayout>

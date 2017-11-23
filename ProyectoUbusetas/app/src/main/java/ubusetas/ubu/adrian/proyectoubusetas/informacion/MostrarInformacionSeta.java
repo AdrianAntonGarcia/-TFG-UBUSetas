@@ -22,6 +22,7 @@ import java.io.InputStream;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.DBsetasManager;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
+import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 /*
@@ -150,7 +151,8 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
             Intent cambioActividad = new Intent(MostrarInformacionSeta.this, RecogerFoto.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_ir_claves) {
-
+            Intent cambioActividad = new Intent(MostrarInformacionSeta.this, MostrarClaves.class);
+            startActivity(cambioActividad);
         } else if (id == R.id.menu_informacion) {
             Intent cambioActividad = new Intent(MostrarInformacionSeta.this, MostrarSetas.class);
             startActivity(cambioActividad);

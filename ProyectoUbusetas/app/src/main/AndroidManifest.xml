@@ -34,14 +34,18 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".interfaces.MostrarResultados" />
+        <activity android:name=".interfaces.MostrarResultados"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".informacion.MostrarInformacionSeta"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name=".interfaces.MostrarComparativa" />
+        <activity android:name=".interfaces.MostrarComparativa"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".clavedicotomica.ClaveDicotomica"

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Colores del estilo-->
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -12,6 +15,14 @@
     <color name="text_secondary">#727272</color>
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
+
+    <!--Colores para la actividad elegir claves -->
+
+    <color name="normal">#FF2700</color>
+    <color name="presionado">#1E42FF</color>
+    <color name="seleccionado">#2F8DFF</color>
+
+    <!--Colores para las listas de las actividades mostrar setas y mostrar claves-->
 
     <item name="blue" type="color">#2196f3</item>
     <item name="purple" type="color">#9c27b0</item>

@@ -10,11 +10,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarResultados"
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados"
     tools:showIn="@layout/layout_mostrar_resultados">
 
+    <TextView
+        android:id="@+id/TextView_ResultadosClasificador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_resultados_obtenidos"/>
     <ListView
         android:id="@+id/listView_lista_resultados"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/TextView_ResultadosClasificador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 
@@ -22,8 +29,8 @@
         android:id="@+id/boton_clave"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/ir_claves"
         android:layout_alignParentBottom="true"
+        android:src="@drawable/ir_claves"
         android:text="@string/boton_clave" />
 
     <android.support.design.widget.FloatingActionButton
@@ -33,7 +40,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        app:srcCompat="@android:drawable/stat_notify_sync_noanim"
-        android:text="@string/refrescar_resultados" />
+        android:text="@string/refrescar_resultados"
+        app:srcCompat="@android:drawable/stat_notify_sync_noanim" />
 
 </RelativeLayout>

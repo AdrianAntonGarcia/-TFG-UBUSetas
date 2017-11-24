@@ -15,6 +15,8 @@
     <string name="boton_clasificar">Clasificar</string>
 
     <!--Cadenas de los elementos de la actividad mostrar resultado-->
+
+    <string name="texto_resultados_obtenidos">Resultados: </string>
     <!--Botón volver -->
 
     <string name="boton_volver_principal">Volver</string>
@@ -51,6 +53,10 @@
     <!--Cadenas de los elementos de la actividad mostrar claves -->
     <string name="titulo_mostrar_claves">Mostrar claves</string>
     <string name="texto_informativo_mostrar_claves">Seleccione una tarjeta para mostrar la clave dicotómica de ese género:</string>
+
+    <!--Cadenas de los elementos de la actividad elegir claves-->
+    <string name="seleccionar_generos"> Los siguientes géneros se encuentran en la clave dicotómica. Seleccione los géneros sobre los que aplicar la clave dicotómica:</string>
+    <string name="seleccionar">  Seleccionar</string>
 
     <!-- Elementos del menú -->
 

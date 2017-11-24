@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa">
+    tools:context="ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/barra_mostrar_comparativa"
+            android:id="@+id/barra_elegir_claves"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -21,7 +21,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <!--En el siguiente layout introduzco el contenido de la página -->
-    <include layout="@layout/contenido_mostrar_comparativa" />
+    <include layout="@layout/contenido_elegir_claves" />
 
     <!--android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

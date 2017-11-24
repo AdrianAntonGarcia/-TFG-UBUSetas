@@ -108,7 +108,7 @@ public class MostrarSetas extends AppCompatActivity
 
             //Cargamos la imágen de esa tarjeta
             String path = "imagenesSetas/" + nombreSeta.toLowerCase() + "/" + nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
-            AccesoDatosExternos acceso = new AccesoDatosExternos();
+            AccesoDatosExternos acceso = new AccesoDatosExternos(this);
             Bitmap bit = acceso.accesoImagenPorPath(this,path);
             card.setImagenSeta(bit);
             listaTarjetaSetas.add(card);

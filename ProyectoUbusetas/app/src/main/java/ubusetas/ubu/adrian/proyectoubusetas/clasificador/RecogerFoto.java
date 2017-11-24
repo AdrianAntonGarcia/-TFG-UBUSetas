@@ -18,7 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +36,7 @@ import java.util.concurrent.Executors;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.interfaces.MostrarResultados;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 /*

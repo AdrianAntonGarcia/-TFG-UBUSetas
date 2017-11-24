@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,10 +24,12 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
@@ -43,6 +46,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     //Estructura donde se almacenan las claves
     private TreeMap<String, ArrayList<Object>> claves;
+    AccesoDatosExternos acceso;
 
     //mapas de la clave actual
     private Map<String, ArrayList<String>> arbolNodos;
@@ -62,8 +66,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     //Configurador de la clave
     //Clave por defecto
     private static String NOMBRECLAVE = "general";
-    private static final String NODOINICIAL = "1";
-    private static final String NOMBREFICHERO = "claves.dat";
+    private ArrayList<String> generosRecibidos;
+    private static String NODOINICIAL = "1";
+    //private static final String NOMBREFICHERO = "claves.dat";
 
     //Elementos de la interfaz
     private ListView listViewClaveDicotomica;
@@ -72,8 +77,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     //Generos obtenidos en los resultados
     private ArrayList<String> generosDeLaClaveGeneral;
-    //private ArrayList<String> nombresSetasResultados;
-    private String generoActual = "general";
+
 
     /*
    * @name: onCreate
@@ -89,16 +93,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
         //Inicializo el nombre de la clave
 
-        NOMBRECLAVE = "general";
-
-        //recojo los elementos que tengo que devolver a la actividad mostrarResultados al volver
-
-        Intent intentRecibidos = getIntent();
-        Bundle datosRecibidos = intentRecibidos.getExtras();
-        NOMBRECLAVE = datosRecibidos.getString("nombreClave");
-        //Recojo los nombres de las setas resultados del clasificador
-
-        //nombresSetasResultados = (ArrayList<String>) datosRecibidos.get("nombresSetas");
+        NOMBRECLAVE = "";
 
         //Inicializo los elementos de la interfaz
 
@@ -109,24 +104,27 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         boton_anterior.setOnClickListener(this);
 
         //Leo todas las claves
-        claves = readFromFile(this, NOMBREFICHERO);
+        acceso = new AccesoDatosExternos(this);
+        claves = acceso.readFromFile();
 
-        //cargo los generos recogidos por la clave
-        /*generosDeLaClaveGeneral = new ArrayList<String>();
-        for (String g : claves.keySet()) {
-            generosDeLaClaveGeneral.add(g);
-        }*/
-        //Saco el genero del primer resultado
-        //generoActual = nombresSetasResultados.get(0).split(" ")[0].trim();
+        //recojo el nombre de la clave a cargar
 
+        Intent intentRecibidos = getIntent();
+        Bundle datosRecibidos = intentRecibidos.getExtras();
+        NOMBRECLAVE = datosRecibidos.getString("nombreClave");
+        if (NOMBRECLAVE == null) {
+            NOMBRECLAVE = "general";
+            generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
+            Log.d("generosRecibidos",generosRecibidos.toString());
+            if (generosRecibidos != null) {
+                cargarClaveGeneral(generosRecibidos);
+            }
+        }else{
+            //cargo la clave especifica pasada por paramatero
+            cargarClaveEspecifica();
+        }
 
-        //cargo la clave
-        ArrayList<String> generosDeLaClaveGeneral = new ArrayList<>();
-
-        //comprobarGenero(generoActual);
-        cargarClave();
         TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
-
 
         //parte del menu lateral
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_clave_dicotomica);
@@ -144,22 +142,85 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     }
 
 
-    /*public void comprobarGenero(String generoComprobar) {
-        if (generosDeLaClaveGeneral.contains(generoComprobar)) {
-            TextViewInformacionClave.setText("La clave dicotomica general contempla este genero. ");
-            Log.d(TAG, "CODIGO DE LA CLAVE: " + claves.get(generoComprobar));
-            if (claves.get(generoComprobar).get(0).equals("vacio") == false) {
-                TextViewInformacionClave.setText(TextViewInformacionClave.getText() + "Además existe una clave especifica para ese genero");
-                NOMBRECLAVE = generoActual;
-                TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
-            } else {
-                TextViewInformacionClave.setText(TextViewInformacionClave.getText() + "No existe una clave especifica para ese genero");
-            }
-        } else {
-            TextViewInformacionClave.setText("La clave dicotomica no contiene el genero clasificado");
-        }
-    }*/
 
+
+        /*
+    * @name: cargarClaveGeneral
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que carga la clave general desde el padre común a los géneros pasados como parametros
+    * */
+
+    public void cargarClaveGeneral(ArrayList<String> generos) {
+        //Elijo la que se tiene que ejecutar
+        ArrayList<Object> mapas = claves.get("general");
+
+        //cargo los 3 mapas de la clave seleccionada
+
+        arbolNodos = (Map<String, ArrayList<String>>) mapas.get(0);
+        contenidoNodos = (Map<String, ArrayList<String>>) mapas.get(1);
+        generosNodos = (Map<String, String>) mapas.get(2);
+        Log.d("arbolNodos",arbolNodos.toString());
+        Log.d("contenidoNodos",contenidoNodos.toString());
+        Log.d("generosNodos",generosNodos.toString());
+
+        //Creo los arrays que contienen la lista de padres de cada genero
+
+        HashMap<String, ArrayList<String>> arrayMapas = new HashMap<String, ArrayList<String>>();
+
+
+        //Cargo los arrays con sus padres
+
+        for(String genero : generos){
+            ArrayList<String> nodosPadres = new ArrayList<>();
+            String nodoPadre=generosNodos.get(genero);
+            nodosPadres.add(nodoPadre);
+            int contador = 1;
+            while(!nodoPadre.equals("1")){
+                Log.d("nodoPadre",nodoPadre);
+                nodoPadre=contenidoNodos.get(nodoPadre).get(2);
+                nodosPadres.add(nodoPadre);
+            }
+            arrayMapas.put(genero,nodosPadres);
+        }
+        Log.d("ARRAYS CARGADOS",arrayMapas.toString());
+
+        //Ahora hay que seleccionar el padre comun mas bajo en el arbol
+
+        //Saco el tamaño del array menor
+        int tamMenor=999;
+        for(ArrayList<String> nodosPadres : arrayMapas.values()){
+            if (nodosPadres.size()<tamMenor){
+                tamMenor=nodosPadres.size();
+            }
+        }
+        Log.d("TAM MENOR",""+tamMenor);
+
+        String nodoInicial=null;
+        String nodoComprobar=null;
+        String nodoActual=null;
+        boolean cambio;
+        for(int i=0;i<tamMenor;++i){
+            ArrayList<String> arrayPrimero=arrayMapas.get(generos.get(0));
+            //Sacamos el ultimo padre menos pa posicion
+            nodoComprobar=arrayPrimero.get(arrayPrimero.size()-i-1);
+            cambio=true;
+            //Si todos los ultimos nodos de los arrays coinciden, es un nodo padre comun
+            for(ArrayList<String> array:arrayMapas.values()){
+                nodoActual=array.get(array.size()-i-1);
+                if(!nodoActual.equals(nodoComprobar)){
+                    cambio=false;
+                }
+            }
+            if(cambio){
+                nodoInicial=nodoComprobar;
+            }
+        }
+        Log.d("NODO INICIAL",nodoInicial);
+        NODOINICIAL=nodoInicial;
+        NOMBRECLAVE="general";
+        cargarClaveEspecifica();
+    }
     /*
     * @name: cargarClave
     * @Author: Adrián Antón García
@@ -167,7 +228,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     * @Description: Procedimiento que carga la clave dicotomica
     * */
 
-    public void cargarClave() {
+    public void cargarClaveEspecifica() {
         //Elijo la que se tiene que ejecutar
         ArrayList<Object> mapas = claves.get(NOMBRECLAVE);
 
@@ -240,28 +301,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         }
     }
 
-    /*
-      * @name: readFromFile
-      * @Author: Adrián Antón García
-      * @category: Metodo
-      * @Description: Metodo que lee la estructura de las claves del archivo claves.dat
-      * */
 
-    public static TreeMap<String, ArrayList<Object>> readFromFile(Context context, String nombreClave) {
-        TreeMap<String, ArrayList<Object>> createResumeForm = null;
-        try {
-            InputStream fileInputStream = context.getAssets().open("claves/" + nombreClave);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            createResumeForm = (TreeMap<String, ArrayList<Object>>) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return createResumeForm;
-    }
 
     /*
      * @name: onClickClick

@@ -42,15 +42,19 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 /*
 * @name: RecogerFoto
 * @Author: Adrián Antón García
-* @category: class
-* @Description: Clase que implementa la funcionalidad relacionada con la toma y guardado de fotografías
+* @category: clase
+* @Description: Clase que implementa la funcionalidad relacionada con la toma y guardado de fotografías.
 * */
 
 public class RecogerFoto extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = RecogerFoto.class.getSimpleName();
 
-    private Bitmap bmap =null;
-    //Elementos
+    //Bitmap y path donde guardamos la foto introducida por el usuario
+
+    private Bitmap bmap = null;
+    String fotoPath;
+
+    //Elementos de la interfaz
 
     private FloatingActionButton botonHacerFoto;
     private FloatingActionButton botonGaleria;
@@ -65,11 +69,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     static final int CODIGO_CAMARA = 101;
     static final int CODIGO_GALERIA = 102;
 
-    //path de la foto capturada
-
-    String fotoPath;
-
-    //MODELOS
+    //MODELOS, CLASIFICADORES
 
     //inception
 
@@ -82,6 +82,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     private static final String LABEL_FILE = "file:///android_asset/inception-v3/output_labels.txt";*/
 
     //mobilenet-224
+
+    //Parámetros del modelo
 
     private static final int INPUT_SIZE = 224;
     private static final int IMAGE_MEAN = 224;
@@ -100,9 +102,10 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: method
-    * @Description: Metodo que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
 
     @Override
@@ -119,8 +122,12 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         imageViewMostrarFoto = (ImageView) findViewById(R.id.imageView_mostrar_imagen);
         textoImagen = (TextView) findViewById(R.id.textView_textoImagen);
 
+
+        //Oculto los botones hasta que se cargue una foto
+
         botonGuardarFoto.hide();
         botonClasificar.hide();
+
         //activo los botones
 
         botonHacerFoto.setOnClickListener(this);
@@ -132,11 +139,12 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         restaurarCampos(savedInstanceState);
 
         //parte del menu lateral
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_recoger_foto);
-        //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
         //cargamos el layout del menu y lo inicializamos
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_recoger_foto);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -149,8 +157,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
      * @name: restaurarCampos
      * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Metodo que se restaura el bitmap al girar la pantalla
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
      * */
 
     private void restaurarCampos(Bundle savedInstanceState) {
@@ -171,8 +180,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
     * @name: onSaveInstanceState
     * @Author: Adrián Antón García
-    * @category: procedure
-    * @Description: Metodo que se ejecuta cuando se destruye la actividad
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
 
     @Override
@@ -188,8 +198,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
     * @name: onClick
     * @Author: Adrián Antón García
-    * @category: method
-    * @Description: Método que es llamado cuándo se hace click en cualquier botón
+    * @category: Procedimiento
+    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
+    * @param: View, Vista del botón pulsado.
     * */
 
     @Override
@@ -200,24 +211,29 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.boton_hacer_foto: //BOTÓN HACER FOTO
+
                 //creamos un archivo temporal
+
                 File tempFile = null;
+
                 //lo guardamos en la cache
+
                 try {
                     tempFile = File.createTempFile("fotoSeta", ".jpg", getExternalCacheDir());
                 } catch (IOException e) {
+                    Log.e("Error caché foto", e.getMessage());
                     e.printStackTrace();
                 }
-                //guardamos el path
+
+                //guardamos el path temporal
+
                 fotoPath = tempFile.getAbsolutePath();
-                //sacamos la uri de la foto temporal
                 Uri uri = Uri.fromFile(tempFile);
+
                 //llamamos al sistema para que capture una imágen desde la cámara
-                //intent implicita
+
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //donde debe guardar la foto
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                //iniciamos la petición
                 startActivityForResult(intent, CODIGO_CAMARA);
                 break;
 
@@ -226,29 +242,33 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 if (fotoPath == null) {
                     textoImagen.setText("Todavía no se ha tomado ninguna imágen");
                 } else {
-                    OutputStream fileOutStream = null;
-                    Uri uriIm;
+                    OutputStream fileOutStream;
                     try {
                         //creamos el directorio imagenesSetas que es donde se van a almacenar las imágenes
+
                         File file = new File(Environment.getExternalStorageDirectory(), "imagenesSetas");
                         file.mkdirs();
+
                         //ponemos la fecha como distintivo en las fotos
+
                         String fecha = getCurrentDateAndTime();
                         File directorioImagenes = new File(file, "fotoSeta" + fecha + ".jpg");
-                        uriIm = Uri.fromFile(directorioImagenes);
                         fileOutStream = new FileOutputStream(directorioImagenes);
+
                         //creamos un bitmao del imageview previamente cargado
+
                         bmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutStream);
                         fileOutStream.flush();
                         fileOutStream.close();
+
                         //notificamos que la creación ha sido correcta
+
                         Toast.makeText(this, "Imágen guardada en: " + directorioImagenes.getAbsolutePath(), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
-                        Log.e("ERROR", e.getMessage());
-                        Toast.makeText(this, "Error en la creacion de la imagen, revisar permisos escritura", Toast.LENGTH_LONG).show();
+                        Log.e("Error guardado foto", e.getMessage());
+                        e.printStackTrace();
                     }
                 }
-                ;
                 break;
 
             case R.id.boton_clasificar://BOTÓN CLASIFICAR FOTO
@@ -261,20 +281,19 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 } else {
 
                     //creo el bitmap de la foto
-                    //imageViewMostrarFoto.buildDrawingCache();
-                    //bitmap = imageViewMostrarFoto.getDrawingCache();
-                    //bitmapClasificar=Bitmap.createBitmap(INPUT_SIZE,INPUT_SIZE,bitmapClasificar.getConfig());
+
                     Bitmap bitmapClasificar = Bitmap.createScaledBitmap(bmap, 224, 224, false);
 
-                    //imageViewMostrarFoto.setImageBitmap(bitmapClasificar);
                     //recojo los resultados del clasificador
-                    resultados = classifier.recognizeImage(bitmapClasificar);
 
+                    resultados = classifier.recognizeImage(bitmapClasificar);
                     if (resultados != null) {
                         for (Classifier.Recognition e : resultados) {
                             resultadosTexto.add(e.toString());
                         }
+
                         //cambiamos de actividad para mostrar el resultado
+
                         Intent cambioActividad = new Intent(RecogerFoto.this, MostrarResultados.class);
                         cambioActividad.putStringArrayListExtra("resultados", (ArrayList<String>) resultadosTexto);
                         cambioActividad.putExtra("fotoBitmap", bitmapClasificar);
@@ -287,7 +306,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 ;
                 break;
 
-            case R.id.boton_galeria:
+            case R.id.boton_galeria: //BOTÓN ACCEDER A GALERÍA
                 Intent galeria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                 startActivityForResult(galeria, CODIGO_GALERIA);
                 break;
@@ -298,7 +317,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     * @name: inicializarClasificador
     * @Author: Adrián Antón García
     * @category: Procedimiento
-    * @Description: Procedimiento que inicializa el clasificador
+    * @Description: Procedimiento que inicializa el clasificador.
     * */
 
     private void inicializarClasificador() {
@@ -326,8 +345,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
     * @name: getCurrentDateAndTime
     * @Author: Adrián Antón García
-    * @category: method
-    * @Description: Método que devuelve un String que contiene la fecha actual
+    * @category: método
+    * @Description: Método que devuelve un String que contiene la fecha actual.
     * */
 
     private String getCurrentDateAndTime() {
@@ -340,9 +359,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
     * @name: onActivityResult
     * @Author: Adrián Antón García
-    * @category: method
-    * @Description: Método que es llamado cuando se termina una peticion que habíamos
-    * realizado al sistema, por ejemplo cuando llamamos a la cámara
+    * @category: procedimiento
+    * @Description: Procedimiento que es llamado cuando se termina una peticion que habíamos
+    * realizado al sistema, por ejemplo cuando llamamos a la cámara.
     * */
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -370,7 +389,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                     botonClasificar.show();
                     //la decodifico en un bitmap
                     try {
-                        bmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(),uriImagen);
+                        bmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uriImagen);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -381,8 +400,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa el botón volver del móvil.
     * */
 
     @Override
@@ -401,15 +420,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     /*
    * @name: onNavigationItemSelected
    * @Author: Adrián Antón García
-   * @category: Metodo
-   * @Description: Metodo que se activa cuando pulsamos un botón del menú
+   * @category: método
+   * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+   * @param: MenuItem, item seleccionado por el usuario del menú.
    * */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.menu_ir_claves) {
             Intent cambioActividad = new Intent(RecogerFoto.this, MostrarClaves.class);
             startActivity(cambioActividad);

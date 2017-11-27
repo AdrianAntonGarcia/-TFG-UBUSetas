@@ -18,7 +18,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 /*
 * @name: Lanzadora
 * @Author: Adrián Antón García
-* @category: class
+* @category: clase
 * @Description: Clase que arranca la aplicación.
 * */
 
@@ -26,11 +26,13 @@ public class Lanzadora extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     /*
-      * @name: onCreate
-      * @Author: Adrián Antón García
-      * @category: Procedimiento
-      * @Description: Procedimiento que inicializa la actividad lanzadora.
-      * */
+    * @name: onCreate
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +44,7 @@ public class Lanzadora extends AppCompatActivity
         //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
-        //Boton flotante
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-    //cargamos el layout del menu y lo inicializamos
+        //cargamos el layout del menu y lo inicializamos
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_lanzadora);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -61,6 +54,13 @@ public class Lanzadora extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    /*
+    * @name: onBackPressed
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+    * */
 
     @Override
     public void onBackPressed() {
@@ -72,33 +72,12 @@ public class Lanzadora extends AppCompatActivity
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
-        return true;
-    }*/
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
     /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
 
     @SuppressWarnings("StatementWithEmptyBody")

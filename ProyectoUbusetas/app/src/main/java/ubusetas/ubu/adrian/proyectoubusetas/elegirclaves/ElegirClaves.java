@@ -29,13 +29,22 @@ import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
+/*
+* @name: ElegirClaves
+* @Author: Adrián Antón García
+* @category: clase
+* @Description: Clase que muestra los generos a elegir para filtrar la clave dicotómica general.
+* */
+
 public class ElegirClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     //Estructura donde se almacenan las claves
+
     private TreeMap<String, ArrayList<Object>> claves;
     private AccesoDatosExternos acceso;
 
     //Elementos de la interfaz
+
     private RecyclerView selector;
     private TextView textoInformativoSeleccionar;
     private TextView textoSeleccionados;
@@ -43,12 +52,21 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     private Button boton_ir_clave;
 
     //Arrays donde se guardan los resultados obtenidos por el clasificador
+
     private ArrayList<String> resultados;
     private LinkedList itemsSelector;
     private AdaptadorSelector adaptador;
 
     public ArrayList<String> marcados;
 
+    /*
+    * @name: onCreate
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +129,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     /*
     * @name: cargarLista
     * @Author: Adrián Antón García
-    * @category: Procedimiento
+    * @category: procedimiento
     * @Description: Procedimiento que convierte la lista de especies en una de generos
     * */
 
@@ -124,7 +142,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     /*
     * @name: cargarLista
     * @Author: Adrián Antón García
-    * @category: Procedimiento
+    * @category: procedimiento
     * @Description: Procedimiento que carga la lista de items del selector a partir de los resultados obtenidos
     * */
 
@@ -166,19 +184,18 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         }
     }
 
-        /*
+    /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.menu_clasificar) {
             Intent cambioActividad = new Intent(ElegirClaves.this, RecogerFoto.class);
             startActivity(cambioActividad);
@@ -201,8 +218,9 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     /*
     * @name: onClick
     * @Author: Adrián Antón García
-    * @category: method
-    * @Description: Método que es llamado cuándo se pulsa en cualquier botón
+    * @category: Procedimiento
+    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
+    * @param: View, Vista del botón pulsado.
     * */
 
     @Override

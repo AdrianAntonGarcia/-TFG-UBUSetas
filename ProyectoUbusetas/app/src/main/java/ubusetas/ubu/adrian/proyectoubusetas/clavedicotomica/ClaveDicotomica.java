@@ -1,6 +1,5 @@
 package ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,10 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,63 +32,66 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 /*
 * @name: ClaveDicotomica
 * @Author: Adrián Antón García
-* @category: class
-* @Description: Clase que iplementa la funcionalidad para visualizar las claves dicotomicas de las setas
+* @category: clase
+* @Description: Clase que implementa la funcionalidad relacionada
+* con mostrar la clave dicotómica seleccionada
 * */
 
 public class ClaveDicotomica extends AppCompatActivity implements Serializable, AdapterView.OnItemClickListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = ClaveDicotomica.class.getSimpleName();
 
     //Estructura donde se almacenan las claves
+
     private TreeMap<String, ArrayList<Object>> claves;
     AccesoDatosExternos acceso;
 
     //mapas de la clave actual
+
     private Map<String, ArrayList<String>> arbolNodos;
     private Map<String, ArrayList<String>> contenidoNodos;
     private Map<String, String> generosNodos;
 
     //Hijos del nodo seleccionado
+
     private ArrayList<String> hijosArbol;
+
     //Preguntas de los nodos hijos
+
     private ArrayList<String> preguntas;
+
     //Nodo padre actual
+
     private String nodoPadre;
 
     //Adaptador para el ListView
+
     private ArrayAdapter<String> adaptador;
 
     //Configurador de la clave
-    //Clave por defecto
+
     private static String NOMBRECLAVE = "general";
     private ArrayList<String> generosRecibidos;
     private static String NODOINICIAL = "1";
-    //private static final String NOMBREFICHERO = "claves.dat";
 
     //Elementos de la interfaz
+
     private ListView listViewClaveDicotomica;
     private TextView TextViewClaveMostrada;
     private FloatingActionButton boton_anterior;
 
-    //Generos obtenidos en los resultados
-    private ArrayList<String> generosDeLaClaveGeneral;
-
-
     /*
-   * @name: onCreate
-   * @Author: Adrián Antón García
-   * @category: procedure
-   * @Description: Metodo que se ejecuta cuando se inicia la actividad ClaveDicotomica
-   * */
+    * @name: onCreate
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clave_dicotomica);
-
-        //Inicializo el nombre de la clave
-
-        NOMBRECLAVE = "";
 
         //Inicializo los elementos de la interfaz
 
@@ -104,6 +102,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         boton_anterior.setOnClickListener(this);
 
         //Leo todas las claves
+
         acceso = new AccesoDatosExternos(this);
         claves = acceso.readFromFile();
 
@@ -115,11 +114,11 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         if (NOMBRECLAVE == null) {
             NOMBRECLAVE = "general";
             generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
-            Log.d("generosRecibidos",generosRecibidos.toString());
+            Log.d("generosRecibidos", generosRecibidos.toString());
             if (generosRecibidos != null) {
                 cargarClaveGeneral(generosRecibidos);
             }
-        }else{
+        } else {
             //cargo la clave especifica pasada por paramatero
             cargarClaveEspecifica();
         }
@@ -127,11 +126,12 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
 
         //parte del menu lateral
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_clave_dicotomica);
-        //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
         //cargamos el layout del menu y lo inicializamos
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -141,18 +141,18 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-
-
-        /*
+    /*
     * @name: cargarClaveGeneral
     * @Author: Adrián Antón García
     * @category: procedimiento
-    * @Description: Procedimiento que carga la clave general desde el padre común a los géneros pasados como parametros
+    * @Description: Procedimiento que carga la clave general desde el padre común a los géneros pasados como parametros.
+    * @param: ArrayList<String>, géneros desde los que se va a filtrar la clave general.
     * */
 
     public void cargarClaveGeneral(ArrayList<String> generos) {
+
         //Elijo la que se tiene que ejecutar
+
         ArrayList<Object> mapas = claves.get("general");
 
         //cargo los 3 mapas de la clave seleccionada
@@ -160,9 +160,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         arbolNodos = (Map<String, ArrayList<String>>) mapas.get(0);
         contenidoNodos = (Map<String, ArrayList<String>>) mapas.get(1);
         generosNodos = (Map<String, String>) mapas.get(2);
-        Log.d("arbolNodos",arbolNodos.toString());
-        Log.d("contenidoNodos",contenidoNodos.toString());
-        Log.d("generosNodos",generosNodos.toString());
+        Log.d("arbolNodos", arbolNodos.toString());
+        Log.d("contenidoNodos", contenidoNodos.toString());
+        Log.d("generosNodos", generosNodos.toString());
 
         //Creo los arrays que contienen la lista de padres de cada genero
 
@@ -171,65 +171,76 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
         //Cargo los arrays con sus padres
 
-        for(String genero : generos){
+        for (String genero : generos) {
             ArrayList<String> nodosPadres = new ArrayList<>();
-            String nodoPadre=generosNodos.get(genero);
+            String nodoPadre = generosNodos.get(genero);
             nodosPadres.add(nodoPadre);
             int contador = 1;
-            while(!nodoPadre.equals("1")){
-                Log.d("nodoPadre",nodoPadre);
-                nodoPadre=contenidoNodos.get(nodoPadre).get(2);
+            while (!nodoPadre.equals("1")) {
+                Log.d("nodoPadre", nodoPadre);
+                nodoPadre = contenidoNodos.get(nodoPadre).get(2);
                 nodosPadres.add(nodoPadre);
             }
-            arrayMapas.put(genero,nodosPadres);
+            arrayMapas.put(genero, nodosPadres);
         }
-        Log.d("ARRAYS CARGADOS",arrayMapas.toString());
+        Log.d("ARRAYS CARGADOS", arrayMapas.toString());
 
         //Ahora hay que seleccionar el padre comun mas bajo en el arbol
 
         //Saco el tamaño del array menor
-        int tamMenor=999;
-        for(ArrayList<String> nodosPadres : arrayMapas.values()){
-            if (nodosPadres.size()<tamMenor){
-                tamMenor=nodosPadres.size();
+
+        int tamMenor = 999;
+        for (ArrayList<String> nodosPadres : arrayMapas.values()) {
+            if (nodosPadres.size() < tamMenor) {
+                tamMenor = nodosPadres.size();
             }
         }
-        Log.d("TAM MENOR",""+tamMenor);
+        Log.d("TAM MENOR", "" + tamMenor);
 
-        String nodoInicial=null;
-        String nodoComprobar=null;
-        String nodoActual=null;
+        String nodoInicial = null;
+        String nodoComprobar = null;
+        String nodoActual = null;
         boolean cambio;
-        for(int i=0;i<tamMenor;++i){
-            ArrayList<String> arrayPrimero=arrayMapas.get(generos.get(0));
+        for (int i = 0; i < tamMenor; ++i) {
+            ArrayList<String> arrayPrimero = arrayMapas.get(generos.get(0));
+
             //Sacamos el ultimo padre menos pa posicion
-            nodoComprobar=arrayPrimero.get(arrayPrimero.size()-i-1);
-            cambio=true;
+
+            nodoComprobar = arrayPrimero.get(arrayPrimero.size() - i - 1);
+            cambio = true;
+
             //Si todos los ultimos nodos de los arrays coinciden, es un nodo padre comun
-            for(ArrayList<String> array:arrayMapas.values()){
-                nodoActual=array.get(array.size()-i-1);
-                if(!nodoActual.equals(nodoComprobar)){
-                    cambio=false;
+
+            for (ArrayList<String> array : arrayMapas.values()) {
+                nodoActual = array.get(array.size() - i - 1);
+                if (!nodoActual.equals(nodoComprobar)) {
+                    cambio = false;
                 }
             }
-            if(cambio){
-                nodoInicial=nodoComprobar;
+            if (cambio) {
+                nodoInicial = nodoComprobar;
             }
         }
-        Log.d("NODO INICIAL",nodoInicial);
-        NODOINICIAL=nodoInicial;
-        NOMBRECLAVE="general";
+        Log.d("NODO INICIAL", nodoInicial);
+        NODOINICIAL = nodoInicial;
+        NOMBRECLAVE = "general";
+
+        //Cargamos la clave general desde el nuevo nodo inicial.
+
         cargarClaveEspecifica();
     }
+
     /*
     * @name: cargarClave
     * @Author: Adrián Antón García
-    * @category: procedure
-    * @Description: Procedimiento que carga la clave dicotomica
+    * @category: procedimiento
+    * @Description: Procedimiento que carga la clave dicotomica especificada en la variable NOMBREGENERAL.
     * */
 
     public void cargarClaveEspecifica() {
+
         //Elijo la que se tiene que ejecutar
+
         ArrayList<Object> mapas = claves.get(NOMBRECLAVE);
 
         //cargo los 3 mapas de la clave seleccionada
@@ -244,6 +255,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         preguntas.clear();
         hijosArbol = arbolNodos.get(NODOINICIAL);
         nodoPadre = NODOINICIAL;
+
         //cargo las preguntas de cada hijo
 
         for (String hijo : hijosArbol) {
@@ -262,7 +274,11 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     * @name: onItemClick
     * @Author: Adrián Antón García
     * @category: procedure
-    * @Description: Procedimiento que se activa cuando se pulsa sobre un elemento de la lista
+    * @Description: Procedimiento que se activa cuando se pulsa sobre un elemento de la lista.
+    * @Param: AdapterView<?>, Vista padre del elemento pulsado.
+    * @Param: View, Vista del elemento pulsado.
+    * @Param: int, posición en la lista del elemento pulsado.
+    * @Param: id, identificador del elemento pulsado.
     * */
 
     @Override
@@ -273,10 +289,12 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         String hijoPulsado = hijosArbol.get(position);
         nodoPadre = contenidoNodos.get(hijoPulsado).get(2);
 
-        //Toast.makeText(this, hijoPulsado, Toast.LENGTH_LONG).show();
         //Si el hijo pulsado tiene hijos, es decir, es un nodo intermedio
+
         if (arbolNodos.containsKey(hijoPulsado)) {
+
             //recojo los hijos de ese nuevo nodo
+
             hijosArbol = arbolNodos.get(hijoPulsado);
 
             //recojo sus preguntas si el nodo no es una hoja
@@ -285,13 +303,16 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             for (String hijo : hijosArbol) {
                 preguntas.add(contenidoNodos.get(hijo).get(0));
             }
-            //relleno la lista con las preguntas
-            adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
 
+            //relleno la lista con las preguntas
+
+            adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
             listViewClaveDicotomica.setAdapter(adaptador);
 
-            //si el hijo pulsado es una hoja
         } else {
+
+            //si el hijo pulsado es una hoja
+
             preguntas.clear();
             String solucion = contenidoNodos.get(hijoPulsado).get(3);
             preguntas.add(solucion);
@@ -301,38 +322,42 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         }
     }
 
-
-
     /*
-     * @name: onClickClick
+     * @name: onClick
      * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Procedimiento que se ejecuta cuando se clica sobre algún boton
+     * @category: procedimiento
+     * @Description: Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
+     * @Param: View, Vista del botón pulsado.
      * */
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.boton_anterior:
+
                 //recojo los hijos de ese nuevo nodo
+
                 hijosArbol = arbolNodos.get(nodoPadre);
                 nodoPadre = contenidoNodos.get(nodoPadre).get(2);
 
                 //recojo sus preguntas, si el nodo no es una hoja
+
                 preguntas.clear();
                 for (String hijo : hijosArbol) {
                     if (contenidoNodos.containsKey(hijo)) {
                         preguntas.add(contenidoNodos.get(hijo).get(0));
                     }
                 }
+
                 //relleno la lista con las preguntas
+
                 adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
                 listViewClaveDicotomica.setAdapter(adaptador);
                 break;
         }
     }
 
-        /*
+    /*
     * @name: onCreate
     * @Author: Adrián Antón García
     * @category: Procedimiento
@@ -342,20 +367,28 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
+
         //si el menu esta abierto
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
+
             //lo cerramos
+
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
             //si el menu esta cerrado llamamos al constructor padre
+
             super.onBackPressed();
         }
     }
-        /*
+
+    /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
 
     @SuppressWarnings("StatementWithEmptyBody")

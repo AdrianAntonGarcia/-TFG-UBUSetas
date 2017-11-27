@@ -28,28 +28,25 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 /*
 * @name: DBsetasManager
 * @Author: Adrián Antón García
-* @category: class
+* @category: clase
 * @Description: Clase que muestra información relativa a la seta pulsada
 * */
 
 public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private String nombreSeta;
-
-
     private String descripcionEs;
     private String comestibilidadEs;
     private String enlace;
     private String genero;
 
+    //elementos de la interfaz
 
-    //elementos
     private ImageView imageViewSetaDescrita;
     private TextView textViewTextoDescripcionSeta;
     private TextView textViewTextoGeneroSeta;
     private TextView textViewTextoComestibilidadSeta;
     private TextView textViewTextoEnlaceSeta;
-
 
     //Base de datos
 
@@ -58,9 +55,10 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: procedure
-    * @Description: Procedimiento que se ejecuta al iniciarse la actividad mostrarInformacionSeta,
-    * inicializa todos las variables necesarias.
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
 
     @Override
@@ -70,24 +68,24 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
 
         //inicializo los elements de la interfaz
 
-
-
         imageViewSetaDescrita = (ImageView) findViewById(R.id.imageView_setaDescrita);
         textViewTextoDescripcionSeta = (TextView) findViewById(R.id.textView_textoDescripcionSeta);
         textViewTextoGeneroSeta = (TextView) findViewById(R.id.textView_textoGeneroSeta);
         textViewTextoComestibilidadSeta = (TextView) findViewById(R.id.textView_textoComestibilidadSeta);
         textViewTextoEnlaceSeta = (TextView) findViewById(R.id.textView_textoEnlaceSeta);
 
-
         //recojo los datos provenientes de la actividad mostrar resultados
 
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
+
         //recibo la información que llega de mostrar resultados
+
         nombreSeta= (String) datosRecibidos.get("nombreSeta");
         nombreSeta = nombreSeta.toLowerCase().trim();
 
         //Coloco la imagen de la seta en su imageview
+
         String path="imagenesSetas/" + nombreSeta.toLowerCase() + "/"+ nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
         InputStream is = null;
         try {
@@ -113,8 +111,8 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         textViewTextoEnlaceSeta.setText(enlace);
 
         //parte del menu lateral
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_mostrar_informacion_setas);
-        //cargamos la nueva barra
         setSupportActionBar(toolbar);
 
         //cargamos el layout del menu y lo inicializamos
@@ -127,9 +125,13 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /*
+    * @name: onBackPressed
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+    * */
 
-
-    //Al pulsar el boton de volver
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_informacion_setas);
@@ -142,6 +144,15 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
             super.onBackPressed();
         }
     }
+
+    /*
+    * @name: onNavigationItemSelected
+    * @Author: Adrián Antón García
+    * @category: Metodo
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
+    * */
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.

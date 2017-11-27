@@ -24,8 +24,8 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 /*
 * @name: MostrarClaves
 * @Author: Adrián Antón García
-* @category: class
-* @Description: Clase que muestra las claves dicotomicas de la aplicación.
+* @category: clase
+* @Description: Clase que muestra un listado de las claves dicotómicas de la aplicación.
 * */
 
 public class MostrarClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,8 +44,10 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que inicializa la actividad mostrar claves.
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
 
     @Override
@@ -86,7 +88,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
 
     }
 
-        /*
+    /*
      * @name: inicializarTarjetas
      * @Author: Adrián Antón García
      * @category: Procedimiento
@@ -108,7 +110,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: Procedimiento
+    * @category: procedimiento
     * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
     * */
 
@@ -129,7 +131,8 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
 
     @SuppressWarnings("StatementWithEmptyBody")

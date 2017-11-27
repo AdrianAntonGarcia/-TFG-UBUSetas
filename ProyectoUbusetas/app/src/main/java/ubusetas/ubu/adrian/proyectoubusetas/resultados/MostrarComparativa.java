@@ -1,5 +1,6 @@
 package ubusetas.ubu.adrian.proyectoubusetas.resultados;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.design.widget.NavigationView;
@@ -10,9 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import java.util.List;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
@@ -27,7 +31,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 * @Description: Clase que muestra la foto introducida por el usuario y la seleccionada
 * */
 
-public class MostrarComparativa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MostrarComparativa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ImageView.OnClickListener {
 
 
     private ImageView imagenArriba;
@@ -36,6 +40,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
     private Bitmap imagenUsuario;
     private Bitmap imagenComparar;
 
+    Animation zoomAnimation;
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -67,6 +72,13 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         imagenArriba.setImageBitmap(imagenComparar);
         imagenAbajo.setImageBitmap(imagenUsuario);
 
+        imagenArriba.setOnClickListener(this);
+        imagenAbajo.setOnClickListener(this);
+
+
+        zoomAnimation = AnimationUtils.loadAnimation(this, R.anim.zoomelemento);
+
+
         //parte del menu lateral
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_mostrar_comparativa);
         //cargamos la nueva barra
@@ -80,6 +92,42 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /*
+    * @name: onClick
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa un imageView.
+    * */
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+
+            case R.id.ImageView_Comparativa_1:
+                final Dialog dialog=new Dialog(MostrarComparativa.this);
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                dialog.setContentView(R.layout.layout_full_image);
+                TouchImageView bmImage = (TouchImageView) dialog.findViewById(R.id.img_receipt);
+                bmImage.setImageBitmap(imagenComparar.copy(imagenComparar.getConfig(),true));
+                bmImage.destroyDrawingCache();
+                dialog.setCancelable(true);
+                dialog.show();
+                break;
+            case R.id.ImageView_Comparativa_2:
+                final Dialog dialogo=new Dialog(MostrarComparativa.this);
+                dialogo.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                dialogo.setContentView(R.layout.layout_full_image);
+                TouchImageView bmImagen = (TouchImageView) dialogo.findViewById(R.id.img_receipt);
+                bmImagen.setImageBitmap(imagenUsuario.copy(imagenUsuario.getConfig(),true));
+                bmImagen.destroyDrawingCache();
+                dialogo.setCancelable(true);
+                dialogo.show();
+
+                break;
+        }
     }
 
     /*
@@ -134,4 +182,6 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

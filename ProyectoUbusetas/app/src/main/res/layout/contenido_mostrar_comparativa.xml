@@ -21,6 +21,7 @@
 
     <ImageView
         android:id="@+id/ImageView_Comparativa_1"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_below="@+id/TextView_Comparativa"
@@ -29,6 +30,7 @@
 
     <ImageView
         android:id="@+id/ImageView_Comparativa_2"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_below="@+id/ImageView_Comparativa_1"

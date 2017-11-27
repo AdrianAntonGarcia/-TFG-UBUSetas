@@ -192,7 +192,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         super.onSaveInstanceState(outState);
         if (bmap != null) {
             // Metemos en el bundle lo que queremos conservar
-            outState.putParcelable("bmap", bmap);
+            outState.putParcelable("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
             outState.putString("fotoPath", fotoPath);
         }
     }
@@ -267,6 +267,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
                         Toast.makeText(this, "Imágen guardada en: " + directorioImagenes.getAbsolutePath(), Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
+                        Toast.makeText(this, "La aplicación necesita permisos de lectura/escritura: ", Toast.LENGTH_LONG).show();
                         Log.e("Error guardado foto", e.getMessage());
                         e.printStackTrace();
                     }

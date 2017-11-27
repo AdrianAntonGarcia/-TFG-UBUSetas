@@ -43,7 +43,6 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     //widgets
     //ImageView imageViewImagenResultado1;
 
-
     FloatingActionButton botonRefrescarResultados;
     FloatingActionButton boton_clave;
     ListView listViewListaResultados;
@@ -62,9 +61,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: procedure
-    * @Description: Metodo que se ejecuta cuando se inicia la actividad MostrarResultados
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,6 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_mostrar_resultados);
 
         //inicializo los widgets
-
 
         botonRefrescarResultados = (FloatingActionButton) findViewById(R.id.boton_refrescar_resultados);
         boton_clave = (FloatingActionButton) findViewById(R.id.boton_clave);
@@ -128,8 +129,9 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     /*
      * @name: cargarListas
      * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Metodo que carga las diferentes listas con los resultados recibidos
+     * @category: procedimiento
+     * @Description: Procedimiento que carga las diferentes listas con los resultados recibidos.
+     * @param: List<String>, resultados a cargar en las listas.
      * */
 
     public void cargarListas(List<String> res) {
@@ -154,7 +156,8 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
      * @Author: Adrián Antón García
      * @category: procedure
      * @Description: Metodo que carga la lista que se le va a pasar al adaptador para que cargue los resultados
-     * en el listView, usa el numFoto para cargar la imagen correspondiente al número
+     * en el listView, usa el numFoto para cargar la imagen correspondiente al número.
+     * @param: int, número de la foto a cargar (1,2,3,4,5)
      * */
 
     public void cargarListaElementos(int numFoto) {
@@ -170,7 +173,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     /*
      * @name: inflarLista
      * @Author: Adrián Antón García
-     * @category: procedure
+     * @category: procedimiento
      * @Description: Procedimiento que carga los resultados en la lista
      * */
 
@@ -185,8 +188,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     /*
      * @name: onItemClick
      * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Procedimiento que se ejecuta cuando se clica sobre algún elemento del listView
+     * @category: procedimiento
+     * @Description: Procedimiento que se ejecuta cuando se clica sobre algún elemento del listView.
+     * @Param: AdapterView<?>, Vista padre del elemento pulsado.
+     * @Param: View, Vista del elemento pulsado.
+     * @Param: int, posición en la lista del elemento pulsado.
+     * @Param: id, identificador del elemento pulsado.
      * */
 
     @Override
@@ -223,7 +230,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
      * @Author: Adrián Antón García
      * @category: procedure
      * @Description: Procedimiento que se ejecuta cuando se mantiene pulsado sobre algún elemento del listView
+     * @Param: AdapterView<?>, Vista padre del elemento pulsado.
+     * @Param: View, Vista del elemento pulsado.
+     * @Param: int, posición en la lista del elemento pulsado.
+     * @Param: id, identificador del elemento pulsado.
      * */
+
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         String path = listaSetas.get(position).path;
@@ -249,11 +261,13 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
         return true;
     }
+
     /*
      * @name: onClick
      * @Author: Adrián Antón García
-     * @category: procedire
-     * @Description: Procedimiento que se ejecuta cada vez que se pulsa un botón
+     * @category: procedimiento
+     * @Description: Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
+     * @Param: View, Vista del botón pulsado.
      * */
 
     @Override
@@ -276,7 +290,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-        /*
+    /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
     * @category: Procedimiento
@@ -295,12 +309,15 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             super.onBackPressed();
         }
     }
-        /*
+
+    /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

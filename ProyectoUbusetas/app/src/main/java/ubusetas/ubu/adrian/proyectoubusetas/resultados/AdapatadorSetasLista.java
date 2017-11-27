@@ -78,7 +78,7 @@ public class AdapatadorSetasLista extends ArrayAdapter<SetasLista> {
         holder.texto.setText(setas.nombre);
         //asociamos la imagen
         AccesoDatosExternos acceso= new AccesoDatosExternos(context);
-        Bitmap bit=acceso.accesoImagenPorPath(context,setas.path);
+        Bitmap bit=acceso.accesoImagenPorPath(setas.path);
         holder.imagen.setImageBitmap(bit);
         return row;
     }

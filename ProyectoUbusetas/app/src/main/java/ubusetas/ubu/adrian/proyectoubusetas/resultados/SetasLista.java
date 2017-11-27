@@ -18,9 +18,14 @@ public class SetasLista {
 
     public String nombre;
 
-    public SetasLista() {
-        super();
-    }
+        /*
+    * @name: ItemSelector
+    * @Author: Adrián Antón García
+    * @category: constructor
+    * @Description: Constructor que inicializa el elemento.
+    * @param: String, parh de la imágen
+    * @param: String, nombre de la seta
+    * */
 
     public SetasLista(String path, String nombre) {
         super();

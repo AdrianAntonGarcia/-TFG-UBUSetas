@@ -20,6 +20,13 @@ import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
+/*
+* @name: MostrarComparativa
+* @Author: Adrián Antón García
+* @category: clase
+* @Description: Clase que muestra la foto introducida por el usuario y la seleccionada
+* */
+
 public class MostrarComparativa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
@@ -28,8 +35,15 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
     private Bitmap imagenUsuario;
     private Bitmap imagenComparar;
-    private int posImagenSeta;
-    private List<String> resultados;
+
+    /*
+    * @name: onCreate
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
+
         //recibo la información que llega de mostrar resultados
 
         imagenComparar = (Bitmap) datosRecibidos.get("fotoSeta");
@@ -67,8 +82,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-        /*
+    /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
     * @category: Procedimiento
@@ -88,11 +102,12 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         }
     }
 
-        /*
+    /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -26,7 +26,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.TarjetaSeta;
 /*
 * @name: MostrarSetas
 * @Author: Adrián Antón García
-* @category: class
+* @category: clase
 * @Description: Clase que muestra las setas de la aplicación.
 * */
 
@@ -47,8 +47,10 @@ public class MostrarSetas extends AppCompatActivity
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que inicializa la actividad mostrar setas.
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+    * y los relaciona con el contexto.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
 
     @Override
@@ -105,11 +107,10 @@ public class MostrarSetas extends AppCompatActivity
             card.setName(nombreSeta);
             card.setColorResource(colors[i]);
 
-
             //Cargamos la imágen de esa tarjeta
             String path = "imagenesSetas/" + nombreSeta.toLowerCase() + "/" + nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
             AccesoDatosExternos acceso = new AccesoDatosExternos(this);
-            Bitmap bit = acceso.accesoImagenPorPath(this,path);
+            Bitmap bit = acceso.accesoImagenPorPath(path);
             card.setImagenSeta(bit);
             listaTarjetaSetas.add(card);
         }
@@ -135,19 +136,14 @@ public class MostrarSetas extends AppCompatActivity
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
-        return true;
-    }*/
-
     /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú
+    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
+    * @Param: MenuItem, Item pulsado del menú.
     * */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

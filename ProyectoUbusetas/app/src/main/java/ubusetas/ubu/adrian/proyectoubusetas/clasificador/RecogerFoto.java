@@ -4,6 +4,8 @@ package ubusetas.ubu.adrian.proyectoubusetas.clasificador;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -371,6 +373,29 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 if (resultCode == RESULT_OK) {
                     //creamos un bitmap a partir de la imágen creada
                     bmap = BitmapFactory.decodeFile(fotoPath);
+
+                    //Rotamos la imágen para que se muestre correctamente
+                    ExifInterface ei = null;
+                    try {
+                        ei = new ExifInterface(fotoPath);
+                    } catch (IOException e) {
+                        Log.e("Error rotar foto", e.getMessage());
+                        e.printStackTrace();
+                    }
+                    int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+                    switch(orientation) {
+                        case ExifInterface.ORIENTATION_ROTATE_90:
+                            bmap=RotateBitmap(bmap, 90);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_180:
+                            bmap=RotateBitmap(bmap, 180);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_270:
+                            bmap=RotateBitmap(bmap, 270);
+                            break;
+                    }
+
                     //establecemos el bitmap en el imageview
                     imageViewMostrarFoto.setImageBitmap(bmap);
                     botonGuardarFoto.show();
@@ -397,6 +422,24 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 }
         }
     }
+
+        /*
+    * @name: RotateBitmap
+    * @Author: https://stackoverflow.com/questions/4166917/android-how-to-rotate-a-bitmap-on-a-center-point
+    * @category: método
+    * @Description: Nétodo que rota un bitmap.
+    * @param: Bitmap, el bitmap a girar.
+    * @param: float, los grados a girar el bitmap.
+    * @return: Bitmap, el Bitmap ya girado.
+    * */
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
         /*
     * @name: onCreate
     * @Author: Adrián Antón García

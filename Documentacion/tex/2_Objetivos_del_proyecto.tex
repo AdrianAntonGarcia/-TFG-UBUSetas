@@ -11,6 +11,7 @@ A continuación se muestran los principales objetivos del proyecto de forma gene
 	\item El objetivo principal del proyecto es el de crear una aplicación Android que fuera capaz de identificar, mediante un clasificador de imágenes, la especie a la que pertenece una seta mediante una fotografía introducida por el usuario, bien por la cámara o desde la galería del móvil.
 	\item Otro objetivo es el de mostrar información de las diferentes especies clasificadas. En esta información se incorporaría una breve descripción de la especie, la comestibilidad y otros datos de interés. Este objetivo se realizará mediante técnicas de web semántica.
 	\item Como complemento al clasificador se debería implementar una serie de claves dicotómicas que mediante preguntas simples acerca de la seta conduzcan a la especie correcta de la que se trata. Este objetivo se implementará mediante técnicas de web scraping.
+	\item Se intentará desarrollar una interfaz atractiva y amigable en la aplicación Android.
 \end{itemize}
 
 \section{Objetivos Técnicos}
@@ -19,7 +20,7 @@ En esta lista se van a detallar los objetivos técnicos que se han planteado par
 
 \begin{itemize}
 	\item Usar Android Studio para implementar la aplicación Android.
-	\item Un objetivo técnico importante que se marco fue el de ejecutar el clasificador en el propio móvil, para lo que se utilizaron las librerías de Tensorflow para Android Studio junto a los modelos de clasificación Mobilenet.
+	\item Un objetivo técnico importante que se marcó fue el de ejecutar el clasificador en el propio móvil, para lo que se utilizaron las librerías de Tensorflow para Android Studio junto a los modelos de clasificación Mobilenet.
 	\item Usar Java como lenguaje de programación principal a la hora de programar la parte de Web Semántica y la extracción de las claves dicotómicas mediante Web Scraping.
 	\item Utilizar Sparql como lenguaje para realizar las consultas a la DBpedia.
 	\item Usar las librerías de Apache Jena para realizar las consultas con sparql a la DBpedia en Java y extraer la información de las especies de setas.
@@ -30,4 +31,5 @@ En esta lista se van a detallar los objetivos técnicos que se han planteado par
 	\item Se intentará que la aplicación no ocupe demasiada memoria dentro del dispositivo, para ello se formatearán las imágenes para que ocupen lo necesario y se buscará un modelo de clasificador que no sea demasiado exigente, en nuestro caso se ha optado por el modelo Mobilenet-224-v1.
 	\item Llevar a cabo un prototipo de la interfaz de usuario mediante alguna herramienta de prototipado.
 	\item Utilizar herramientas de testing para probar el correcto funcionamiento de nuestra aplicación.
+	\item Hacer uso de las directrices de diseño de Material design para desarrollar la interfaz gráfica.
 \end{itemize}

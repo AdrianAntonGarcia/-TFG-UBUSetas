@@ -6,15 +6,15 @@ Para la correcta comprensión del proyecto se van a explicar a continuación una
 
 La micología es la ciencia que se dedica al estudio de los hongos. Es una de las áreas de la ciencia más extensas y diversificadas que aporta avances significativos a la investigación científica y al desarrollo tecnológico. ~\cite{wiki:micologia}
 
-Tiene varios aplicaciones y objetivos, además de explorar nuevas especies de flora y fauna se usa para determinar que especies de hongos son comestibles o no y si podrían usarse para diferentes tratamientos médicos.
+Tiene varios aplicaciones y objetivos, se usa para determinar que especies de hongos son comestibles o no y si podrían usarse para diferentes tratamientos médicos, ciertas sustancias de las setas son estudiadas con estos fines curativos. \cite{micologiaDef}
 
 \section{Hongos}
 
-El hongo es el nombre común de los organismos del reino Fungi. El término Fungi en Biología se refiere a un grupo de organismos eucariotas ~\footnote{Aquellos organismos formados por células con núcleo verdadero} que se clasifican en un reino distinto al de las plantas, animales y protistas. Se diferencian de las plantas en que son Heterótrofos ~\footnote{Seres vivos que necesitan de otros para alimentarse} y de los animales en que tienen paredes celulares, como las plantas, pero compuestas de quitina ~\footnote{https://es.wikipedia.org/wiki/Quitina} en vez de celulosa.
+El hongo es el nombre común de los organismos del reino Fungi. El término Fungi en biología se refiere a un grupo de organismos eucariotas\footnote{Aquellos organismos formados por células con núcleo verdadero} que se clasifican en un reino distinto al de las plantas, animales y protistas. Se diferencian de las plantas en que son heterótrofos\footnote{Seres vivos que necesitan de otros para alimentarse} y de los animales en que tienen paredes celulares, como las plantas, pero compuestas de quitina\footnote{\url{https://es.wikipedia.org/wiki/Quitina}} en vez de celulosa.
 
 Los hongos se reproducen de forma sexual o asexual mediante esporas, que se dispersan en un estado latente y solo se interrumpe cuando se dan las condiciones adecuadas para su germinación. ~\cite{wiki:fungi}
 
-La mayoría de los hongos están formados por estructuras microscópicas, filamentosas y ramificadas llamadas hifas.El conjunto de estas hifas forma una red a la que llamaremos micelio. Cuando la acumulación de hifas es grande se pueden observar como una red algonodosa que se pueden reconocer por ejemplo cuando los alimentos empiezan a descomponerse. ~\cite{setas}
+La mayoría de los hongos están formados por estructuras microscópicas, filamentosas y ramificadas llamadas hifas. El conjunto de estas hifas forma una red a la que llamaremos micelio. Cuando la acumulación de hifas es grande se pueden observar como una red algonodosa que se pueden reconocer por ejemplo cuando los alimentos empiezan a descomponerse. ~\cite{setas}
 
 \section{Setas}
 
@@ -36,16 +36,16 @@ En la siguiente figura se muestran las partes más relevantes de una seta.
 
 \section{Inteligencia Artificial}
 %https://luismejias21.files.wordpress.com/2017/09/inteligencia-artificial-un-enfoque-moderno-stuart-j-russell.pdf
-Hay muchas definiciones para definir lo que es la inteligencia artificial, normalmente aparece bajo las siglas IA o AI(Del iglés Artificial Intelligence), pero de forma general la podemos definir como el desarrollo de algoritmos y métodos que otorgan a las computadoras la capacidad de realizar acciones o tareas como las realizaría un ser humano. La inteligencia artificial se aplica en multitud de campos como puede ser la robótica, automovilismo, reconocimiento de imágenes, medicina, sistemas de apoyo...
+Hay muchas definiciones para definir lo que es la inteligencia artificial, normalmente aparece bajo las siglas IA o AI (Del inglés Artificial Intelligence), pero de forma general la podemos definir como el desarrollo de algoritmos y métodos que otorgan a las computadoras la capacidad de realizar acciones o tareas como las realizaría un ser humano. La inteligencia artificial se aplica en multitud de campos como puede ser la robótica, automovilismo, reconocimiento de imágenes, medicina, sistemas de apoyo...
 
-Stuart Russell y Peter Norving diferencian estos cuatro tipos de inteligencia artificial:
+Stuart Russell y Peter Norving\cite{wiki:tiposInteligenciaArtificial}  diferencian estos cuatro tipos de inteligencia artificial:
 
 \begin{itemize}
 	\item{Sistemas que piensan como humanos}: Son sistemas que intentan emular el pensamiento humano automatizando actividades que relacionamos con los procesos de pensamiento humano(toma de decisiones, resolución de problemas...), por ejemplo las redes neuronales artificiales.
 	\item{Sistemas que actúan como humanos}: Este tipo de sistemas intentan imitar el comportamiento humano, por ejemplo la robótica.
 	\item{Sistemas que piensan racionalmente}: Tratan de imitar con lógica el pensamiento lógico racional del ser humano, por ejemplo los sistemas expertos.
 	\item{Sistemas que actúan racionalmente}:Intentan emular de forma racional el comportamiento humano.
-\end{itemize}~\cite{wiki:tiposInteligenciaArtificial}
+\end{itemize}
 
 Algunos de estos sistemas necesitan desarrollar una capacidad de aprendizaje para poder imitar de forma correcta el comportamiento humano.
 
@@ -59,6 +59,9 @@ Hay una gran variedad de algoritmos de aprendizaje automático, a continuación 
 	\item{Aprendizaje supervisado}: En estos algoritmos se intenta crear una función que nos de la correspondencia entre los datos de entrada y una de las salidas deseadas. En este tipo de algoritmos se tiene información tanto de los valores de entrada como del los valores deseados.Para entrenar se suelen usar pares en los que un componente son los datos de entrada y otro los valores deseados. Los valores deseados suelen ser denominados como clases.~\cite{wiki:aprendizaheSupervisado}
 	
 	El valor de salida de la función puede ser un número(Regresión) o una etiqueta de clase(Clasificación).
+	
+	Los algoritmos de clasificación usados en este proyecto se corresponderían con este tipo de aprendizaje, siendo las etiquetas de clase las especies de setas que se quieren clasificar.
+	
 	\item{Aprendizaje no supervisado}: El aprendizaje no supervisado se diferencia del supervisado en que no se conoce a priori los resultados deseados. En este tipo de aprendizaje, normalmente, se tratan los datos de entrada como una serie de datos aleatorios y se intentan buscar relaciones ocultas entre ellos.
 	Una forma de aprendizaje no supervisado es el clustering, el cuál se encarga de organizar los datos de entrada en grupos en los que comparten propiedades y los diferencian del resto.~\cite{wiki:aprendizajeNoSupervisado}
 	
@@ -72,7 +75,7 @@ En nuestro proyecto se hace uso del aprendizaje supervisado para entrenar el cla
 
 \section{Minería de datos}
 
-La minería de datos consiste en la aplicación de técnicas de inteligencia artificial sobre grandes cantidades de datos con el objetivo de descubrir patrones o relaciones ocultas entre los datos. La parte de la minería de datos más relevante para nuestro proyecto don los clasificadores previamente introducidos \cite{procesosMineriaDatos}. Básicamente los clasificadores se basan en la hipótesis del aprendizaje inductivo:
+La minería de datos consiste en la aplicación de técnicas de inteligencia artificial sobre grandes cantidades de datos con el objetivo de descubrir patrones o relaciones ocultas entre los datos. La parte de la minería de datos más relevante para nuestro proyecto son los clasificadores previamente introducidos \cite{procesosMineriaDatos}. Básicamente los clasificadores se basan en la hipótesis del aprendizaje inductivo:
 
 Cualquier hipótesis que aproxime bien una función objetivo sobre un conjunto de ejemplos de entrenamiento suficientemente grande también aproximará bien la función objetivo en ejemplos no observados //CITAR UBU
 
@@ -87,10 +90,9 @@ La míneria de datos, típicamente, consta de los siguientes pasos:
 \end{itemize}
 
 
-
 \section{Redes neuronales}
 
-En esta sección se explicarán algunos conceptos teóricos sobre redes neuronales necesarios para entender el funcionamiento de los modelos Mobilenet e Inception usados para clasificar imágenes.
+En esta sección se explicarán algunos conceptos teóricos sobre redes neuronales necesarios para entender el funcionamiento de los modelos Mobilenet e Inception usados para clasificar imágenes en nuestro proyecto. Actualmente hay gran variedad de clasificadores que se pueden usar para esta tarea además de los dos mencionados.
 
 \subsection{Modelo de neurona artificial}
 

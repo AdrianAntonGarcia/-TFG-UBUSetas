@@ -23,7 +23,7 @@ Url de la herramienta: \url{<https://www.eclipse.org/ide/>}
 
 \section{Android}
 
-Android es un sistema operativo basado en Linux. Fue diseñado con el objetivo de operar en dispositivos móviles con patalla táctil, empezando por los teléfonos inteligentes y tabletas y después extendiéndose a nuevos dispositivos como relojes inteligentes, televisores y automóviles. Fue desarrollado por Android Inc., empresa respaldada económicamente por Google que en 2005 la compró. Android fue se lanzo en 2007 junto a la fundación Open Handset Alliance, que es un consorcio de compañias hardware, software y de telecomunicaciones.
+Android es un sistema operativo basado en Linux. Fue diseñado con el objetivo de operar en dispositivos móviles con patalla táctil, empezando por los teléfonos inteligentes y tabletas y después extendiéndose a nuevos dispositivos como relojes inteligentes, televisores y automóviles. Fue desarrollado por Android Inc., empresa respaldada económicamente por Google que en 2005 la compró. Android fue se lanzo en 2007 junto a la fundación Open Handset Alliance, que es un consorcio de compañias hardware, software y de telecomunicaciones.\cite{wiki:android}
 
 Los principales componentes del sistema operativo Android son los siguientes:
 
@@ -34,7 +34,7 @@ Los principales componentes del sistema operativo Android son los siguientes:
 	\item{Runtime de Android}: Android proporciona un set de librerías que proporcional la funcionalidad base de Java. Cada aplicación se ejecuta en una máquina virtual Dalvik.
 	\item{Núcleo Linux}: Android depende de Linux para los servicios base del sistema.
 \end{itemize}
-\cite{wiki:android}
+
 
 Url de la herramienta: \url{<https://developer.android.com/index.html?hl=es-419>}
 
@@ -80,10 +80,21 @@ En el modelo de datos de RDF podemos distinguir tres tipos de objetos:
 	\item{Recursos}: Cualquier recurso Web identificado unívocamente por un URI.
 	\item{Propiedades}: Son características o atributos usadas para describir los recursos. En ellas se definen los valores permitidos y sobre que recursos se pueden aplicar.
 	\item{Descripciones}: Son una triada formada por un recurso, un nombre de propiedad y un valor para esa propiedad. (Sujeto, predicado y objeto).
-Ver siguiente figura:
-\imagen{DescripcionRDF}{Descripciones RDF}
+Ver siguiente figura \ref{figDescripcionRDF}
+
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{DescripcionRDF}%
+          \caption{Descripciones RDF.}%
+          \label{figDescripcionRDF}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
+
 \end{itemize}
 
+\newpage
 RDF usa la sintaxis básica de XML1.0. Ejemplo: "<xmlns:rdf="http://www.w3.org/TR/REC-rdf-syntax">"
 
 El modelo de datos y la sintaxis no son necesarios para definir la relción entre los diferentes recursos y predicados, por ello hace falta un esquema.
@@ -106,15 +117,12 @@ La arquitectura de Apache Jena contempla las siguientes características:
 
 En la siguiente figura se muestra un esquema de la arquitectura de Apache Jena.
 
-%URL imagen= https://unpocodejava.com/2012/07/27/que-es-apache-jena/
-\imagen{ApacheJena}{Arquitectura de Apache Jena}
-%\figuraConPosicion{1}{ApacheJena.jpg}{Arquitectura de Apache Jena}{figJena}{height=5cm}{t}
-%\figuraConPosicion{0.9}{ApacheJena}{Arquitectura de Apache Jena}{figJena}{}{tph}
+
 
 \begin{figure}[tph]
     \begin{center}%
           \begin{center}%
-            \includegraphics[width=0.3\textwidth]{ApacheJena}%
+            \includegraphics[width=0.8\textwidth]{ApacheJena}%
             \caption{Arquitectura de Apache Jena}%
             \label{figJena}%
           \end{center}%
@@ -123,6 +131,7 @@ En la siguiente figura se muestra un esquema de la arquitectura de Apache Jena.
 
 Url de la herramienta: \url{<https://jena.apache.org/>}
 
+\newpage
 \section{JSON}
 
 JSON (acrónimo de JavaScrip Object Notation) es un formato de texto ligero para el intercambio de datos. Es un subconjunto de la notación de JavaScript pero debido a la extensión de su uso como alternativa a XML se considera como un formato de lenguaje independiente.

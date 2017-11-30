@@ -31,8 +31,17 @@ A continuación se van a describir las partes más características de una seta 
 	\item{Volva}: Es un fragmento en forma de membrana que envuelve la base del pie en algunas setas. Es un error común cortar el pie de la seta y no conservar la volva que nos podría dar indicios de a que especie pertenece la seta.~\cite{partesSeta}
 \end{itemize}
 
-En la siguiente figura se muestran las partes más relevantes de una seta.
-\imagen{partesDeLaSeta}{Partes de una seta}
+En la siguiente figura \ref{figpartesDeLaSeta} se muestran las partes más relevantes de una seta.
+
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{partesDeLaSeta}%
+          \caption{Partes de una seta}%
+          \label{figpartesDeLaSeta}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
 \section{Inteligencia Artificial}
 %https://luismejias21.files.wordpress.com/2017/09/inteligencia-artificial-un-enfoque-moderno-stuart-j-russell.pdf
@@ -89,6 +98,25 @@ La míneria de datos, típicamente, consta de los siguientes pasos:
 	\item{Interpretación y evaluación de los datos}: Esta última etapa consiste en validar si los resultados que nos ofrece el modelo entrenado son satisfactorios y se adecuan a los requisitos pedidos.
 \end{itemize}
 
+\subsection{Evolución del flujo de trabajo}
+
+Al principio, el flujo de trabajo para entrenar un clasificador, era el de extraer unas características de los datos de entrenamiento que se proporcionaban al clasificador. En este modo de trabajo se usan métodos como el Bag-of-words\footnote{Por ejemplo, tratar las características de una imágen como palabras y guardar las veces que se repiten estas características en cada imagen. \url{https://es.wikipedia.org/wiki/Modelo_bolsa_de_palabras}} para determinar las características de los datos de entrada.
+
+Posteriormente, este flujo de trabajo se ha modificado, introduciendo redes neuronales que se encargan de extraer estas características y dividiéndolas en diferentes jerarquías para que no todas tengan el mismo peso a la hora de clasificar.
+
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.7\textwidth]{FlujoTrabajo}%
+          \caption{Flujos de trabajo, clasificación}%
+          \label{figFlujo}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
+
+En la figura \ref{figFlujo} se muestra como se han ido incorporando diferentes capas, todas de ellas entrenables, para extraer las características de una forma jerárquica mediante redes neuronales.
+
+\newpage
 
 \section{Redes neuronales}
 
@@ -96,45 +124,88 @@ En esta sección se explicarán algunos conceptos teóricos sobre redes neuronal
 
 \subsection{Modelo de neurona artificial}
 
-Una neurona artificial de forma general se puede describir según el modelo de Rumelhart y McClelland (1986), el cual define la neurona o elemento de proceso(EP) como un dispostivo el cuál a partir de un conjunto de entradas, vector x, genera una única salida y.
+Una neurona artificial de forma general se puede describir según el modelo de Rumelhart y McClelland (1986), el cual define la neurona o elemento de proceso(EP) como un dispostivo el cuál a partir de un conjunto de entradas, vector x, genera una única salida y. \cite{redesNeurnalesUno}
 
-\imagen{modeloNeuronaArtificial}{Modelo de una neurona artificial}
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{modeloNeuronaArtificial}%
+          \caption{Modelo de una neurona artificial}%
+          \label{figmodeloNeuronaArtificial}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
-La neurona artifial consta de los siguientes elementos:
+\newpage
+La neurona artifcial consta de los siguientes elementos:
 
 \begin{itemize}
 	\item{Conjunto de entradas x}: El vector x.
 	\item{Conjunto de pesos sinápticos wij}: Representan la relación entre la neurona i y j.
-	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma:
-	hi(t)=Sumatorio(wij*xj)
+	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma \ref{figfuncionPropagacion}
+	
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.3\textwidth]{funcionPropagacion}%
+          \caption{Función de propagación}%
+          \label{figfuncionPropagacion}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 	\item{Función de activación a}: proporciona el estado de activación en función del estado anterior y el potencial postsináptico.
-	\item{Función de salida y}: proporciona la salida y en función del valor de activación.
+	\item{Función de salida y}: proporciona la salida y en función del valor de activación. En la figura \ref{figfuncionesActivacion} podemos ver diferentes funciones de activación.
 \end{itemize}
+
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{funcionesActivacion}%
+          \caption{Funciones de activación}%
+          \label{figfuncionesActivacion}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
+\newpage
 
 \subsection{Red Neuronal Artificial RNA}
 
-Una red neuronal Artificial RNA es un grafo dirigido en el que las neuronas artificiales estas conectadas con otras y los enlaces pueden aumentar o disminuir el estado de activación de las neuronas conectadas. Cada neurona opera de forma individual mediante operaciones de suma.
+Una red neuronal Artificial RNA es un grafo dirigido en el que las neuronas artificiales estas conectadas con otras y los enlaces pueden aumentar o disminuir el estado de activación de las neuronas conectadas. Cada neurona opera de forma individual mediante operaciones de suma.\cite{wiki:redesNeuronalesArtificiales}
 
 Estas neuronas se organizan en capas o layers formando diferentes filtros para generar algoritmos que puedan resolver diferentes problemas. Dentro de una misma capa las neuronas suelen ser del mismo tipo y podemos diferenciar de forma general 3 tipos distintos de capas:
 
 \begin{itemize}
-	\item{De entrada}:Reciben datos o señales externos del entorno.
-	\item{De salida}:Proporcionan las respuestas de la red ante los estímulos recibidos por las capas de entrada.
-	\item{Ocultas}:No interaccionan con el entorno, son nodos intermedios que ejecutan las operaciones internas de la red.
+	\item{De entrada}: Reciben datos o señales externos del entorno.
+	\item{De salida}: Proporcionan las respuestas de la red ante los estímulos recibidos por las capas de entrada.
+	\item{Ocultas}: No interaccionan con el entorno, son nodos intermedios que ejecutan las operaciones internas de la red.
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.7\textwidth]{RNA}%
+          \caption{Grafo de una RNA}%
+          \label{figRNA}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
-\imagen{RNA}{Grafo de una RNA}
+Como se puede observar en la figura \ref{figRNA}, las neuronas representadas como nodos se organizan en las diferentes capas pudiéndose interconectar con varias neuronas a la vez. Estas redes pueden tener un número de capas y neuronas ilimitados. Pueden tener un número ilimitado de enlaces o solo estar conectadas con unas pocas.
 
-Como se puede observar en la figura 3.3, las neuronas representadas como nodos se organizan en las diferentes capas pudiéndose interconectar con varias neuronas a la vez. Estas redes pueden tener un número de capas y neuronas ilimitados. Pueden tener un número ilimitado de enlaces o solo estar conectadas con unas pocas.
-
+\newpage
 \subsection{Redes neuronales convolucionales}
 
-Este tipo de redes neuronales son muy parecidas a las RNA normales pero tienen dos cambios significativos. El primero es que parten de la idea de que las entradas son imágenes lo que permite programar optimizaciones a los algoritmos para que se adecuen a este tipo de entradas, el segundo cambio es que intentan reducir en la mayor medida posible el número de parametros utilizados en cada capa.
+Este tipo de redes neuronales son muy parecidas a las RNA normales pero tienen dos cambios significativos. El primero es que parten de la idea de que las entradas son imágenes lo que permite programar optimizaciones a los algoritmos para que se adecuen a este tipo de entradas, el segundo cambio es que intentan reducir en la mayor medida posible el número de parametros utilizados en cada capa.\cite{redesNeuronalesConvolucionales}
 
-\imagen{RNAvsConvolucional}{Izquierda: grafo de una RNA. Derecha: Grafo de una Red neuronal convolucional.}
-
-%http://cs231n.github.io/convolutional-networks/#conv
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{RNAvsConvolucional}%
+          \caption{Izquierda: grafo de una RNA. Derecha: Grafo de una Red neuronal convolucional.}%
+          \label{figRNAvsConvolucional}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
 Las redes neuronales convolucionales organizan sus neuronas en capas de 3 dimensiones normalmente coincidiendo con las características de la imágen, siendo height la altura de la foto, width el ancho y depth los colores de la imágen. Por ejemplo se podría apicar a imágenes de 32x32x3.
 
@@ -144,18 +215,37 @@ En este apartado se van a explicar los tres tipos de capas más importantes a la
 %https://ccc.inaoep.mx/~pgomez/deep/presentations/2016Loncomilla.pdf
 \subsubsection{Capas convolucionales}
 
-En estas capas los pixeles de salida son combinaciones lineales de diferentes pixeles de entrada lo que generan nuevos mapas de pixeles mas sencillos y que no son tan sensibles a cambios en las entradas. Las convoluciones se pueden producir teniendo en cuenta solo 2 dimensiones(el alto y ancho) o teniendo en cuenta las 3 dimensiones (alto, ancho y profundidad). En algunas arquitecturas son llamadas capas RELU, ejecutan la función de activación de las neuronas.
- \imagen{convolucion}{Figura que muestra una convolución en dos dimensiones.} \footnote{Los kernels definen el área sobre el que se va a aplicar la convolucion, en el ejemplo 3x3}
+En estas capas los pixeles de salida son combinaciones lineales de diferentes pixeles de entrada lo que generan nuevos mapas de pixeles mas sencillos y que no son tan sensibles a cambios en las entradas.\cite{redesConvolucionales} Las convoluciones se pueden producir teniendo en cuenta solo 2 dimensiones(el alto y ancho) o teniendo en cuenta las 3 dimensiones (alto, ancho y profundidad). En algunas arquitecturas son llamadas capas RELU, ejecutan la función de activación de las neuronas.
+
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.7\textwidth]{convolucion}%
+          \caption{Figura que muestra una convolución en dos dimensiones.}%
+          \label{figconvolucion}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
+ 
+Como vemos en la figura \ref{figconvolucion} Los kernels definen el área sobre el que se va a aplicar la convolucion, en el ejemplo 3x3.
 
 \subsubsection{Capas de pooling}
 
 Las capas de pooling o reescalado tiene el objetivo de disminuir el número de parámetros o pixeles de los mapas, para ello se aplican técnicas como la explicada en la siguiente figura.
 
-Estas capas van a tener un gran peso en los modelos de Mobilenet e Inception, ya que no van a permitir ajustar el número de operaciones realizadas por los modelos para que se puedan ajustar correctamente a las limitaciones hardware de los teléfonos móviles.
+Estas capas van a tener un gran peso en los modelos de Mobilenet e Inception, ya que nos van a permitir ajustar el número de operaciones realizadas por los modelos para que se puedan ajustar correctamente a las limitaciones hardware de los teléfonos móviles.
 
-\imagen{pooling}{Técnica de pooling}
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.7\textwidth]{pooling}%
+          \caption{Técnica de máx pooling.}%
+          \label{figpooling}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
-En la figura se puede observar que los diferentes pixeles se agrupan eligiendo sólo aquellos de mayor valor para el nuevo mapa.
+En la figura \ref{figpooling} se puede observar que los diferentes pixeles se agrupan eligiendo sólo aquellos de mayor valor para el nuevo mapa.
 
 \subsubsection{Capas totalmente conectadas}
 
@@ -165,13 +255,21 @@ Cuando re entrenamos un modelo, normalmente lo que estamos haciendo es modificar
 
 \section{Modelo Inception}
 
-El modelo Inception es una red neuronal convolucional que se usa para la clasificación de imagenes. Inception ha sido desarrollado por Google y parte de la pregunta de que tipo de convolución aplicar en cada capa o  filtro del modelo. Es decir, preguntarse que tamaño de convulsión sería el adecuado para cada etapa, ¿3x3?,¿1x1?,¿5x5?.
+El modelo Inception es una red neuronal convolucional que se usa para la clasificación de imagenes. Inception ha sido desarrollado por Google y parte de la pregunta de que tipo de convolución aplicar en cada capa o  filtro del modelo. Es decir, preguntarse que tamaño de convolución sería el adecuado para cada etapa, ¿3x3?,¿1x1?,¿5x5?.\cite{depthwiseSeparableConvolutions}
 
 Ante esta pregunta, la respuesta que han aplicado es la de ejecutar los diferentes tamaños de convoluciones en cada capa de manera paralela y concatenar los diferentes mapas en uno solo que es el que se pasa a la siguiente capa del modelo. La idea es ejecutar todos los tipos de convulciones a la vez y elegir el que mejor funcione.
 
-\imagen{inception}{Ejemplo de un nodo Inception}
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{inception}%
+          \caption{Ejemplo de un nodo Inception.}%
+          \label{figinception}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
-En la figura podemos observar como se aplican las diferentes convoluciones en pararelo. Además podemos observar que se aplican unas convoluciones de 1x1, estas convoluciones tienen el objetivo de reducir el número de parámetros que se usan ya que aunque no reducen el área de los mapas si reducen la profundidad de las capas.
+En la figura \ref{figinception} podemos observar como se aplican las diferentes convoluciones en pararelo. Además podemos observar que se aplican unas convoluciones de 1x1, estas convoluciones tienen el objetivo de reducir el número de parámetros que se usan ya que aunque no reducen el área de los mapas si reducen la profundidad de las capas.\cite{inception}
 
 Los modelos inception se construyen concatenando estos bloques o nodos Inception, en teoría cuanta más profundidad se de a estos modelos y más se concatenen más precisos deberían ser los modelos pero esto tiene un coste alto de computación (Aún reduciendo los computos con las convoluciones 1x1) y se corre el riesgo de sobreajustar los modelos.
 
@@ -179,13 +277,21 @@ Actualmente se pueden entrenar diferentes versiones de Inception, en el proyecto
 
 Este modelo se sigue desarrollando y los desarrolladores lo van evolucionando por lo que no es de extrañar que en un futuro cercano aparezcan nuevas versiones mas optimizadas de este modelo.
 
-\imagen{convolicionReduccion}{Aplicación de una convolucion 1x1 antes de ejecutar la convolucion 5x5}
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{convolicionReduccion}%
+          \caption{Aplicación de una convolucion 1x1 antes de ejecutar la convolucion 5x5.}%
+          \label{figconvolicionReduccion}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
-En la imagen anterior se puede observar el efecto de aplicar una convolucion 1x1 antes de efectuar la convolucion 5x5.
+En la figura \ref{figconvolicionReduccion} se puede observar el efecto de aplicar una convolucion 1x1 antes de efectuar la convolucion 5x5.
 
 \section{Modelo Mobilenet}
 
-Mobilenet hace referencia a una serie de modelos clasificadores de imágenes desarrollados por Google para ser embebidos en dispositivos móviles o sistemas con pocos recursos. La filosofía de este tipo de clasificadores nace en contraposición a la tendencia que se estaba implantando en las redes neuronales de crear redes profundas y complejas con el objetivo de mejorar la precisión dejando a un lado cuestiones como el tamaño del modelo o la rapidez. 
+Mobilenet hace referencia a una serie de modelos clasificadores de imágenes desarrollados por Google para ser embebidos en dispositivos móviles o sistemas con pocos recursos. La filosofía de este tipo de clasificadores nace en contraposición a la tendencia que se estaba implantando en las redes neuronales de crear redes profundas y complejas con el objetivo de mejorar la precisión dejando a un lado cuestiones como el tamaño del modelo o la rapidez.\cite{mobilenet}
 
 Los modelos Mobilenet intentan ser precisos pero a la vez ser modelos de poco tamaño y rápidos que se adecuen a sistemas que necesiten de estas ventajas, como pueden ser los automóviles autónomos, realidad aumentada, sistemas de reconocimiento, entre otros.
 
@@ -197,39 +303,47 @@ La arquitectura del modelo Mobilenet se basa en dividir los filtros convoluciona
 
 El objetivo de esta división de fitros es el de minimizar el número de operaciones realizada. La convoluciones normales tienen el siguiente coste:
 
-DK * DK * M * N * DF * DF \footnote{DK=Tamaño del kernel (alto x ancho), M=Número de canales de entrada, N=número de canales de salida,DF=Tamaño del mapa de salida}
+\textit{DK * DK * M * N * DF * DF} \footnote{DK=Tamaño del kernel (alto x ancho), M=Número de canales de entrada, N=número de canales de salida, DF=Tamaño del mapa de salida}
 
 Los Depthwise Convolutional Filters tienen el siguiente coste computacional:
 
-DK * DK * M * DF * DF
+\textit{DK * DK * M * DF * DF}
 
 Y los Pointwise Convolution Filters tienen el siguiente coste:
 
-M * N * DF * DF
+\textit{M * N * DF * DF}
 
 Si expresamos la convolución como un proceso de dos pasos de filtrado y combinación de los dos filtros anteriores obtenemos la siguiente reducción de costes de computación:
 
-(DK * DK * M * DF * DF + M * N * DF * DF)/(DK * DK * M * N * DF * DF) = (1/N)+(1/(DK*DK))
+\textit{(DK * DK * M * DF * DF + M * N * DF * DF)/(DK * DK * M * N * DF * DF) = (1/N)+(1/(DK*DK))}
 
-Lo que supone una reducción respecto a los filtros convolucionales normales. Esta reducción la podemos observar en la siguiente tabla:
-
+Lo que supone una reducción respecto a los filtros convolucionales normales. Esta reducción la podemos observar en la siguiente tabla \ref:
+\newpage
 \tablaSmall{Depthwise Separable vs Full Convolution MobileNet}{l c c c}{herramientasportipodeuso}
 { \multicolumn{1}{l}{Modelos} & Imagenet Accuracy & Million Mult-Adds & Million Parameters \\}{ 
 Conv MobileNet & 71.7\% & 4866 & 29.3 \\
 MobileNet & 70.6\% & 569 & 4.2 \\
 } 
 
-Estos dos tipos de filtros se aplican de forma separada y paralela como sucedía en el modelo Inception Para ver como surgen estas convoluciones vamos a fijarnos en la siguiente imágen.
+Estos dos tipos de filtros se aplican de forma separada y paralela como sucedía en el modelo Inception. Para ver como surgen estas convoluciones vamos a fijarnos en la siguiente figura \ref{figconvolucionesMobilenet}.
 
-\imagen{convolucionesMobilenet}{Los filtros convolucionales normales son divididos en los filtros profundos y los puntuales.}
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=0.7\textwidth]{convolucionesMobilenet}%
+          \caption{Los filtros convolucionales normales son divididos en los filtros profundos y los puntuales.}%
+          \label{figconvolucionesMobilenet}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
 
 El uso de estos tipos de filtros de forma paralela, más el uso de filtros de normalización y pooling, es lo que usa Mobilenet para ejecutarse de forma rápida y utilizando la menor cantidad de memoria posible.
 
-~\cite{mobilenet}~\cite{depthwiseSeparableConvolutions}
+
 
 \section{Web Semántica}
 
-La Web semántica es una Web extendida desarrollada bajo los estándares W3C(World Wide Web Consortium). Esta Web extendida aplica metadatos a la información que recoge para que los usuarios puedan encontrar respuestas de una manera más rápida y sencilla gracias a esta información adicional. 
+La Web semántica es una Web extendida desarrollada bajo los estándares W3C (World Wide Web Consortium). Esta Web extendida aplica metadatos a la información que recoge para que los usuarios puedan encontrar respuestas de una manera más rápida y sencilla gracias a esta información adicional.\cite{webSemantica} 
 
 Estos metadatos son los que otorgan más semántica a la Web y permiten obtener soluciones a problemas habituales gracias al uso de una arquitectura común para toda la información. 
 
@@ -251,10 +365,10 @@ El funcionamiento de la web semántica se basa esencialmente en RDF, SPARQL y OW
 \end{itemize}
 
 El uso conjunto de estos mecanismos es el que nos permite razonar sobre los datos de la Web.
-\cite{webSemantica}
+
 \section{Web Scraping}
 
-La herramienta del Web Scraping es una herramienta para extraer información o datos de páginas web de una manera rápida, eficiente y automatizada. La información extraída se presenta de una forma más estructurada y fácil de usar.
+La herramienta del Web Scraping es una herramienta para extraer información o datos de páginas web de una manera rápida, eficiente y automatizada. La información extraída se presenta de una forma más estructurada y fácil de usar.\cite{webScraping}
 
 Los programas para realizar Web Scraping se pueden programar en diferentes lenguajes de programación, los más populares son Java, Python, Ruby y Node. Además existen diversos programas para realizar estas acciones mediante un interfaz gráfico.
 
@@ -262,7 +376,7 @@ Aproximadamente el 70\% de la información publicada en Internet esta en formato
 
 La técnica más extendida de Web Scraping es analizar la estructura del código HTML propio de una página web para poder extraer la información buscada. Por ejemplo, extraer todos los atributos text de los label <p> que se encuentren en una determinada página Web.
 
-\cite{webScraping}
+
 \section{Clave Dicotómica}
 
 Las claves dicotómicas son herramientas que periten identificar organismos. Las claves pueden determinar animales, plantas, hongos,moneras, protistas o cualquier otro ser vivo. Las claves pueden alcanzar diferentes profundidades identificando el género, especie, familia, entre otros.

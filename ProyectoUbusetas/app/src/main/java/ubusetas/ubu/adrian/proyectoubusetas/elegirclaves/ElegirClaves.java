@@ -15,9 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -79,6 +81,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         acceso = new AccesoDatosExternos(this);
         marcados = new ArrayList<String>();
 
+        Log.d("IDIOMA", Locale.getDefault().getCountry());
         //Interfaz
 
         selector = (RecyclerView) findViewById(R.id.recycler_view_lista_seleccion_claves);
@@ -101,6 +104,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         //Inicializo la lista con los resultados obtenidos que están dentro de la clave general
         cargarLista();
 
+        //Si el número de items contenidos en la clave de generos es menor que 2 pasamos directamente a mostrar la clave completa
+
+        if (itemsSelector.size() < 2) {
+            Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
+            cambioActividad.putExtra("nombreClave", "general");
+            startActivity(cambioActividad);
+        }
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         selector.setLayoutManager(layoutManager);
         adaptador = new AdaptadorSelector(this, itemsSelector);
@@ -185,6 +195,47 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     }
 
     /*
+    * @name: onClick
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
+    * @param: View, Vista del botón pulsado.
+    * */
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.boton_obtener:
+                marcados = adaptador.obtenerSeleccionados();
+                if (Locale.getDefault().getCountry().equals("ES")) {
+                    textoSeleccionados.setText("Géneros seleccionados: " + marcados.toString());
+                } else {
+                    textoSeleccionados.setText("Selected genres: " + marcados.toString());
+                }
+                if (marcados.size() < 2) {
+                    if (Locale.getDefault().getCountry().equals("ES")) {
+                        textoSeleccionados.setText(textoSeleccionados.getText() + " Todavía no se han seleccionado 2 o mas géneros.");
+                    } else {
+                        textoSeleccionados.setText(textoSeleccionados.getText() + " Two or more genera have not yet been selected.");
+                    }
+                }
+                if (marcados.size() < 2) {
+                    boton_ir_clave.setVisibility(View.GONE);
+                } else {
+                    boton_ir_clave.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.boton_ir_clave:
+                if (marcados.size() >= 2) {
+                    Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
+                    cambioActividad.putStringArrayListExtra("generosMarcados", marcados);
+                    startActivity(cambioActividad);
+                }
+                break;
+        }
+    }
+
+       /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
     * @category: Metodo
@@ -208,42 +259,25 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(ElegirClaves.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putStringArrayListExtra("resultados",resultados);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_elegir_claves);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    /*
-    * @name: onClick
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
-    * @param: View, Vista del botón pulsado.
-    * */
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.boton_obtener:
-                marcados = adaptador.obtenerSeleccionados();
-                textoSeleccionados.setText("Generos seleccionados: " + marcados.toString());
-                if(marcados.size()<2){
-                    boton_ir_clave.setVisibility(View.GONE);
-                }else{
-                    boton_ir_clave.setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.boton_ir_clave:
-                if(marcados.size()<2) {
-                    textoSeleccionados.setText("Todavía no se han seleccionado 2 o mas generos.");
-                }else{
-                    Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
-                    cambioActividad.putStringArrayListExtra("generosMarcados",marcados);
-                    startActivity(cambioActividad);
-                }
-                break;
-        }
     }
 }

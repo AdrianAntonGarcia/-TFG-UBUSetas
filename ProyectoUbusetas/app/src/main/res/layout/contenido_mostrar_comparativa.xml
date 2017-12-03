@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
+    android:background="@drawable/fondo"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,24 +17,30 @@
         android:id="@+id/TextView_Comparativa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/texto_comparativa" />
-
-    <ImageView
-        android:id="@+id/ImageView_Comparativa_1"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:layout_below="@+id/TextView_Comparativa"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:text="@string/texto_comparativa"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
 
-    <ImageView
-        android:id="@+id/ImageView_Comparativa_2"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:layout_below="@+id/ImageView_Comparativa_1"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="150dp"
+        android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/ImageView_Comparativa_1"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/ImageView_Comparativa_2"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
 </RelativeLayout>

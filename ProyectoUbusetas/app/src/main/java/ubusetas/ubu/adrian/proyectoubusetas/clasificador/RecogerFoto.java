@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +33,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
@@ -63,14 +66,19 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     private FloatingActionButton botonGuardarFoto;
     private FloatingActionButton botonClasificar;
     private ImageView imageViewMostrarFoto;
-    private Bitmap bitmapImagen;
-    private TextView textoImagen;
-
+    private AccesoDatosExternos acceso;
     //Codigos de peticiones
 
     static final int CODIGO_CAMARA = 101;
     static final int CODIGO_GALERIA = 102;
 
+    //Nos da la orientación de la pantalla
+    ExifInterface ei;
+
+    //Nos dice si hay que ocultar los botones
+
+    boolean ocultarClasificar;
+    boolean ocultarGuardar;
     //MODELOS, CLASIFICADORES
 
     //inception
@@ -114,7 +122,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recoger_foto);
-
+        acceso = new AccesoDatosExternos(this);
         //Relaciones entre los elementos con el xml
 
         botonHacerFoto = (FloatingActionButton) findViewById(R.id.boton_hacer_foto);
@@ -122,14 +130,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         botonGaleria = (FloatingActionButton) findViewById(R.id.boton_galeria);
         botonClasificar = (FloatingActionButton) findViewById(R.id.boton_clasificar);
         imageViewMostrarFoto = (ImageView) findViewById(R.id.imageView_mostrar_imagen);
-        textoImagen = (TextView) findViewById(R.id.textView_textoImagen);
 
-
-        //Oculto los botones hasta que se cargue una foto
-
+        ocultarGuardar = true;
+        ocultarClasificar = true;
         botonGuardarFoto.hide();
         botonClasificar.hide();
-
         //activo los botones
 
         botonHacerFoto.setOnClickListener(this);
@@ -140,6 +145,12 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         inicializarClasificador();
         restaurarCampos(savedInstanceState);
 
+        if (ocultarGuardar == false) {
+            botonGuardarFoto.show();
+        }
+        if (ocultarClasificar == false) {
+            botonClasificar.show();
+        }
         //parte del menu lateral
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_recoger_foto);
@@ -176,6 +187,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             } else {
                 Log.d(TAG, "No restaura el campo");
             }
+
+            ocultarClasificar = savedInstanceState.getBoolean("ocultarClasificar");
+            ocultarGuardar = savedInstanceState.getBoolean("ocultarGuardar");
         }
     }
 
@@ -195,6 +209,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             outState.putParcelable("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
             outState.putString("fotoPath", fotoPath);
         }
+        outState.putBoolean("ocultarClasificar", ocultarClasificar);
+        outState.putBoolean("ocultarGuardar", ocultarGuardar);
     }
 
     /*
@@ -221,7 +237,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 //lo guardamos en la cache
 
                 try {
-                    tempFile = File.createTempFile("fotoSeta", ".jpg", getExternalCacheDir());
+                    tempFile = File.createTempFile("foto_seta", ".jpg", getExternalCacheDir());
                 } catch (IOException e) {
                     Log.e("Error caché foto", e.getMessage());
                     e.printStackTrace();
@@ -241,9 +257,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
             case R.id.boton_guardar_foto: //BOTÓN GUARDAR FOTO
 
-                if (fotoPath == null) {
-                    textoImagen.setText("Todavía no se ha tomado ninguna imágen");
-                } else {
+                if (fotoPath != null) {
                     OutputStream fileOutStream;
                     try {
                         //creamos el directorio imagenesSetas que es donde se van a almacenar las imágenes
@@ -254,7 +268,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                         //ponemos la fecha como distintivo en las fotos
 
                         String fecha = getCurrentDateAndTime();
-                        File directorioImagenes = new File(file, "fotoSeta" + fecha + ".jpg");
+                        File directorioImagenes = new File(file, "foto_seta" + fecha + ".jpg");
                         fileOutStream = new FileOutputStream(directorioImagenes);
 
                         //creamos un bitmao del imageview previamente cargado
@@ -279,9 +293,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 List<Classifier.Recognition> resultados = null;
                 List<String> resultadosTexto = new ArrayList<String>();
                 Bitmap bitmap;
-                if (fotoPath == null) {
-                    textoImagen.setText("Todavía no se ha tomado ninguna imágen");
-                } else {
+                if (fotoPath != null) {
 
                     //creo el bitmap de la foto
 
@@ -302,8 +314,6 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                         cambioActividad.putExtra("fotoBitmap", bitmapClasificar);
                         cambioActividad.putExtra("posImagenSeta", 1);
                         startActivity(cambioActividad);
-                    } else {
-                        textoImagen.setText("No se ha podido clasificar la imágen");
                     }
                 }
                 ;
@@ -373,10 +383,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             case CODIGO_CAMARA: //si la petición ha sido llamada por la cámara
                 if (resultCode == RESULT_OK) {
                     //creamos un bitmap a partir de la imágen creada
+                    bmap = null;
                     bmap = BitmapFactory.decodeFile(fotoPath);
 
                     //Rotamos la imágen para que se muestre correctamente
-                    ExifInterface ei = null;
+
                     try {
                         ei = new ExifInterface(fotoPath);
                     } catch (IOException e) {
@@ -385,24 +396,25 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                     }
                     int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
 
-                    switch(orientation) {
+                    switch (orientation) {
                         case ExifInterface.ORIENTATION_ROTATE_90:
-                            bmap=RotateBitmap(bmap, 90);
+                            bmap = RotateBitmap(bmap, 90);
                             break;
                         case ExifInterface.ORIENTATION_ROTATE_180:
-                            bmap=RotateBitmap(bmap, 180);
+                            bmap = RotateBitmap(bmap, 180);
                             break;
                         case ExifInterface.ORIENTATION_ROTATE_270:
-                            bmap=RotateBitmap(bmap, 270);
+                            bmap = RotateBitmap(bmap, 270);
                             break;
                     }
 
                     //establecemos el bitmap en el imageview
                     imageViewMostrarFoto.setImageBitmap(bmap);
+
+                    ocultarGuardar = false;
+                    ocultarGuardar = false;
                     botonGuardarFoto.show();
                     botonClasificar.show();
-                } else {
-                    textoImagen.setText("ERROR EN LA CREACIÓN DE LA IMÁGEN");
                 }
                 break;
             case CODIGO_GALERIA: //si la petición ha sido llamada por la galería de imágenes
@@ -412,6 +424,9 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                     //guardo su path
                     fotoPath = uriImagen.getPath();
                     //botonGuardarFoto.show();
+                    ocultarClasificar = false;
+                    ocultarGuardar = true;
+                    botonGuardarFoto.hide();
                     botonClasificar.show();
                     //la decodifico en un bitmap
                     try {
@@ -419,6 +434,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                     imageViewMostrarFoto.setImageBitmap(bmap);
                 }
         }
@@ -434,8 +450,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     * @return: Bitmap, el Bitmap ya girado.
     * */
 
-    public static Bitmap RotateBitmap(Bitmap source, float angle)
-    {
+    public static Bitmap RotateBitmap(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
@@ -468,6 +483,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
    * @param: MenuItem, item seleccionado por el usuario del menú.
    * */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -481,6 +497,21 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(RecogerFoto.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_recoger_foto);

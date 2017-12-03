@@ -9,8 +9,8 @@
 
     <color name="primary">#679e37</color>
     <color name="primary_dark">#376f00</color>
-    <color name="primary_light">#98cf65</color>
-    <color name="accent">#64b5f6</color>
+    <color name="primary_light">#aed581</color>
+    <color name="accent">#fff176</color>
     <color name="text_primary">#000000</color>
     <color name="text_secondary">#727272</color>
     <color name="icons">#212121</color>
@@ -19,8 +19,8 @@
     <!--Colores para la actividad elegir claves -->
 
     <color name="normal">#FF2700</color>
-    <color name="presionado">#1E42FF</color>
-    <color name="seleccionado">#2F8DFF</color>
+    <color name="presionado">#ff5722</color>
+    <color name="seleccionado">#fff176</color>
 
     <!--Colores para las listas de las actividades mostrar setas y mostrar claves-->
 

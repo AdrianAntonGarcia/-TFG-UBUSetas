@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
+    android:background="@drawable/fondo"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,21 +17,24 @@
         android:id="@+id/TextView_ResultadosClasificador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/texto_resultados_obtenidos"/>
+        android:text="@string/texto_resultados_obtenidos"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
     <ListView
         android:id="@+id/listView_lista_resultados"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@id/TextView_ResultadosClasificador"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextView_ResultadosClasificador"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/accent"></ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/boton_clave"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ir_claves"
-        android:text="@string/boton_clave" />
+        android:src="@android:drawable/ic_menu_share" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/boton_refrescar_resultados"
@@ -40,7 +43,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="@string/refrescar_resultados"
         app:srcCompat="@android:drawable/stat_notify_sync_noanim" />
 
 </RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
+    android:background="@drawable/fondo"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="@string/descripcion_seta" />
+        android:text="@string/descripcion_seta"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView_textoDescripcionSeta"
@@ -32,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_textoDescripcionSeta"
         android:layout_marginTop="5dp"
-        android:text="@string/genero_seta" />
+        android:text="@string/genero_seta"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView_textoGeneroSeta"
@@ -47,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_textoGeneroSeta"
         android:layout_marginTop="5dp"
-        android:text="@string/comestibilidad_seta" />
+        android:text="@string/comestibilidad_seta"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView_textoComestibilidadSeta"
@@ -62,7 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_textoComestibilidadSeta"
         android:layout_marginTop="5dp"
-        android:text="@string/enlace_seta" />
+        android:text="@string/enlace_seta"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView_textoEnlaceSeta"

@@ -16,9 +16,13 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+
+import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
@@ -33,6 +37,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 public class MostrarComparativa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ImageView.OnClickListener {
 
+    private AccesoDatosExternos acceso;
 
     private ImageView imagenArriba;
     private ImageView imagenAbajo;
@@ -53,6 +58,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        acceso = new AccesoDatosExternos(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_comparativa);
 
@@ -64,7 +70,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
         //recibo la información que llega de mostrar resultados
 
-        imagenComparar = (Bitmap) datosRecibidos.get("fotoSeta");
+        imagenComparar = (Bitmap) datosRecibidos.get("foto_seta");
         imagenUsuario = (Bitmap) datosRecibidos.get("fotoBitmap");
 
         //Asocio las imagenes
@@ -99,33 +105,31 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
     * @Author: Adrián Antón García
     * @category: Procedimiento
     * @Description: Procedimiento que se ejectua cuando se pulsa un imageView.
+    * @param: Vista del imageView pulsado
     * */
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-
             case R.id.ImageView_Comparativa_1:
-                final Dialog dialog=new Dialog(MostrarComparativa.this);
+                final Dialog dialog = new Dialog(MostrarComparativa.this);
                 dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 dialog.setContentView(R.layout.layout_full_image);
                 TouchImageView bmImage = (TouchImageView) dialog.findViewById(R.id.img_receipt);
-                bmImage.setImageBitmap(imagenComparar.copy(imagenComparar.getConfig(),true));
+                bmImage.setImageBitmap(imagenComparar.copy(imagenComparar.getConfig(), true));
                 bmImage.destroyDrawingCache();
                 dialog.setCancelable(true);
                 dialog.show();
                 break;
             case R.id.ImageView_Comparativa_2:
-                final Dialog dialogo=new Dialog(MostrarComparativa.this);
+                final Dialog dialogo = new Dialog(MostrarComparativa.this);
                 dialogo.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 dialogo.setContentView(R.layout.layout_full_image);
                 TouchImageView bmImagen = (TouchImageView) dialogo.findViewById(R.id.img_receipt);
-                bmImagen.setImageBitmap(imagenUsuario.copy(imagenUsuario.getConfig(),true));
+                bmImagen.setImageBitmap(imagenUsuario.copy(imagenUsuario.getConfig(), true));
                 bmImagen.destroyDrawingCache();
                 dialogo.setCancelable(true);
                 dialogo.show();
-
                 break;
         }
     }
@@ -176,6 +180,20 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarComparativa.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_comparativa);

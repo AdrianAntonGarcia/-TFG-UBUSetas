@@ -4,69 +4,57 @@
     <string name="app_name">Proyecto Ubusetas</string>
     <string name="autor">Adrián Antón García</string>
 
-    <!--Cadenas de los elementos de la actividad principal-->
-    <!--Botón hacer foto -->
-    <string name="boton_hacer_foto">Hacer foto</string>
-    <!--Botón guardar foto -->
-    <string name="boton_guardar_foto">Guardar foto</string>
-    <!--Botón galería  -->
-    <string name="boton_galería">Acceder Galería</string>
-    <!--Botón clasificar  -->
-    <string name="boton_clasificar">Clasificar</string>
+    <!--0-Cadenas de los elementos de la actividad lanzadora-->
 
-    <!--Cadenas de los elementos de la actividad mostrar resultado-->
+    <string name="boton_ir_clasificar">Clasificar</string>
+    <string name="boton_ir_setas">Mostrar Setas</string>
+    <string name="boton_ir_claves">Ir claves</string>
 
+    <!--1-Cadenas de los elementos de la actividad recoger foto-->
+    <string name="texto_elegir_opcion">Seleccione una opción:</string>
+    <string name="texto_mostrar_imagen">Imagen tomada para clasificar:</string>
+
+    <!--2-Cadenas de los elementos de la actividad mostrar claves -->
+    <string name="titulo_mostrar_claves">Mostrar claves</string>
+    <string name="texto_informativo_mostrar_claves">Seleccione una tarjeta para mostrar la clave dicotómica de ese género:</string>
+
+    <!--3-Cadenas de los elementos de la actividad mostrar setas -->
+    <string name="titulo_mostrar_setas">Mostrar setas</string>
+    <string name="texto_informativo_mostrar_setas">Seleccione una tarjeta para mostrar la información de esa seta:</string>
+
+    <!--4-Cadenas de los elementos de la actividad mostrar resultado-->
     <string name="texto_resultados_obtenidos">Resultados: </string>
-    <!--Botón volver -->
 
-    <string name="boton_volver_principal">Volver</string>
-    <string name="boton_clave">Ir a la clave</string>
-    <string name="texto_lista">Resultados obtenidos:</string>
+    <!--5-Cadenas de los elementos de la actividad claveDicotomica -->
+    <string name="texto_clave">Clave: </string>
+    <string name="texto_pregunta">Seleccione la clave que mas se adecue a la seta:</string>
 
-    <!--Cadena del encabezado de la lista de resultaos-->
-    <!--Encabezado -->
-    <string name="header_lista">Resultados:</string>
-    <string name="refrescar_resultados">Refrescar</string>
-
-    <!--Cadenas de los elementos de la actividad mostrar informacion seta-->
-    <string name="boton_volver_mostrar">Volver</string>
+    <!--6-Cadenas de los elementos de la actividad mostrar informacion seta-->
     <string name="descripcion_seta">Descripción seta:</string>
     <string name="genero_seta">Género seta:</string>
     <string name="comestibilidad_seta">Comestibilidad seta:</string>
     <string name="enlace_seta">Enlace seta:</string>
 
-    <!--Cadenas de los elementos de la actividad MostrarComparativa -->
-    <string name="texto_comparativa">Comparativa entre las imagenes:</string>
+    <!--7-Cadenas de los elementos de la actividad elegir claves-->
+    <string name="seleccionar_generos">Los siguientes géneros se encuentran en la clave dicotómica. Seleccione los géneros sobre los que aplicar la clave dicotómica:</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="boton_clave">Ir clave dicotómica</string>
 
-    <!--Cadenas de los elementos de la actividad claveDicotomica -->
-    <string name="boton_volver_clave">Volver</string>
-    <string name="boton_anterior">Pregunta Anterior</string>
-    <string name="texto_pregunta">Seleccione la clave que mas se adecue a la seta:</string>
-
-    <!--Cadenas de los elementos de la actividad lanadora -->
-    <string name="titulo_lanzadora">Lanzadora</string>
-
-    <!--Cadenas de los elementos de la actividad mostrar setas -->
-    <string name="titulo_mostrar_setas">Mostrar setas</string>
-    <string name="texto_informativo_mostrar_setas">Seleccione una tarjeta para mostrar la información de esa seta:</string>
-
-    <!--Cadenas de los elementos de la actividad mostrar claves -->
-    <string name="titulo_mostrar_claves">Mostrar claves</string>
-    <string name="texto_informativo_mostrar_claves">Seleccione una tarjeta para mostrar la clave dicotómica de ese género:</string>
-
-    <!--Cadenas de los elementos de la actividad elegir claves-->
-    <string name="seleccionar_generos"> Los siguientes géneros se encuentran en la clave dicotómica. Seleccione los géneros sobre los que aplicar la clave dicotómica:</string>
-    <string name="seleccionar">  Seleccionar</string>
+    <!--8-Cadenas de los elementos de la actividad MostrarComparativa -->
+    <string name="texto_comparativa">Comparativa entre las imágenes:</string>
 
     <!-- Elementos del menú -->
-
-    <string name="clasificar">Clasificar</string>
-    <string name="claves">Ir claves dicotomicas</string>
-    <string name="informacion">Informacion setas</string>
+    <string name="titulo_menu_1">Herramientas</string>
     <string name="home">Home</string>
+    <string name="clasificar">Clasificar</string>
+    <string name="claves">Ir claves dicotómicas</string>
+    <string name="informacion">Información setas</string>
+    <string name="titulo_menu_2">Opciones</string>
+    <string name="idioma">Cambiar idioma</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ayuda</string>
+
 
     <!--Nombres de las setas -->
 

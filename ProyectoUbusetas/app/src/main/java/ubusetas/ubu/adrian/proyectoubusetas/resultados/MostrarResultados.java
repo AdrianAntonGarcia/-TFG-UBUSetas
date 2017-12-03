@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
@@ -40,6 +42,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
+    private AccesoDatosExternos acceso;
     //widgets
     //ImageView imageViewImagenResultado1;
 
@@ -47,7 +50,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     FloatingActionButton boton_clave;
     ListView listViewListaResultados;
     //lista de las especies clasificadas para esa foto
-    List<String> resultados;
+    ArrayList<String> resultados;
     //lista de las especies clasificadas para esa foto sin id
     List<String> resultadosSinNum;
     //lista con los nombres de las carpetas de las especies clasificadas para esa foto
@@ -56,7 +59,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     Bitmap bitmapImagen;
 
     //Paramatro que indica la foto cargada
-    int posImagenSeta=1;
+    int posImagenSeta = 1;
 
     /*
     * @name: onCreate
@@ -72,6 +75,8 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_resultados);
+
+        acceso = new AccesoDatosExternos(this);
 
         //inicializo los widgets
 
@@ -98,7 +103,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
 
         //cargo los resultados obtenidos en las listas
 
-        resultados = (List<String>) datosRecibidos.get("resultados");
+        resultados = (ArrayList<String>) datosRecibidos.get("resultados");
         cargarListas(resultados);
         //cargo el listview
         inflarLista();
@@ -121,9 +126,9 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Log.d("resultados","resultados"+resultados.toString());
-        Log.d("resultadosSinNum","resultadosSinNum"+resultadosSinNum.toString());
-        Log.d("nombresSetas","nombresSetas"+nombresSetas.toString());
+        Log.d("resultados", "resultados" + resultados.toString());
+        Log.d("resultadosSinNum", "resultadosSinNum" + resultadosSinNum.toString());
+        Log.d("nombresSetas", "nombresSetas" + nombresSetas.toString());
     }
 
     /*
@@ -177,7 +182,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
      * @Description: Procedimiento que carga los resultados en la lista
      * */
 
-    public void inflarLista(){
+    public void inflarLista() {
         //cargamos la la lista con el número de foto correspondiente
         cargarListaElementos(posImagenSeta);
         AdapatadorSetasLista adaptador = new AdapatadorSetasLista(this, R.layout.listview_item_row, listaSetas);
@@ -213,7 +218,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 //asocio el bitmap al imageview
                 Intent mostrarComparativa = new Intent(MostrarResultados.this, MostrarComparativa.class);
                 mostrarComparativa.putExtra("fotoBitmap", bitmapImagen);
-                mostrarComparativa.putExtra("fotoSeta", bit);
+                mostrarComparativa.putExtra("foto_seta", bit);
                 //mostrarComparativa.putExtra("posImagenSeta", posImagenSeta);
                 mostrarComparativa.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
                 startActivity(mostrarComparativa);
@@ -333,6 +338,22 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarResultados.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putStringArrayListExtra("resultados",resultados);
+            intent.putExtra("fotoBitmap",bitmapImagen);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_resultados);

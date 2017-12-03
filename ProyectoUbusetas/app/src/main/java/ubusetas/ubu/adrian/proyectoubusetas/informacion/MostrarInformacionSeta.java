@@ -18,8 +18,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.DBsetasManager;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
@@ -32,7 +34,9 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 * @Description: Clase que muestra información relativa a la seta pulsada
 * */
 
-public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private AccesoDatosExternos acceso;
 
     private String nombreSeta;
     private String descripcionEs;
@@ -65,7 +69,7 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_informacion_seta);
-
+        acceso = new AccesoDatosExternos(this);
         //inicializo los elements de la interfaz
 
         imageViewSetaDescrita = (ImageView) findViewById(R.id.imageView_setaDescrita);
@@ -81,12 +85,12 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
 
         //recibo la información que llega de mostrar resultados
 
-        nombreSeta= (String) datosRecibidos.get("nombreSeta");
+        nombreSeta = (String) datosRecibidos.get("nombreSeta");
         nombreSeta = nombreSeta.toLowerCase().trim();
 
         //Coloco la imagen de la seta en su imageview
 
-        String path="imagenesSetas/" + nombreSeta.toLowerCase() + "/"+ nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
+        String path = "imagenesSetas/" + nombreSeta.toLowerCase() + "/" + nombreSeta.toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
         InputStream is = null;
         try {
             is = this.getResources().getAssets().open(path);
@@ -98,10 +102,10 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
 
         //Accedo a la base de datos
 
-        baseDatos=new DBsetasManager(this);
+        baseDatos = new DBsetasManager(this);
         baseDatos.open();
-        descripcionEs=baseDatos.getDescripcionEsp(nombreSeta);
-        comestibilidadEs=baseDatos.getComestibilidadEs(nombreSeta);
+        descripcionEs = baseDatos.getDescripcionEsp(nombreSeta);
+        comestibilidadEs = baseDatos.getComestibilidadEs(nombreSeta);
         enlace = baseDatos.getEnlace(nombreSeta);
         genero = baseDatos.getGenero(nombreSeta);
         baseDatos.close();
@@ -167,9 +171,23 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         } else if (id == R.id.menu_informacion) {
             Intent cambioActividad = new Intent(MostrarInformacionSeta.this, MostrarSetas.class);
             startActivity(cambioActividad);
-        }else if (id == R.id.menu_home) {
+        } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarInformacionSeta.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_informacion_setas);

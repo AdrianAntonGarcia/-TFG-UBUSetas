@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
 
-    <item android:title="Opciones">
+    <item android:title="@string/titulo_menu_1">
         <menu>
             <item
                 android:id="@+id/menu_home"
@@ -24,17 +25,13 @@
         </menu>
     </item>
 
-    <!--item android:title="Communicate">
+    <item android:title="@string/titulo_menu_2">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/menu_idioma"
+                android:icon="@drawable/idioma"
+                android:title="@string/idioma" />
         </menu>
-    </item-->
+    </item>
 
 </menu>

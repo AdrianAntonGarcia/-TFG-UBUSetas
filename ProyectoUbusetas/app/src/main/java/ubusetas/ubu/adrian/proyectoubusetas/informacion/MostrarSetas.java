@@ -12,8 +12,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
@@ -32,6 +34,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.TarjetaSeta;
 
 public class MostrarSetas extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private AccesoDatosExternos acceso;
 
     //RecyclerView que va a contener las tarjetas de las setas
     private RecyclerView recyclerView;
@@ -57,7 +60,7 @@ public class MostrarSetas extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostar_setas);
-
+        acceso = new AccesoDatosExternos(this);
         //cargamos la lista de setas y los colores
         names = getResources().getStringArray(R.array.nombres_setas);
         colors = getResources().getIntArray(R.array.initial_colors_mostrar_setas);
@@ -159,6 +162,20 @@ public class MostrarSetas extends AppCompatActivity
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarSetas.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_setas);

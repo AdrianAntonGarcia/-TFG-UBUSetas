@@ -16,10 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -43,7 +45,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     //Estructura donde se almacenan las claves
 
     private TreeMap<String, ArrayList<Object>> claves;
-    AccesoDatosExternos acceso;
+    private AccesoDatosExternos acceso;
 
     //mapas de la clave actual
 
@@ -69,9 +71,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     //Configurador de la clave
 
-    private static String NOMBRECLAVE = "general";
+    private String NOMBRECLAVE = "general";
     private ArrayList<String> generosRecibidos;
-    private static String NODOINICIAL = "1";
+    private String NODOINICIAL = "1";
 
     //Elementos de la interfaz
 
@@ -101,6 +103,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         listViewClaveDicotomica.setOnItemClickListener(this);
         boton_anterior.setOnClickListener(this);
 
+        NODOINICIAL = "1";
         //Leo todas las claves
 
         acceso = new AccesoDatosExternos(this);
@@ -123,7 +126,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             cargarClaveEspecifica();
         }
 
-        TextViewClaveMostrada.setText("Clave: " + NOMBRECLAVE);
+        TextViewClaveMostrada.setText(TextViewClaveMostrada.getText() + NOMBRECLAVE);
 
         //parte del menu lateral
 
@@ -408,6 +411,21 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(ClaveDicotomica.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")){
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("nombreClave",NOMBRECLAVE);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);

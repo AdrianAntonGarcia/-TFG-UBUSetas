@@ -11,10 +11,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.AdaptadorTarjetasClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.TarjetaClave;
@@ -29,6 +32,8 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 * */
 
 public class MostrarClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private AccesoDatosExternos acceso;
 
     //RecyclerView que va a contener las tarjetas de las claves
     private RecyclerView recyclerView;
@@ -54,6 +59,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_claves);
+        acceso = new AccesoDatosExternos(this);
 
         //cargamos la lista de setas y los colores
         names = getResources().getStringArray(R.array.nombres_claves);
@@ -99,7 +105,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         //40 tarjetas
         for (int i = 0; i < 41; i++) {
             //Inicializamos la tarjeta
-            String nombreSeta=names[i];
+            String nombreSeta = names[i];
             TarjetaClave card = new TarjetaClave();
             card.setId((long) i);
             card.setName(nombreSeta);
@@ -146,9 +152,23 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         } else if (id == R.id.menu_informacion) {
             Intent cambioActividad = new Intent(MostrarClaves.this, MostrarSetas.class);
             startActivity(cambioActividad);
-        }else if (id == R.id.menu_home) {
+        } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarClaves.this, Lanzadora.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_idioma) {
+            if (Locale.getDefault().getLanguage().equals("es")) {
+                acceso.actualizarIdioma("en");
+                Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
+            } else {
+                acceso.actualizarIdioma("es");
+                Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
+            }
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            //llamamos a la actividad
+            this.startActivity(intent);
+            //finalizamos la actividad actual
+            this.finish();
         }
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_claves);

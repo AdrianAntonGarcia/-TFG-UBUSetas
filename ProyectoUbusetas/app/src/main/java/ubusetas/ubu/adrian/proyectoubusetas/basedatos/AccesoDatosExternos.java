@@ -1,13 +1,19 @@
 package ubusetas.ubu.adrian.proyectoubusetas.basedatos;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.TreeMap;
 
 
@@ -80,5 +86,26 @@ public class AccesoDatosExternos {
             e.printStackTrace();
         }
         return createResumeForm;
+    }
+
+    /*
+    * @name: actualizarIdioma
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que cambia el idioma de la aplicación
+    * */
+
+    public void actualizarIdioma(String idioma) {
+        Locale localizacion = new Locale(idioma);
+        Locale.setDefault(localizacion);
+
+        Resources resources = contexto.getResources();
+        Configuration configuracion = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuracion.setLocale(localizacion);
+        } else {
+            configuracion.locale = localizacion;
+        }
+        resources.updateConfiguration(configuracion, resources.getDisplayMetrics());
     }
 }

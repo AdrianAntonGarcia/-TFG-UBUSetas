@@ -16,11 +16,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        android:configChanges="locale">
         <activity
             android:name=".lanzador.Lanzadora"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,35 +34,43 @@
             android:name=".clasificador.RecogerFoto"
             android:label="@string/app_name"
             android:screenOrientation="fullSensor"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".resultados.MostrarResultados"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".informacion.MostrarInformacionSeta"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".resultados.MostrarComparativa"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".clavedicotomica.ClaveDicotomica"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".informacion.MostrarSetas"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".clavedicotomica.MostrarClaves"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
         <activity
             android:name=".elegirclaves.ElegirClaves"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="locale"/>
     </application>
 
 </manifest>

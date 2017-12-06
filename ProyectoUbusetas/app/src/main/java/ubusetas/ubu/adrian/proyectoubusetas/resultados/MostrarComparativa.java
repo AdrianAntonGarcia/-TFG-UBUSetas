@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -169,9 +170,9 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
             intent.putExtra("idioma", idioma);
-            intent.putExtra("foto_seta",imagenComparar);
-            intent.putExtra("fotoBitmap",imagenUsuario);
-            intent.putStringArrayListExtra("resultados",resultados);
+            intent.putExtra("foto_seta", imagenComparar);
+            intent.putExtra("fotoBitmap", imagenUsuario);
+            intent.putStringArrayListExtra("resultados", resultados);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
@@ -192,6 +193,46 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         //guardo el idioma
         outState.putString("idioma", idioma);
     }
+
+    /*
+    * @name: onCreateOptionsMenu
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado para rellenar el menú superior
+    * @param: Menu, El menú superior
+    * */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+    /*
+    * @name: onOptionsItemSelected
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
+    * @param: MenuItem, el menu item
+    * */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //genero la ayuda de la actividad
+        if (id == R.id.action_settings) {
+            final Dialog dialog = new Dialog(MostrarComparativa.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_mostrar_comparativa);
+            dialog.setCancelable(true);
+            dialog.show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
@@ -207,10 +248,10 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent = new Intent(MostrarComparativa.this,MostrarResultados.class);
+            Intent intent = new Intent(MostrarComparativa.this, MostrarResultados.class);
             intent.putExtra("idioma", idioma);
-            intent.putExtra("fotoBitmap",imagenUsuario);
-            intent.putStringArrayListExtra("resultados",resultados);
+            intent.putExtra("fotoBitmap", imagenUsuario);
+            intent.putStringArrayListExtra("resultados", resultados);
             this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
             finish();
@@ -257,14 +298,22 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
             intent.putExtra("idioma", idioma);
-            intent.putExtra("foto_seta",imagenComparar);
-            intent.putExtra("fotoBitmap",imagenUsuario);
-            intent.putStringArrayListExtra("resultados",resultados);
+            intent.putExtra("foto_seta", imagenComparar);
+            intent.putExtra("fotoBitmap", imagenUsuario);
+            intent.putStringArrayListExtra("resultados", resultados);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
+        } else if (id == R.id.menu_ayuda) {
+            //genero la ayuda del menú lateral
+            final Dialog dialog = new Dialog(MostrarComparativa.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_menu);
+            dialog.setCancelable(true);
+            dialog.show();
         }
+
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_comparativa);
         drawer.closeDrawer(GravityCompat.START);

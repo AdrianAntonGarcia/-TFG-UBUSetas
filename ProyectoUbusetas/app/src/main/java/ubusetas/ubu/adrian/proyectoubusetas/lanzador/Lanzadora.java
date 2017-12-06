@@ -168,9 +168,8 @@ public class Lanzadora extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //genero la ayuda de la actividad
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Opciones pulsado", Toast.LENGTH_LONG).show();
             final Dialog dialog = new Dialog(Lanzadora.this);
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
             dialog.setContentView(R.layout.ayuda_lanzadora);
@@ -264,6 +263,13 @@ public class Lanzadora extends AppCompatActivity
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
+        } else if( id == R.id.menu_ayuda){
+            //genero la ayuda del menú lateral
+            final Dialog dialog = new Dialog(Lanzadora.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_menu);
+            dialog.setCancelable(true);
+            dialog.show();
         }
 
         //Cerramos el menu lateral

@@ -55,6 +55,79 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Help</string>
+
+    <!--0-Cadenas de los elementos de la ayuda de lanzadora-->
+    <string name="ayuda_lanzadora_0">Help of the main activity:</string>
+    <string name="ayuda_lanzadora_1">To classify a photo click on the magnifying glass icon.</string>
+    <string name="ayuda_lanzadora_2">To show a list of available mushrooms press the information icon.</string>
+    <string name="ayuda_lanzadora_3">To show a list of available dichotomous keys press the following button.</string>
+    <string name="ayuda_lanzadora_4">To show the application menu press the following button.</string>
+
+    <!--1-Cadenas de los elementos de la ayuda de recoger foto-->
+    <string name="ayuda_recoger_0">Activity help pick up photo:</string>
+    <string name="ayuda_recoger_1">To upload a photo from the gallery press the following button.</string>
+    <string name="ayuda_recoger_2">To load a photo from the camera of the mobile press the following button.</string>
+    <string name="ayuda_recoger_3">To classify the photo press the following button (only appears when a photo has been loaded).</string>
+    <string name="ayuda_recoger_4">To save the photo press the following button (only appears when a photo has been taken from the camera).</string>
+    <string name="ayuda_recoger_5">To show the application menu press the following button.</string>
+
+    <!--2-Cadenas de los elementos de la ayuda de mostrar claves-->
+    <string name="ayuda_mostrar_claves_0">Activity help show keys:</string>
+    <string name="ayuda_mostrar_claves_1">To select a key, click on one of the cards.</string>
+    <string name="ayuda_mostrar_claves_2">To show the application menu press the following button.</string>
+
+    <!--3-Cadenas de los elementos de la ayuda de mostrar claves-->
+    <string name="ayuda_mostrar_setas_0">Activity help show mushrooms:</string>
+    <string name="ayuda_mostrar_setas_1">To select a mushroom and access its information, click on one of the cards.</string>
+    <string name="ayuda_mostrar_setas_2">To show the application menu press the following button.</string>
+
+    <!--4-Cadenas de los elementos de la ayuda de mostrar resultados-->
+    <string name="ayuda_mostrar_resultados_0">Activity help show results:</string>
+    <string name="ayuda_mostrar_resultados_1">The page will show the most likely mushroom species classified for the mushroom photo introduced.
+     You can see a comparison of your photo and that of the species by clicking once on the species in the list.
+     To see a description of the species, press and hold the species in the list.</string>
+    <string name="ayuda_mostrar_resultados_2">To choose on which genres of the classifieds to filter the dichotomous key
+         general press the next button.</string>
+    <string name="ayuda_mostrar_resultados_3">To change the displayed images of each genre press the following button.</string>
+    <string name="ayuda_mostrar_resultados_4">To show the application menu press the following button.</string>
+
+    <!--5-Cadenas de los elementos de la ayuda de clave dicotómica-->
+    <string name="ayuda_clave_dicotomica_0">Help of the dichotomous key activity:</string>
+    <string name="ayuda_clave_dicotomica_1">The page will show a succession of dilemmas, you should choose the one that considers that
+         the more it adapts to the mushroom until it reaches a genre.</string>
+    <string name="ayuda_clave_dicotomica_2">To return to the previous question press the following button.</string>
+    <string name="ayuda_clave_dicotomica_3">To show the application menu press the following button.</string>
+
+    <!--6-Cadenas de los elementos de la ayuda de mostrar información seta-->
+    <string name="ayuda_mostrar_informacion_0">Activity help show information:</string>
+    <string name="ayuda_mostrar_informacion_1">The page will show information corresponding to the mushroom, a description, the genre, the edibility, a link to the wikipedia and
+     an image of this mushroom that can be enlarged if you click on it.</string>
+    <string name="ayuda_mostrar_informacion_2">To show the application menu press the following button.</string>
+
+    <!--7-Cadenas de los elementos de la ayuda de elegir claves-->
+
+    <string name="ayuda_elegir_clave_0">Help the activity choose genres:</string>
+    <string name="ayuda_elegir_clave_1">The page shows the genres by which the general key can be filtered with respect to the results obtained by the classifier.
+     You must select the desired genres and once selected click on the button "go dichotomous key"</string>
+    <string name="ayuda_elegir_clave_2">To select the genres press the following button.</string>
+    <string name="ayuda_elegir_clave_3">To go to the general key press the following button (They will only appear when the desired genres are selected).</string>
+    <string name="ayuda_elegir_clave_4">To show the application menu press the following button.</string>
+
+    <!--8-Cadenas de los elementos de la ayuda de mostrar comparativa-->
+
+    <string name="ayuda_mostrar_comparativa_0">Help show comparative activity:</string>
+    <string name="ayuda_mostrar_comparativa_1">The page shows a comparison between the photo entered and the photo of the selected species,
+         to enlarge the images click on your photo.</string>
+    <string name="ayuda_mostrar_comparativa_2">To show the application menu press the following button.</string>
+
+    <!--9-Cadenas de los elementos de la ayuda del menú lateral-->
+    <string name="ayuda_menu_0">Help of the menu:</string>
+    <string name="ayuda_menu_1">To go to the main page press the following button.</string>
+    <string name="ayuda_menu_2">To classify a photo click on the magnifying glass icon.</string>
+    <string name="ayuda_menu_3">To show a list of available mushrooms press the information icon.</string>
+    <string name="ayuda_menu_4">To show a list of available dichotomous keys press the following button.</string>
+    <string name="ayuda_menu_5">To change the language of the application press the following button.</string>
+    <string name="ayuda_menu_6">To show the help of the current page press the following button.</string>
     <!--Nombres de las setas -->
 
     <string-array name="nombres_setas">

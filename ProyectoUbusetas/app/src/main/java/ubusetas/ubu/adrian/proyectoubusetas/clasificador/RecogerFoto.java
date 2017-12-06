@@ -1,6 +1,7 @@
 package ubusetas.ubu.adrian.proyectoubusetas.clasificador;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,8 +19,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -128,13 +131,13 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_recoger_foto);
 
         //Cargamos el idioma si se rota la pantalla
-        idioma=null;
-        idioma=Locale.getDefault().getLanguage();
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
 
-        if(datosRecibidos!=null){
-            idioma=datosRecibidos.getString("idioma");
+        if (datosRecibidos != null) {
+            idioma = datosRecibidos.getString("idioma");
         }
         acceso = new AccesoDatosExternos(this);
 
@@ -208,12 +211,12 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             ocultarGuardar = savedInstanceState.getBoolean("ocultarGuardar");
 
             //reestablecemos el idioma
-            idioma=savedInstanceState.getString("idioma");
+            idioma = savedInstanceState.getString("idioma");
             acceso.actualizarIdioma(idioma);
             //hay que actualizar al cambiar el idioma
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
-            intent.putExtra("idioma",idioma);
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
@@ -501,12 +504,51 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent = new Intent(RecogerFoto.this,Lanzadora.class);
+            Intent intent = new Intent(RecogerFoto.this, Lanzadora.class);
             intent.putExtra("idioma", idioma);
             this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
             finish();
         }
+    }
+    /*
+    * @name: onCreateOptionsMenu
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado para rellenar el menú superior
+    * @param: Menu, El menú superior
+    * */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+    /*
+    * @name: onOptionsItemSelected
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
+    * @param: MenuItem, el menu item
+    * */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //genero la ayuda de la actividad
+        if (id == R.id.action_settings) {
+            final Dialog dialog = new Dialog(RecogerFoto.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_recoger_foto);
+            dialog.setCancelable(true);
+            dialog.show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /*
@@ -533,11 +575,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
-                idioma="en";
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
-                idioma="es";
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
@@ -545,10 +587,18 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
             //llamamos a la actividad
             this.startActivity(intent);
-            intent.putExtra("idioma",idioma);
+            intent.putExtra("idioma", idioma);
             //finalizamos la actividad actual
             this.finish();
+        } else if (id == R.id.menu_ayuda) {
+            //genero la ayuda del menú lateral
+            final Dialog dialog = new Dialog(RecogerFoto.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_menu);
+            dialog.setCancelable(true);
+            dialog.show();
         }
+
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_recoger_foto);
         drawer.closeDrawer(GravityCompat.START);

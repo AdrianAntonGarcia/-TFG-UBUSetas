@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ayuda_elegir_clave_0" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView0"
+        android:text="@string/ayuda_elegir_clave_1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_toLeftOf="@+id/boton_obtener"
+        android:layout_toStartOf="@+id/boton_obtener"
+        android:text="@string/ayuda_elegir_clave_2" />
+
+    <Button
+        android:id="@+id/boton_obtener"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/accent"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/seleccionar"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/boton_ir_clave"
+        android:layout_toStartOf="@+id/boton_ir_clave"
+        android:text="@string/ayuda_elegir_clave_3" />
+
+    <Button
+        android:id="@+id/boton_ir_clave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignEnd="@+id/boton_obtener"
+        android:layout_alignRight="@+id/boton_obtener"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:background="@color/accent"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/boton_clave"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_toLeftOf="@+id/imageView4"
+        android:layout_toStartOf="@+id/imageView4"
+        android:text="@string/ayuda_elegir_clave_4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/accent"
+        android:src="@drawable/icono_menu_1" />
+
+</RelativeLayout>

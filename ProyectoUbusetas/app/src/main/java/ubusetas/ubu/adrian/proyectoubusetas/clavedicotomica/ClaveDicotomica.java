@@ -1,5 +1,6 @@
 package ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,6 +34,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 
 /*
 * @name: ClaveDicotomica
@@ -426,6 +430,45 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 break;
         }
     }
+    /*
+    * @name: onCreateOptionsMenu
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado para rellenar el menú superior
+    * @param: Menu, El menú superior
+    * */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+    /*
+    * @name: onOptionsItemSelected
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
+    * @param: MenuItem, el menu item
+    * */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //genero la ayuda de la actividad
+        if (id == R.id.action_settings) {
+            final Dialog dialog = new Dialog(ClaveDicotomica.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_clave_dicotomica);
+            dialog.setCancelable(true);
+            dialog.show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     /*
     * @name: onCreate
@@ -507,7 +550,15 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
+        }else if( id == R.id.menu_ayuda){
+            //genero la ayuda del menú lateral
+            final Dialog dialog = new Dialog(ClaveDicotomica.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_menu);
+            dialog.setCancelable(true);
+            dialog.show();
         }
+
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_clave_dicotomica);
         drawer.closeDrawer(GravityCompat.START);

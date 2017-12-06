@@ -31,6 +31,10 @@
                 android:id="@+id/menu_idioma"
                 android:icon="@drawable/idioma"
                 android:title="@string/idioma" />
+            <item
+                android:id="@+id/menu_ayuda"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/ayuda_menu" />
         </menu>
     </item>
 

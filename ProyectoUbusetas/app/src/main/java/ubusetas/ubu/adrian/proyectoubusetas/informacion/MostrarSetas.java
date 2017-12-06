@@ -1,5 +1,6 @@
 package ubusetas.ubu.adrian.proyectoubusetas.informacion;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.design.widget.NavigationView;
@@ -11,7 +12,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -188,7 +191,7 @@ public class MostrarSetas extends AppCompatActivity
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent = new Intent(MostrarSetas.this,Lanzadora.class);
+            Intent intent = new Intent(MostrarSetas.this, Lanzadora.class);
             intent.putExtra("idioma", idioma);
             this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
@@ -196,6 +199,46 @@ public class MostrarSetas extends AppCompatActivity
         }
     }
 
+    /*
+    * @name: onCreateOptionsMenu
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado para rellenar el menú superior
+    * @param: Menu, El menú superior
+    */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones, menu);
+        return true;
+    }
+    /*
+    * @name: onOptionsItemSelected
+    * @Author: Adrián Antón García
+    * @category: método
+    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
+    * @param: MenuItem, el menu item
+    * */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //genero la ayuda de la actividad
+        if (id == R.id.action_settings) {
+            final Dialog dialog = new Dialog(MostrarSetas.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_mostrar_setas);
+            dialog.setCancelable(true);
+            dialog.show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     /*
     * @name: onNavigationItemSelected
     * @Author: Adrián Antón García
@@ -236,7 +279,15 @@ public class MostrarSetas extends AppCompatActivity
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
+        } else if (id == R.id.menu_ayuda) {
+            //genero la ayuda del menú lateral
+            final Dialog dialog = new Dialog(MostrarSetas.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_menu);
+            dialog.setCancelable(true);
+            dialog.show();
         }
+
         //Cerramos el menu lateral
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_mostrar_setas);
         drawer.closeDrawer(GravityCompat.START);

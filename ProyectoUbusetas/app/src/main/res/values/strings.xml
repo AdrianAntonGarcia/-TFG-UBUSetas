@@ -43,7 +43,7 @@
     <!--8-Cadenas de los elementos de la actividad MostrarComparativa -->
     <string name="texto_comparativa">Comparativa entre las imágenes:</string>
 
-    <!-- Elementos del menú -->
+    <!--9 Elementos del menú -->
     <string name="titulo_menu_1">Herramientas</string>
     <string name="home">Home</string>
     <string name="clasificar">Clasificar</string>
@@ -51,15 +51,82 @@
     <string name="informacion">Información setas</string>
     <string name="titulo_menu_2">Opciones</string>
     <string name="idioma">Cambiar idioma</string>
+    <string name="ayuda_menu">Ayuda</string> <!--////////////////////////////-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Ayuda</string>
 
 
     <!--0-Cadenas de los elementos de la ayuda de lanzadora-->
+    <string name="ayuda_lanzadora_0">Ayuda de la actividad principal:</string>
+    <string name="ayuda_lanzadora_1">Para clasificar una foto pulse sobre el icono de la lupa.</string>
+    <string name="ayuda_lanzadora_2">Para mostrar un listado de las setas disponibles pulse el icono de información.</string>
+    <string name="ayuda_lanzadora_3">Para mostrar un listado de las claves dicotómicas disponibles pulse el siguiente botón.</string>
+    <string name="ayuda_lanzadora_4">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
 
-    <string name="ayuda_clasificar_1">Para clasificar una foto pulse sobre el icono de la lupa</string>
+    <!--1-Cadenas de los elementos de la ayuda de recoger foto-->
+    <string name="ayuda_recoger_0">Ayuda de la actividad recoger foto:</string>
+    <string name="ayuda_recoger_1">Para cargar una foto desde la galería pulse el siguiente botón.</string>
+    <string name="ayuda_recoger_2">Para cargar una foto desde la cámara del móvil pulse el siguiente botón.</string>
+    <string name="ayuda_recoger_3">Para clasificar la foto pulse el siguiente botón (sólo aparece cuando se ha cargado una foto).</string>
+    <string name="ayuda_recoger_4">Para guardar la foto pulse el siguiente botón (sólo aparece cuando se ha tomado una foto desde la cámara).</string>
+    <string name="ayuda_recoger_5">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
 
+    <!--2-Cadenas de los elementos de la ayuda de mostrar claves-->
+    <string name="ayuda_mostrar_claves_0">Ayuda de la actividad mostrar claves:</string>
+    <string name="ayuda_mostrar_claves_1">Para seleccionar una clave, pulse sobre una de las tarjetas.</string>
+    <string name="ayuda_mostrar_claves_2">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--3-Cadenas de los elementos de la ayuda de mostrar claves-->
+    <string name="ayuda_mostrar_setas_0">Ayuda de la actividad mostrar setas:</string>
+    <string name="ayuda_mostrar_setas_1">Para seleccionar una seta y acceder a su información, pulse sobre una de las tarjetas.</string>
+    <string name="ayuda_mostrar_setas_2">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--4-Cadenas de los elementos de la ayuda de mostrar resultados-->
+    <string name="ayuda_mostrar_resultados_0">Ayuda de la actividad mostrar resultados:</string>
+    <string name="ayuda_mostrar_resultados_1">La página mostrará las especies de setas mas probables clasificadas para la foto de seta introducida.
+    Podrá ver una comparación de su foto y la de la especie pulsando una vez sobre la especie en la lista.
+    Para ver una descripción de la especie, mantenga pulsado la especie en la lista.</string>
+    <string name="ayuda_mostrar_resultados_2">Para elegir sobre que generos de los clasificados filtrar la clave dicotómoica general pulse el siguiente botón.</string>
+    <string name="ayuda_mostrar_resultados_3">Para cambiar las imágenes mostradas de cada género pulse el siguiente botón.</string>
+    <string name="ayuda_mostrar_resultados_4">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--5-Cadenas de los elementos de la ayuda de clave dicotómica-->
+    <string name="ayuda_clave_dicotomica_0">Ayuda de la actividad clave dicotómica:</string>
+    <string name="ayuda_clave_dicotomica_1">La página mostrará una sucesión de dilemas, deberá ir eligiendo el que considere que más se adecua a la seta hasta llegar a un género.</string>
+    <string name="ayuda_clave_dicotomica_2">Para volver a la pregunta anterior pulse el siguiente botón.</string>
+    <string name="ayuda_clave_dicotomica_3">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--6-Cadenas de los elementos de la ayuda de mostrar información seta-->
+    <string name="ayuda_mostrar_informacion_0">Ayuda de la actividad mostrar información:</string>
+    <string name="ayuda_mostrar_informacion_1">La página mostrará información correspondiente a la seta, una descripción, el género, la comestibilidad, un enlace a la wikipedia y
+    una imágen de esta seta que se podrá ampliar si se pulsa sobre ella.</string>
+    <string name="ayuda_mostrar_informacion_2">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--7-Cadenas de los elementos de la ayuda de elegir claves-->
+
+    <string name="ayuda_elegir_clave_0">Ayuda de la actividad elegir generos:</string> 
+    <string name="ayuda_elegir_clave_1">La página muestra los géneros por los que se puede filtrar la clave general respecto a los resultados obtenidos por el clasificador.
+    Deberá seleccionar los géneros deseados y una vez seleccionados pulsar sobre el botoón "ir clave dicotómica"</string>
+    <string name="ayuda_elegir_clave_2">Para seleccionar los géneros pulse el siguiente botón.</string>
+    <string name="ayuda_elegir_clave_3">Para ir a la clave general pulse el siguiente botón (Sólo aparecerán cuando se seleccionen los géneros deseados).</string>
+    <string name="ayuda_elegir_clave_4">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--8-Cadenas de los elementos de la ayuda de mostrar comparativa-->
+
+    <string name="ayuda_mostrar_comparativa_0">Ayuda de la actividad mostrar comparativa:</string> 
+    <string name="ayuda_mostrar_comparativa_1">La página muestra una comparativa en entre la foto introducida y la foto de la especie seleccionada,
+        para ampliar las imágenes pulsar sobre su foto."</string>
+    <string name="ayuda_mostrar_comparativa_2">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+
+    <!--9-Cadenas de los elementos de la ayuda del menú lateral-->
+    <string name="ayuda_menu_0">Ayuda del menú:</string>
+    <string name="ayuda_menu_1">Para ir a la página principal pulsar el siguiente botón.</string>
+    <string name="ayuda_menu_2">Para clasificar una foto pulse sobre el icono de la lupa.</string>
+    <string name="ayuda_menu_3">Para mostrar un listado de las setas disponibles pulse el icono de información.</string>
+    <string name="ayuda_menu_4">Para mostrar un listado de las claves dicotómicas disponibles pulse el siguiente botón.</string>
+    <string name="ayuda_menu_5">Para cambiar el idioma de la aplicación pulse el siguiente botón.</string>
+    <string name="ayuda_menu_6">Para mostrar la ayuda de la página actual pulse el siguiente botón.</string>
 
     <!--Nombres de las setas -->
 

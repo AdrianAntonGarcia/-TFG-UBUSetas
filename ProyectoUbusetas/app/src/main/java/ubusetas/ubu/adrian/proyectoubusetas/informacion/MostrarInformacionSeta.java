@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
@@ -26,6 +27,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.basedatos.DBsetasManager;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 
 /*
 * @name: DBsetasManager
@@ -41,8 +43,13 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     private String nombreSeta;
     private String descripcionEs;
     private String comestibilidadEs;
+    private String descripcionEn;
+    private String comestibilidadEn;
     private String enlace;
     private String genero;
+
+    //Idioma de la aplicación
+    private String idioma;
 
     //elementos de la interfaz
 
@@ -56,6 +63,10 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
 
     private DBsetasManager baseDatos;
 
+    private Bitmap bitmapUsuario;
+    private ArrayList<String> resultados;
+
+    private int actividadPrevia;
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -69,6 +80,22 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_informacion_seta);
+        //Cargamos el idioma si se rota la pantalla
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
+        Intent intentRecibidos = getIntent();
+        Bundle datosRecibidos = intentRecibidos.getExtras();
+
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+
+        actividadPrevia = 0;
+        if (datosRecibidos.containsKey("actMostrarResultados")) {
+            actividadPrevia = datosRecibidos.getInt("actMostrarResultados");
+            bitmapUsuario = (Bitmap) datosRecibidos.get("fotoBitmap");
+            resultados = (ArrayList<String>) datosRecibidos.get("resultados");
+        }
         acceso = new AccesoDatosExternos(this);
         //inicializo los elements de la interfaz
 
@@ -78,15 +105,13 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         textViewTextoComestibilidadSeta = (TextView) findViewById(R.id.textView_textoComestibilidadSeta);
         textViewTextoEnlaceSeta = (TextView) findViewById(R.id.textView_textoEnlaceSeta);
 
-        //recojo los datos provenientes de la actividad mostrar resultados
-
-        Intent intentRecibidos = getIntent();
-        Bundle datosRecibidos = intentRecibidos.getExtras();
-
         //recibo la información que llega de mostrar resultados
 
         nombreSeta = (String) datosRecibidos.get("nombreSeta");
         nombreSeta = nombreSeta.toLowerCase().trim();
+
+        //restauro los elementos necesarios
+        restaurarCampos(savedInstanceState);
 
         //Coloco la imagen de la seta en su imageview
 
@@ -100,18 +125,26 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         Bitmap bit = BitmapFactory.decodeStream(is);
         imageViewSetaDescrita.setImageBitmap(bit);
 
-        //Accedo a la base de datos
+        //Accedo a la base de datos y muestro la información
 
         baseDatos = new DBsetasManager(this);
         baseDatos.open();
         descripcionEs = baseDatos.getDescripcionEsp(nombreSeta);
         comestibilidadEs = baseDatos.getComestibilidadEs(nombreSeta);
+        descripcionEn = baseDatos.getDescripcionEn(nombreSeta);
+        comestibilidadEn = baseDatos.getComestibilidadEn(nombreSeta);
         enlace = baseDatos.getEnlace(nombreSeta);
         genero = baseDatos.getGenero(nombreSeta);
         baseDatos.close();
-        textViewTextoDescripcionSeta.setText(descripcionEs);
+        if (idioma.equals("es")) {
+            textViewTextoDescripcionSeta.setText(descripcionEs);
+            textViewTextoComestibilidadSeta.setText(comestibilidadEs);
+        } else {
+            textViewTextoDescripcionSeta.setText(descripcionEn);
+            textViewTextoComestibilidadSeta.setText(comestibilidadEn);
+        }
         textViewTextoGeneroSeta.setText(genero);
-        textViewTextoComestibilidadSeta.setText(comestibilidadEs);
+
         textViewTextoEnlaceSeta.setText(enlace);
 
         //parte del menu lateral
@@ -130,6 +163,52 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     }
 
     /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
+
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("nombreSeta", nombreSeta);
+            //si la actividad previa era mostrar resultados añadimos también estos campos
+            if(actividadPrevia==1){
+                intent.putExtra("actMostrarResultados",actividadPrevia);
+                intent.putExtra("fotoBitmap", bitmapUsuario);
+                intent.putStringArrayListExtra("resultados", resultados);
+            }
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
+
+    /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
     * @category: Procedimiento
@@ -144,8 +223,23 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //si el menu esta cerrado
-            super.onBackPressed();
+            //si la actividad previa era mostrar setas
+            if (actividadPrevia == 0) {
+                Intent intent = new Intent(MostrarInformacionSeta.this, MostrarSetas.class);
+                intent.putExtra("idioma", idioma);
+                this.startActivity(intent);
+                //si el menu esta cerrado llamamos al constructor padre
+                finish();
+            } else {
+                //si la actividad previa era mostrar resultados
+                Intent intent = new Intent(MostrarInformacionSeta.this, MostrarResultados.class);
+                intent.putExtra("idioma", idioma);
+                intent.putStringArrayListExtra("resultados", resultados);
+                intent.putExtra("fotoBitmap", bitmapUsuario);
+                this.startActivity(intent);
+                //si el menu esta cerrado llamamos al constructor padre
+                finish();
+            }
         }
     }
 
@@ -177,13 +271,23 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("nombreSeta", nombreSeta);
+            //si la actividad previa era mostrar resultados añadimos también estos campos
+            if(actividadPrevia==1){
+                intent.putExtra("actMostrarResultados",actividadPrevia);
+                intent.putExtra("fotoBitmap", bitmapUsuario);
+                intent.putStringArrayListExtra("resultados", resultados);
+            }
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

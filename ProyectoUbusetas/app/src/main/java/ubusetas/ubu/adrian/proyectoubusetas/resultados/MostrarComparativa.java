@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
@@ -39,13 +40,21 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
     private AccesoDatosExternos acceso;
 
+    //Elementos de la interfaz
+
     private ImageView imagenArriba;
     private ImageView imagenAbajo;
 
     private Bitmap imagenUsuario;
     private Bitmap imagenComparar;
 
-    Animation zoomAnimation;
+
+    //Idioma de la aplicación
+    private String idioma;
+
+    //resultados clasificados
+    ArrayList<String> resultados;
+
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -57,11 +66,15 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        acceso = new AccesoDatosExternos(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_comparativa);
 
+        //Inicializamos el idioma de la aplicación
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
+        acceso = new AccesoDatosExternos(this);
+
+        //Elementos de la interfaz
         imagenArriba = (ImageView) findViewById(R.id.ImageView_Comparativa_1);
         imagenAbajo = (ImageView) findViewById(R.id.ImageView_Comparativa_2);
 
@@ -72,18 +85,23 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
 
         imagenComparar = (Bitmap) datosRecibidos.get("foto_seta");
         imagenUsuario = (Bitmap) datosRecibidos.get("fotoBitmap");
+        resultados = (ArrayList<String>) datosRecibidos.get("resultados");
+
+        //cargamos el idioma si se ha rotado la pantalla
+
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+
+        //restauro los elementos necesarios si se ha rotado la pantalla
+        restaurarCampos(savedInstanceState);
 
         //Asocio las imagenes
 
         imagenArriba.setImageBitmap(imagenComparar);
         imagenAbajo.setImageBitmap(imagenUsuario);
-
         imagenArriba.setOnClickListener(this);
         imagenAbajo.setOnClickListener(this);
-
-
-        zoomAnimation = AnimationUtils.loadAnimation(this, R.anim.zoomelemento);
-
 
         //parte del menu lateral
         Toolbar toolbar = (Toolbar) findViewById(R.id.barra_mostrar_comparativa);
@@ -133,7 +151,47 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
                 break;
         }
     }
+ /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
 
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("foto_seta",imagenComparar);
+            intent.putExtra("fotoBitmap",imagenUsuario);
+            intent.putStringArrayListExtra("resultados",resultados);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
     /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
@@ -149,8 +207,13 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            Intent intent = new Intent(MostrarComparativa.this,MostrarResultados.class);
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("fotoBitmap",imagenUsuario);
+            intent.putStringArrayListExtra("resultados",resultados);
+            this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -171,6 +234,7 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         if (id == R.id.menu_clasificar) {
             Intent cambioActividad = new Intent(MostrarComparativa.this, RecogerFoto.class);
             startActivity(cambioActividad);
+
         } else if (id == R.id.menu_ir_claves) {
             Intent cambioActividad = new Intent(MostrarComparativa.this, MostrarClaves.class);
             startActivity(cambioActividad);
@@ -183,13 +247,19 @@ public class MostrarComparativa extends AppCompatActivity implements NavigationV
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("foto_seta",imagenComparar);
+            intent.putExtra("fotoBitmap",imagenUsuario);
+            intent.putStringArrayListExtra("resultados",resultados);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

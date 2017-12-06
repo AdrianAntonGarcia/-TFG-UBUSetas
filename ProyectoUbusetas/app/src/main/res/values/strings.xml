@@ -56,6 +56,11 @@
     <string name="action_settings">Ayuda</string>
 
 
+    <!--0-Cadenas de los elementos de la ayuda de lanzadora-->
+
+    <string name="ayuda_clasificar_1">Para clasificar una foto pulse sobre el icono de la lupa</string>
+
+
     <!--Nombres de las setas -->
 
     <string-array name="nombres_setas">

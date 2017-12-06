@@ -28,6 +28,7 @@ import java.util.TreeMap;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
+import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
@@ -46,6 +47,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     private TreeMap<String, ArrayList<Object>> claves;
     private AccesoDatosExternos acceso;
+
+    //resultados obtenidos por el clasificador
+
+    private ArrayList<String> resultados;
 
     //mapas de la clave actual
 
@@ -69,6 +74,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     private ArrayAdapter<String> adaptador;
 
+    //Idioma de la aplicación
+
+    private String idioma;
+
     //Configurador de la clave
 
     private String NOMBRECLAVE = "general";
@@ -80,6 +89,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     private ListView listViewClaveDicotomica;
     private TextView TextViewClaveMostrada;
     private FloatingActionButton boton_anterior;
+
+    //actividad de la que vengo, 1 actividad elegir clave, 2 actividad mostrar clavess
+
+    private int actividadPrevia;
 
     /*
     * @name: onCreate
@@ -94,7 +107,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clave_dicotomica);
-
+        //Cargamos el idioma actual
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
         //Inicializo los elementos de la interfaz
 
         TextViewClaveMostrada = (TextView) findViewById(R.id.TextView_ClaveMostrada);
@@ -109,12 +124,15 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         acceso = new AccesoDatosExternos(this);
         claves = acceso.readFromFile();
 
-        //recojo el nombre de la clave a cargar
+        //recojo el nombre de la clave a cargar y los resultados
 
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
+        resultados = datosRecibidos.getStringArrayList("resultados");
         NOMBRECLAVE = datosRecibidos.getString("nombreClave");
+        //si no se ha especificado clave, se carga la ggeneral
         if (NOMBRECLAVE == null) {
+            actividadPrevia=1;
             NOMBRECLAVE = "general";
             generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
             Log.d("generosRecibidos", generosRecibidos.toString());
@@ -122,10 +140,19 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 cargarClaveGeneral(generosRecibidos);
             }
         } else {
+            actividadPrevia=2;
             //cargo la clave especifica pasada por paramatero
             cargarClaveEspecifica();
         }
 
+        //cargamos el idioma si se ha rotado la pantalla
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+        //restauro los elementos necesarios si se ha rotado la pantalla
+        restaurarCampos(savedInstanceState);
+
+        //Muestro la clave cargada
         TextViewClaveMostrada.setText(TextViewClaveMostrada.getText() + NOMBRECLAVE);
 
         //parte del menu lateral
@@ -274,6 +301,46 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     }
 
     /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
+
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putExtra("nombreClave",NOMBRECLAVE);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
+
+    /*
     * @name: onItemClick
     * @Author: Adrián Antón García
     * @category: procedure
@@ -379,10 +446,21 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
             drawer.closeDrawer(GravityCompat.START);
         } else {
-
-            //si el menu esta cerrado llamamos al constructor padre
-
-            super.onBackPressed();
+            //Actividad elegir clave
+            if(actividadPrevia==1){
+                Intent intent = new Intent(ClaveDicotomica.this,ElegirClaves.class);
+                intent.putExtra("idioma", idioma);
+                intent.putExtra("resultados",resultados);
+                this.startActivity(intent);
+                //si el menu esta cerrado llamamos al constructor padre
+                finish();
+            }else{
+                Intent intent = new Intent(ClaveDicotomica.this,MostrarClaves.class);
+                intent.putExtra("idioma", idioma);
+                this.startActivity(intent);
+                //si el menu esta cerrado llamamos al constructor padre
+                finish();
+            }
         }
     }
 
@@ -414,14 +492,17 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")){
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
             intent.putExtra("nombreClave",NOMBRECLAVE);
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

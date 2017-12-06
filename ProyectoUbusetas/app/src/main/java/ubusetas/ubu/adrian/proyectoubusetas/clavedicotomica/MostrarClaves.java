@@ -45,6 +45,8 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     private int[] colors;
     //Array con los nombres de las tarjetas
     private String[] names;
+    //Idioma de la aplicación
+    private String idioma;
 
     /*
     * @name: onCreate
@@ -59,8 +61,17 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_claves);
-        acceso = new AccesoDatosExternos(this);
+        //Cargamos el idioma si se rota la pantalla
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
+        Intent intentRecibidos = getIntent();
+        Bundle datosRecibidos = intentRecibidos.getExtras();
 
+        if (datosRecibidos != null) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+        acceso = new AccesoDatosExternos(this);
+        restaurarCampos(savedInstanceState);
         //cargamos la lista de setas y los colores
         names = getResources().getStringArray(R.array.nombres_claves);
         colors = getResources().getIntArray(R.array.initial_colors_mostrar_setas);
@@ -113,6 +124,45 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
             listaTarjetasClaves.add(card);
         }
     }
+
+            /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
+
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -128,8 +178,11 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            Intent intent = new Intent(MostrarClaves.this,Lanzadora.class);
+            intent.putExtra("idioma", idioma);
+            this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -158,13 +211,16 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

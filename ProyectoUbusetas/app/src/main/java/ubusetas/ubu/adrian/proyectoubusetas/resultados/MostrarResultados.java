@@ -57,7 +57,8 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     List<String> nombresSetas;
     List<SetasLista> listaSetas;
     Bitmap bitmapImagen;
-
+    //Idioma de la aplicación
+    private String idioma;
     //Paramatro que indica la foto cargada
     int posImagenSeta = 1;
 
@@ -69,7 +70,6 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     * y los relaciona con el contexto.
     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
     * */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,27 +83,36 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         botonRefrescarResultados = (FloatingActionButton) findViewById(R.id.boton_refrescar_resultados);
         boton_clave = (FloatingActionButton) findViewById(R.id.boton_clave);
         botonRefrescarResultados.setOnClickListener(this);
-
         boton_clave.setOnClickListener(this);
         listViewListaResultados = (ListView) findViewById(R.id.listView_lista_resultados);
-
-        //recojo los datos provenientes de la actividad principal
-
-        Intent intentRecibidos = getIntent();
-        Bundle datosRecibidos = intentRecibidos.getExtras();
-
-        //cargo la imágen introducida por el usuario
-
-        bitmapImagen = (Bitmap) datosRecibidos.get("fotoBitmap");
 
         //inicializo las listas
 
         resultadosSinNum = new ArrayList<String>();
         nombresSetas = new ArrayList<String>();
 
+        //recojo los datos provenientes de la actividad principal
+
+        Intent intentRecibidos = getIntent();
+        Bundle datosRecibidos = intentRecibidos.getExtras();
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
+        //cargamos el idioma si se ha rotado la pantalla
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+        //cargo la imágen introducida por el usuario
+
+        bitmapImagen = (Bitmap) datosRecibidos.get("fotoBitmap");
+
         //cargo los resultados obtenidos en las listas
 
         resultados = (ArrayList<String>) datosRecibidos.get("resultados");
+
+        //restauro los elementos necesarios si se ha rotado la pantalla
+        restaurarCampos(savedInstanceState);
+        //cargo las listas de resultados
+        Log.d("RESULTADOS--------", "resultados" + resultados.toString());
         cargarListas(resultados);
         //cargo el listview
         inflarLista();
@@ -125,8 +134,6 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Log.d("resultados", "resultados" + resultados.toString());
         Log.d("resultadosSinNum", "resultadosSinNum" + resultadosSinNum.toString());
         Log.d("nombresSetas", "nombresSetas" + nombresSetas.toString());
     }
@@ -191,6 +198,47 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     }
 
     /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
+
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putStringArrayListExtra("resultados", resultados);
+            intent.putExtra("fotoBitmap", bitmapImagen);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
+
+    /*
      * @name: onItemClick
      * @Author: Adrián Antón García
      * @category: procedimiento
@@ -219,6 +267,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 Intent mostrarComparativa = new Intent(MostrarResultados.this, MostrarComparativa.class);
                 mostrarComparativa.putExtra("fotoBitmap", bitmapImagen);
                 mostrarComparativa.putExtra("foto_seta", bit);
+                mostrarComparativa.putStringArrayListExtra("resultadosAdevolver", resultados);
                 //mostrarComparativa.putExtra("posImagenSeta", posImagenSeta);
                 mostrarComparativa.putStringArrayListExtra("resultados", (ArrayList<String>) resultados);
                 startActivity(mostrarComparativa);
@@ -257,6 +306,9 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 //asocio el bitmap al imageview
                 Intent mostrarInfoSeta = new Intent(MostrarResultados.this, MostrarInformacionSeta.class);
                 mostrarInfoSeta.putExtra("nombreSeta", nombresSetas.get(position));
+                mostrarInfoSeta.putExtra("actMostrarResultados",1);
+                mostrarInfoSeta.putExtra("fotoBitmap", bitmapImagen);
+                mostrarInfoSeta.putStringArrayListExtra("resultados", resultados);
                 startActivity(mostrarInfoSeta);
             } else {
                 Toast.makeText(this, "bitmap null", Toast.LENGTH_LONG).show();
@@ -289,6 +341,8 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 Intent clave = new Intent(MostrarResultados.this, ElegirClaves.class);
                 //Envio los resultados a la actividad ElegirClaves
                 clave.putStringArrayListExtra("resultados", (ArrayList<String>) nombresSetas);
+                clave.putStringArrayListExtra("resultadosAdevolver", resultados);
+                clave.putExtra("fotoBitmap", bitmapImagen);
                 finish();
                 startActivity(clave);
                 break;
@@ -310,8 +364,11 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            Intent intent = new Intent(MostrarResultados.this, RecogerFoto.class);
+            intent.putExtra("idioma", idioma);
+            this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -339,17 +396,21 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             Intent cambioActividad = new Intent(MostrarResultados.this, Lanzadora.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_idioma) {
+            //recargo la actividad con el nuevo idioma
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
-            intent.putStringArrayListExtra("resultados",resultados);
-            intent.putExtra("fotoBitmap",bitmapImagen);
+            intent.putStringArrayListExtra("resultados", resultados);
+            intent.putExtra("fotoBitmap", bitmapImagen);
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

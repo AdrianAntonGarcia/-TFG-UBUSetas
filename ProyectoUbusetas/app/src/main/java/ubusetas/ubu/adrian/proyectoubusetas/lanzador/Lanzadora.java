@@ -1,5 +1,6 @@
 package ubusetas.ubu.adrian.proyectoubusetas.lanzador;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -22,6 +24,8 @@ import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.TouchImageView;
 
 /*
 * @name: Lanzadora
@@ -39,7 +43,10 @@ public class Lanzadora extends AppCompatActivity
     private FloatingActionButton botonIrSetas;
     private FloatingActionButton botonIrClaves;
     private AccesoDatosExternos acceso;
+
+    //Idioma de la aplicación
     private String idioma;
+
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -54,12 +61,14 @@ public class Lanzadora extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lanzadora);
 
-        idioma=Locale.getDefault().getLanguage();
+        //Inicializamos el idioma de la aplicación
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
 
-        if(datosRecibidos!=null){
-            idioma=datosRecibidos.getString("idioma");
+        if (datosRecibidos != null) {
+            idioma = datosRecibidos.getString("idioma");
         }
 
         acceso = new AccesoDatosExternos(this);
@@ -91,7 +100,7 @@ public class Lanzadora extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-        /*
+    /*
      * @name: restaurarCampos
      * @Author: Adrián Antón García
      * @category: procedimiento
@@ -103,12 +112,12 @@ public class Lanzadora extends AppCompatActivity
 
         // Si hay algo en el bundle
         if (savedInstanceState != null) {
-            idioma=savedInstanceState.getString("idioma");
+            idioma = savedInstanceState.getString("idioma");
             acceso.actualizarIdioma(idioma);
             //hay que actualizar al cambiar el idioma
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
-            intent.putExtra("idioma",idioma);
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
@@ -126,6 +135,7 @@ public class Lanzadora extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        //guardo el idioma
         outState.putString("idioma", idioma);
     }
 
@@ -161,6 +171,11 @@ public class Lanzadora extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Toast.makeText(this, "Opciones pulsado", Toast.LENGTH_LONG).show();
+            final Dialog dialog = new Dialog(Lanzadora.this);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            dialog.setContentView(R.layout.ayuda_lanzadora);
+            dialog.setCancelable(true);
+            dialog.show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -233,20 +248,19 @@ public class Lanzadora extends AppCompatActivity
             Intent cambioActividad = new Intent(Lanzadora.this, MostrarSetas.class);
             startActivity(cambioActividad);
         } else if (id == R.id.menu_idioma) {
-
+            //recargo la actividad con el nuevo idioma
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
-                idioma="en";
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
-                idioma="es";
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
-
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
-            intent.putExtra("idioma",idioma);
+            intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();

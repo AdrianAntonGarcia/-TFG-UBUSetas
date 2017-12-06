@@ -67,10 +67,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     private FloatingActionButton botonClasificar;
     private ImageView imageViewMostrarFoto;
     private AccesoDatosExternos acceso;
+
+    //Idioma de la aplicación
+    private String idioma;
+
     //Codigos de peticiones
 
-    static final int CODIGO_CAMARA = 101;
-    static final int CODIGO_GALERIA = 102;
+    private static final int CODIGO_CAMARA = 101;
+    private static final int CODIGO_GALERIA = 102;
 
     //Nos da la orientación de la pantalla
     ExifInterface ei;
@@ -122,7 +126,19 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recoger_foto);
+
+        //Cargamos el idioma si se rota la pantalla
+        idioma=null;
+        idioma=Locale.getDefault().getLanguage();
+        Intent intentRecibidos = getIntent();
+        Bundle datosRecibidos = intentRecibidos.getExtras();
+
+        if(datosRecibidos!=null){
+            idioma=datosRecibidos.getString("idioma");
+        }
         acceso = new AccesoDatosExternos(this);
+
+
         //Relaciones entre los elementos con el xml
 
         botonHacerFoto = (FloatingActionButton) findViewById(R.id.boton_hacer_foto);
@@ -190,6 +206,17 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
             ocultarClasificar = savedInstanceState.getBoolean("ocultarClasificar");
             ocultarGuardar = savedInstanceState.getBoolean("ocultarGuardar");
+
+            //reestablecemos el idioma
+            idioma=savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma",idioma);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
         }
     }
 
@@ -209,8 +236,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             outState.putParcelable("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
             outState.putString("fotoPath", fotoPath);
         }
+        //guardo el estado de los botones
         outState.putBoolean("ocultarClasificar", ocultarClasificar);
         outState.putBoolean("ocultarGuardar", ocultarGuardar);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
     }
 
     /*
@@ -471,8 +501,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            Intent intent = new Intent(RecogerFoto.this,Lanzadora.class);
+            intent.putExtra("idioma", idioma);
+            this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -500,9 +533,11 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma="en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma="es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
@@ -510,6 +545,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
             //llamamos a la actividad
             this.startActivity(intent);
+            intent.putExtra("idioma",idioma);
             //finalizamos la actividad actual
             this.finish();
         }

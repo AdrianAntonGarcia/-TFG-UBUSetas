@@ -1,98 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_marginTop="45dp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/fondo"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id="@+id/textView_DescripcionSeta"
-        android:layout_width="match_parent"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/descripcion_seta"
-        android:textColor="@color/black" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta">
 
-    <TextView
-        android:id="@+id/textView_textoDescripcionSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_DescripcionSeta"
-        android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/textView_DescripcionSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/descripcion_seta"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView_GeneroSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_textoDescripcionSeta"
-        android:layout_marginTop="5dp"
-        android:text="@string/genero_seta"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/textView_textoDescripcionSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_DescripcionSeta"
+            android:layout_marginTop="5dp" />
 
-    <TextView
-        android:id="@+id/textView_textoGeneroSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_GeneroSeta"
-        android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/textView_GeneroSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_textoDescripcionSeta"
+            android:layout_marginTop="5dp"
+            android:text="@string/genero_seta"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView_ComestibilidadSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_textoGeneroSeta"
-        android:layout_marginTop="5dp"
-        android:text="@string/comestibilidad_seta"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/textView_textoGeneroSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_GeneroSeta"
+            android:layout_marginTop="5dp" />
 
-    <TextView
-        android:id="@+id/textView_textoComestibilidadSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_ComestibilidadSeta"
-        android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/textView_ComestibilidadSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_textoGeneroSeta"
+            android:layout_marginTop="5dp"
+            android:text="@string/comestibilidad_seta"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView_EnlaceSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_textoComestibilidadSeta"
-        android:layout_marginTop="5dp"
-        android:text="@string/enlace_seta"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/textView_textoComestibilidadSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_ComestibilidadSeta"
+            android:layout_marginTop="5dp" />
 
-    <TextView
-        android:id="@+id/textView_textoEnlaceSeta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_EnlaceSeta"
-        android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/textView_EnlaceSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_textoComestibilidadSeta"
+            android:layout_marginTop="5dp"
+            android:text="@string/enlace_seta"
+            android:textColor="@color/black" />
 
-    <ImageView
-        android:id="@+id/imageView_setaDescrita"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/textView_textoEnlaceSeta"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:id="@+id/textView_textoEnlaceSeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_EnlaceSeta"
+            android:layout_marginTop="5dp" />
 
-    <!--Button
-        android:id="@+id/boton_volverMostrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView_setaDescrita"
-        android:layout_marginTop="10dp"
-        android:text="@string/boton_volver_mostrar" /-->
+        <ImageView
+            android:id="@+id/imageView_setaDescrita"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/textView_textoEnlaceSeta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/ic_launcher" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

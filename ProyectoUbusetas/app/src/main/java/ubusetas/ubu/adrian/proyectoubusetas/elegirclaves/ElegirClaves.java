@@ -1,6 +1,7 @@
 package ubusetas.ubu.adrian.proyectoubusetas.elegirclaves;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -30,6 +31,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 
 /*
 * @name: ElegirClaves
@@ -48,7 +50,6 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     //Elementos de la interfaz
 
     private RecyclerView selector;
-    private TextView textoInformativoSeleccionar;
     private TextView textoSeleccionados;
     private Button boton_obtener;
     private Button boton_ir_clave;
@@ -59,8 +60,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     private LinkedList itemsSelector;
     private AdaptadorSelector adaptador;
 
-    public ArrayList<String> marcados;
-
+    //géneros marcados por el usuario
+    private ArrayList<String> marcados;
+    //Bitmap del usuario
+    private Bitmap bitmapImagen;
+    private ArrayList<String> resultadosAdevolver;
+    //Idioma de la aplicación
+    private String idioma;
     /*
     * @name: onCreate
     * @Author: Adrián Antón García
@@ -75,6 +81,10 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elegir_claves);
 
+        //Inicializamos el idioma de la aplicación
+        idioma = null;
+        idioma = Locale.getDefault().getLanguage();
+
         //Inicialización de las variables
 
         resultados = new ArrayList<String>();
@@ -85,7 +95,6 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         //Interfaz
 
         selector = (RecyclerView) findViewById(R.id.recycler_view_lista_seleccion_claves);
-        textoInformativoSeleccionar = (TextView) findViewById(R.id.textView_elegir_dos_claves);
         textoSeleccionados = (TextView) findViewById(R.id.textView_generos_selecionados);
         boton_obtener = (Button) findViewById(R.id.boton_obtener);
         boton_ir_clave = (Button) findViewById(R.id.boton_ir_clave);
@@ -95,8 +104,14 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
         resultados = datosRecibidos.getStringArrayList("resultados");
-
-
+        bitmapImagen = datosRecibidos.getParcelable("fotoBitmap");
+        resultadosAdevolver = datosRecibidos.getStringArrayList("resultadosAdevolver");
+        //cargamos el idioma si se ha rotado la pantalla
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+        //restauro los elementos necesarios si se ha rotado la pantalla
+        restaurarCampos(savedInstanceState);
         Log.d("resultados", resultados.toString());
 
         //Cargo las claves
@@ -173,7 +188,47 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+    /*
+     * @name: restaurarCampos
+     * @Author: Adrián Antón García
+     * @category: procedimiento
+     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
+     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * */
 
+    private void restaurarCampos(Bundle savedInstanceState) {
+
+        // Si hay algo en el bundle
+        if (savedInstanceState != null) {
+            idioma = savedInstanceState.getString("idioma");
+            acceso.actualizarIdioma(idioma);
+            //hay que actualizar al cambiar el idioma
+            Intent intent = new Intent();
+            intent.setClass(this, this.getClass());
+            intent.putExtra("idioma", idioma);
+            intent.putStringArrayListExtra("resultados", resultados);
+            intent.putStringArrayListExtra("resultadosAdevolver", resultadosAdevolver);
+            intent.putExtra("fotoBitmap", bitmapImagen);
+            //llamamos a la actividad
+            this.startActivity(intent);
+            this.finish();
+        }
+    }
+
+    /*
+    * @name: onSaveInstanceState
+    * @Author: Adrián Antón García
+    * @category: procedimiento
+    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
+    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+    * */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el idioma
+        outState.putString("idioma", idioma);
+    }
     /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
@@ -189,8 +244,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            Intent intent = new Intent(ElegirClaves.this, MostrarResultados.class);
+            intent.putExtra("idioma", idioma);
+            intent.putStringArrayListExtra("resultados", resultadosAdevolver);
+            intent.putExtra("fotoBitmap", bitmapImagen);
+            this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -229,6 +289,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
                 if (marcados.size() >= 2) {
                     Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
                     cambioActividad.putStringArrayListExtra("generosMarcados", marcados);
+                    cambioActividad.putStringArrayListExtra("resultados", resultados);
                     startActivity(cambioActividad);
                 }
                 break;
@@ -262,14 +323,19 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.menu_idioma) {
             if (Locale.getDefault().getLanguage().equals("es")) {
                 acceso.actualizarIdioma("en");
+                idioma = "en";
                 Toast.makeText(this, "Language changed", Toast.LENGTH_LONG).show();
             } else {
                 acceso.actualizarIdioma("es");
+                idioma = "es";
                 Toast.makeText(this, "Idioma cambiado", Toast.LENGTH_LONG).show();
             }
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
-            intent.putStringArrayListExtra("resultados",resultados);
+            intent.putExtra("idioma", idioma);
+            intent.putStringArrayListExtra("resultados", resultados);
+            intent.putStringArrayListExtra("resultadosAdevolver", resultadosAdevolver);
+            intent.putExtra("fotoBitmap", bitmapImagen);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

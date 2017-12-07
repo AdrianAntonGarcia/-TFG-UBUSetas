@@ -1,7 +1,69 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+%Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
+%Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
+%Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
+%Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
+%Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+
+En este apartado se va a recoger el ciclo de vida del proyecto, detallando los aspectos más relevantes que se han tratado y como se han resuelto las diferentes  dificultades encontradas a lo largo de su desarrollo.
+
+Se irán presentando diferentes secciones que concuerdan con el orden cronológico seguido en el proyecto y muestran las decisiones tomadas.
+
+\section{Propuesta del proyecto}
+
+La propuesta de este proyecto consistía en crear una aplicación Android para el reconocimiento de setas que se dividía en las siguientes 3 tareas principales:
+
+\begin{itemize}
+	\item{Clasificador imágenes:} La tarea principal pedida para realizar este proyecto era la de construir un clasificador visual de imágenes que a través de la foto realizada a una seta nos devolviera un listado de las especies más probables.
+	\item{Web Semántica:} Conseguir información a través de una web semántica para documentar las especies de setas incluidas en el clasificador.
+	\item{Clave dicotómica:} Incorporar una clave dicotómica que reforzara la tarea del clasificador para el reconocimiento de la especie.
+\end{itemize}
+
+Ante estas tareas se empezó a investigar que alternativas había para construir una aplicación que fuera lo suficientemente precisa y de fácil uso para el usuario. Se barajaron las siguientes posibilidades:
+
+\begin{itemize}
+	\item{Incorporar sólo un clasificador visual:} Si sólo se implementaba un clasificador visual en la aplicación, esta sería muy fácil de usar pero sería poco precisa ya que clasificar la especie de una seta por una única foto es una tarea casi imposible. 
+	\item{Clasificador visual con elección manual entre las candidatas:} La idea de esta propuesta es la de mostrar al usuario un listado con las cinco especies más probables clasificadas para esa foto y que este las pueda comparar mediante fotografías proporcionadas por la aplicación de esas especies con su foto. Esta propuesta puede ser un poco más fiable pero depende de los conocimientos del usuario y la hace más compleja.
+	\item{Clave dicotómica única:} Incluir una clave dicotómica aislada del clasificador podía proporcionar una gran fiabilidad pero suelen ser claves de difícil uso para el usuario.
+	\item{Clave dicotómica más el clasificador:} Esta propuesta consistía en filtrar las preguntas de la clave dicotómica en base a los resultados obtenidos por el clasificador de imágenes.
+\end{itemize}
+
+Con estas propuestas en mente se empezó a estudiar como se podía implementar el clasificador de imágenes y como podíamos implementar las diferentes propuestas en base a lo que se iba desarrollando.
+
+\section{¿Cómo implementar el clasificador?}
+
+Se decidió empezar por la tarea de generar el clasificador de imágenes ya que era la tarea más complicada de realizar y de la que dependían las demás tareas. En la asignatura de minería de datos ya había adquirido conocimientos sobre como entrenar y usar clasificadores de imágenes pero ahora surgía la duda de como hacer esto mismo pero en una plataforma nueva para mí que era Android. En las primeras reuniones del proyecto los profesores me propusieron las siguientes posibilidades para realizarlo:
+
+\begin{itemize}
+	\item Entrenar un clasificador de imágenes desde cero que se ejecutara en un servidor Web y mostrara los resultados en el teléfono móvil.
+	\item Seguir la propuesta anterior pero reentrenando una red neuronal en vez de entrenar un modelo desde cero.
+	\item Reentrenar los nuevos modelos Mobilenet mediante Tensorflow, lo que nos permitiría ejecutar los clasificadores en el propio dispositivo móvil.
+\end{itemize}
+
+Elegí empezar a estudiar la tercera propuesta y ver si era posible ejecutar los modelos en el propio teléfono móvil. Esta propuesta tiene la ventaja de que el usuario no necesita estar conectado a un servidor Web, característica importante si pensamos que esta aplicación se usaría en zonas con poca cobertura.
+
+La preocupación principal 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

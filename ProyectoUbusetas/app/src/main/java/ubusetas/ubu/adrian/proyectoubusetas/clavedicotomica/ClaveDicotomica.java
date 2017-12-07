@@ -114,6 +114,8 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         //Cargamos el idioma actual
         idioma = null;
         idioma = Locale.getDefault().getLanguage();
+
+
         //Inicializo los elementos de la interfaz
 
         TextViewClaveMostrada = (TextView) findViewById(R.id.TextView_ClaveMostrada);
@@ -126,12 +128,24 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         //Leo todas las claves
 
         acceso = new AccesoDatosExternos(this);
-        claves = acceso.readFromFile();
+
 
         //recojo el nombre de la clave a cargar y los resultados
 
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
+
+        //cargamos el idioma si se ha rotado la pantalla
+        if (datosRecibidos.containsKey("idioma")) {
+            idioma = datosRecibidos.getString("idioma");
+        }
+
+        if(idioma.equals("es")){
+            claves = acceso.readFromFile();
+        }else{
+            claves = acceso.readFromFileEn();
+        }
+
         resultados = datosRecibidos.getStringArrayList("resultados");
         NOMBRECLAVE = datosRecibidos.getString("nombreClave");
         //si no se ha especificado clave, se carga la ggeneral
@@ -149,10 +163,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             cargarClaveEspecifica();
         }
 
-        //cargamos el idioma si se ha rotado la pantalla
-        if (datosRecibidos.containsKey("idioma")) {
-            idioma = datosRecibidos.getString("idioma");
-        }
+
         //restauro los elementos necesarios si se ha rotado la pantalla
         restaurarCampos(savedInstanceState);
 

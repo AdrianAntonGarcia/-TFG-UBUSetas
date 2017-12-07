@@ -30,6 +30,7 @@ public class AccesoDatosExternos {
 
     //Nombre del fichero donde se encuentran las claves dentro de assets/claves/
     private static final String NOMBREFICHERO = "claves.dat";
+    private static final String NOMBREFICHEROINGLES ="clavesEn.dat";
     private Context contexto;
 
     /*
@@ -83,6 +84,28 @@ public class AccesoDatosExternos {
             fileInputStream.close();
         } catch (Exception e) {
             Log.e("Error claves", "Error al intentar leer las claves del fichero: " + NOMBREFICHERO);
+            e.printStackTrace();
+        }
+        return createResumeForm;
+    }
+
+    /*
+    * @name: readFromFileEn
+    * @Author: Adrián Antón García
+    * @category: Método
+    * @Description: Método que lee la estructura de las claves del archivo claves.dat
+    * */
+
+    public TreeMap<String, ArrayList<Object>> readFromFileEn() {
+        TreeMap<String, ArrayList<Object>> createResumeForm = null;
+        try {
+            InputStream fileInputStream = contexto.getAssets().open("claves/" + NOMBREFICHEROINGLES);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            createResumeForm = (TreeMap<String, ArrayList<Object>>) objectInputStream.readObject();
+            objectInputStream.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            Log.e("Error claves", "Error al intentar leer las claves del fichero: " + NOMBREFICHEROINGLES);
             e.printStackTrace();
         }
         return createResumeForm;

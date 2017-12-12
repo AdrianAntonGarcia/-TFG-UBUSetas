@@ -4,7 +4,8 @@
     tools:showIn="navigation_view"
     >
 
-    <item android:title="@string/titulo_menu_1">
+    <item android:title="@string/titulo_menu_1"
+        android:id="@+id/menu_herramientas">
         <menu>
             <item
                 android:id="@+id/menu_home"

@@ -3,17 +3,12 @@ package ubusetas.ubu.adrian.proyectoubusetas;
 /**
  * Created by adrit on 11/12/2017.
  */
-import android.app.Activity;
-import android.content.ClipData;
+
 import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import org.junit.Test;
@@ -24,9 +19,7 @@ import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowApplication;
-import org.robolectric.shadows.ShadowIntent;
 
-import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
@@ -34,8 +27,6 @@ import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.assertThat;
 
 
 /*
@@ -91,14 +82,53 @@ public class PruebasActividadLanzadora {
     }
 
     /*
-    * @name: pulsarMenuCambiarIdiomaEs
+    * @name: pulsarMenuIrClaves
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+    * haya cambiado a la actividad mostrar claves
+    * */
+    @Test
+    public void pulsarMenuIrClaves(){
+        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
+        ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
+        NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
+        MenuItem MenuItemIrClaves = nav.getMenu().getItem(0).getSubMenu().getItem(2);
+        // Click menu
+        lanzadora.onNavigationItemSelected(MenuItemIrClaves);
+        Intent expectedIntent = new Intent(lanzadora, MostrarClaves.class);
+        Intent actual = shadowActivity.getNextStartedActivity();
+        assertEquals(expectedIntent.getComponent(), actual.getComponent());
+    }
+
+    /*
+    * @name: pulsarClasificar
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que pulsa el botón de clasificar y comprueba que la aplicación
+    * haya cambiado a la actividad recogerFoto
+    * */
+    @Test
+    public void pulsarMenuMostrarSetas(){
+        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
+        ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
+        NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
+        MenuItem MenuItemMostrarSetas = nav.getMenu().getItem(0).getSubMenu().getItem(3);
+        // Click menu
+        lanzadora.onNavigationItemSelected(MenuItemMostrarSetas);
+        Intent expectedIntent = new Intent(lanzadora, MostrarSetas.class);
+        Intent actual = shadowActivity.getNextStartedActivity();
+        assertEquals(expectedIntent.getComponent(), actual.getComponent());
+    }
+
+    /*
+    * @name: pulsarMenuCambiarIdioma
     * @Author: Adrián Antón García
     * @category: procedimiento test
     * @Description: Procedimiento que pulsa el botón de cambiar el idioma del menú
     * desde la aplicación en español y comprueba que envie el idioma correcto
     * */
     @Test
-
     public void pulsarMenuCambiarIdioma(){
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
@@ -109,6 +139,7 @@ public class PruebasActividadLanzadora {
         Intent expectedIntent = new Intent(lanzadora, Lanzadora.class);
         Intent actual = shadowActivity.getNextStartedActivity();
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
+        //Compruebo que el idioma se cambie al inglés
         assertEquals("en",actual.getExtras().getString("idioma"));
     }
 
@@ -130,10 +161,10 @@ public class PruebasActividadLanzadora {
     }
 
         /*
-    * @name: pulsarMostrarSetas
+    * @name: pulsarIrClaves
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplización
+    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
     * haya cambiado de actividad
     * */
 
@@ -157,8 +188,9 @@ public class PruebasActividadLanzadora {
     @Test
     @Config(qualifiers="es")
     public void comprobarTextosEs() {
-        //Textos de la página contenedora
+
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        //Textos de la página contenedora
         TextView textoClasificar = (TextView) lanzadora.findViewById(R.id.textView_clasificar);
         assertEquals(textoClasificar.getText(),"Clasificar");
         TextView textoMostrarSetas = (TextView) lanzadora.findViewById(R.id.textView_ir_setas);
@@ -187,6 +219,8 @@ public class PruebasActividadLanzadora {
         assertEquals(item.getTitle(),"Opciones");
         assertEquals(MenuItemIdioma.getTitle(),"Cambiar idioma");
         assertEquals(MenuItemAyuda.getTitle(),"Ayuda");
+
+
     }
 
         /*

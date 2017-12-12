@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView0"
+        android:id="@+id/textViewAyudaMenu0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ayuda_menu_0" />

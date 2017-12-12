@@ -57,6 +57,7 @@ public class AccesoDatosExternos {
 
     public Bitmap accesoImagenPorPath(String path) {
         InputStream is = null;
+        Log.d("PATH",path);
         try {
             is = contexto.getResources().getAssets().open(path);
         } catch (IOException e) {
@@ -80,6 +81,7 @@ public class AccesoDatosExternos {
             InputStream fileInputStream = contexto.getAssets().open("claves/" + NOMBREFICHERO);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             createResumeForm = (TreeMap<String, ArrayList<Object>>) objectInputStream.readObject();
+            Log.d("CLAVES",createResumeForm.keySet().toString());
             objectInputStream.close();
             fileInputStream.close();
         } catch (Exception e) {

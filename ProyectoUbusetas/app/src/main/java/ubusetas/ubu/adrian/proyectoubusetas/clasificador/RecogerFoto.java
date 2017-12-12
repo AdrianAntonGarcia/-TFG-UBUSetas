@@ -341,7 +341,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                         }
 
                         //cambiamos de actividad para mostrar el resultado
-
+                        Log.d("Resultados obtenidos",resultadosTexto.toString());
                         Intent cambioActividad = new Intent(RecogerFoto.this, MostrarResultados.class);
                         cambioActividad.putStringArrayListExtra("resultados", (ArrayList<String>) resultadosTexto);
                         cambioActividad.putExtra("fotoBitmap", bitmapClasificar);

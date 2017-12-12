@@ -52,6 +52,7 @@
     <string name="informacion">Mushroom information</string>
     <string name="titulo_menu_2">Options</string>
     <string name="idioma">Change idiom</string>
+    <string name="ayuda_menu">Help</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Help</string>

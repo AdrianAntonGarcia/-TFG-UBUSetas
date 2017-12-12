@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
-    android:scrollbars="vertical"
-    android:verticalScrollbarPosition="right"
+    android:background="@color/white"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="right"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves"
     tools:showIn="@layout/layout_elegir_claves">
@@ -19,8 +19,8 @@
         android:id="@+id/textView_elegir_dos_claves"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="@string/seleccionar_generos" />
+        android:text="@string/seleccionar_generos"
+        android:textColor="@color/black" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_lista_seleccion_claves"
@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/boton_ir_clave"
         android:layout_alignStart="@+id/boton_ir_clave"
-        android:textColor="@color/black"
         android:layout_alignTop="@+id/recycler_view_lista_seleccion_claves"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="18dp"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/boton_obtener"
@@ -49,19 +49,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="19dp"
-        android:padding="@dimen/activity_horizontal_margin"
         android:background="@color/accent"
+        android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/seleccionar" />
 
     <Button
         android:id="@+id/boton_ir_clave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/accent"
-        android:padding="@dimen/activity_horizontal_margin"
         android:layout_alignBaseline="@+id/boton_obtener"
         android:layout_alignBottom="@+id/boton_obtener"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="@color/accent"
+        android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/boton_clave" />
 </RelativeLayout>

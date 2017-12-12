@@ -150,6 +150,7 @@ public class Lanzadora extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.opciones, menu);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -207,6 +208,8 @@ public class Lanzadora extends AppCompatActivity
         }
 
     }
+
+
 
     /*
     * @name: onBackPressed

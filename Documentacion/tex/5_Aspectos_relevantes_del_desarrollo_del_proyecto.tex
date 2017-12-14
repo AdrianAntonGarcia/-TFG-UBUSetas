@@ -149,10 +149,25 @@ Esta solución tiene la limitación de que el número de setas discriminado por 
 
 Para extraer las claves de la página Web se desarrollo un programa en Java que mediante técnicas de Web Scraping extrajera las claves dicotómicas y las almacenar en estructuras de datos que nos permitieran usarlas para nuestra aplicación Android.
 
-Además de la clave general de géneros, se extrajeron las claves dicotómicas disponibles para diferenciar entre especies concretas dentro de un mismo género.
+Además de la clave general de géneros, se extrajeron las claves dicotómicas disponibles para diferenciar entre especies concretas dentro de un mismo género. Actualmente la aplicación dispone de 39 claves dicotómicas de géneros concretos para clasificar la especie concreta.
 
 Esta tarea se pudo automatizar mediante la herramienta Jaunt para Java revisando el código html de la página Web.
 
+\section{Aspectos de diseño}
+
+Para diseñar la interfaz de la aplicación se siguieron las recomendaciones de Material Design \footnote{\url{https://material.io/guidelines/}}. Se elaboró un prototipado inicial de las diferentes actividades y a partir de ahí se fue elaborando la interfaz final integrando los diferentes modulos de la aplicación (clasificador de imágenes, muestra de información y las claves dicotómicas).
+
+Se han intentado usar colores planos siguiendo las indicaciones de Material Design así como iconos intuitivos para los diferentes botones de la aplicación.
+
+La aplicación esta desarrollada para que se pueda visualizar en vertical como en horizontal. Además se han usado medidas relativas de los elementos para que la aplicación se pueda adaptar a diferentes tamaños de pantalla.
+
+La aplicación cuenta con un menú lateral que nos permite navegar desde cualquier punto de la aplicación a las opciones principales.
+
+Se ha traducido la aplicación al Inglés y Español traduciendo tanto textos extraídos de la DBpedia cómo las cuarenta claves dicotómicas implementadas. El idioma de la aplicación se puede cambiar en cualquier momento desde la opción del menú lateral.
+
+Cada actividad de la aplicación cuenta con un menú de ayuda que explica la funcionalidad completa de la actividad en la que te encuentras. El menú lateral cuenta con su propia ayuda.
+
+Respecto al tamaño de la aplicación, este se ha conseguido reducir a un total de 42,6 Megabytes. Para ello se tuvieron que formatear las imágenes de las 171 especies (5 imágenes por especie) de setas a una resolución menor, así como usar el modelo Mobilenet en vez del Inception.
 
 
 

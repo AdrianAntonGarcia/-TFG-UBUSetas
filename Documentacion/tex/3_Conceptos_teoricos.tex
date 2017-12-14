@@ -142,17 +142,12 @@ La neurona artifcial consta de los siguientes elementos:
 \begin{itemize}
 	\item{Conjunto de entradas x}: El vector x.
 	\item{Conjunto de pesos sinápticos wij}: Representan la relación entre la neurona i y j.
-	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma \ref{figfuncionPropagacion}
+	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma \ref{eq:funcionPropagacion}
 	
-\begin{figure}[h]
-    \begin{center}%
-        \begin{center}%
-          \includegraphics[width=0.3\textwidth]{funcionPropagacion}%
-          \caption{Función de propagación}%
-          \label{figfuncionPropagacion}%
-        \end{center}%
-  	\end{center}%
-\end{figure}%
+\begin{equation} \label{eq:funcionPropagacion}
+	h_{1}(t)=\sum (w_{1j}*x_{j})
+\end{equation}
+
 	\item{Función de activación a}: proporciona el estado de activación en función del estado anterior y el potencial postsináptico.
 	\item{Función de salida y}: proporciona la salida y en función del valor de activación. En la figura \ref{figfuncionesActivacion} podemos ver diferentes funciones de activación.
 \end{itemize}
@@ -301,23 +296,33 @@ La arquitectura de este tipo de modelo, al igual que el modelo Inception explica
 
 La arquitectura del modelo Mobilenet se basa en dividir los filtros convolucionales típicos de una RNA totalmente conectada en dos nuevos tipos de filtros, los filtros convolucionales profundos (Del inglés Depthwise Convolutional Filters) y los filtros convolucionales puntuales (Del inglés Pointwise Convolution Filters).
 
-El objetivo de esta división de fitros es el de minimizar el número de operaciones realizada. La convoluciones normales tienen el siguiente coste:
+El objetivo de esta división de fitros es el de minimizar el número de operaciones realizada. La convoluciones normales tienen el siguiente coste \ref{eq:convolucionNormal}:
 
-\textit{DK * DK * M * N * DF * DF} \footnote{DK=Tamaño del kernel (alto x ancho), M=Número de canales de entrada, N=número de canales de salida, DF=Tamaño del mapa de salida}
+\begin{equation} \label{eq:convolucionNormal}
+	DK * DK * M * N * DF * DF
+\end{equation}
 
-Los Depthwise Convolutional Filters tienen el siguiente coste computacional:
+DK=Tamaño del kernel (alto x ancho), M=Número de canales de entrada, N=número de canales de salida, DF=Tamaño del mapa de salida.
 
-\textit{DK * DK * M * DF * DF}
+Los Depthwise Convolutional Filters tienen el siguiente coste computacional \ref{eq:convolutionalFilter}:
 
-Y los Pointwise Convolution Filters tienen el siguiente coste:
+\begin{equation} \label{eq:convolutionalFilter}
+	DK * DK * M * DF * DF
+\end{equation}
 
-\textit{M * N * DF * DF}
+Y los Pointwise Convolution Filters tienen el siguiente coste \ref{eq:pointwiseFilter};
 
-Si expresamos la convolución como un proceso de dos pasos de filtrado y combinación de los dos filtros anteriores obtenemos la siguiente reducción de costes de computación:
+\begin{equation} \label{eq:pointwiseFilter}
+	M * N * DF * DF
+\end{equation}
 
-\textit{(DK * DK * M * DF * DF + M * N * DF * DF)/(DK * DK * M * N * DF * DF) = (1/N)+(1/(DK*DK))}
+Si expresamos la convolución como un proceso de dos pasos de filtrado y combinación de los dos filtros anteriores obtenemos la siguiente reducción de costes de computación \ref{eq:convolución}:
+\begin{equation} \label{eq:convolución}
+(DK * DK * M * DF * DF + M * N * DF * DF)/
+(DK * DK * M * N * DF * DF) = (1/N)+(1/(DK*DK))
+\end{equation}
 
-Lo que supone una reducción respecto a los filtros convolucionales normales. Esta reducción la podemos observar en la siguiente tabla \ref:
+Lo que supone una reducción respecto a los filtros convolucionales normales. Esta reducción la podemos observar en la siguiente tabla:
 \newpage
 \tablaSmall{Depthwise Separable vs Full Convolution MobileNet}{l c c c}{herramientasportipodeuso}
 { \multicolumn{1}{l}{Modelos} & Imagenet Accuracy & Million Mult-Adds & Million Parameters \\}{ 
@@ -339,6 +344,15 @@ Estos dos tipos de filtros se aplican de forma separada y paralela como sucedía
 
 El uso de estos tipos de filtros de forma paralela, más el uso de filtros de normalización y pooling, es lo que usa Mobilenet para ejecutarse de forma rápida y utilizando la menor cantidad de memoria posible.
 
+\section{Data Augmentation}
+
+	El Data Augmentation es una técnica que busca ampliar el conjunto de datos de entrenamiento, aplicando unas serie de transformaciones sobre las imágenes iniciales. \cite{NIPS2012_4824}
+	
+En las imágenes de entrenamiento se aplican una serie de técnicas como son la rotación, recortes, incremento del brillo, cambio de la gama de colores  entre otras, para conseguir nuevas imágenes que usar para el entrenamiento del clasificador.
+
+Esta técnica nos permite ampliar nuestro conjunto de datos sin tener almacenadas estas imágenes extras a cambio de un procesamiento extra a la hora de entrenar.
+
+Para evitar el sobreajuste del modelo, ya que estas imágenes creadas están muy interrelacionadas entre si, se ejecutan las transformaciones con una probabilidad, disminuyendo así el número de imágenes artificiales.
 
 
 \section{Web Semántica}

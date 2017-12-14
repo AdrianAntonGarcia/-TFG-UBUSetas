@@ -1,3 +1,23 @@
 \capitulo{6}{Trabajos relacionados}
 
-Este apartado sería parecido a un estado del arte de una tesis o tesina. En un trabajo final grado no parece obligada su presencia, aunque se puede dejar a juicio del tutor el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso. 
+%Este apartado sería parecido a un estado del arte de una tesis o tesina. En un trabajo final grado no parece obligada su presencia, aunque se puede dejar a juicio del tutor el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso. 
+
+\section{Trabajos relacioandos}
+
+Este proyecto partía del trabajo de Máster \textit{Reconocimiento de setas mediante visión artificial y sistema experto IberoSetas 2.0} realizado por Iñaki Arroyo Nebreda en el año 2014. Aunque el trabajo actual contemplaba objetivos parecidos, decidí empezar mi trabajo desde cero ya que se han usado tecnologías diferentes y se ha generado la aplicación desde una perspectiva diferente. \cite{iberosetas}
+
+Para la parte del clasificador, en el trabajo anterior se creo un clasificador de imágenes en un servidor remoto al que debía conectarse la aplicación móvil. Para ello se tuvieron que preprocesar las imágenes para extraer sus características mediante técnicas como el \textit{Bag of words} y a partir de esta información entrenar un clasificador como pudieran ser el J48 o el KNN (\textit{k-nearest neighbor}).
+
+En nuestro caso se han usado las recientes versiones de redes neuronales de Mobilenet e Inception desarrolladas por Google. Estos modelos realizan la extracción de características y están diseñados para ejecutarse de manera eficiente en las arquitecturas de los teléfonos móviles.
+
+Gracias a estos avances tecnológicos se han conseguido clasificar 171 especies respecto a las 10 que clasificaba el trabajo anterior, realizando la tarea en el propio dispositivo móvil sin necesidad de una conexión a Internet a un servido externo.
+
+La parte de la clave dicotómica en el trabajo anterior se realizó codificando una clave de 10 géneros sobre un formato xml. En este trabajo se han realizado técnicas de Web Scraping que nos han permitido extraer diferentes claves que cubren un mayor número de géneros y especies, codificandolas directamente en estructuras de datos Java.
+
+La parte de web semántica se ha realizado de igual forma aplicando consultas sobre la DBpedia.
+
+\section{Aplicaciones relacionadas}
+
+En construcción...
+
+Se ha encontrado una aplicación que se lanzo a mediados de Octubre de 2017 en la que se permite clasificar setas a través de imágenes.La aplicación se llama  Esta aplicación aunque comparte similitudes con la desarrollada en este proyecto tiene las siguientes diferencias.

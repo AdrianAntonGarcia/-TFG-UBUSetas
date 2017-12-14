@@ -32,4 +32,21 @@ public class SetasLista {
         this.path = path;
         this.nombre = nombre;
     }
+
+    /*
+    * @name: getNombre
+    * @Author: Adrián Antón García
+    * @category: constructor
+    * @Description: Constructor que inicializa el elemento.
+    * @param: String, parh de la imágen
+    * @param: String, nombre de la seta
+    * */
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public String getPath(){
+        return path;
+    }
 }

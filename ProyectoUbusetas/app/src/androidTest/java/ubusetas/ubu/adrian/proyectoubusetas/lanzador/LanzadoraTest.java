@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -68,7 +69,8 @@ public class LanzadoraTest {
                                         1),
                                 2),
                         isDisplayed()));
-        onView(withText("Classify")).check(matches(isDisplayed()));
+        textView=onView(withId(R.id.textView_clasificar));
+        textView.check(matches(withText("Classify")));
     }
 
     private static Matcher<View> childAtPosition(

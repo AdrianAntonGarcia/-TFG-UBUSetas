@@ -93,5 +93,9 @@ public class AdapatadorSetasLista extends ArrayAdapter<SetasLista> {
     static class SetasListaHolder {
         ImageView imagen;
         TextView texto;
+
+        public String getTexto(){
+            return texto.getText().toString();
+        }
     }
 }

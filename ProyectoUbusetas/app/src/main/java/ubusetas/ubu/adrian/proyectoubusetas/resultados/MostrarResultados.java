@@ -53,17 +53,17 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     FloatingActionButton boton_clave;
     ListView listViewListaResultados;
     //lista de las especies clasificadas para esa foto
-    ArrayList<String> resultados;
+    public ArrayList<String> resultados;
     //lista de las especies clasificadas para esa foto sin id
-    List<String> resultadosSinNum;
+    public List<String> resultadosSinNum;
     //lista con los nombres de las carpetas de las especies clasificadas para esa foto
-    List<String> nombresSetas;
-    List<SetasLista> listaSetas;
-    Bitmap bitmapImagen;
+    public List<String> nombresSetas;
+    public List<SetasLista> listaSetas;
+    public Bitmap bitmapImagen;
     //Idioma de la aplicación
     private String idioma;
     //Paramatro que indica la foto cargada
-    int posImagenSeta = 1;
+    public int posImagenSeta = 1;
 
     /*
     * @name: onCreate

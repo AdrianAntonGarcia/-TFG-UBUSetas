@@ -33,6 +33,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
+import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 /*
@@ -309,7 +310,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 //asocio el bitmap al imageview
                 Intent mostrarInfoSeta = new Intent(MostrarResultados.this, MostrarInformacionSeta.class);
                 mostrarInfoSeta.putExtra("nombreSeta", nombresSetas.get(position));
-                mostrarInfoSeta.putExtra("actMostrarResultados",1);
+                mostrarInfoSeta.putExtra("actMostrarResultados", 1);
                 mostrarInfoSeta.putExtra("fotoBitmap", bitmapImagen);
                 mostrarInfoSeta.putStringArrayListExtra("resultados", resultados);
                 startActivity(mostrarInfoSeta);
@@ -351,6 +352,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
     /*
     * @name: onCreateOptionsMenu
     * @Author: Adrián Antón García
@@ -435,6 +437,9 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         } else if (id == R.id.menu_ir_claves) {
             Intent cambioActividad = new Intent(MostrarResultados.this, MostrarClaves.class);
             startActivity(cambioActividad);
+        } else if (id == R.id.menu_informacion) {
+            Intent cambioActividad = new Intent(MostrarResultados.this, MostrarSetas.class);
+            startActivity(cambioActividad);
         } else if (id == R.id.menu_home) {
             Intent cambioActividad = new Intent(MostrarResultados.this, Lanzadora.class);
             startActivity(cambioActividad);
@@ -458,7 +463,7 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
-        }else if( id == R.id.menu_ayuda){
+        } else if (id == R.id.menu_ayuda) {
             //genero la ayuda del menú lateral
             final Dialog dialog = new Dialog(MostrarResultados.this);
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

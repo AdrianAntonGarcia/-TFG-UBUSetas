@@ -43,7 +43,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     //Adaptador que va a enlazar las tarjetas con sus layout
     private AdaptadorTarjetasClaves adapter;
     //Lista con las tarjetas
-    private ArrayList<TarjetaClave> listaTarjetasClaves = new ArrayList<>();
+    public ArrayList<TarjetaClave> listaTarjetasClaves = new ArrayList<>();
     //Array con los colores de las tarjetas
     private int[] colors;
     //Array con los nombres de las tarjetas

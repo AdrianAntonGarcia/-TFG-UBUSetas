@@ -21,12 +21,14 @@ public class TarjetaSeta {
         return name;
     }
 
-    public void setImagenSeta(Bitmap imagen){
-        this.imagenSeta=imagen;
+    public void setImagenSeta(Bitmap imagen) {
+        this.imagenSeta = imagen;
     }
-    public Bitmap getImagenSeta(){
+
+    public Bitmap getImagenSeta() {
         return imagenSeta;
     }
+
     public void setName(String name) {
         this.name = name;
     }

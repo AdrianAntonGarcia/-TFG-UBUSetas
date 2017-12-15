@@ -60,10 +60,10 @@ public class PruebasActividadLanzadora {
     }
 
     /*
-    * @name: pulsarClasificar
+    * @name: pulsarMenuClasificar
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar y comprueba que la aplicación
+    * @Description: Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
     * haya cambiado a la actividad recogerFoto
     * */
     @Test
@@ -102,11 +102,11 @@ public class PruebasActividadLanzadora {
     }
 
     /*
-    * @name: pulsarClasificar
+    * @name: pulsarMenuMostrarSetas
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
+    * @Description: Procedimiento que pulsa el botón del menú de mostrar setas y comprueba que la aplicación
+    * haya cambiado a la actividad mostrar setas
     * */
     @Test
     public void pulsarMenuMostrarSetas(){

@@ -44,7 +44,7 @@ public class MostrarSetas extends AppCompatActivity
     //Adaptador que va a enlazar las tarjetas con sus layout
     private AdaptadorTarjetasSetas adapter;
     //Lista con las tarjetas
-    private ArrayList<TarjetaSeta> listaTarjetaSetas = new ArrayList<>();
+    public ArrayList<TarjetaSeta> listaTarjetaSetas = new ArrayList<>();
     //Array con los colores de las tarjetas
     private int[] colors;
     //Array con los nombres de las tarjetas

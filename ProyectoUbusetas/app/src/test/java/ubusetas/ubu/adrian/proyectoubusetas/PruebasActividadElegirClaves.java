@@ -1,23 +1,32 @@
 package ubusetas.ubu.adrian.proyectoubusetas;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.android.controller.ActivityController;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 
+import java.util.ArrayList;
+
+import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
+import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
+import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -35,19 +44,31 @@ import static org.robolectric.Shadows.shadowOf;
 public class PruebasActividadElegirClaves {
 
     private ElegirClaves elegirClaves;
+    private Bitmap bit;
 
     /*
     * @name: setupEs
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrarInformaciónSetas en español
+    * @Description: Procedimiento que inicializa la actividad ElegirClaves en español
     * para ser usada por los demás tests
     * */
 
     public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        ArrayList<String> resultados = new ArrayList<String>();
+        resultados.add("chalciporus piperatus ");
+        resultados.add("chroogomphus rutilus ");
+        resultados.add("tricholoma ustale ");
+        resultados.add("lactarius rubidus ");
+        resultados.add("suillus pungens ");
         intent.putExtra("idioma", "es");
-        intent.putExtra("nombreSeta", "Agaricus urinascens");
+        //resultados
+        intent.putStringArrayListExtra("resultados", resultados);
+        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        AccesoDatosExternos acceso = new AccesoDatosExternos(lanzadora);
+        bit = acceso.accesoImagenPorPath("imagenesSetas/chroogomphus rutilus/chroogomphus rutilus (1).jpg");
+        intent.putExtra("fotoBitmap", bit);
         elegirClaves = Robolectric.buildActivity(ElegirClaves.class, intent).create().get();
     }
 
@@ -55,14 +76,25 @@ public class PruebasActividadElegirClaves {
     * @name: setupEn
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrarInformaciónSetas en inglés
+    * @Description: Procedimiento que inicializa la actividad ElegirClaves en inglés
     * para ser usada por los demás tests
     * */
 
     public void setupEn() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        ArrayList<String> resultados = new ArrayList<String>();
+        resultados.add("chalciporus piperatus ");
+        resultados.add("chroogomphus rutilus ");
+        resultados.add("tricholoma ustale ");
+        resultados.add("lactarius rubidus ");
+        resultados.add("suillus pungens ");
         intent.putExtra("idioma", "en");
-        intent.putExtra("nombreSeta", "Agaricus urinascens");
+        //resultados
+        intent.putStringArrayListExtra("resultados", resultados);
+        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        AccesoDatosExternos acceso = new AccesoDatosExternos(lanzadora);
+        bit = acceso.accesoImagenPorPath("imagenesSetas/chroogomphus rutilus/chroogomphus rutilus (1).jpg");
+        intent.putExtra("fotoBitmap", bit);
         elegirClaves = Robolectric.buildActivity(ElegirClaves.class, intent).create().get();
     }
 
@@ -79,40 +111,56 @@ public class PruebasActividadElegirClaves {
     @Config(qualifiers = "es")
     public void probarTextosEs() {
         setupEs();
-        TextView texto1 = (TextView) elegirClaves.findViewById(R.id.textView_DescripcionSeta);
-        assertEquals("Descripción seta:", texto1.getText());
+        TextView texto1 = (TextView) elegirClaves.findViewById(R.id.textView_elegir_dos_claves);
+        assertEquals("Los siguientes géneros se encuentran en la clave dicotómica. Seleccione " +
+                "los géneros sobre los que aplicar la clave dicotómica:", texto1.getText());
+        assertFalse("texto".equals(texto1.getText()));
+        Button botonSeleccionar = (Button) elegirClaves.findViewById(R.id.boton_obtener);
+        String textoSeleccionar = botonSeleccionar.getText().toString();
+        assertEquals("Seleccionar", textoSeleccionar);
+        assertFalse("texto".equals(textoSeleccionar));
+    }
+
+        /*
+    * @name: seleccionarItems
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que prueba el correcto funcionamiento al pulsar sobre los items de la
+    * lista
+    * */
+
+    @Test
+    public void seleccionarItems() {
+        setupEs();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        ArrayList<String> resultados = new ArrayList<String>();
+        resultados.add("chalciporus piperatus ");
+        resultados.add("chroogomphus rutilus ");
+        resultados.add("tricholoma ustale ");
+        resultados.add("lactarius rubidus ");
+        resultados.add("suillus pungens ");
+        intent.putExtra("idioma", "es");
+        //resultados
+        intent.putStringArrayListExtra("resultados", resultados);
+        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        AccesoDatosExternos acceso = new AccesoDatosExternos(lanzadora);
+        bit = acceso.accesoImagenPorPath("imagenesSetas/chroogomphus rutilus/chroogomphus rutilus (1).jpg");
+        intent.putExtra("fotoBitmap", bit);
+        ActivityController<ElegirClaves> activityController = Robolectric.buildActivity(ElegirClaves.class,intent);
+        activityController.create().start().visible();
+        ShadowActivity shadowActivity = shadowOf(elegirClaves);
+
+        ShadowActivity myActivityShadow = shadowOf(activityController.get());
+        //Compruebo que al pulsar todos los elementos se
+        RecyclerView currentRecyclerView = ((RecyclerView) myActivityShadow.findViewById(R.id.recycler_view_lista_seleccion_claves));
+
+        currentRecyclerView.getChildAt(0).performClick();
+        Button botonSeleccionar = (Button) elegirClaves.findViewById(R.id.boton_obtener);
+        botonSeleccionar.performClick();
+        TextView texto1 = (TextView) elegirClaves.findViewById(R.id.textView_generos_selecionados);
+        assertEquals("Géneros seleccionados: [] Todavía no se han seleccionado 2 o mas géneros.", texto1.getText());
         assertFalse("texto".equals(texto1.getText()));
 
-        TextView texto2 = (TextView) elegirClaves.findViewById(R.id.textView_textoDescripcionSeta);
-        assertEquals("\"Agaricus es un género de hongos que contiene tanto especies comestibles " +
-                "como venenosas, con posiblemente más de 300 " +
-                "miembros en todo el mundo. El género incluye el hongo común (\\\" botón \\ \") (Agaricus bisporus) y el" +
-                " hongo de campo (Agaricus campestris), el cultivado dominante ", texto2.getText());
-        assertFalse("texto".equals(texto2.getText()));
-
-        TextView texto3 = (TextView) elegirClaves.findViewById(R.id.textView_GeneroSeta);
-        assertEquals("Género seta:", texto3.getText());
-        assertFalse("texto".equals(texto3.getText()));
-
-        TextView texto4 = (TextView) elegirClaves.findViewById(R.id.textView_textoGeneroSeta);
-        assertEquals("Agaricus", texto4.getText());
-        assertFalse("texto".equals(texto4.getText()));
-
-        TextView texto5 = (TextView) elegirClaves.findViewById(R.id.textView_ComestibilidadSeta);
-        assertEquals("Comestibilidad seta:", texto5.getText());
-        assertFalse("texto".equals(texto5.getText()));
-
-        TextView texto6 = (TextView) elegirClaves.findViewById(R.id.textView_textoComestibilidadSeta);
-        assertEquals("desconocido-", texto6.getText());
-        assertFalse("texto".equals(texto6.getText()));
-
-        TextView texto7 = (TextView) elegirClaves.findViewById(R.id.textView_EnlaceSeta);
-        assertEquals("Enlace seta:", texto7.getText());
-        assertFalse("texto".equals(texto7.getText()));
-
-        TextView texto8 = (TextView) elegirClaves.findViewById(R.id.textView_textoEnlaceSeta);
-        assertEquals("https://wikipedia.org/wiki?curid=1633043", texto8.getText().toString());
-        assertFalse("texto".equals(texto8.getText()));
     }
 
     /*
@@ -127,47 +175,13 @@ public class PruebasActividadElegirClaves {
     @Config(qualifiers = "en")
     public void probarTextosEn() {
         setupEn();
-        TextView texto1 = (TextView) elegirClaves.findViewById(R.id.textView_DescripcionSeta);
-        assertEquals("Mushroom description:", texto1.getText());
+        TextView texto1 = (TextView) elegirClaves.findViewById(R.id.textView_elegir_dos_claves);
+        assertEquals("The following genres are in the dichotomous key. Select the genres on which to apply the dichotomous key:", texto1.getText());
         assertFalse("texto".equals(texto1.getText()));
-
-        TextView texto2 = (TextView) elegirClaves.findViewById(R.id.textView_textoDescripcionSeta);
-        assertEquals("\"Agaricus is a genus of mushrooms containing both edible and poisonous " +
-                "species, with possibly over 300 members worldwide. The genus includes the common " +
-                "(\\\"button\\\") mushroom (Agaricus bisporus) and the field mushroom (Agaricus " +
-                "campestris), the dominant cultivated mushrooms of the West. Members of Agaricus " +
-                "are characterized by having a fleshy cap or pileus, from the underside of which " +
-                "grow a number of radiating plates or gills on which are produced the naked spores. " +
-                "They are distinguished from other members of their family, Agaricaceae, by their" +
-                " chocolatebrown spores. Members of Agaricus also have a stem or stipe, which elevates" +
-                " it above the object on which the mushroom grows, or substrate, and a partial veil, " +
-                "which protects the developing gills and later forms a ring or annulus on the stalk.\"@en", texto2.getText());
-        assertFalse("texto".equals(texto2.getText()));
-
-        TextView texto3 = (TextView) elegirClaves.findViewById(R.id.textView_GeneroSeta);
-        assertEquals("Mushroom genre:", texto3.getText());
-        assertFalse("texto".equals(texto3.getText()));
-
-        TextView texto4 = (TextView) elegirClaves.findViewById(R.id.textView_textoGeneroSeta);
-        assertEquals("Agaricus", texto4.getText());
-        assertFalse("texto".equals(texto4.getText()));
-
-        TextView texto5 = (TextView) elegirClaves.findViewById(R.id.textView_ComestibilidadSeta);
-        assertEquals("Mushroom edibility:", texto5.getText());
-        assertFalse("texto".equals(texto5.getText()));
-
-        TextView texto6 = (TextView) elegirClaves.findViewById(R.id.textView_textoComestibilidadSeta);
-        //assertEquals("unknown-", texto6.getText());
-        assertFalse("texto".equals(texto6.getText()));
-
-        TextView texto7 = (TextView) elegirClaves.findViewById(R.id.textView_EnlaceSeta);
-        assertEquals("Mushroom link:", texto7.getText());
-        assertFalse("texto".equals(texto7.getText()));
-
-        TextView texto8 = (TextView) elegirClaves.findViewById(R.id.textView_textoEnlaceSeta);
-        assertEquals("https://wikipedia.org/wiki?curid=1633043", texto8.getText().toString());
-        assertFalse("texto".equals(texto8.getText()));
-
+        Button botonSeleccionar = (Button) elegirClaves.findViewById(R.id.boton_obtener);
+        String textoSeleccionar = botonSeleccionar.getText().toString();
+        assertEquals("Select", textoSeleccionar);
+        assertFalse("texto".equals(textoSeleccionar));
     }
 
     /*
@@ -250,7 +264,7 @@ public class PruebasActividadElegirClaves {
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);
         // Click cambiar idioma
         elegirClaves.onNavigationItemSelected(MenuItemCambiarIdioma);
-        Intent expectedIntent = new Intent(elegirClaves, MostrarInformacionSeta.class);
+        Intent expectedIntent = new Intent(elegirClaves, ElegirClaves.class);
         Intent actual = shadowActivity.getNextStartedActivity();
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés

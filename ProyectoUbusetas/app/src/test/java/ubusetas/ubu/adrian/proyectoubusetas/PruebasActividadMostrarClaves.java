@@ -212,7 +212,7 @@ public class PruebasActividadMostrarClaves {
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {
-        setup();
+
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
         NavigationView nav = (NavigationView) mostrarClaves.findViewById(R.id.nav_view);
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);

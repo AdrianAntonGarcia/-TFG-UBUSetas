@@ -78,6 +78,8 @@
             android:id="@+id/textView_textoEnlaceSeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:autoLink="web"
             android:layout_below="@+id/textView_EnlaceSeta"
             android:layout_marginTop="5dp" />
 

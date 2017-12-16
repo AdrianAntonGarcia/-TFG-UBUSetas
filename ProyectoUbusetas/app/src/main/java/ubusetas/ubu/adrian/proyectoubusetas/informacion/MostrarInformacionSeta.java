@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -107,7 +108,7 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         textViewTextoGeneroSeta = (TextView) findViewById(R.id.textView_textoGeneroSeta);
         textViewTextoComestibilidadSeta = (TextView) findViewById(R.id.textView_textoComestibilidadSeta);
         textViewTextoEnlaceSeta = (TextView) findViewById(R.id.textView_textoEnlaceSeta);
-
+        textViewTextoEnlaceSeta.setMovementMethod(LinkMovementMethod.getInstance());
         //recibo la información que llega de mostrar resultados
 
         nombreSeta = (String) datosRecibidos.get("nombreSeta");

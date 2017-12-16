@@ -16,6 +16,7 @@ import org.robolectric.shadows.ShadowActivity;
 
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
+import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 
 import static junit.framework.Assert.assertEquals;
@@ -36,18 +37,33 @@ public class PruebasActividadRecogerFoto {
 
     private RecogerFoto recogerFoto;
 
-    /*
-    * @name: setup
+   /*
+    * @name: setupEs
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar setas
+    * @Description: Procedimiento que inicializa la actividad RecogerFoto en español
     * para ser usada por los demás tests
     * */
 
-    @Before
-    @Config(qualifiers = "es")
-    public void setup() {
+    public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "es");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
+        recogerFoto = Robolectric.buildActivity(RecogerFoto.class, intent).create().get();
+    }
+
+    /*
+    * @name: setupEn
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa la actividad RecogerFoto en inglés
+    * para ser usada por los demás tests
+    * */
+
+    public void setupEn() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "en");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
         recogerFoto = Robolectric.buildActivity(RecogerFoto.class, intent).create().get();
     }
 
@@ -62,6 +78,7 @@ public class PruebasActividadRecogerFoto {
     @Test
     @Config(qualifiers = "es")
     public void probarTextosEs() {
+        setupEs();
         TextView texto1 = (TextView) recogerFoto.findViewById(R.id.TextView_elegir_opcion);
         assertEquals("Seleccione una opción:", texto1.getText());
         assertFalse("texto".equals(texto1.getText()));
@@ -81,6 +98,7 @@ public class PruebasActividadRecogerFoto {
     @Test
     @Config(qualifiers = "en")
     public void probarTextosEn() {
+        setupEn();
         TextView texto1 = (TextView) recogerFoto.findViewById(R.id.TextView_elegir_opcion);
         assertEquals("Choose an option:", texto1.getText());
         assertFalse("texto".equals(texto1.getText()));
@@ -97,6 +115,7 @@ public class PruebasActividadRecogerFoto {
     * */
     @Test
     public void pulsarMenuClasificar() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(recogerFoto);
         NavigationView nav = (NavigationView) recogerFoto.findViewById(R.id.nav_view);
         MenuItem MenuItemClasificar = nav.getMenu().getItem(0).getSubMenu().getItem(1);
@@ -117,7 +136,7 @@ public class PruebasActividadRecogerFoto {
 
     @Test
     public void pulsarMenuMostrarSetas() {
-
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(recogerFoto);
         NavigationView nav = (NavigationView) recogerFoto.findViewById(R.id.nav_view);
         MenuItem MenuItemMostrarSetas = nav.getMenu().getItem(0).getSubMenu().getItem(3);
@@ -138,6 +157,7 @@ public class PruebasActividadRecogerFoto {
     * */
     @Test
     public void pulsarMenuIrClaves() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(recogerFoto);
         NavigationView nav = (NavigationView) recogerFoto.findViewById(R.id.nav_view);
         MenuItem MenuItemIrClaves = nav.getMenu().getItem(0).getSubMenu().getItem(2);
@@ -159,7 +179,7 @@ public class PruebasActividadRecogerFoto {
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {
-        setup();
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(recogerFoto);
         NavigationView nav = (NavigationView) recogerFoto.findViewById(R.id.nav_view);
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);
@@ -170,5 +190,6 @@ public class PruebasActividadRecogerFoto {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés
         assertEquals("en", actual.getExtras().getString("idioma"));
+        setupEs();
     }
 }

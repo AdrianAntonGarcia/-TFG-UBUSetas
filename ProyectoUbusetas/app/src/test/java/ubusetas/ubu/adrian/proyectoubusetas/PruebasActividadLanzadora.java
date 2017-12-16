@@ -22,6 +22,7 @@ import org.robolectric.shadows.ShadowApplication;
 
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
+import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
@@ -40,6 +41,36 @@ import static junit.framework.Assert.assertNotNull;
 @RunWith(RobolectricTestRunner.class)
 public class PruebasActividadLanzadora {
 
+
+    private Lanzadora lanzadora;
+
+       /*
+    * @name: setupEs
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa la actividad lanzadora en español
+    * para ser usada por los demás tests
+    * */
+
+    public void setupEs() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "es");
+        lanzadora = Robolectric.buildActivity(Lanzadora.class, intent).create().get();
+    }
+
+    /*
+    * @name: setupEn
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa la actividad lanzadora en inglés
+    * para ser usada por los demás tests
+    * */
+
+    public void setupEn() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "en");
+        lanzadora = Robolectric.buildActivity(Lanzadora.class, intent).create().get();
+    }
     /*
     * @name: pulsarClasificar
     * @Author: Adrián Antón García
@@ -50,8 +81,7 @@ public class PruebasActividadLanzadora {
 
     @Test
     public void pulsarClasificar() {
-        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
-
+        setupEs();
         lanzadora.findViewById(R.id.boton_clasificar_lanzadora).performClick();
         Intent expectedIntent = new Intent(lanzadora, RecogerFoto.class);
         Intent actual = ShadowApplication.getInstance().getNextStartedActivity();
@@ -68,7 +98,7 @@ public class PruebasActividadLanzadora {
     * */
     @Test
     public void pulsarMenuClasificar(){
-        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
+        setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
 
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
@@ -90,7 +120,7 @@ public class PruebasActividadLanzadora {
     * */
     @Test
     public void pulsarMenuIrClaves(){
-        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
+        setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
         MenuItem MenuItemIrClaves = nav.getMenu().getItem(0).getSubMenu().getItem(2);
@@ -110,7 +140,7 @@ public class PruebasActividadLanzadora {
     * */
     @Test
     public void pulsarMenuMostrarSetas(){
-        Lanzadora lanzadora = Robolectric.setupActivity(Lanzadora.class);
+        setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
         MenuItem MenuItemMostrarSetas = nav.getMenu().getItem(0).getSubMenu().getItem(3);
@@ -130,7 +160,7 @@ public class PruebasActividadLanzadora {
     * */
     @Test
     public void pulsarMenuCambiarIdioma(){
-        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);
@@ -141,6 +171,7 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés
         assertEquals("en",actual.getExtras().getString("idioma"));
+        setupEs();
     }
 
     /*
@@ -153,7 +184,7 @@ public class PruebasActividadLanzadora {
 
     @Test
     public void pulsarMostrarSetas() {
-        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        setupEs();
         lanzadora.findViewById(R.id.boton_ir_setas_lanzadora).performClick();
         Intent expectedIntent = new Intent(lanzadora, MostrarSetas.class);
         Intent actual = ShadowApplication.getInstance().getNextStartedActivity();
@@ -170,7 +201,7 @@ public class PruebasActividadLanzadora {
 
     @Test
     public void pulsarIrClaves() {
-        Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
+        setupEs();
         lanzadora.findViewById(R.id.boton_ir_claves_lanzadora).performClick();
         Intent expectedIntent = new Intent(lanzadora, MostrarClaves.class);
         Intent actual = ShadowApplication.getInstance().getNextStartedActivity();
@@ -188,7 +219,7 @@ public class PruebasActividadLanzadora {
     @Test
     @Config(qualifiers="es")
     public void comprobarTextosEs() {
-
+        setupEs();
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
         //Textos de la página contenedora
         TextView textoClasificar = (TextView) lanzadora.findViewById(R.id.textView_clasificar);
@@ -234,6 +265,7 @@ public class PruebasActividadLanzadora {
     @Test
     @Config(qualifiers="en")
     public void comprobarTextosEn() {
+        setupEn();
         //Textos de la página contenedora
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
         TextView textoClasificar = (TextView) lanzadora.findViewById(R.id.textView_clasificar);

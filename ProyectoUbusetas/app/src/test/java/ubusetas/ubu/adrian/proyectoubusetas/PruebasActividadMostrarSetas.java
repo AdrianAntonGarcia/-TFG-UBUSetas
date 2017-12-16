@@ -46,17 +46,33 @@ public class PruebasActividadMostrarSetas {
 
     private MostrarSetas mostrarSetas;
 
-    /*
-    * @name: setup
+   /*
+    * @name: setupEs
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar setas
+    * @Description: Procedimiento que inicializa la actividad MostrarSetas en español
     * para ser usada por los demás tests
     * */
 
-    @Before
-    public void setup() {
+    public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "es");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
+        mostrarSetas = Robolectric.buildActivity(MostrarSetas.class, intent).create().get();
+    }
+
+    /*
+    * @name: setupEn
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa la actividad MostrarSetas en inglés
+    * para ser usada por los demás tests
+    * */
+
+    public void setupEn() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "en");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
         mostrarSetas = Robolectric.buildActivity(MostrarSetas.class, intent).create().get();
     }
 
@@ -71,7 +87,7 @@ public class PruebasActividadMostrarSetas {
     @Test
     public void seleccionarItems() {
 
-
+        setupEs();
         ActivityController<MostrarSetas> activityController = Robolectric.buildActivity(MostrarSetas.class);
         activityController.create().start().visible();
         ShadowActivity shadowActivity = shadowOf(mostrarSetas);
@@ -96,14 +112,15 @@ public class PruebasActividadMostrarSetas {
 
     @Test
     public void testInicializarTarjetas() {
+        setupEs();
         AccesoDatosExternos acceso = new AccesoDatosExternos(mostrarSetas);
-        String[] nombres =  mostrarSetas.getResources().getStringArray(R.array.nombres_setas);
-        int[] colors =  mostrarSetas.getResources().getIntArray(R.array.initial_colors_mostrar_setas);
+        String[] nombres = mostrarSetas.getResources().getStringArray(R.array.nombres_setas);
+        int[] colors = mostrarSetas.getResources().getIntArray(R.array.initial_colors_mostrar_setas);
         ArrayList<TarjetaSeta> listaTarjetas = mostrarSetas.listaTarjetaSetas;
-        int i=0;
+        int i = 0;
         Bitmap bit;
         String path;
-        for(TarjetaSeta tarjeta:listaTarjetas){
+        for (TarjetaSeta tarjeta : listaTarjetas) {
             //Compruebo el nombre
             assertEquals(nombres[i], tarjeta.getName());
             //El color
@@ -111,7 +128,7 @@ public class PruebasActividadMostrarSetas {
             path = "imagenesSetas/" + nombres[i].toLowerCase() + "/" + nombres[i].toLowerCase().trim() + " " + "(" + 1 + ")" + ".jpg";
             bit = acceso.accesoImagenPorPath(path);
             //La foro cargada
-            assertEquals(bit.getPixel(12,12), tarjeta.getImagenSeta().getPixel(12,12));
+            assertEquals(bit.getPixel(12, 12), tarjeta.getImagenSeta().getPixel(12, 12));
             i++;
         }
     }
@@ -127,6 +144,7 @@ public class PruebasActividadMostrarSetas {
     @Test
     @Config(qualifiers = "es")
     public void probarTextosEs() {
+        setupEs();
         TextView texto = (TextView) mostrarSetas.findViewById(R.id.textView_contenido_mostrar_setas);
         assertEquals("Seleccione una tarjeta para mostrar la información de esa seta:", texto.getText());
         assertFalse("texto".equals(texto.getText()));
@@ -143,10 +161,12 @@ public class PruebasActividadMostrarSetas {
     @Test
     @Config(qualifiers = "en")
     public void probarTextosEn() {
+        setupEn();
         TextView texto = (TextView) mostrarSetas.findViewById(R.id.textView_contenido_mostrar_setas);
         assertEquals("Select a card to display the information of that mushroom:", texto.getText());
         assertFalse("texto".equals(texto.getText()));
     }
+
     /*
     * @name: pulsarMenuClasificar
     * @Author: Adrián Antón García
@@ -156,6 +176,7 @@ public class PruebasActividadMostrarSetas {
     * */
     @Test
     public void pulsarMenuClasificar() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarSetas);
         NavigationView nav = (NavigationView) mostrarSetas.findViewById(R.id.nav_view);
         MenuItem MenuItemClasificar = nav.getMenu().getItem(0).getSubMenu().getItem(1);
@@ -177,7 +198,7 @@ public class PruebasActividadMostrarSetas {
 
     @Test
     public void pulsarMenuMostrarSetas() {
-
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarSetas);
         NavigationView nav = (NavigationView) mostrarSetas.findViewById(R.id.nav_view);
         MenuItem MenuItemMostrarSetas = nav.getMenu().getItem(0).getSubMenu().getItem(3);
@@ -197,6 +218,7 @@ public class PruebasActividadMostrarSetas {
     * */
     @Test
     public void pulsarMenuIrClaves() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarSetas);
         NavigationView nav = (NavigationView) mostrarSetas.findViewById(R.id.nav_view);
         MenuItem MenuItemIrClaves = nav.getMenu().getItem(0).getSubMenu().getItem(2);
@@ -217,7 +239,7 @@ public class PruebasActividadMostrarSetas {
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {
-        setup();
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarSetas);
         NavigationView nav = (NavigationView) mostrarSetas.findViewById(R.id.nav_view);
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);

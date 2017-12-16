@@ -46,17 +46,33 @@ public class PruebasActividadMostrarClaves {
 
     private MostrarClaves mostrarClaves;
 
-    /*
-    * @name: setup
+   /*
+    * @name: setupEs
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar setas
+    * @Description: Procedimiento que inicializa la actividad mostrar claves en español
     * para ser usada por los demás tests
     * */
 
-    @Before
-    public void setup() {
+    public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "es");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
+        mostrarClaves = Robolectric.buildActivity(MostrarClaves.class, intent).create().get();
+    }
+
+    /*
+    * @name: setupEn
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa la actividad mostrar claves en inglés
+    * para ser usada por los demás tests
+    * */
+
+    public void setupEn() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra("idioma", "en");
+        intent.putExtra("nombreSeta", "Agaricus urinascens");
         mostrarClaves = Robolectric.buildActivity(MostrarClaves.class, intent).create().get();
     }
 
@@ -70,8 +86,7 @@ public class PruebasActividadMostrarClaves {
 
     @Test
     public void seleccionarItems() {
-
-
+        setupEs();
         ActivityController<MostrarClaves> activityController = Robolectric.buildActivity(MostrarClaves.class);
         activityController.create().start().visible();
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
@@ -96,12 +111,13 @@ public class PruebasActividadMostrarClaves {
 
     @Test
     public void testInicializarTarjetas() {
+        setupEs();
         AccesoDatosExternos acceso = new AccesoDatosExternos(mostrarClaves);
-        String[] nombres =  mostrarClaves.getResources().getStringArray(R.array.nombres_claves);
-        int[] colors =  mostrarClaves.getResources().getIntArray(R.array.initial_colors_mostrar_setas);
+        String[] nombres = mostrarClaves.getResources().getStringArray(R.array.nombres_claves);
+        int[] colors = mostrarClaves.getResources().getIntArray(R.array.initial_colors_mostrar_setas);
         ArrayList<TarjetaClave> listaTarjetas = mostrarClaves.listaTarjetasClaves;
-        int i=0;
-        for(TarjetaClave tarjeta:listaTarjetas){
+        int i = 0;
+        for (TarjetaClave tarjeta : listaTarjetas) {
             //Compruebo el nombre
             assertEquals(nombres[i], tarjeta.getName());
             //El color
@@ -121,9 +137,11 @@ public class PruebasActividadMostrarClaves {
     @Test
     @Config(qualifiers = "es")
     public void probarTextosEs() {
+        setupEs();
         TextView texto = (TextView) mostrarClaves.findViewById(R.id.textView_contenido_mostrar_claves);
         assertEquals("Seleccione una tarjeta para mostrar la clave dicotómica de ese género:", texto.getText());
         assertFalse("texto".equals(texto.getText()));
+        setupEs();
     }
 
         /*
@@ -137,10 +155,13 @@ public class PruebasActividadMostrarClaves {
     @Test
     @Config(qualifiers = "en")
     public void probarTextosEn() {
+        setupEn();
         TextView texto = (TextView) mostrarClaves.findViewById(R.id.textView_contenido_mostrar_claves);
         assertEquals("Select a card to show the dichotomous key of that genre:", texto.getText());
         assertFalse("texto".equals(texto.getText()));
+        setupEs();
     }
+
     /*
     * @name: pulsarMenuClasificar
     * @Author: Adrián Antón García
@@ -150,6 +171,7 @@ public class PruebasActividadMostrarClaves {
     * */
     @Test
     public void pulsarMenuClasificar() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
         NavigationView nav = (NavigationView) mostrarClaves.findViewById(R.id.nav_view);
         MenuItem MenuItemClasificar = nav.getMenu().getItem(0).getSubMenu().getItem(1);
@@ -171,7 +193,7 @@ public class PruebasActividadMostrarClaves {
 
     @Test
     public void pulsarMenuMostrarSetas() {
-
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
         NavigationView nav = (NavigationView) mostrarClaves.findViewById(R.id.nav_view);
         MenuItem MenuItemMostrarSetas = nav.getMenu().getItem(0).getSubMenu().getItem(3);
@@ -192,6 +214,7 @@ public class PruebasActividadMostrarClaves {
     * */
     @Test
     public void pulsarMenuIrClaves() {
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
         NavigationView nav = (NavigationView) mostrarClaves.findViewById(R.id.nav_view);
         MenuItem MenuItemIrClaves = nav.getMenu().getItem(0).getSubMenu().getItem(2);
@@ -212,7 +235,7 @@ public class PruebasActividadMostrarClaves {
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {
-
+        setupEs();
         ShadowActivity shadowActivity = shadowOf(mostrarClaves);
         NavigationView nav = (NavigationView) mostrarClaves.findViewById(R.id.nav_view);
         MenuItem MenuItemCambiarIdioma = nav.getMenu().getItem(1).getSubMenu().getItem(0);

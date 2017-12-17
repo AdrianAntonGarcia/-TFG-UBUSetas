@@ -92,6 +92,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
     private ListView listViewClaveDicotomica;
     private TextView TextViewClaveMostrada;
+    private TextView TextViewPreguntaClave;
     private FloatingActionButton boton_anterior;
 
     //actividad de la que vengo, 1 actividad elegir clave, 2 actividad mostrar clavess
@@ -120,6 +121,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
         TextViewClaveMostrada = (TextView) findViewById(R.id.TextView_ClaveMostrada);
         listViewClaveDicotomica = (ListView) findViewById(R.id.listView_claveDicotomica);
+        TextViewPreguntaClave = (TextView) findViewById(R.id.TextView_Pregunta_clave);
         boton_anterior = (FloatingActionButton) findViewById(R.id.boton_anterior);
         listViewClaveDicotomica.setOnItemClickListener(this);
         boton_anterior.setOnClickListener(this);
@@ -409,9 +411,17 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             String solucion = contenidoNodos.get(hijoPulsado).get(3);
             preguntas.add(solucion);
             adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
-            Toast.makeText(this, "ESPECIE CLASFICADA:" + solucion, Toast.LENGTH_LONG).show();
+
             listViewClaveDicotomica.setAdapter(adaptador);
             listViewClaveDicotomica.setVisibility(View.GONE);
+            if(NOMBRECLAVE.equals("general")) {
+                TextViewPreguntaClave.setText(getString(R.string.texto_solucion_genero) + " " + solucion);
+                Toast.makeText(this, getString(R.string.texto_solucion_genero)+" " + solucion, Toast.LENGTH_LONG).show();
+            }else{
+                TextViewPreguntaClave.setText(getString(R.string.texto_solucion_especie) + " " + solucion);
+                Toast.makeText(this, getString(R.string.texto_solucion_especie)+" " + solucion, Toast.LENGTH_LONG).show();
+
+            }
         }
     }
 
@@ -449,6 +459,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
                 listViewClaveDicotomica.setAdapter(adaptador);
                 listViewClaveDicotomica.setVisibility(View.VISIBLE);
+                TextViewPreguntaClave.setText(getString(R.string.texto_pregunta));
                 break;
         }
     }

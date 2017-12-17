@@ -29,6 +29,8 @@
     <!--5-Cadenas de los elementos de la actividad claveDicotomica -->
     <string name="texto_clave">Key: </string>
     <string name="texto_pregunta">Select the key that most suits the mushroom:</string>
+    <string name="texto_solucion_genero">Classified genre:</string>
+    <string name="texto_solucion_especie">Species classified:</string>
 
     <!--6-Cadenas de los elementos de la actividad mostrar informacion seta-->
     <string name="descripcion_seta">Mushroom description:</string>

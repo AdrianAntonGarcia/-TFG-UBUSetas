@@ -11,6 +11,7 @@
     <string name="boton_ir_claves">Ir claves</string>
 
     <!--1-Cadenas de los elementos de la actividad recoger foto-->
+
     <string name="texto_elegir_opcion">Seleccione una opción:</string>
     <string name="texto_mostrar_imagen">Imagen tomada para clasificar:</string>
 
@@ -28,6 +29,8 @@
     <!--5-Cadenas de los elementos de la actividad claveDicotomica -->
     <string name="texto_clave">Clave: </string>
     <string name="texto_pregunta">Seleccione la clave que mas se adecue a la seta:</string>
+    <string name="texto_solucion_genero">Género clasificado:</string>
+    <string name="texto_solucion_especie">Especie clasificada:</string>
 
     <!--6-Cadenas de los elementos de la actividad mostrar informacion seta-->
     <string name="descripcion_seta">Descripción seta:</string>
@@ -43,7 +46,7 @@
     <!--8-Cadenas de los elementos de la actividad MostrarComparativa -->
     <string name="texto_comparativa">Comparativa entre las imágenes:</string>
 
-    <!--9 Elementos del menú -->
+    <!-- Elementos del menú -->
     <string name="titulo_menu_1">Herramientas</string>
     <string name="home">Home</string>
     <string name="clasificar">Clasificar</string>
@@ -51,11 +54,10 @@
     <string name="informacion">Información setas</string>
     <string name="titulo_menu_2">Opciones</string>
     <string name="idioma">Cambiar idioma</string>
-    <string name="ayuda_menu">Ayuda</string> <!--////////////////////////////-->
+    <string name="ayuda_menu">Ayuda</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Ayuda</string>
-
 
     <!--0-Cadenas de los elementos de la ayuda de lanzadora-->
     <string name="ayuda_lanzadora_0">Ayuda de la actividad principal:</string>
@@ -105,7 +107,7 @@
 
     <!--7-Cadenas de los elementos de la ayuda de elegir claves-->
 
-    <string name="ayuda_elegir_clave_0">Ayuda de la actividad elegir generos:</string> 
+    <string name="ayuda_elegir_clave_0">Ayuda de la actividad elegir generos:</string>
     <string name="ayuda_elegir_clave_1">La página muestra los géneros por los que se puede filtrar la clave general respecto a los resultados obtenidos por el clasificador.
     Deberá seleccionar los géneros deseados y una vez seleccionados pulsar sobre el botoón "ir clave dicotómica"</string>
     <string name="ayuda_elegir_clave_2">Para seleccionar los géneros pulse el siguiente botón.</string>
@@ -114,7 +116,7 @@
 
     <!--8-Cadenas de los elementos de la ayuda de mostrar comparativa-->
 
-    <string name="ayuda_mostrar_comparativa_0">Ayuda de la actividad mostrar comparativa:</string> 
+    <string name="ayuda_mostrar_comparativa_0">Ayuda de la actividad mostrar comparativa:</string>
     <string name="ayuda_mostrar_comparativa_1">La página muestra una comparativa en entre la foto introducida y la foto de la especie seleccionada,
         para ampliar las imágenes pulsar sobre su foto."</string>
     <string name="ayuda_mostrar_comparativa_2">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>

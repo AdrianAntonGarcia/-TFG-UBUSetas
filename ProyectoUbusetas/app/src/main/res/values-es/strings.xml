@@ -29,6 +29,8 @@
     <!--5-Cadenas de los elementos de la actividad claveDicotomica -->
     <string name="texto_clave">Clave: </string>
     <string name="texto_pregunta">Seleccione la clave que mas se adecue a la seta:</string>
+    <string name="texto_solucion_genero">Género clasificado:</string>
+    <string name="texto_solucion_especie">Especie clasificada:</string>
 
     <!--6-Cadenas de los elementos de la actividad mostrar informacion seta-->
     <string name="descripcion_seta">Descripción seta:</string>
@@ -52,6 +54,7 @@
     <string name="informacion">Información setas</string>
     <string name="titulo_menu_2">Opciones</string>
     <string name="idioma">Cambiar idioma</string>
+    <string name="ayuda_menu">Ayuda</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Ayuda</string>

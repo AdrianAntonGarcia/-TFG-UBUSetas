@@ -59,7 +59,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
     //Bitmap y path donde guardamos la foto introducida por el usuario
 
-    private Bitmap bmap = null;
+    private Bitmap bmap;
     String fotoPath;
 
     //Elementos de la interfaz
@@ -84,8 +84,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
 
     //Nos dice si hay que ocultar los botones
 
-    boolean ocultarClasificar;
-    boolean ocultarGuardar;
+    private boolean ocultarClasificar;
+    private boolean ocultarGuardar;
     //MODELOS, CLASIFICADORES
 
     //inception
@@ -131,17 +131,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_recoger_foto);
 
         //Cargamos el idioma si se rota la pantalla
+
         idioma = null;
         idioma = Locale.getDefault().getLanguage();
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
-
-        if (datosRecibidos != null) {
-            idioma = datosRecibidos.getString("idioma");
-        }
         acceso = new AccesoDatosExternos(this);
-
-
+        ocultarGuardar=true;
+        ocultarClasificar=true;
         //Relaciones entre los elementos con el xml
 
         botonHacerFoto = (FloatingActionButton) findViewById(R.id.boton_hacer_foto);
@@ -150,10 +147,23 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         botonClasificar = (FloatingActionButton) findViewById(R.id.boton_clasificar);
         imageViewMostrarFoto = (ImageView) findViewById(R.id.imageView_mostrar_imagen);
 
-        ocultarGuardar = true;
-        ocultarClasificar = true;
-        botonGuardarFoto.hide();
-        botonClasificar.hide();
+        if (datosRecibidos != null) {
+            idioma = datosRecibidos.getString("idioma");
+            if (datosRecibidos.containsKey("bmap")) {
+                bmap = datosRecibidos.getParcelable("bmap");
+                imageViewMostrarFoto.setImageBitmap(bmap);
+            }
+            if (datosRecibidos.containsKey("fotoPath")) {
+                fotoPath = datosRecibidos.getString("fotoPath");
+            }
+            if (datosRecibidos.containsKey("ocultarClasificar")) {
+                ocultarClasificar = datosRecibidos.getBoolean("ocultarClasificar");
+            }
+            if (datosRecibidos.containsKey("ocultarGuardar")) {
+                ocultarGuardar = datosRecibidos.getBoolean("ocultarGuardar");
+            }
+        }
+
         //activo los botones
 
         botonHacerFoto.setOnClickListener(this);
@@ -164,11 +174,17 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         inicializarClasificador();
         restaurarCampos(savedInstanceState);
 
+        //Mostramos los botones correspondientes
+
         if (ocultarGuardar == false) {
-            botonGuardarFoto.show();
+            botonGuardarFoto.setVisibility(View.VISIBLE);
+        } else {
+            botonGuardarFoto.setVisibility(View.GONE);
         }
         if (ocultarClasificar == false) {
-            botonClasificar.show();
+            botonClasificar.setVisibility(View.VISIBLE);
+        } else {
+            botonClasificar.setVisibility(View.GONE);
         }
         //parte del menu lateral
 
@@ -201,11 +217,6 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             //Recupero la foto
             bmap = savedInstanceState.getParcelable("bmap");
             fotoPath = savedInstanceState.getString("fotoPath");
-            if (bmap != null) {
-                imageViewMostrarFoto.setImageBitmap(bmap);
-            } else {
-                Log.d(TAG, "No restaura el campo");
-            }
 
             ocultarClasificar = savedInstanceState.getBoolean("ocultarClasificar");
             ocultarGuardar = savedInstanceState.getBoolean("ocultarGuardar");
@@ -216,6 +227,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             //hay que actualizar al cambiar el idioma
             Intent intent = new Intent();
             intent.setClass(this, this.getClass());
+            if (bmap != null) {
+                intent.putExtra("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
+            }
+            if(fotoPath!=null){
+                intent.putExtra("fotoPath",fotoPath);
+            }
+            intent.putExtra("ocultarClasificar", ocultarClasificar);
+            intent.putExtra("ocultarGuardar", ocultarGuardar);
             intent.putExtra("idioma", idioma);
             //llamamos a la actividad
             this.startActivity(intent);
@@ -325,26 +344,25 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 Toast.makeText(this, "Clasificando", Toast.LENGTH_SHORT).show();
                 List<Classifier.Recognition> resultados = null;
                 List<String> resultadosTexto = new ArrayList<String>();
-                Bitmap bitmap;
                 if (fotoPath != null) {
 
                     //creo el bitmap de la foto
 
-                    Bitmap bitmapClasificar = Bitmap.createScaledBitmap(bmap, 224, 224, false);
+                    //Bitmap bitmapClasificar = Bitmap.createScaledBitmap(bmap, 224, 224, false);
 
                     //recojo los resultados del clasificador
 
-                    resultados = classifier.recognizeImage(bitmapClasificar);
+                    resultados = classifier.recognizeImage(bmap);
                     if (resultados != null) {
                         for (Classifier.Recognition e : resultados) {
                             resultadosTexto.add(e.toString());
                         }
 
                         //cambiamos de actividad para mostrar el resultado
-                        Log.d("Resultados obtenidos",resultadosTexto.toString());
+                        Log.d("Resultados obtenidos", resultadosTexto.toString());
                         Intent cambioActividad = new Intent(RecogerFoto.this, MostrarResultados.class);
                         cambioActividad.putStringArrayListExtra("resultados", (ArrayList<String>) resultadosTexto);
-                        cambioActividad.putExtra("fotoBitmap", bitmapClasificar);
+                        cambioActividad.putExtra("fotoBitmap", bmap);
                         cambioActividad.putExtra("posImagenSeta", 1);
                         startActivity(cambioActividad);
                     }
@@ -440,7 +458,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                             bmap = RotateBitmap(bmap, 270);
                             break;
                     }
-
+                    bmap = Bitmap.createScaledBitmap(bmap, 224, 224, false);
                     //establecemos el bitmap en el imageview
                     imageViewMostrarFoto.setImageBitmap(bmap);
 
@@ -467,7 +485,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    bmap = Bitmap.createScaledBitmap(bmap, 224, 224, false);
                     imageViewMostrarFoto.setImageBitmap(bmap);
                 }
         }
@@ -511,6 +529,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             finish();
         }
     }
+
     /*
     * @name: onCreateOptionsMenu
     * @Author: Adrián Antón García
@@ -588,6 +607,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             //llamamos a la actividad
             this.startActivity(intent);
             intent.putExtra("idioma", idioma);
+            if (bmap != null) {
+                intent.putExtra("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
+            }
+            if(fotoPath!=null){
+                intent.putExtra("fotoPath",fotoPath);
+            }
+            intent.putExtra("ocultarClasificar", ocultarClasificar);
+            intent.putExtra("ocultarGuardar", ocultarGuardar);
             //finalizamos la actividad actual
             this.finish();
         } else if (id == R.id.menu_ayuda) {

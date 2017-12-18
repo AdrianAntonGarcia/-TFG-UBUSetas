@@ -1,9 +1,5 @@
 package ubusetas.ubu.adrian.proyectoubusetas;
 
-/**
- * Created by adrit on 11/12/2017.
- */
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -16,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,7 +45,7 @@ import static junit.framework.Assert.assertFalse;
 * @name: PruebasActividadLanzadora
 * @Author: Adrián Antón García
 * @category: clase
-* @Description: Clase que prueba la actividad lanzadora
+* @Description: Clase que prueba la actividad MostrarResultados
 * */
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)

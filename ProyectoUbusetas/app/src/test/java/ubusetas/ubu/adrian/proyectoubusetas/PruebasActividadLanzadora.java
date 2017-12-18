@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -51,6 +52,7 @@ public class PruebasActividadLanzadora {
     * @Description: Procedimiento que inicializa la actividad lanzadora en español
     * para ser usada por los demás tests
     * */
+
 
     public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);

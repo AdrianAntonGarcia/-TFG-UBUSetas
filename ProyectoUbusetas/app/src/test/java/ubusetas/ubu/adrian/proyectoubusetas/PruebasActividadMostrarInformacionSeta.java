@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +46,7 @@ public class PruebasActividadMostrarInformacionSeta {
     * @Description: Procedimiento que inicializa la actividad mostrarInformaciónSetas en español
     * para ser usada por los demás tests
     * */
+
 
     public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -44,7 +44,7 @@
     <string name="boton_clave">Go dichotomous key</string>
 
     <!--8-Cadenas de los elementos de la actividad MostrarComparativa -->
-    <string name="texto_comparativa">Comparison between images:</string>
+    <string name="texto_comparativa">Comparision between images:</string>
 
     <!-- Elementos del menú -->
     <string name="titulo_menu_1">Tools</string>

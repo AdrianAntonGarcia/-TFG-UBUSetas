@@ -80,7 +80,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     private static final int CODIGO_GALERIA = 102;
 
     //Nos da la orientación de la pantalla
-    ExifInterface ei;
+    private ExifInterface ei;
 
     //Nos dice si hay que ocultar los botones
 
@@ -367,7 +367,6 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                         startActivity(cambioActividad);
                     }
                 }
-                ;
                 break;
 
             case R.id.boton_galeria: //BOTÓN ACCEDER A GALERÍA

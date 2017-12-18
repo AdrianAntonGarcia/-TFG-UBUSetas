@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

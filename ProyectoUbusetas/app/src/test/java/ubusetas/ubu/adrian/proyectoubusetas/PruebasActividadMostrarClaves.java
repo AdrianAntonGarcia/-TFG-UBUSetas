@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,6 +54,7 @@ public class PruebasActividadMostrarClaves {
     * @Description: Procedimiento que inicializa la actividad mostrar claves en español
     * para ser usada por los demás tests
     * */
+
 
     public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);

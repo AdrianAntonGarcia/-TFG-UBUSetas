@@ -208,9 +208,6 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         arbolNodos = (Map<String, ArrayList<String>>) mapas.get(0);
         contenidoNodos = (Map<String, ArrayList<String>>) mapas.get(1);
         generosNodos = (Map<String, String>) mapas.get(2);
-        Log.d("arbolNodos", arbolNodos.toString());
-        Log.d("contenidoNodos", contenidoNodos.toString());
-        Log.d("generosNodos", generosNodos.toString());
 
         //Creo los arrays que contienen la lista de padres de cada genero
 
@@ -225,13 +222,11 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             nodosPadres.add(nodoPadre);
             int contador = 1;
             while (!nodoPadre.equals("1")) {
-                Log.d("nodoPadre", nodoPadre);
                 nodoPadre = contenidoNodos.get(nodoPadre).get(2);
                 nodosPadres.add(nodoPadre);
             }
             arrayMapas.put(genero, nodosPadres);
         }
-        Log.d("ARRAYS CARGADOS", arrayMapas.toString());
 
         //Ahora hay que seleccionar el padre comun mas bajo en el arbol
 
@@ -243,7 +238,6 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 tamMenor = nodosPadres.size();
             }
         }
-        Log.d("TAM MENOR", "" + tamMenor);
 
         String nodoInicial = null;
         String nodoComprobar = null;
@@ -269,7 +263,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 nodoInicial = nodoComprobar;
             }
         }
-        Log.d("NODO INICIAL", nodoInicial);
+
+
+
         NODOINICIAL = nodoInicial;
         NOMBRECLAVE = "general";
 
@@ -288,15 +284,18 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     public void cargarClaveEspecifica() {
         listViewClaveDicotomica.setVisibility(View.VISIBLE);
         //Elijo la que se tiene que ejecutar
-
+        Log.d("NOMBRECLAVE",NOMBRECLAVE);
         ArrayList<Object> mapas = claves.get(NOMBRECLAVE);
 
-        //cargo los 3 mapas de la clave seleccionada
 
         arbolNodos = (Map<String, ArrayList<String>>) mapas.get(0);
         contenidoNodos = (Map<String, ArrayList<String>>) mapas.get(1);
         generosNodos = (Map<String, String>) mapas.get(2);
 
+        //cargo los 3 mapas de la clave seleccionada
+        Log.d("arbolNodosKeys",arbolNodos.keySet().toString());
+        Log.d("contenidoNodosKeys",contenidoNodos.keySet().toString());
+        Log.d("generosNodosKeys",generosNodos.keySet().toString());
         //cargo los nodos hijos del nodo principal
 
         preguntas = new ArrayList<String>();

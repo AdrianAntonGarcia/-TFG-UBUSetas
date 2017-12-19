@@ -117,7 +117,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
 
     private void inicializarTarjetas() {
         //40 tarjetas
-        for (int i = 0; i < 41; i++) {
+        for (int i = 0; i < 40; i++) {
             //Inicializamos la tarjeta
             String nombreSeta = names[i];
             TarjetaClave card = new TarjetaClave();

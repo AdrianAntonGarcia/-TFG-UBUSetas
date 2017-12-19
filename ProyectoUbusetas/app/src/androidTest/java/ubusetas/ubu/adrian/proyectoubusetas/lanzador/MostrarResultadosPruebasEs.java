@@ -40,7 +40,7 @@ import static org.hamcrest.Matchers.is;
 * @name: MostrarResultadosPruebasEs
 * @Author: Adrián Antón García
 * @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
+* @Description: Clase que prueba que se carguen todos los textos en español de la actividad MostrarResultados,
 * tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
 * resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
 * */
@@ -70,7 +70,7 @@ public class MostrarResultadosPruebasEs {
     * @name: mostrarResultadosPruebasEs
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
+    * @Description: Procedimiento que prueba que se carguen todos los textos en español de la actividad MostrarResultados,
     * tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
     * resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
     * */

@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
@@ -39,7 +38,7 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ActividadLanzadoraPruebasEs {
+public class RecogerFotoPruebasEs {
 
     @Rule
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
@@ -49,22 +48,80 @@ public class ActividadLanzadoraPruebasEs {
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
     @Test
     public void probarTextosEs() {
+        ViewInteraction floatingActionButton = onView(
+                allOf(withId(R.id.boton_clasificar_lanzadora),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.support.design.widget.CoordinatorLayout")),
+                                        1),
+                                3),
+                        isDisplayed()));
+        floatingActionButton.perform(click());
 
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.TextView_elegir_opcion), withText("Seleccione una opción:"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Seleccione una opción:")));
 
-        ViewInteraction clasificar = onView(withId(R.id.textView_clasificar));
+        ViewInteraction imageButton = onView(
+                allOf(withId(R.id.boton_galeria),
+                        childAtPosition(
+                                allOf(withId(R.id.LinearLayout_botones_recoger_foto),
+                                        childAtPosition(
+                                                IsInstanceOf.<View>instanceOf(android.widget.RelativeLayout.class),
+                                                1)),
+                                0),
+                        isDisplayed()));
+        imageButton.check(matches(isDisplayed()));
 
-        clasificar.check(matches(withText("Clasificar")));
+        ViewInteraction imageButton2 = onView(
+                allOf(withId(R.id.boton_hacer_foto),
+                        childAtPosition(
+                                allOf(withId(R.id.LinearLayout_botones_recoger_foto),
+                                        childAtPosition(
+                                                IsInstanceOf.<View>instanceOf(android.widget.RelativeLayout.class),
+                                                1)),
+                                1),
+                        isDisplayed()));
+        imageButton2.check(matches(isDisplayed()));
 
-        ViewInteraction irSetas = onView(withId(R.id.textView_ir_setas));
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.TextView_imagen_mostrada), withText("Imagen tomada para clasificar:"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                2),
+                        isDisplayed()));
+        textView2.check(matches(withText("Imagen tomada para clasificar:")));
 
-        irSetas.check(matches(withText("Mostrar Setas")));
+        ViewInteraction imageView = onView(
+                allOf(withId(R.id.imageView_mostrar_imagen),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                3),
+                        isDisplayed()));
+        imageView.check(matches(isDisplayed()));
 
-        ViewInteraction irClaves = onView(withId(R.id.textView_ir_claves));
-
-        irClaves.check(matches(withText("Ir claves")));
-
+        ViewInteraction imageView2 = onView(
+                allOf(withId(R.id.imageView_mostrar_imagen),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class),
+                                        1),
+                                3),
+                        isDisplayed()));
+        imageView2.check(matches(isDisplayed()));
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
@@ -78,122 +135,123 @@ public class ActividadLanzadoraPruebasEs {
                         isDisplayed()));
         appCompatTextView.perform(click());
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.textView0), withText("Ayuda de la actividad principal:"),
+        ViewInteraction textView3 = onView(
+                allOf(withId(R.id.textView0), withText("Ayuda de la actividad recoger foto:"),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
                                 0),
                         isDisplayed()));
-        textView.check(matches(withText("Ayuda de la actividad principal:")));
-
-        ViewInteraction textView2 = onView(
-                allOf(withId(R.id.textView1), withText("Para clasificar una foto pulse sobre el icono de la lupa."),
-                        childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        textView2.check(matches(withText("Para clasificar una foto pulse sobre el icono de la lupa.")));
-
-        ViewInteraction imageView = onView(
-                allOf(withId(R.id.imageView1),
-                        childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                2),
-                        isDisplayed()));
-        imageView.check(matches(isDisplayed()));
-
-        ViewInteraction textView3 = onView(
-                allOf(withId(R.id.textView2), withText("Para mostrar un listado de las setas disponibles pulse el icono de información."),
-                        childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                3),
-                        isDisplayed()));
-        textView3.check(matches(withText("Para mostrar un listado de las setas disponibles pulse el icono de información.")));
-
-        ViewInteraction imageView2 = onView(
-                allOf(withId(R.id.imageView2),
-                        childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                4),
-                        isDisplayed()));
-        imageView2.check(matches(isDisplayed()));
+        textView3.check(matches(withText("Ayuda de la actividad recoger foto:")));
 
         ViewInteraction textView4 = onView(
-                allOf(withId(R.id.textView3), withText("Para mostrar un listado de las claves dicotómicas disponibles pulse el siguiente botón."),
+                allOf(withId(R.id.textView1), withText("Para cargar una foto desde la galería pulse el siguiente botón."),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                5),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
                         isDisplayed()));
-        textView4.check(matches(withText("Para mostrar un listado de las claves dicotómicas disponibles pulse el siguiente botón.")));
+        textView4.check(matches(withText("Para cargar una foto desde la galería pulse el siguiente botón.")));
 
         ViewInteraction imageView3 = onView(
-                allOf(withId(R.id.imageView3),
+                allOf(withId(R.id.imageView1),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                6),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
                         isDisplayed()));
         imageView3.check(matches(isDisplayed()));
 
         ViewInteraction textView5 = onView(
-                allOf(withId(R.id.textView4), withText("Para mostrar el menú de la aplicación pulse el siguiente botón."),
+                allOf(withId(R.id.textView2), withText("Para cargar una foto desde la cámara del móvil pulse el siguiente botón."),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                7),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
                         isDisplayed()));
-        textView5.check(matches(withText("Para mostrar el menú de la aplicación pulse el siguiente botón.")));
+        textView5.check(matches(withText("Para cargar una foto desde la cámara del móvil pulse el siguiente botón.")));
 
         ViewInteraction imageView4 = onView(
-                allOf(withId(R.id.imageView4),
+                allOf(withId(R.id.imageView2),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                8),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
                         isDisplayed()));
         imageView4.check(matches(isDisplayed()));
 
-        ViewInteraction imageView5 = onView(
-                allOf(withId(R.id.imageView4),
+        ViewInteraction textView6 = onView(
+                allOf(withId(R.id.textView3), withText("Para clasificar la foto pulse el siguiente botón (sólo aparece cuando se ha cargado una foto)."),
                         childAtPosition(
-                                allOf(withId(R.id.RelativeLayoutLanzadora),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                8),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                5),
+                        isDisplayed()));
+        textView6.check(matches(withText("Para clasificar la foto pulse el siguiente botón (sólo aparece cuando se ha cargado una foto).")));
+
+        ViewInteraction imageView5 = onView(
+                allOf(withId(R.id.imageView3),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                6),
                         isDisplayed()));
         imageView5.check(matches(isDisplayed()));
+
+        ViewInteraction textView7 = onView(
+                allOf(withId(R.id.textView4), withText("Para guardar la foto pulse el siguiente botón (sólo aparece cuando se ha tomado una foto desde la cámara)."),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                7),
+                        isDisplayed()));
+        textView7.check(matches(withText("Para guardar la foto pulse el siguiente botón (sólo aparece cuando se ha tomado una foto desde la cámara).")));
+
+        ViewInteraction imageView6 = onView(
+                allOf(withId(R.id.imageView4),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                8),
+                        isDisplayed()));
+        imageView6.check(matches(isDisplayed()));
+
+        ViewInteraction textView8 = onView(
+                allOf(withId(R.id.textView5), withText("Para mostrar el menú de la aplicación pulse el siguiente botón."),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                9),
+                        isDisplayed()));
+        textView8.check(matches(withText("Para mostrar el menú de la aplicación pulse el siguiente botón.")));
+
+        ViewInteraction imageView7 = onView(
+                allOf(withId(R.id.imageView5),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                10),
+                        isDisplayed()));
+        imageView7.check(matches(isDisplayed()));
+
         mDevice.waitForIdle(5000);
-        mDevice.click(300,1548);
+        mDevice.click(171, 155);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),
                         childAtPosition(
-                                allOf(withId(R.id.barra_lanzadora),
+                                allOf(withId(R.id.barra_recoger_foto),
                                         childAtPosition(
                                                 withClassName(is("android.support.design.widget.AppBarLayout")),
                                                 0)),
@@ -201,7 +259,7 @@ public class ActividadLanzadoraPruebasEs {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        ViewInteraction textView6 = onView(
+        ViewInteraction textView10 = onView(
                 allOf(withText("Herramientas"),
                         childAtPosition(
                                 allOf(withId(R.id.design_navigation_view),
@@ -210,7 +268,7 @@ public class ActividadLanzadoraPruebasEs {
                                                 0)),
                                 1),
                         isDisplayed()));
-        textView6.check(matches(withText("Herramientas")));
+        textView10.check(matches(withText("Herramientas")));
 
         ViewInteraction checkedTextView = onView(
                 allOf(withId(R.id.design_menu_item_text),
@@ -252,7 +310,7 @@ public class ActividadLanzadoraPruebasEs {
                         isDisplayed()));
         checkedTextView4.check(matches(isDisplayed()));
 
-        ViewInteraction textView7 = onView(
+        ViewInteraction textView9 = onView(
                 allOf(withText("Opciones"),
                         childAtPosition(
                                 allOf(withId(R.id.design_navigation_view),
@@ -261,7 +319,7 @@ public class ActividadLanzadoraPruebasEs {
                                                 0)),
                                 7),
                         isDisplayed()));
-        textView7.check(matches(withText("Opciones")));
+        textView9.check(matches(withText("Opciones")));
 
         ViewInteraction checkedTextView5 = onView(
                 allOf(withId(R.id.design_menu_item_text),
@@ -282,6 +340,8 @@ public class ActividadLanzadoraPruebasEs {
                                 0),
                         isDisplayed()));
         checkedTextView6.check(matches(isDisplayed()));
+
+
     }
 
     private static Matcher<View> childAtPosition(

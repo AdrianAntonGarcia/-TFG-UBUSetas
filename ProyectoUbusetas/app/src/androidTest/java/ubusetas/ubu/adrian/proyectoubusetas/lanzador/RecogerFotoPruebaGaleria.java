@@ -1,9 +1,12 @@
-package ubusetas.ubu.adrian.proyectoubusetas.lanzador.PruebasLanzadora;
+package ubusetas.ubu.adrian.proyectoubusetas.lanzador;
 
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,31 +15,40 @@ import android.view.ViewParent;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LanzadoraTest {
+public class RecogerFotoPruebaGaleria {
 
     @Rule
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
+    private UiDevice mDevice;
+
+    @Before
+    public void setup() throws UiObjectNotFoundException {
+        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+    }
 
     @Test
-    public void lanzadoraTest() {
-
+    public void recogerFotoGaleria() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.boton_clasificar_lanzadora),
                         childAtPosition(
@@ -47,7 +59,10 @@ public class LanzadoraTest {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction floatingActionButton2 = onView(
+
+        //Botón desde la galería
+
+        ViewInteraction floatingActionButton3 = onView(
                 allOf(withId(R.id.boton_galeria),
                         childAtPosition(
                                 allOf(withId(R.id.LinearLayout_botones_recoger_foto),
@@ -56,9 +71,18 @@ public class LanzadoraTest {
                                                 1)),
                                 0),
                         isDisplayed()));
-        floatingActionButton2.perform(click());
+        floatingActionButton3.perform(click());
 
-        ViewInteraction floatingActionButton3 = onView(
+        mDevice.waitForIdle(5000);
+        mDevice.click(300,1548);
+        mDevice.waitForIdle(5000);
+        mDevice.click(282,1720);
+        mDevice.waitForIdle(5000);
+        mDevice.click(156,324);
+
+        //Botón clasificar
+
+        ViewInteraction floatingActionButton4 = onView(
                 allOf(withId(R.id.boton_clasificar),
                         childAtPosition(
                                 allOf(withId(R.id.LinearLayout_botones_recoger_foto),
@@ -67,7 +91,9 @@ public class LanzadoraTest {
                                                 1)),
                                 3),
                         isDisplayed()));
-        floatingActionButton3.perform(click());
+        floatingActionButton4.perform(click());
+
+        pressBack();
 
     }
 

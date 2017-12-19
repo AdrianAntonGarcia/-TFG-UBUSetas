@@ -15,7 +15,7 @@ import android.view.ViewParent;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,13 +26,19 @@ import ubusetas.ubu.adrian.proyectoubusetas.R;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+
+/*
+* @name: RecogerFotoPruebaGaleria
+* @Author: Adrián Antón García
+* @category: clase
+* @Description: Clase que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
+* del movil en la actividad RecogerFoto
+* */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -42,10 +48,26 @@ public class RecogerFotoPruebaGaleria {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
+    /*
+    * @name: setup
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+    * externos a la aplicación.
+    * */
+
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
+    /*
+    * @name: recogerFotoGaleria
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
+    * del movil en la actividad RecogerFoto.
+    * */
 
     @Test
     public void recogerFotoGaleria() {
@@ -74,11 +96,11 @@ public class RecogerFotoPruebaGaleria {
         floatingActionButton3.perform(click());
 
         mDevice.waitForIdle(5000);
-        mDevice.click(300,1548);
+        mDevice.click(300, 1548);
         mDevice.waitForIdle(5000);
-        mDevice.click(282,1720);
+        mDevice.click(282, 1720);
         mDevice.waitForIdle(5000);
-        mDevice.click(156,324);
+        mDevice.click(156, 324);
 
         //Botón clasificar
 
@@ -93,7 +115,7 @@ public class RecogerFotoPruebaGaleria {
                         isDisplayed()));
         floatingActionButton4.perform(click());
 
-        pressBack();
+
 
     }
 

@@ -36,6 +36,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/*
+* @name: MostrarClavesPruebasEn
+* @Author: Adrián Antón García
+* @category: clase
+* @Description: Clase que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
+* tanto los de la actividad, como los de la ayuda y los del menú.
+* */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MostrarClavesPruebasEn {
@@ -45,10 +53,26 @@ public class MostrarClavesPruebasEn {
 
     private UiDevice mDevice;
 
+    /*
+      * @name: setup
+      * @Author: Adrián Antón García
+      * @category: procedimiento test
+      * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+      * externos a la aplicación.
+      * */
+
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
+    /*
+    * @name: mostrarClavesPruebasEn
+    * @Author: Adrián Antón García
+    * @category: procedimiento test
+    * @Description: Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
+    * tanto los de la actividad, como los de la ayuda y los del menú.
+    * */
 
     @Test
     public void mostrarClavesPruebasEn() {

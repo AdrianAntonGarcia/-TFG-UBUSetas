@@ -15,14 +15,12 @@ import android.view.ViewParent;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ubusetas.ubu.adrian.proyectoubusetas.R;
-import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
@@ -37,6 +35,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/*
+* @name: ActividadLanzadoraPruebasEs
+* @Author: Adrián Antón García
+* @category: clase
+* @Description: Clase que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
+* tanto los de la actividad, como los de la ayuda y los del menú.
+* */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class ActividadLanzadoraPruebasEs {
@@ -45,10 +51,27 @@ public class ActividadLanzadoraPruebasEs {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
+    /*
+     * @name: setup
+     * @Author: Adrián Antón García
+     * @category: procedimiento test
+     * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     * */
+
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
+    /*
+     * @name: probarTextosEs
+     * @Author: Adrián Antón García
+     * @category: procedimiento test
+     * @Description: Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
+     * tanto los de la actividad, como los de la ayuda y los del menú.
+     * */
+
     @Test
     public void probarTextosEs() {
 
@@ -188,7 +211,7 @@ public class ActividadLanzadoraPruebasEs {
                         isDisplayed()));
         imageView5.check(matches(isDisplayed()));
         mDevice.waitForIdle(5000);
-        mDevice.click(300,1548);
+        mDevice.click(300, 1548);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  * @name GeneradorClaves
@@ -25,7 +26,7 @@ public class GeneradorClaves implements Serializable {
 
 	private final static Logger logger = Logger.getLogger(GeneradorClaves.class);
 
-	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\WebSemantica\\src\\main\\java\\generosEnlaces.txt";
+	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\ExtraccionDatos\\src\\main\\java\\generosEnlaces.txt";
 
 	private String nombreFichero = "claves.dat";
 	
@@ -49,12 +50,6 @@ public class GeneradorClaves implements Serializable {
 		clavesEn = new TreeMap<String, ArrayList<Object>>();
 	}
 
-	public static void main(String[] args) {
-		GeneradorClaves generador = new GeneradorClaves();
-		//generador.generarClavesFichero();
-		generador.generarClavesFicheroEn();
-		System.out.println(generador.claves.size());
-	}
 
 	/**
 	 * @name generarClavesFichero
@@ -64,7 +59,7 @@ public class GeneradorClaves implements Serializable {
 	 *              fichero claves.dat
 	 */
 
-	public void generarClavesFichero() {
+	public void generarClavesFicheroEs() {
 		TreeMap<String, String> generosEnlaces = this.leerFichero();
 		for (String genero : generosEnlaces.keySet()) {
 			String enlace = generosEnlaces.get(genero).trim();

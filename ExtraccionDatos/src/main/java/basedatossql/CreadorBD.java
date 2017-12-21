@@ -34,7 +34,7 @@ public class CreadorBD {
 	private BDsql bd = null;
 
 	// urls para crear la base de datos
-	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\WebSemantica\\src\\main\\java\\nombresSetas.txt";
+	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\ExtraccionDatos\\src\\main\\java\\nombresSetas.txt";
 	private String urlBaseDatos = "jdbc:sqlite:C:\\sqlite\\DBsetas\\DBsetas.db";
 	// String connectionUrl
 	// ="jdbc:sqlserver://localhost:1433;databaseName=DBsetas;user=sa;password=adrian1";
@@ -44,14 +44,6 @@ public class CreadorBD {
 	String nombreTablaEnlaces = "TablaEnlaces";
 	String nombreTablaComestible = "TablaComestible";
 	String nombreTablaClaves ="TablaClaves";
-
-	public static void main(String[] args) {
-		PropertyConfigurator.configure("log4j.properties");
-
-		CreadorBD creador = new CreadorBD();
-		creador.crearBaseDatos();
-
-	}
 
 	/**
 	 * @name CreadorBD
@@ -150,7 +142,7 @@ public class CreadorBD {
 		
 	
 		
-
+		System.out.println(resultados.toString());
 		
 		// Inserción de las filas
 
@@ -213,7 +205,7 @@ public class CreadorBD {
 			
 			bd.insertarFilaComestible(nombreTablaComestible, nombreSeta, comestibleEn, comestibleEs);
 		} else {
-			bd.insertarFilaComestible(nombreTablaComestible, nombreSeta, "unkonwn", "desconocido");
+			bd.insertarFilaComestible(nombreTablaComestible, nombreSeta, "unknown", "desconocido");
 		}
 	}
 

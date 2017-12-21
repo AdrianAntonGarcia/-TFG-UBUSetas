@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/basedatossql/CreadorBD.java=UTF-8
+encoding//src/main/java/creador/CreadorBDyClaves.java=UTF-8
 encoding//src/main/java/traductor/Translator.java=UTF-8
 encoding//src/main/java/webscraping/ClaveDicotomica.java=UTF-8
 encoding//src/main/java/webscraping/GeneradorClaves.java=UTF-8

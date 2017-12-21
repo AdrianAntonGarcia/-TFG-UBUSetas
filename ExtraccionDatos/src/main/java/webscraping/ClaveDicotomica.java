@@ -280,8 +280,10 @@ public class ClaveDicotomica {
 						try {
 							preguntaEs = columnas.getElement(1).findFirst("<p>").getText();
 							preguntaEn = traductor.callUrlAndParseResult("es", "en", preguntaEs);
-						} catch (Exception ex) {
+						} catch (NotFound ex) {
 							preguntaEn = "null" + nodoPadre;
+						}catch (Exception ex) {
+							System.err.println("Error al traducir");
 						}
 						System.out.println("Pregunta en inglés:");
 						System.out.println(preguntaEn);

@@ -100,6 +100,8 @@
          the more it adapts to the mushroom until it reaches a genre.</string>
     <string name="ayuda_clave_dicotomica_2">To return to the previous question press the following button.</string>
     <string name="ayuda_clave_dicotomica_3">To show the application menu press the following button.</string>
+    <string name="ayuda_clave_dicotomica_4">To go to the key of a specific genre, press the following button (It will appear if the sorted genre is among the available keys)</string>
+
 
     <!--6-Cadenas de los elementos de la ayuda de mostrar información seta-->
     <string name="ayuda_mostrar_informacion_0">Activity help show information:</string>

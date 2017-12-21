@@ -40,7 +40,7 @@ import static org.hamcrest.Matchers.is;
 * @name: MostrarClavesPruebasEn
 * @Author: Adrián Antón García
 * @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
+* @Description: Clase que prueba que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
 * tanto los de la actividad, como los de la ayuda y los del menú.
 * */
 
@@ -70,7 +70,7 @@ public class MostrarClavesPruebasEn {
     * @name: mostrarClavesPruebasEn
     * @Author: Adrián Antón García
     * @category: procedimiento test
-    * @Description: Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
+    * @Description: Procedimiento que prueba que los textos de la actividad MostrarClaves se muestren correctamente en inglés,
     * tanto los de la actividad, como los de la ayuda y los del menú.
     * */
 

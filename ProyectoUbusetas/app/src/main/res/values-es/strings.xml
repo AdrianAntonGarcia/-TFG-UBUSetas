@@ -98,6 +98,8 @@
     <string name="ayuda_clave_dicotomica_1">La página mostrará una sucesión de dilemas, deberá ir eligiendo el que considere que más se adecua a la seta hasta llegar a un género.</string>
     <string name="ayuda_clave_dicotomica_2">Para volver a la pregunta anterior pulse el siguiente botón.</string>
     <string name="ayuda_clave_dicotomica_3">Para mostrar el menú de la aplicación pulse el siguiente botón.</string>
+    <string name="ayuda_clave_dicotomica_4">Para ir a la clave de un género en concreto, pulsar el siguiente botón (Aparecera si el género clasificado se encuentra entre las claves disponibles)</string>
+
 
     <!--6-Cadenas de los elementos de la ayuda de mostrar información seta-->
     <string name="ayuda_mostrar_informacion_0">Ayuda de la actividad mostrar información:</string>

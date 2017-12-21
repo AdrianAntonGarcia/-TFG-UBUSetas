@@ -333,6 +333,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
                     Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
                     cambioActividad.putStringArrayListExtra("generosMarcados", marcados);
                     cambioActividad.putStringArrayListExtra("resultados", resultados);
+                    cambioActividad.putExtra("actividadPrevia",1);
                     startActivity(cambioActividad);
                 }
                 break;

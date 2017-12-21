@@ -140,6 +140,7 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
                     Toast.makeText(context, nombre.getText(), Toast.LENGTH_SHORT).show();
                     Intent mostrarSeta = new Intent(context, ClaveDicotomica.class);
                     mostrarSeta.putExtra("nombreClave", nombre.getText());
+                    mostrarSeta.putExtra("actividadPrevia",2);
                     context.startActivity(mostrarSeta);
                 }
             });

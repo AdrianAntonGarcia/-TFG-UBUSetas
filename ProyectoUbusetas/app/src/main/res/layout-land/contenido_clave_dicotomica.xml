@@ -54,4 +54,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/boton_clave_especifica"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@android:drawable/ic_menu_share" />
 </RelativeLayout>

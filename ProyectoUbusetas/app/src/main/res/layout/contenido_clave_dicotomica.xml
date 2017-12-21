@@ -34,7 +34,7 @@
     <ListView
         android:id="@+id/listView_claveDicotomica"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:layout_below="@id/TextView_Pregunta_clave"
         android:layout_marginTop="16dp"
         android:textColor="@color/black" />
@@ -47,4 +47,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/boton_clave_especifica"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@android:drawable/ic_menu_share" />
+
 </RelativeLayout>

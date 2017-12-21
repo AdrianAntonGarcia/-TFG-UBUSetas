@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -34,7 +35,6 @@ import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
-import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 
 /*
 * @name: ClaveDicotomica
@@ -94,10 +94,16 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     private TextView TextViewClaveMostrada;
     private TextView TextViewPreguntaClave;
     private FloatingActionButton boton_anterior;
+    private FloatingActionButton boton_clave;
 
     //actividad de la que vengo, 1 actividad elegir clave, 2 actividad mostrar clavess
 
     private int actividadPrevia;
+    private int vuelta;
+
+    //Solución de la clave general.
+    private String solucion;
+    private Boolean mostrarClave;
 
     /*
     * @name: onCreate
@@ -112,6 +118,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clave_dicotomica);
+
+        mostrarClave = false;
+
         //Cargamos el idioma actual
         idioma = null;
         idioma = Locale.getDefault().getLanguage();
@@ -123,8 +132,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         listViewClaveDicotomica = (ListView) findViewById(R.id.listView_claveDicotomica);
         TextViewPreguntaClave = (TextView) findViewById(R.id.TextView_Pregunta_clave);
         boton_anterior = (FloatingActionButton) findViewById(R.id.boton_anterior);
-        listViewClaveDicotomica.setOnItemClickListener(this);
+        boton_clave = (FloatingActionButton) findViewById(R.id.boton_clave_especifica);
         boton_anterior.setOnClickListener(this);
+        boton_clave.setOnClickListener(this);
+        listViewClaveDicotomica.setOnItemClickListener(this);
         listViewClaveDicotomica.setVisibility(View.VISIBLE);
 
         NODOINICIAL = "1";
@@ -139,8 +150,32 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         Bundle datosRecibidos = intentRecibidos.getExtras();
 
         //cargamos el idioma si se ha rotado la pantalla
+
         if (datosRecibidos.containsKey("idioma")) {
             idioma = datosRecibidos.getString("idioma");
+        }
+        if (datosRecibidos.containsKey("mostrarClave")) {
+            mostrarClave = datosRecibidos.getBoolean("mostrarClave");
+        }
+        if (datosRecibidos.containsKey("actividadPrevia")) {
+            actividadPrevia = datosRecibidos.getInt("actividadPrevia");
+        }
+        if (datosRecibidos.containsKey("resultados")) {
+            resultados = datosRecibidos.getStringArrayList("resultados");
+        }
+        if (datosRecibidos.containsKey("nombreClave")) {
+            NOMBRECLAVE = datosRecibidos.getString("nombreClave");
+        }
+        if (datosRecibidos.containsKey("generosMarcados")) {
+            generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
+        }
+        if (datosRecibidos.containsKey("vuelta")) {
+            vuelta = datosRecibidos.getInt("vuelta");
+        }
+        if (mostrarClave) {
+            boton_clave.setVisibility(View.VISIBLE);
+        } else {
+            boton_clave.setVisibility(View.GONE);
         }
 
         if (idioma.equals("es")) {
@@ -149,11 +184,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             claves = acceso.readFromFileEn();
         }
 
-        resultados = datosRecibidos.getStringArrayList("resultados");
-        NOMBRECLAVE = datosRecibidos.getString("nombreClave");
+
         //si no se ha especificado clave, se carga la ggeneral
-        if (NOMBRECLAVE == null) {
-            actividadPrevia = 1;
+        if (actividadPrevia == 1) {
+            vuelta=1;
             NOMBRECLAVE = "general";
             generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
             Log.d("generosRecibidos", generosRecibidos.toString());
@@ -161,8 +195,8 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 cargarClaveGeneral(generosRecibidos);
             }
         } else {
-            actividadPrevia = 2;
             //cargo la clave especifica pasada por paramatero
+            vuelta=2;
             cargarClaveEspecifica();
         }
 
@@ -187,6 +221,8 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Log.d("ACTIVIDAD PREVIA", actividadPrevia + "");
     }
 
     /*
@@ -265,7 +301,6 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         }
 
 
-
         NODOINICIAL = nodoInicial;
         NOMBRECLAVE = "general";
 
@@ -284,7 +319,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     public void cargarClaveEspecifica() {
         listViewClaveDicotomica.setVisibility(View.VISIBLE);
         //Elijo la que se tiene que ejecutar
-        Log.d("NOMBRECLAVE",NOMBRECLAVE);
+        Log.d("NOMBRECLAVE", NOMBRECLAVE);
         ArrayList<Object> mapas = claves.get(NOMBRECLAVE);
 
 
@@ -293,9 +328,9 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         generosNodos = (Map<String, String>) mapas.get(2);
 
         //cargo los 3 mapas de la clave seleccionada
-        Log.d("arbolNodosKeys",arbolNodos.keySet().toString());
-        Log.d("contenidoNodosKeys",contenidoNodos.keySet().toString());
-        Log.d("generosNodosKeys",generosNodos.keySet().toString());
+        Log.d("arbolNodosKeys", arbolNodos.keySet().toString());
+        Log.d("contenidoNodosKeys", contenidoNodos.keySet().toString());
+        Log.d("generosNodosKeys", generosNodos.keySet().toString());
         //cargo los nodos hijos del nodo principal
 
         preguntas = new ArrayList<String>();
@@ -338,6 +373,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             intent.setClass(this, this.getClass());
             intent.putExtra("idioma", idioma);
             intent.putExtra("nombreClave", NOMBRECLAVE);
+            intent.putExtra("mostrarClave", mostrarClave);
+            intent.putExtra("actividadPrevia", actividadPrevia);
+            intent.putExtra("generosMarcados",generosRecibidos);
+            intent.putExtra("vuelta",vuelta);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
@@ -407,18 +446,25 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             //si el hijo pulsado es una hoja
 
             preguntas.clear();
-            String solucion = contenidoNodos.get(hijoPulsado).get(3);
+            solucion = contenidoNodos.get(hijoPulsado).get(3);
             preguntas.add(solucion);
             adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preguntas);
 
             listViewClaveDicotomica.setAdapter(adaptador);
             listViewClaveDicotomica.setVisibility(View.GONE);
-            if(NOMBRECLAVE.equals("general")) {
+            if (NOMBRECLAVE.equals("general")) {
                 TextViewPreguntaClave.setText(getString(R.string.texto_solucion_genero) + " " + solucion);
-                Toast.makeText(this, getString(R.string.texto_solucion_genero)+" " + solucion, Toast.LENGTH_LONG).show();
-            }else{
+                Toast.makeText(this, getString(R.string.texto_solucion_genero) + " " + solucion, Toast.LENGTH_LONG).show();
+
+                String[] names = getResources().getStringArray(R.array.nombres_claves);
+                if (Arrays.asList(names).contains(solucion.toLowerCase())) {
+                    boton_clave.setVisibility(View.VISIBLE);
+                    mostrarClave = true;
+                }
+
+            } else {
                 TextViewPreguntaClave.setText(getString(R.string.texto_solucion_especie) + " " + solucion);
-                Toast.makeText(this, getString(R.string.texto_solucion_especie)+" " + solucion, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.texto_solucion_especie) + " " + solucion, Toast.LENGTH_LONG).show();
 
             }
         }
@@ -459,6 +505,21 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                 listViewClaveDicotomica.setAdapter(adaptador);
                 listViewClaveDicotomica.setVisibility(View.VISIBLE);
                 TextViewPreguntaClave.setText(getString(R.string.texto_pregunta));
+                if (mostrarClave = true) {
+                    boton_clave.setVisibility(View.GONE);
+                    mostrarClave = false;
+                }
+                break;
+            case R.id.boton_clave_especifica:
+                String[] names = getResources().getStringArray(R.array.nombres_claves);
+                if (Arrays.asList(names).contains(solucion.toLowerCase())) {
+                    Toast.makeText(this, "Abriendo clave dicotómica del género: " + solucion, Toast.LENGTH_LONG).show();
+                    Intent mostrarSeta = new Intent(this, ClaveDicotomica.class);
+                    mostrarSeta.putExtra("nombreClave", solucion.toLowerCase());
+                    actividadPrevia = 3;
+                    mostrarSeta.putExtra("actividadPrevia", actividadPrevia);
+                    this.startActivity(mostrarSeta);
+                }
                 break;
         }
     }
@@ -523,19 +584,35 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             drawer.closeDrawer(GravityCompat.START);
         } else {
             //Actividad elegir clave
-            if (actividadPrevia == 1) {
-                Intent intent = new Intent(ClaveDicotomica.this, ElegirClaves.class);
-                intent.putExtra("idioma", idioma);
-                intent.putExtra("resultados", resultados);
-                this.startActivity(intent);
-                //si el menu esta cerrado llamamos al constructor padre
-                finish();
-            } else {
-                Intent intent = new Intent(ClaveDicotomica.this, MostrarClaves.class);
-                intent.putExtra("idioma", idioma);
-                this.startActivity(intent);
-                //si el menu esta cerrado llamamos al constructor padre
-                finish();
+            Log.d("ACTIVIDADPREVIABACK", actividadPrevia + "");
+            switch (actividadPrevia) {
+                case 1:
+                    Intent intent = new Intent(ClaveDicotomica.this, ElegirClaves.class);
+                    intent.putExtra("idioma", idioma);
+                    intent.putExtra("resultados", resultados);
+                    this.startActivity(intent);
+                    //si el menu esta cerrado llamamos al constructor padre
+                    finish();
+                    break;
+                case 2:
+                    Intent intent2 = new Intent(ClaveDicotomica.this, MostrarClaves.class);
+                    intent2.putExtra("idioma", idioma);
+                    this.startActivity(intent2);
+                    //si el menu esta cerrado llamamos al constructor padre
+                    finish();
+                    break;
+                case 3:
+                    Intent intent3 = new Intent(this, this.getClass());
+                    if(vuelta ==1){
+                        actividadPrevia=1;
+                    }else{
+                        actividadPrevia=2;
+                    }
+                    intent3.putExtra("idioma", idioma);
+                    intent3.putExtra("generosMarcados",generosRecibidos);
+                    intent3.putExtra("actividadPrevia",actividadPrevia);
+                    this.startActivity(intent3);
+                    break;
             }
         }
     }
@@ -579,6 +656,10 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             intent.setClass(this, this.getClass());
             intent.putExtra("nombreClave", NOMBRECLAVE);
             intent.putExtra("idioma", idioma);
+            intent.putExtra("mostrarClave", mostrarClave);
+            intent.putExtra("actividadPrevia", actividadPrevia);
+            intent.putExtra("generosMarcados",generosRecibidos);
+            intent.putExtra("vuelta",vuelta);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

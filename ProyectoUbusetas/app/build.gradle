@@ -4,6 +4,14 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
 
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a'
+            universalApk true
+        }
+    }
     defaultConfig {
         applicationId "ubusetas.ubu.adrian.proyectoubusetas"
         minSdkVersion 18

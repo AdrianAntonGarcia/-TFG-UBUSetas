@@ -127,14 +127,14 @@ public class MostrarInformacionSetaPruebasEn {
         textView.check(matches(withText("Mushroom description:")));
 
         ViewInteraction textView2 = onView(
-                allOf(withId(R.id.textView_textoDescripcionSeta), withText("\"Agrocybe is a genus of mushrooms in the family Strophariaceae. Some species are poisonous. The genus has a widespread distribution, and contains about 100 species.\"@en"),
+                allOf(withId(R.id.textView_textoDescripcionSeta), withText(" Agrocybe is a genus of mushrooms in the family Strophariaceae. Some species are poisonous. The genus has a widespread distribution, and contains about 100 species. @en"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.ScrollView01),
                                         0),
                                 1),
                         isDisplayed()));
-        textView2.check(matches(withText("\"Agrocybe is a genus of mushrooms in the family Strophariaceae. Some species are poisonous. The genus has a widespread distribution, and contains about 100 species.\"@en")));
+        textView2.check(matches(withText(" Agrocybe is a genus of mushrooms in the family Strophariaceae. Some species are poisonous. The genus has a widespread distribution, and contains about 100 species. @en")));
 
         ViewInteraction textView3 = onView(
                 allOf(withId(R.id.textView_GeneroSeta), withText("Mushroom genre:"),
@@ -167,14 +167,14 @@ public class MostrarInformacionSetaPruebasEn {
         textView5.check(matches(withText("Mushroom edibility:")));
 
         ViewInteraction textView6 = onView(
-                allOf(withId(R.id.textView_textoComestibilidadSeta), withText("unkonwn-"),
+                allOf(withId(R.id.textView_textoComestibilidadSeta), withText("unkonwn "),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.ScrollView01),
                                         0),
                                 5),
                         isDisplayed()));
-        textView6.check(matches(withText("unkonwn-")));
+        textView6.check(matches(withText("unkonwn ")));
 
         ViewInteraction textView7 = onView(
                 allOf(withId(R.id.textView_EnlaceSeta), withText("Mushroom link:"),

@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +32,9 @@ import ubusetas.ubu.adrian.proyectoubusetas.basedatos.DBsetasManager;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
+import ubusetas.ubu.adrian.proyectoubusetas.resultados.TouchImageView;
 
 /*
 * @name: DBsetasManager
@@ -40,7 +43,7 @@ import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 * @Description: Clase que muestra información relativa a la seta pulsada
 * */
 
-public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ImageView.OnClickListener {
 
     private AccesoDatosExternos acceso;
 
@@ -69,6 +72,8 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
 
     private Bitmap bitmapUsuario;
     private ArrayList<String> resultados;
+    //Imagen de la especie
+    private Bitmap bit;
 
     private int actividadPrevia;
     /*
@@ -104,6 +109,7 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         //inicializo los elements de la interfaz
 
         imageViewSetaDescrita = (ImageView) findViewById(R.id.imageView_setaDescrita);
+        imageViewSetaDescrita.setOnClickListener(this);
         textViewTextoDescripcionSeta = (TextView) findViewById(R.id.textView_textoDescripcionSeta);
         textViewTextoGeneroSeta = (TextView) findViewById(R.id.textView_textoGeneroSeta);
         textViewTextoComestibilidadSeta = (TextView) findViewById(R.id.textView_textoComestibilidadSeta);
@@ -126,7 +132,7 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         } catch (IOException e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        Bitmap bit = BitmapFactory.decodeStream(is);
+        bit = BitmapFactory.decodeStream(is);
         imageViewSetaDescrita.setImageBitmap(bit);
 
         //Accedo a la base de datos y muestro la información
@@ -141,11 +147,11 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         genero = baseDatos.getGenero(nombreSeta);
         baseDatos.close();
         if (idioma.equals("es")) {
-            textViewTextoDescripcionSeta.setText(descripcionEs);
-            textViewTextoComestibilidadSeta.setText(comestibilidadEs);
+            textViewTextoDescripcionSeta.setText(descripcionEs.replaceAll("\"", " "));
+            textViewTextoComestibilidadSeta.setText(comestibilidadEs.replaceAll("-", " "));
         } else {
-            textViewTextoDescripcionSeta.setText(descripcionEn);
-            textViewTextoComestibilidadSeta.setText(comestibilidadEn);
+            textViewTextoDescripcionSeta.setText(descripcionEn.replaceAll("\"", " "));
+            textViewTextoComestibilidadSeta.setText(comestibilidadEn.replaceAll("-", " "));
         }
         textViewTextoGeneroSeta.setText(genero);
 
@@ -254,6 +260,28 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     }
 
     /*
+    * @name: onClick
+    * @Author: Adrián Antón García
+    * @category: Procedimiento
+    * @Description: Procedimiento que se ejectua cuando se pulsa un imageView.
+    * @param: Vista del imageView pulsado
+    * */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imageView_setaDescrita:
+                final Dialog dialog = new Dialog(MostrarInformacionSeta.this);
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                dialog.setContentView(R.layout.layout_full_image);
+                TouchImageView bmImage = (TouchImageView) dialog.findViewById(R.id.img_receipt);
+                bmImage.setImageBitmap(bit.copy(bit.getConfig(), true));
+                bmImage.destroyDrawingCache();
+                dialog.setCancelable(true);
+                dialog.show();
+                break;
+        }
+    }
+    /*
     * @name: onBackPressed
     * @Author: Adrián Antón García
     * @category: Procedimiento
@@ -287,6 +315,7 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
             }
         }
     }
+
 
     /*
     * @name: onNavigationItemSelected
@@ -351,4 +380,6 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

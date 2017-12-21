@@ -105,14 +105,14 @@ public class MostrarInformacionSetaPruebasEs {
         textView.check(matches(withText("Descripción seta:")));
 
         ViewInteraction textView2 = onView(
-                allOf(withId(R.id.textView_textoDescripcionSeta), withText("\"Agrocybe es un género de hongos de la familia Strophariaceae. Algunas especies son venenosas. El género tiene una amplia distribución y contiene alrededor de 100 especies\". @ Es"),
+                allOf(withId(R.id.textView_textoDescripcionSeta), withText(" Agrocybe es un género de hongos de la familia Strophariaceae. Algunas especies son venenosas. El género tiene una amplia distribución y contiene alrededor de 100 especies . @ Es"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.ScrollView01),
                                         0),
                                 1),
                         isDisplayed()));
-        textView2.check(matches(withText("\"Agrocybe es un género de hongos de la familia Strophariaceae. Algunas especies son venenosas. El género tiene una amplia distribución y contiene alrededor de 100 especies\". @ Es")));
+        textView2.check(matches(withText(" Agrocybe es un género de hongos de la familia Strophariaceae. Algunas especies son venenosas. El género tiene una amplia distribución y contiene alrededor de 100 especies . @ Es")));
 
         ViewInteraction textView3 = onView(
                 allOf(withId(R.id.textView_GeneroSeta), withText("Género seta:"),
@@ -145,14 +145,14 @@ public class MostrarInformacionSetaPruebasEs {
         textView5.check(matches(withText("Comestibilidad seta:")));
 
         ViewInteraction textView6 = onView(
-                allOf(withId(R.id.textView_textoComestibilidadSeta), withText("desconocido-"),
+                allOf(withId(R.id.textView_textoComestibilidadSeta), withText("desconocido "),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.ScrollView01),
                                         0),
                                 5),
                         isDisplayed()));
-        textView6.check(matches(withText("desconocido-")));
+        textView6.check(matches(withText("desconocido ")));
 
         ViewInteraction textView7 = onView(
                 allOf(withId(R.id.textView_EnlaceSeta), withText("Enlace seta:"),

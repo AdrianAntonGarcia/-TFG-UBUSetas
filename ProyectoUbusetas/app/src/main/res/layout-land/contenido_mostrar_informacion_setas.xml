@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_DescripcionSeta"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -47,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_GeneroSeta"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -63,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_ComestibilidadSeta"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -72,13 +75,14 @@
             android:layout_below="@+id/textView_textoComestibilidadSeta"
             android:layout_marginTop="5dp"
             android:text="@string/enlace_seta"
-            android:textColor="@color/black" />
+            android:textColorLink="@color/black" />
 
         <TextView
             android:id="@+id/textView_textoEnlaceSeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_EnlaceSeta"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="5dp" />
 
         <ImageView

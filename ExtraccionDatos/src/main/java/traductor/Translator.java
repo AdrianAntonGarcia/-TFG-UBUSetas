@@ -9,14 +9,12 @@ import java.net.URLEncoder;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 
-import dbpedia.DBpedia;
-
 //http://archana-testing.blogspot.com.es/2016/02/calling-google-translation-api-in-java.html
 public class Translator {
 
 	@SuppressWarnings("unused")
 	private final static Logger logger = Logger.getLogger(Translator.class);
-	
+
 	public static void main(String[] args) throws Exception {
 
 		Translator http = new Translator();
@@ -46,13 +44,8 @@ public class Translator {
 
 		return parseResult(response.toString());
 	}
-	
-	public String parseResult(String inputJson){
-		/*
-		 * inputJson for word 'hello' translated to language Hindi from English-
-		 * [[["नमस्ते","hello",,,1]],,"en"] We have to get 'नमस्ते ' from this
-		 * json.
-		 */
+
+	public String parseResult(String inputJson) {
 
 		JSONArray jsonArray = new JSONArray(inputJson);
 		JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);
@@ -60,10 +53,12 @@ public class Translator {
 
 		return jsonArray3.get(0).toString();
 	}
+
 	/**
 	 * Traduce el idioma del tipo de las setas.
 	 * 
-	 * @param tipo tipo de la especie.
+	 * @param tipo
+	 *            tipo de la especie.
 	 * @return tipo de la especie traducido.
 	 */
 	public String translateType(String tipo) {

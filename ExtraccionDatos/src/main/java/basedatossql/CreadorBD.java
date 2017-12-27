@@ -16,7 +16,6 @@ import org.apache.log4j.PropertyConfigurator;
 import dbpedia.DBpedia;
 import traductor.Translator;
 
-
 /**
  * @name CreadorBD
  * @author Adrian Anton Garcia
@@ -26,7 +25,7 @@ import traductor.Translator;
 
 public class CreadorBD {
 	// logger del creadorBD
-	
+
 	private final static Logger logger = Logger.getLogger(CreadorBD.class);
 	// clase de la web semantica
 	private DBpedia dp = null;
@@ -43,7 +42,7 @@ public class CreadorBD {
 	String nombreTablaGeneros = "TablaGeneros";
 	String nombreTablaEnlaces = "TablaEnlaces";
 	String nombreTablaComestible = "TablaComestible";
-	String nombreTablaClaves ="TablaClaves";
+	String nombreTablaClaves = "TablaClaves";
 
 	/**
 	 * @name CreadorBD
@@ -139,11 +138,9 @@ public class CreadorBD {
 
 		bd.borrarTablaSetas(nombreTablaComestible);
 		bd.crearTablaComestible(nombreTablaComestible);
-		
-	
-		
+
 		System.out.println(resultados.toString());
-		
+
 		// Inserción de las filas
 
 		for (String nombreSeta : resultados) {
@@ -152,7 +149,6 @@ public class CreadorBD {
 			this.insertarLinks(nombreSeta, nombreTablaEnlaces);
 			this.insertarComestibilidad(nombreSeta, nombreTablaComestible);
 		}
-		
 
 		// Cierre de la base de datos
 		bd.close();
@@ -172,7 +168,7 @@ public class CreadorBD {
 	 */
 
 	public void insertarComestibilidad(String nombreSeta, String nombreTabla) {
-		
+
 		String consulta = dp.getDataQueryComestible(nombreSeta);
 		String resultado = ResultSetFormatter.asText(dp.lanzarConsulta(consulta));
 		// elimino los caracteres innecesarios
@@ -202,7 +198,7 @@ public class CreadorBD {
 				comestibleEs = comestibleEs + " " + traductor.translateType(c);
 				comestibleEs = comestibleEs.trim();
 			}
-			
+
 			bd.insertarFilaComestible(nombreTablaComestible, nombreSeta, comestibleEn, comestibleEs);
 		} else {
 			bd.insertarFilaComestible(nombreTablaComestible, nombreSeta, "unknown", "desconocido");

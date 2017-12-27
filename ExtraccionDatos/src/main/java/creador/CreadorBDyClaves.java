@@ -3,7 +3,7 @@ package creador;
 import org.apache.log4j.PropertyConfigurator;
 
 import basedatossql.CreadorBD;
-import webscraping.GeneradorClaves;
+import webscraping.CreadorClaves;
 
 /**
  * @name CreadorBDyClaves
@@ -18,7 +18,7 @@ public class CreadorBDyClaves {
 	public static void main(String[] args) {
 		//Generación de las claves dicotómicas
 		PropertyConfigurator.configure("log4j.properties");
-		GeneradorClaves generador = new GeneradorClaves();
+		CreadorClaves generador = new CreadorClaves();
 		generador.generarClavesFicheroEs();
 		generador.generarClavesFicheroEn();
 		

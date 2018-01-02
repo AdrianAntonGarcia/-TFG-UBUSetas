@@ -36,13 +36,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: MostrarClavesPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en español,
-* tanto los de la actividad, como los de la ayuda y los del menú.
-* */
+/**
+ * Clase que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en español,
+ * tanto los de la actividad, como los de la ayuda y los del menú.
+ *
+ * @author Adrián Antón García
+ * @name MostrarClavesPruebasEs
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -53,26 +54,27 @@ public class MostrarClavesPruebasEs {
 
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     *
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: mostrarClavesPruebasEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en español,
-    * tanto los de la actividad, como los de la ayuda y los del menú.
-    * */
+    /**
+     * @name mostrarClavesPruebasEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     * Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad MostrarClaves se muestren correctamente en español,
+     * tanto los de la actividad, como los de la ayuda y los del menú.
+     */
 
     @Test
     public void mostrarClavesPruebasEs() {

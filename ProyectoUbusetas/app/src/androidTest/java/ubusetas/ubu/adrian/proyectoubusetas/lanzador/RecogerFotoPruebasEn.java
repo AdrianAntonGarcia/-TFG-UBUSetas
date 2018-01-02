@@ -36,6 +36,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Clase que prueba que todos los textos de la actividad recogerFoto se muestren
+ * correctamente en inglés al pulsar los diferentes botones.
+ *
+ * @author Adrián Antón García
+ * @name RecogerFotoPruebasEn
+ * @category clase
+ */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class RecogerFotoPruebasEn {
@@ -44,10 +53,28 @@ public class RecogerFotoPruebasEn {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
+    /**
+     * Procedimiento que prueba que todos los textos de la actividad recogerFoto se muestren
+     * correctamente en inglés al pulsar los diferentes botones.
+     *
+     * @name probarTextosEn
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Test
     public void probarTextosEn() {

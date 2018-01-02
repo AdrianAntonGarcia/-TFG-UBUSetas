@@ -36,12 +36,13 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 
-/*
-* @name: ElegirClaves
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que muestra los generos a elegir para filtrar la clave dicotómica general.
-* */
+/**
+ * Clase que muestra los géneros a elegir para filtrar la clave dicotómica general.
+ *
+ * @author Adrián Antón García
+ * @name ElegirClaves
+ * @category clase
+ */
 
 public class ElegirClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
@@ -70,14 +71,16 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
     private ArrayList<String> resultadosAdevolver;
     //Idioma de la aplicación
     private String idioma;
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,12 +157,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /*
-    * @name: cargarLista
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que convierte la lista de especies en una de generos
-    * */
+    /**
+     * Procedimiento que convierte la lista de especies en una de generos
+     *
+     * @name cargarLista
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     public void convertirAGeneros() {
         for (int i = 0; i < resultados.size(); i++)
@@ -167,12 +171,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
             resultados.set(i, resultados.get(i).split(" ")[0].trim());
     }
 
-    /*
-    * @name: cargarLista
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que carga la lista de items del selector a partir de los resultados obtenidos
-    * */
+    /**
+     * Procedimiento que carga la lista de items del selector a partir de los resultados obtenidos
+     *
+     * @name cargarLista
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     public void cargarLista() {
 
@@ -191,13 +196,15 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
             }
         }
     }
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -218,13 +225,14 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -232,12 +240,14 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         //guardo el idioma
         outState.putString("idioma", idioma);
     }
-    /*
-    * @name: onBackPressed
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+     *
+     * @name onBackPressed
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -257,26 +267,30 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.opciones, menu);
         return true;
     }
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -297,13 +311,14 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    * @name: onClick
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
-    * @param: View, Vista del botón pulsado.
-    * */
+    /**
+     * Procedimiento que es llamado cuándo se hace click en cualquier botón.
+     *
+     * @param View, Vista del botón pulsado.
+     * @name onClick
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onClick(View v) {
@@ -333,20 +348,21 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
                     Intent cambioActividad = new Intent(ElegirClaves.this, ClaveDicotomica.class);
                     cambioActividad.putStringArrayListExtra("generosMarcados", marcados);
                     cambioActividad.putStringArrayListExtra("resultados", resultados);
-                    cambioActividad.putExtra("actividadPrevia",1);
+                    cambioActividad.putExtra("actividadPrevia", 1);
                     startActivity(cambioActividad);
                 }
                 break;
         }
     }
 
-       /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -384,7 +400,7 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
-        }else if( id == R.id.menu_ayuda){
+        } else if (id == R.id.menu_ayuda) {
             //genero la ayuda del menú lateral
             final Dialog dialog = new Dialog(ElegirClaves.this);
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

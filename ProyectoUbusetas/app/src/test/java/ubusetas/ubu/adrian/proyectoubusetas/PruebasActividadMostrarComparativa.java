@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
-import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa;
@@ -29,12 +27,13 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static org.robolectric.Shadows.shadowOf;
 
-/*
-* @name: PruebasActividadMostrarSetas
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba la actividad mostrarComparativa
-* */
+/**
+ * Clase que prueba la actividad mostrarComparativa.
+ *
+ * @author Adrián Antón García
+ * @name PruebasActividadMostrarSetas
+ * @category clase
+ */
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricTestRunner.class)
@@ -43,14 +42,15 @@ public class PruebasActividadMostrarComparativa {
     private MostrarComparativa mostrarComparativa;
     private Bitmap bitArriba;
     private Bitmap bitAbajo;
-    /*
-    * @name: setupEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad MostrarComparativa en español
-    * para ser usada por los demás tests
-    * */
 
+    /**
+     * Procedimiento que inicializa la actividad MostrarComparativa en español
+     * para ser usada por los demás tests.
+     *
+     * @name setupEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     public void setupEs() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -73,13 +73,14 @@ public class PruebasActividadMostrarComparativa {
         mostrarComparativa = Robolectric.buildActivity(MostrarComparativa.class, intent).create().get();
     }
 
-    /*
-    * @name: setupEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad MostrarComparativa en inglés
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad MostrarComparativa en inglés
+     * para ser usada por los demás tests.
+     *
+     * @name setupEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     public void setupEn() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -102,14 +103,14 @@ public class PruebasActividadMostrarComparativa {
         mostrarComparativa = Robolectric.buildActivity(MostrarComparativa.class, intent).create().get();
     }
 
-
-    /*
-    * @name: probarTextosEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "es")
@@ -120,14 +121,14 @@ public class PruebasActividadMostrarComparativa {
         assertFalse("texto".equals(texto1.getText()));
     }
 
-
-    /*
-    * @name: probarTextosEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextosEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "en")
@@ -138,13 +139,15 @@ public class PruebasActividadMostrarComparativa {
         assertFalse("texto".equals(texto1.getText()));
     }
 
-    /*
-    * @name: pulsarMenuClasificar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
-    * haya cambiado a la actividad mostrarComparativa
-    * */
+    /**
+     * Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
+     * haya cambiado a la actividad mostrarComparativa.
+     *
+     * @name pulsarMenuClasificar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuClasificar() {
         setupEs();
@@ -159,13 +162,14 @@ public class PruebasActividadMostrarComparativa {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuMostrarSetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
-    * haya cambiado a la actividad mostrarComparativa
-    * */
+    /**
+     * Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
+     * haya cambiado a la actividad mostrarComparativa.
+     *
+     * @name pulsarMenuMostrarSetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarMenuMostrarSetas() {
@@ -181,13 +185,15 @@ public class PruebasActividadMostrarComparativa {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuIrClaves
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
-    * haya cambiado a la actividad mostrar claves
-    * */
+    /**
+     * Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+     * haya cambiado a la actividad mostrar claves.
+     *
+     * @name pulsarMenuIrClaves
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuIrClaves() {
         setupEs();
@@ -202,13 +208,15 @@ public class PruebasActividadMostrarComparativa {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuCambiarIdioma
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de cambiar el idioma del menú
-    * desde la aplicación en español y comprueba que envie el idioma correcto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de cambiar el idioma del menú
+     * desde la aplicación en español y comprueba que envie el idioma correcto.
+     *
+     * @name pulsarMenuCambiarIdioma
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {

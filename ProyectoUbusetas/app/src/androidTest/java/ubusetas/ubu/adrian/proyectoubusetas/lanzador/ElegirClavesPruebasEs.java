@@ -38,13 +38,14 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 
-/*
-* @name: ElegirClavesPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba los textos de la actividad ElegirClaves y prueba que funcionen correctamente
-* las diferentes opciones al pulsar los elementos de la lista de géneros a elegir.
-* */
+/**
+ * Clase que prueba los textos de la actividad ElegirClaves y prueba que funcionen correctamente
+ * las diferentes opciones al pulsar los elementos de la lista de géneros a elegir.
+ *
+ * @author Adrián Antón García
+ * @name ElegirClavesPruebasEs
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -54,26 +55,28 @@ public class ElegirClavesPruebasEs {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos de la actividad ElegirClaves y prueba que funcionen correctamente
-       * las diferentes opciones al pulsar los elementos de la lista de géneros a elegir.
-    * */
+    /**
+     * Procedimiento que prueba los textos de la actividad ElegirClaves y prueba que funcionen correctamente
+     * las diferentes opciones al pulsar los elementos de la lista de géneros a elegir.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void probarTextosEs() {

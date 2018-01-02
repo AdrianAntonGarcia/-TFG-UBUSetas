@@ -1,4 +1,4 @@
-package ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves;
+package ubusetas.ubu.adrian.proyectoubusetas.tarjetasclaves;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 
-/*
-* @name: AdaptadorTarjetasClaves
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que implementa el adaptador para cargar los elementos
-* de la lista de las claves dicotómicas
-* */
+/**
+ * Clase que implementa el adaptador para cargar los elementos
+ * de la lista de las claves dicotómicas.
+ *
+ * @author Adrián Antón García
+ * @name AdaptadorTarjetasClaves
+ * @category clase
+ */
 
 public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarjetasClaves.ViewHolder> {
 
@@ -30,30 +31,32 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
     //lista de tarjetas
     public ArrayList<TarjetaClave> listaTarjetaClaves;
 
-    /*
-    * @name: AdaptadorSelector
-    * @Author: Adrián Antón García
-    * @category: constructor
-    * @Description: Constructor que inicializa el adaptador de la lista de claves
-    * @param: AppCompatActivity, contexto de la actividad donde se va a cargar el adaptador
-    * @param: ArrayList<TarjetaClave>,  Lista que contiene los elementos
-    * */
+    /**
+     * Constructor que inicializa el adaptador de la lista de claves
+     *
+     * @param AppCompatActivity,       contexto de la actividad donde se va a cargar el adaptador
+     * @param ArrayList<TarjetaClave>, Lista que contiene los elementos
+     * @name AdaptadorSelector
+     * @author Adrián Antón García
+     * @category constructor
+     */
 
     public AdaptadorTarjetasClaves(Context context, ArrayList<TarjetaClave> cardsList) {
         this.context = context;
         this.listaTarjetaClaves = cardsList;
     }
 
-    /*
-     * @name: onCreateViewHolder
-     * @Author: Adrián Antón García
-     * @category: método
-     * @Description: Método que se llama para cargar un elemento en la lista.
+    /**
+     * Método que se llama para cargar un elemento en la lista.
      * Estos métodos son llamados por el sistema.
-     * @param: ViewGroup, Grupo de vistas de los elementos a cargar.
-     * @param: int, elemento seleccionado a cargar.
-     * @return: ViewhHodler, contenendor de elementos de la lista.
-     * */
+     *
+     * @param ViewGroup, Grupo de vistas de los elementos a cargar.
+     * @param int,       elemento seleccionado a cargar.
+     * @return ViewhHodler, contenendor de elementos de la lista.
+     * @name onCreateViewHolder
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public AdaptadorTarjetasClaves.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,15 +65,16 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
         return new ViewHolder(v);
     }
 
-    /*
-     * @name: onBindViewHolder
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que inicializa todos los atributos de un elemento de la lista.
+    /**
+     * Procedimiento que inicializa todos los atributos de un elemento de la lista.
      * Estos métodos son llamados por el sistema.
-     * @param: ViewHolderSelector, Vista del selector
-     * @param: int, elemento del selector a inicializar
-     * */
+     *
+     * @param ViewHolderSelector, Vista del selector
+     * @param int,                elemento del selector a inicializar
+     * @name onBindViewHolder
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onBindViewHolder(AdaptadorTarjetasClaves.ViewHolder holder, int position) {
@@ -87,14 +91,15 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
         layout.setBackgroundColor(color);
     }
 
-    /*
-     * @name: getItemCount
-     * @Author: Adrián Antón García
-     * @category: método
-     * @Description: Método que devuelve cuantos elementos hay cargados en la lista.
+    /**
+     * Método que devuelve cuantos elementos hay cargados en la lista.
      * Estos métodos son llamados por el sistema.
-     * @return: int, número de elementos.
-     * */
+     *
+     * @return int, número de elementos.
+     * @name getItemCount
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public int getItemCount() {
@@ -105,25 +110,27 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
         }
     }
 
-    /*
-    * @name: ViewHolder
-    * @Author: Adrián Antón García
-    * @category: clase
-    * @Description: Clase que implementa los elementos que se deben cargar en la lista de claves
-    * */
+    /**
+     * Clase que implementa los elementos que se deben cargar en la lista de claves.
+     *
+     * @author Adrián Antón García
+     * @name ViewHolder
+     * @category clase
+     */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView inicial;
         private TextView nombre;
         private RelativeLayout layoutSeta;
 
-        /*
-         * @name: ViewHolder
-         * @Author: Adrián Antón García
-         * @category: Constructor
-         * @Description: Constructor que inicializa el contenedor de elementos.
-         * @param: View, vista de la interfaz con el que se relaciona el contenedor
-         * */
+        /**
+         * Constructor que inicializa el contenedor de elementos.
+         *
+         * @param View, vista de la interfaz con el que se relaciona el contenedor
+         * @name ViewHolder
+         * @author Adrián Antón García
+         * @category Constructor
+         */
 
         public ViewHolder(View v) {
             super(v);
@@ -140,7 +147,7 @@ public class AdaptadorTarjetasClaves extends RecyclerView.Adapter<AdaptadorTarje
                     Toast.makeText(context, nombre.getText(), Toast.LENGTH_SHORT).show();
                     Intent mostrarSeta = new Intent(context, ClaveDicotomica.class);
                     mostrarSeta.putExtra("nombreClave", nombre.getText());
-                    mostrarSeta.putExtra("actividadPrevia",2);
+                    mostrarSeta.putExtra("actividadPrevia", 2);
                     context.startActivity(mostrarSeta);
                 }
             });

@@ -35,13 +35,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: ActividadLanzadoraPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
-* tanto los de la actividad, como los de la ayuda y los del menú.
-* */
+/**
+ * Clase que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
+ * tanto los de la actividad, como los de la ayuda y los del menú.
+ *
+ * @author Adrián Antón García
+ * @name ActividadLanzadoraPruebasEs
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -51,26 +52,28 @@ public class ActividadLanzadoraPruebasEs {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-     * @name: setup
-     * @Author: Adrián Antón García
-     * @category: procedimiento test
-     * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
      * externos a la aplicación.
-     * */
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-     * @name: probarTextosEs
-     * @Author: Adrián Antón García
-     * @category: procedimiento test
-     * @Description: Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
+    /**
+     * Procedimiento que MostrarResultadosPulsarItems que los textos de la actividad lanzadora se muestren correctamente en español,
      * tanto los de la actividad, como los de la ayuda y los del menú.
-     * */
+     *
+     * @name probarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void probarTextosEs() {

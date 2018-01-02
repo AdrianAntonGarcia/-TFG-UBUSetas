@@ -40,13 +40,14 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 
-/*
-* @name: MostrarComparativaPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba que se carguen los textos en español de la actividad Mostrar comparativa y que se puedan
-* pulsar correctamente ambas imágenes para ampliar su tamaño.
-* */
+/**
+ * Clase que prueba que se carguen los textos en español de la actividad Mostrar comparativa y que se puedan
+ * pulsar correctamente ambas imágenes para ampliar su tamaño.
+ *
+ * @author Adrián Antón García
+ * @name MostrarComparativaPruebasEs
+ * @category clase
+ */
 
 
 @LargeTest
@@ -57,26 +58,28 @@ public class MostrarComparativaPruebasEn {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-     * @name: mostrarComparativaTest
-     * @Author: Adrián Antón García
-     * @category: procedimiento test
-     * @Description: Procedimiento que prueba que se carguen los textos en español de la actividad Mostrar comparativa y que se puedan
+    /**
+     * Procedimiento que prueba que se carguen los textos en español de la actividad Mostrar comparativa y que se puedan
      * pulsar correctamente ambas imágenes para ampliar su tamaño.
-     * */
+     *
+     * @name mostrarComparativaTest
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void mostrarComparativaPruebasEs() {

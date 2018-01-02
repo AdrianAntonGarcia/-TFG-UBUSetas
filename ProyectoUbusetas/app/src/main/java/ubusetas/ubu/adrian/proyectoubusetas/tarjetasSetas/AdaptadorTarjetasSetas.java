@@ -1,4 +1,4 @@
-package ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas;
+package ubusetas.ubu.adrian.proyectoubusetas.tarjetassetas;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,14 @@ import java.util.ArrayList;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 
-/*
-* @name: AdaptadorTarjetasSetas
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que implementa el adaptador para cargar los elementos
-* de la lista de setas
-* */
+/**
+ * Clase que implementa el adaptador para cargar los elementos
+ * de la lista de setas
+ *
+ * @author Adrián Antón García
+ * @name AdaptadorTarjetasSetas
+ * @category clase
+ */
 
 public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjetasSetas.ViewHolder> {
 
@@ -32,30 +33,32 @@ public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjet
     //lista de tarjetas
     public ArrayList<TarjetaSeta> listaTarjetaSetas;
 
-    /*
-    * @name: AdaptadorTarjetasSetas
-    * @Author: Adrián Antón García
-    * @category: constructor
-    * @Description: Constructor que inicializa el adaptador de la lista de setas
-    * @param: AppCompatActivity, contexto de la actividad donde se va a cargar el adaptador
-    * @param: ArrayList<TarjetaClave>,  Lista que contiene los elementos
-    * */
+    /**
+     * Constructor que inicializa el adaptador de la lista de setas.
+     *
+     * @param AppCompatActivity,       contexto de la actividad donde se va a cargar el adaptador
+     * @param ArrayList<TarjetaClave>, Lista que contiene los elementos
+     * @name AdaptadorTarjetasSetas
+     * @author Adrián Antón García
+     * @category constructor
+     */
 
     public AdaptadorTarjetasSetas(Context context, ArrayList<TarjetaSeta> cardsList) {
         this.context = context;
         this.listaTarjetaSetas = cardsList;
     }
 
-    /*
-     * @name: onCreateViewHolder
-     * @Author: Adrián Antón García
-     * @category: método
-     * @Description: Método que se llama para cargar un elemento en la lista.
+    /**
+     * Método que se llama para cargar un elemento en la lista.
      * Estos métodos son llamados por el sistema.
-     * @param: ViewGroup, Grupo de vistas de los elementos a cargar.
-     * @param: int, elemento seleccionado a cargar.
-     * @return: ViewhHodler, contenendor de elementos de la lista.
-     * */
+     *
+     * @param ViewGroup, Grupo de vistas de los elementos a cargar.
+     * @param int,       elemento seleccionado a cargar.
+     * @return ViewhHodler, contenendor de elementos de la lista.
+     * @name onCreateViewHolder
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public AdaptadorTarjetasSetas.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -64,15 +67,16 @@ public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjet
         return new ViewHolder(v);
     }
 
-    /*
-      * @name: onBindViewHolder
-      * @Author: Adrián Antón García
-      * @category: procedimiento
-      * @Description: Procedimiento que inicializa todos los atributos de un elemento de la lista.
-      * Estos métodos son llamados por el sistema.
-      * @param: ViewHolderSelector, Vista del selector
-      * @param: int, elemento del selector a inicializar
-      * */
+    /**
+     * Procedimiento que inicializa todos los atributos de un elemento de la lista.
+     * Estos métodos son llamados por el sistema.
+     *
+     * @param ViewHolderSelector, Vista del selector
+     * @param int,                elemento del selector a inicializar
+     * @name onBindViewHolder
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onBindViewHolder(AdaptadorTarjetasSetas.ViewHolder holder, int position) {
@@ -96,14 +100,15 @@ public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjet
 
     }
 
-    /*
-      * @name: getItemCount
-      * @Author: Adrián Antón García
-      * @category: método
-      * @Description: Método que devuelve cuantos elementos hay cargados en la lista.
-      * Estos métodos son llamados por el sistema.
-      * @return: int, número de elementos.
-      * */
+    /**
+     * Método que devuelve cuantos elementos hay cargados en la lista.
+     * Estos métodos son llamados por el sistema.
+     *
+     * @return int, número de elementos.
+     * @name getItemCount
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public int getItemCount() {
@@ -114,12 +119,13 @@ public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjet
         }
     }
 
-    /*
-    * @name: ViewHolder
-    * @Author: Adrián Antón García
-    * @category: clase
-    * @Description: Clase que implementa los elementos que se deben cargar en la lista de setas
-    * */
+    /**
+     * Clase que implementa los elementos que se deben cargar en la lista de setas.
+     *
+     * @author Adrián Antón García
+     * @name ViewHolder
+     * @category clase
+     */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView inicial;
@@ -127,13 +133,14 @@ public class AdaptadorTarjetasSetas extends RecyclerView.Adapter<AdaptadorTarjet
         private ImageView imagenSeta;
         private RelativeLayout layoutSeta;
 
-        /*
-         * @name: ViewHolder
-         * @Author: Adrián Antón García
-         * @category: Constructor
-         * @Description: Constructor que inicializa el contenedor de elementos.
-         * @param: View, vista de la interfaz con el que se relaciona el contenedor
-         * */
+        /**
+         * Constructor que inicializa el contenedor de elementos.
+         *
+         * @param View, vista de la interfaz con el que se relaciona el contenedor
+         * @name ViewHolder
+         * @author Adrián Antón García
+         * @category Constructor
+         */
 
         public ViewHolder(View v) {
             super(v);

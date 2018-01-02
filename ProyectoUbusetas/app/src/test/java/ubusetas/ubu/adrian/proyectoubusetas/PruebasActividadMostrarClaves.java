@@ -1,15 +1,12 @@
 package ubusetas.ubu.adrian.proyectoubusetas;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -24,22 +21,21 @@ import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.ClaveDicotomica;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
-import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.TarjetaClave;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasSetas.TarjetaSeta;
+import ubusetas.ubu.adrian.proyectoubusetas.tarjetasclaves.TarjetaClave;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNull;
 import static org.robolectric.Shadows.shadowOf;
 
-/*
-* @name: PruebasActividadMostrarSetas
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba la actividad mostrarClaves
-* */
+/**
+ * Clase que prueba la actividad mostrarClaves.
+ *
+ * @author Adrián Antón García
+ * @name PruebasActividadMostrarSetas
+ * @category clase
+ */
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricTestRunner.class)
@@ -47,13 +43,14 @@ public class PruebasActividadMostrarClaves {
 
     private MostrarClaves mostrarClaves;
 
-   /*
-    * @name: setupEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar claves en español
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad mostrar claves en español
+     * para ser usada por los demás tests.
+     *
+     * @name setupEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
 
     public void setupEs() {
@@ -63,13 +60,14 @@ public class PruebasActividadMostrarClaves {
         mostrarClaves = Robolectric.buildActivity(MostrarClaves.class, intent).create().get();
     }
 
-    /*
-    * @name: setupEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar claves en inglés
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad mostrar claves en inglés
+     * para ser usada por los demás tests.
+     *
+     * @name setupEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     public void setupEn() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -78,13 +76,14 @@ public class PruebasActividadMostrarClaves {
         mostrarClaves = Robolectric.buildActivity(MostrarClaves.class, intent).create().get();
     }
 
-    /*
-    * @name: seleccionarItems
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba selecciona todos los items de la lista y comprueba
-    * que se cambie a la actividad mostrarInformacionSeta de forma correcta.
-    * */
+    /**
+     * Procedimiento que prueba selecciona todos los items de la lista y comprueba
+     * que se cambie a la actividad mostrarInformacionSeta de forma correcta.
+     *
+     * @name seleccionarItems
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void seleccionarItems() {
@@ -104,12 +103,13 @@ public class PruebasActividadMostrarClaves {
 
     }
 
-        /*
-    * @name: testInicializarTarjetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba que se hayan cargado las tarjetas correctamente.
-    * */
+    /**
+     * Procedimiento que prueba que se hayan cargado las tarjetas correctamente.
+     *
+     * @name testInicializarTarjetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void testInicializarTarjetas() {
@@ -128,13 +128,14 @@ public class PruebasActividadMostrarClaves {
         }
     }
 
-    /*
-    * @name: probarTextosEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "es")
@@ -146,13 +147,14 @@ public class PruebasActividadMostrarClaves {
         setupEs();
     }
 
-        /*
-    * @name: probarTextosEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en español de la actividad mostrar setas y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextosEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "en")
@@ -164,13 +166,15 @@ public class PruebasActividadMostrarClaves {
         setupEs();
     }
 
-    /*
-    * @name: pulsarMenuClasificar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarMenuClasificar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuClasificar() {
         setupEs();
@@ -185,13 +189,14 @@ public class PruebasActividadMostrarClaves {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuMostrarSetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarMenuMostrarSetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarMenuMostrarSetas() {
@@ -207,13 +212,15 @@ public class PruebasActividadMostrarClaves {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuIrClaves
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
-    * haya cambiado a la actividad mostrar claves
-    * */
+    /**
+     * Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+     * haya cambiado a la actividad mostrar claves.
+     *
+     * @name pulsarMenuIrClaves
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuIrClaves() {
         setupEs();
@@ -227,13 +234,15 @@ public class PruebasActividadMostrarClaves {
         assertNull(actual);
     }
 
-    /*
-    * @name: pulsarMenuCambiarIdioma
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de cambiar el idioma del menú
-    * desde la aplicación en español y comprueba que envie el idioma correcto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de cambiar el idioma del menú
+     * desde la aplicación en español y comprueba que envie el idioma correcto.
+     *
+     * @name pulsarMenuCambiarIdioma
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     @Config(qualifiers = "es")
     public void pulsarMenuCambiarIdioma() {

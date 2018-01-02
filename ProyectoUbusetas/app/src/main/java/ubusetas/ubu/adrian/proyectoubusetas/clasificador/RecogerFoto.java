@@ -47,12 +47,12 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
-/*
-* @name: RecogerFoto
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que implementa la funcionalidad relacionada con la toma y guardado de fotografías.
-* */
+/**
+ * Clase que implementa la funcionalidad relacionada con la toma y guardado de fotografías.
+ * @author Adrián Antón García
+ * @name RecogerFoto
+ * @category clase
+ *  */
 
 public class RecogerFoto extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = RecogerFoto.class.getSimpleName();
@@ -60,7 +60,7 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     //Bitmap y path donde guardamos la foto introducida por el usuario
 
     private Bitmap bmap;
-    String fotoPath;
+    private String fotoPath;
 
     //Elementos de la interfaz
 
@@ -116,14 +116,15 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
     private Classifier classifier;
     private Executor executor = Executors.newSingleThreadExecutor();
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,8 +138,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         Intent intentRecibidos = getIntent();
         Bundle datosRecibidos = intentRecibidos.getExtras();
         acceso = new AccesoDatosExternos(this);
-        ocultarGuardar=true;
-        ocultarClasificar=true;
+        ocultarGuardar = true;
+        ocultarClasificar = true;
         //Relaciones entre los elementos con el xml
 
         botonHacerFoto = (FloatingActionButton) findViewById(R.id.boton_hacer_foto);
@@ -202,13 +203,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -230,8 +232,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             if (bmap != null) {
                 intent.putExtra("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
             }
-            if(fotoPath!=null){
-                intent.putExtra("fotoPath",fotoPath);
+            if (fotoPath != null) {
+                intent.putExtra("fotoPath", fotoPath);
             }
             intent.putExtra("ocultarClasificar", ocultarClasificar);
             intent.putExtra("ocultarGuardar", ocultarGuardar);
@@ -242,13 +244,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -265,13 +268,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         outState.putString("idioma", idioma);
     }
 
-    /*
-    * @name: onClick
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
-    * @param: View, Vista del botón pulsado.
-    * */
+    /**
+     * Procedimiento que es llamado cuándo se hace click en cualquier botón.
+     *
+     * @param View, Vista del botón pulsado.
+     * @name onClick
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onClick(View v) {
@@ -369,19 +373,20 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
                 }
                 break;
 
-            case R.id.boton_galeria: //BOTÓN ACCEDER A GALERÍA
+            case R.id.boton_galeria: //acceder galeria
                 Intent galeria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                 startActivityForResult(galeria, CODIGO_GALERIA);
                 break;
         }
     }
 
-    /*
-    * @name: inicializarClasificador
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que inicializa el clasificador.
-    * */
+    /**
+     * Procedimiento que inicializa el clasificador.
+     *
+     * @name inicializarClasificador
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     private void inicializarClasificador() {
         //inicializo el clasificador
@@ -405,27 +410,29 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         });
     }
 
-    /*
-    * @name: getCurrentDateAndTime
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que devuelve un String que contiene la fecha actual.
-    * */
+    /**
+     * Método que devuelve un String que contiene la fecha actual.
+     *
+     * @name getCurrentDateAndTime
+     * @author Adrián Antón García
+     * @category método
+     */
 
     private String getCurrentDateAndTime() {
-        Calendar c = Calendar.getInstance();
+        Calendar calendario = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-­ss");
-        String formattedDate = df.format(c.getTime());
-        return formattedDate;
+        String formato = df.format(calendario.getTime());
+        return formato;
     }
 
-    /*
-    * @name: onActivityResult
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que es llamado cuando se termina una peticion que habíamos
-    * realizado al sistema, por ejemplo cuando llamamos a la cámara.
-    * */
+    /**
+     * Procedimiento que es llamado cuando se termina una peticion que habíamos
+     * realizado al sistema, por ejemplo cuando llamamos a la cámara.
+     *
+     * @name onActivityResult
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //Compruebo si la peticion viene de la cámara y se ha realizado correctamente
@@ -490,15 +497,16 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-        /*
-    * @name: RotateBitmap
-    * @Author: https://stackoverflow.com/questions/4166917/android-how-to-rotate-a-bitmap-on-a-center-point
-    * @category: método
-    * @Description: Nétodo que rota un bitmap.
-    * @param: Bitmap, el bitmap a girar.
-    * @param: float, los grados a girar el bitmap.
-    * @return: Bitmap, el Bitmap ya girado.
-    * */
+    /**
+     * Método que rota un bitmap.
+     *
+     * @param Bitmap, el bitmap a girar.
+     * @param float,  los grados a girar el bitmap.
+     * @return Bitmap, el Bitmap ya girado.
+     * @name RotateBitmap
+     * @author https://stackoverflow.com/questions/4166917/android-how-to-rotate-a-bitmap-on-a-center-point
+     * @category método
+     */
 
     public static Bitmap RotateBitmap(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
@@ -506,12 +514,13 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
-        /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el botón volver del móvil.
-    * */
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el botón volver del móvil.
+     *
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -529,26 +538,29 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior.
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.opciones, menu);
         return true;
     }
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -569,13 +581,14 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-   * @name: onNavigationItemSelected
-   * @Author: Adrián Antón García
-   * @category: método
-   * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-   * @param: MenuItem, item seleccionado por el usuario del menú.
-   * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, item seleccionado por el usuario del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -609,8 +622,8 @@ public class RecogerFoto extends AppCompatActivity implements View.OnClickListen
             if (bmap != null) {
                 intent.putExtra("bmap", bmap.copy(Bitmap.Config.ARGB_8888, false));
             }
-            if(fotoPath!=null){
-                intent.putExtra("fotoPath",fotoPath);
+            if (fotoPath != null) {
+                intent.putExtra("fotoPath", fotoPath);
             }
             intent.putExtra("ocultarClasificar", ocultarClasificar);
             intent.putExtra("ocultarGuardar", ocultarGuardar);

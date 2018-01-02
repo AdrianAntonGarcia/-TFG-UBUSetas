@@ -36,13 +36,14 @@ import ubusetas.ubu.adrian.proyectoubusetas.elegirclaves.ElegirClaves;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
-/*
-* @name: ClaveDicotomica
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que implementa la funcionalidad relacionada
-* con mostrar la clave dicotómica seleccionada
-* */
+/**
+ * Clase que implementa la funcionalidad relacionada
+ * con mostrar la clave dicotómica seleccionada
+ *
+ * @author Adrián Antón García
+ * @name ClaveDicotomica
+ * @category clase
+ */
 
 public class ClaveDicotomica extends AppCompatActivity implements Serializable, AdapterView.OnItemClickListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = ClaveDicotomica.class.getSimpleName();
@@ -105,14 +106,15 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
     private String solucion;
     private Boolean mostrarClave;
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,7 +189,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
 
         //si no se ha especificado clave, se carga la ggeneral
         if (actividadPrevia == 1) {
-            vuelta=1;
+            vuelta = 1;
             NOMBRECLAVE = "general";
             generosRecibidos = datosRecibidos.getStringArrayList("generosMarcados");
             Log.d("generosRecibidos", generosRecibidos.toString());
@@ -196,7 +198,7 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             }
         } else {
             //cargo la clave especifica pasada por paramatero
-            vuelta=2;
+            vuelta = 2;
             cargarClaveEspecifica();
         }
 
@@ -225,13 +227,14 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         Log.d("ACTIVIDAD PREVIA", actividadPrevia + "");
     }
 
-    /*
-    * @name: cargarClaveGeneral
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que carga la clave general desde el padre común a los géneros pasados como parametros.
-    * @param: ArrayList<String>, géneros desde los que se va a filtrar la clave general.
-    * */
+    /**
+     * Procedimiento que carga la clave general desde el padre común a los géneros pasados como parametros.
+     *
+     * @param ArrayList<String>, géneros desde los que se va a filtrar la clave general.
+     * @name cargarClaveGeneral
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     public void cargarClaveGeneral(ArrayList<String> generos) {
 
@@ -309,12 +312,13 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         cargarClaveEspecifica();
     }
 
-    /*
-    * @name: cargarClave
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que carga la clave dicotomica especificada en la variable NOMBREGENERAL.
-    * */
+    /**
+     * Procedimiento que carga la clave dicotomica especificada en la variable NOMBREGENERAL.
+     *
+     * @name cargarClave
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     public void cargarClaveEspecifica() {
         listViewClaveDicotomica.setVisibility(View.VISIBLE);
@@ -354,13 +358,14 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         listViewClaveDicotomica.setAdapter(adaptador);
     }
 
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -375,21 +380,22 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             intent.putExtra("nombreClave", NOMBRECLAVE);
             intent.putExtra("mostrarClave", mostrarClave);
             intent.putExtra("actividadPrevia", actividadPrevia);
-            intent.putExtra("generosMarcados",generosRecibidos);
-            intent.putExtra("vuelta",vuelta);
+            intent.putExtra("generosMarcados", generosRecibidos);
+            intent.putExtra("vuelta", vuelta);
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -398,16 +404,17 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         outState.putString("idioma", idioma);
     }
 
-    /*
-    * @name: onItemClick
-    * @Author: Adrián Antón García
-    * @category: procedure
-    * @Description: Procedimiento que se activa cuando se pulsa sobre un elemento de la lista.
-    * @Param: AdapterView<?>, Vista padre del elemento pulsado.
-    * @Param: View, Vista del elemento pulsado.
-    * @Param: int, posición en la lista del elemento pulsado.
-    * @Param: id, identificador del elemento pulsado.
-    * */
+    /**
+     * Procedimiento que se activa cuando se pulsa sobre un elemento de la lista.
+     *
+     * @param AdapterView<?>, Vista padre del elemento pulsado.
+     * @param View,           Vista del elemento pulsado.
+     * @param int,            posición en la lista del elemento pulsado.
+     * @param id,             identificador del elemento pulsado.
+     * @name onItemClick
+     * @author Adrián Antón García
+     * @category procedure
+     */
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -470,13 +477,14 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         }
     }
 
-    /*
-     * @name: onClick
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
-     * @Param: View, Vista del botón pulsado.
-     * */
+    /**
+     * Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
+     *
+     * @param View, Vista del botón pulsado.
+     * @name onClick
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onClick(View v) {
@@ -524,26 +532,30 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         }
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.opciones, menu);
         return true;
     }
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -564,12 +576,13 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+     *
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -603,27 +616,29 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
                     break;
                 case 3:
                     Intent intent3 = new Intent(this, this.getClass());
-                    if(vuelta ==1){
-                        actividadPrevia=1;
-                    }else{
-                        actividadPrevia=2;
+                    if (vuelta == 1) {
+                        actividadPrevia = 1;
+                    } else {
+                        actividadPrevia = 2;
                     }
                     intent3.putExtra("idioma", idioma);
-                    intent3.putExtra("generosMarcados",generosRecibidos);
-                    intent3.putExtra("actividadPrevia",actividadPrevia);
+                    intent3.putExtra("generosMarcados", generosRecibidos);
+                    intent3.putExtra("actividadPrevia", actividadPrevia);
                     this.startActivity(intent3);
                     break;
             }
         }
     }
 
-    /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     * .
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -658,8 +673,8 @@ public class ClaveDicotomica extends AppCompatActivity implements Serializable, 
             intent.putExtra("idioma", idioma);
             intent.putExtra("mostrarClave", mostrarClave);
             intent.putExtra("actividadPrevia", actividadPrevia);
-            intent.putExtra("generosMarcados",generosRecibidos);
-            intent.putExtra("vuelta",vuelta);
+            intent.putExtra("generosMarcados", generosRecibidos);
+            intent.putExtra("vuelta", vuelta);
             //llamamos a la actividad
             this.startActivity(intent);
             //finalizamos la actividad actual

@@ -30,13 +30,14 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 
-/*
-* @name: MostrarClavesPruebasPulsarTarjetas
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que pulsa las tarjetas de la actividad Mostrar claves y comprueba que se acceda a las actividades correctas,
-* prueba que funcione correctamente en ambos idiomas de la aplicación.
-* */
+/**
+ * Clase que pulsa las tarjetas de la actividad Mostrar claves y comprueba que se acceda a las actividades correctas,
+ * prueba que funcione correctamente en ambos idiomas de la aplicación.
+ *
+ * @author Adrián Antón García
+ * @name MostrarClavesPruebasPulsarTarjetas
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -45,13 +46,14 @@ public class MostrarClavesPruebasPulsarTarjetas {
     @Rule
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
 
-    /*
-     * @name: mostrarClavesPruebasPulsarTarjetas
-     * @Author: Adrián Antón García
-     * @category: procedimiento test
-     * @Description: Procedimiento que pulsa las tarjetas de la actividad Mostrar claves y comprueba que se acceda a las actividades correctas,
+    /**
+     * Procedimiento que pulsa las tarjetas de la actividad Mostrar claves y comprueba que se acceda a las actividades correctas,
      * prueba que funcione correctamente en ambos idiomas de la aplicación.
-     * */
+     *
+     * @name mostrarClavesPruebasPulsarTarjetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void mostrarClavesPruebasPulsarTarjetas() {
@@ -65,7 +67,7 @@ public class MostrarClavesPruebasPulsarTarjetas {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        for(int i = 0; i<40;++i) {
+        for (int i = 0; i < 40; ++i) {
             ViewInteraction recyclerView = onView(
                     allOf(withId(R.id.recycler_view_lista_claves),
                             childAtPosition(
@@ -96,7 +98,7 @@ public class MostrarClavesPruebasPulsarTarjetas {
                         isDisplayed()));
         navigationMenuItemView.perform(click());
 
-        for(int i = 0; i<40;++i) {
+        for (int i = 0; i < 40; ++i) {
             ViewInteraction recyclerView = onView(
                     allOf(withId(R.id.recycler_view_lista_claves),
                             childAtPosition(

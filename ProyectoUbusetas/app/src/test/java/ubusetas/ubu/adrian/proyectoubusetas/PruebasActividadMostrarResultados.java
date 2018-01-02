@@ -12,7 +12,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,12 +40,13 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 
 
-/*
-* @name: PruebasActividadLanzadora
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba la actividad MostrarResultados
-* */
+/**
+ * Clase que prueba la actividad MostrarResultados.
+ *
+ * @author Adrián Antón García
+ * @name PruebasActividadLanzadora
+ * @category clase
+ */
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricTestRunner.class)
@@ -54,13 +54,14 @@ public class PruebasActividadMostrarResultados {
     private MostrarResultados mostrarResultados;
     private Bitmap bit;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad mostrar resultados
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad mostrar resultados
+     * para ser usada por los demás tests.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() {
@@ -82,13 +83,14 @@ public class PruebasActividadMostrarResultados {
         mostrarResultados = Robolectric.buildActivity(MostrarResultados.class, intent).create().get();
     }
 
-    /*
-    * @name: probarTextosEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en españolde la actividad mostrar resultados y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en españolde la actividad mostrar resultados y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "es")
@@ -110,13 +112,14 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(((SetasLista) ListaResultados.getAdapter().getItem(4)).getNombre()));
     }
 
-        /*
-    * @name: probarTextos
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba los textos en inglés de la actividad mostrar resultados y comprueba
-    * que los resultados se visualicen de forma correcta en la actividad
-    * */
+    /**
+     * Procedimiento que prueba los textos en inglés de la actividad mostrar resultados y comprueba
+     * que los resultados se visualicen de forma correcta en la actividad.
+     *
+     * @name probarTextos
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     @Config(qualifiers = "en")
@@ -138,13 +141,14 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(((SetasLista) ListaResultados.getAdapter().getItem(4)).getNombre()));
     }
 
-        /*
-    * @name: pulsarClaveFiltrada
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el boton de ir a claves y comprueba que el cambio de
-    * actividad sea correcto enviando la información correcta.
-    * */
+    /**
+     * Procedimiento que pulsa el boton de ir a claves y comprueba que el cambio de
+     * actividad sea correcto enviando la información correcta.
+     *
+     * @name pulsarClaveFiltrada
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarClaveFiltrada() {
@@ -160,12 +164,13 @@ public class PruebasActividadMostrarResultados {
         assertEquals(bit, actual.getExtras().getParcelable("fotoBitmap"));
     }
 
-    /*
-    * @name: probarCargarListas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que el metodo cargarListas funciona correctamente
-    * */
+    /**
+     * Procedimiento que comprueba que el Método cargarListas funciona correctamente.
+     *
+     * @name probarCargarListas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void probarCargarListas() {
@@ -175,13 +180,14 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(mostrarResultados.resultadosSinNum));
     }
 
-    /*
-    * @name: probarCargarListaElementos
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que el metodo cargarListaElementos funciona correctamente, comprobando
-    * si los array de listas se guardan correctamente.
-    * */
+    /**
+     * Procedimiento que comprueba que el Método cargarListaElementos funciona correctamente, comprobando
+     * si los array de listas se guardan correctamente.
+     *
+     * @name probarCargarListaElementos
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void probarCargarListaElementos() {
@@ -213,13 +219,14 @@ public class PruebasActividadMostrarResultados {
 
     }
 
-    /*
-    * @name: pulsarBotonRefrescar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el boton de refrescar y comprueba los elementos de la lista
-    * se actualicen correctamente
-    * */
+    /**
+     * Procedimiento que pulsa el boton de refrescar y comprueba los elementos de la lista
+     * se actualicen correctamente.
+     *
+     * @name pulsarBotonRefrescar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarBotonRefrescar() {
@@ -255,12 +262,13 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(mostrarResultados.listaSetas.get(0).getNombre()));
     }
 
-    /*
-    * @name: pulsarItemLista
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que se cambie de actividad a mostrar comparativa al pulsar cada item de la lista
-    * */
+    /**
+     * Procedimiento que comprueba que se cambie de actividad a mostrar comparativa al pulsar cada item de la lista.
+     *
+     * @name pulsarItemLista
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarItemLista() {
@@ -294,13 +302,14 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(actual.getExtras().getStringArrayList("resultadosAdevolver").toString()));
     }
 
-        /*
-    * @name: mantenerPulsadoItemLista
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que se cambie de actividad a mostrar Informacion Seta
-    * al mantener pulsado cada item de la lista
-    * */
+    /**
+     * Procedimiento que comprueba que se cambie de actividad a mostrar Informacion Seta
+     * al mantener pulsado cada item de la lista.
+     *
+     * @name mantenerPulsadoItemLista
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void mantenerPulsadoItemLista() {
@@ -335,13 +344,14 @@ public class PruebasActividadMostrarResultados {
         assertFalse("texto".equals(actual.getExtras().getStringArrayList("resultados").toString()));
     }
 
-    /*
-    * @name: pulsarMenuClasificar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarMenuClasificar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
     @Test
     public void pulsarMenuClasificar() {
         ShadowActivity shadowActivity = Shadows.shadowOf(mostrarResultados);
@@ -355,13 +365,14 @@ public class PruebasActividadMostrarResultados {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuMostrarSetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de mostrar setas del menú y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarMenuMostrarSetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarMenuMostrarSetas() {
@@ -376,13 +387,15 @@ public class PruebasActividadMostrarResultados {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuIrClaves
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
-    * haya cambiado a la actividad mostrar claves
-    * */
+    /**
+     * Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+     * haya cambiado a la actividad mostrar claves.
+     *
+     * @name pulsarMenuIrClaves
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuIrClaves() {
         ShadowActivity shadowActivity = Shadows.shadowOf(mostrarResultados);
@@ -395,13 +408,15 @@ public class PruebasActividadMostrarResultados {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuCambiarIdioma
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de cambiar el idioma del menú
-    * desde la aplicación en español y comprueba que envie el idioma correcto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de cambiar el idioma del menú
+     * desde la aplicación en español y comprueba que envie el idioma correcto.
+     *
+     * @name pulsarMenuCambiarIdioma
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void pulsarMenuCambiarIdioma() {
         ShadowActivity shadowActivity = Shadows.shadowOf(mostrarResultados);
@@ -417,24 +432,27 @@ public class PruebasActividadMostrarResultados {
         setup();
     }
 
-    /*
-    * @name: clickItem
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa un elemento de la lista
-    * */
+    /**
+     * Procedimiento que pulsa un elemento de la lista.
+     *
+     * @name clickItem
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     public static void clickItem(AbsListView listView, int position) {
         ListAdapter adapter = listView.getAdapter();
         View itemView = adapter.getView(position, null, listView);
         listView.performItemClick(itemView, position, adapter.getItemId(position));
     }
 
-    /*
-    * @name: longClickItem
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que mantiene pulsado un elemento de la lista
-    * */
+    /**
+     * Procedimiento que mantiene pulsado un elemento de la lista.
+     *
+     * @name longClickItem
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     public static void longClickItem(AbsListView listView, int position) {
         if (!listView.isLongClickable())

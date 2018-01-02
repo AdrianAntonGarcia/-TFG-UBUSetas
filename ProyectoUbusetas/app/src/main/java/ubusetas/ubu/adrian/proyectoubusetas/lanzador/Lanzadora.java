@@ -27,12 +27,14 @@ import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.TouchImageView;
 
-/*
-* @name: Lanzadora
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que arranca la aplicación.
-* */
+/**
+ * Clase que arranca la aplicación. Muestra los botones principales para acceder a las funcionalidades
+ * más importantes de la aplicación.
+ *
+ * @author Adrián Antón García
+ * @name Lanzadora
+ * @category clase
+ */
 
 public class Lanzadora extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -47,14 +49,15 @@ public class Lanzadora extends AppCompatActivity
     //Idioma de la aplicación
     private String idioma;
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +103,14 @@ public class Lanzadora extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -124,13 +128,14 @@ public class Lanzadora extends AppCompatActivity
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -139,13 +144,15 @@ public class Lanzadora extends AppCompatActivity
         outState.putString("idioma", idioma);
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -154,13 +161,14 @@ public class Lanzadora extends AppCompatActivity
         return true;
     }
 
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -181,13 +189,14 @@ public class Lanzadora extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    * @name: onClick
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que es llamado cuándo se hace click en cualquier botón.
-    * @param: View, Vista del botón pulsado.
-    * */
+    /**
+     * Procedimiento que es llamado cuándo se hace click en cualquier botón.
+     *
+     * @param View, Vista del botón pulsado.
+     * @name onClick
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onClick(View v) {
@@ -209,14 +218,13 @@ public class Lanzadora extends AppCompatActivity
 
     }
 
-
-
-    /*
-    * @name: onBackPressed
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+     *
+     * @name onBackPressed
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -228,13 +236,14 @@ public class Lanzadora extends AppCompatActivity
         }
     }
 
-    /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -266,7 +275,7 @@ public class Lanzadora extends AppCompatActivity
             //llamamos a la actividad
             this.startActivity(intent);
             this.finish();
-        } else if( id == R.id.menu_ayuda){
+        } else if (id == R.id.menu_ayuda) {
             //genero la ayuda del menú lateral
             final Dialog dialog = new Dialog(Lanzadora.this);
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

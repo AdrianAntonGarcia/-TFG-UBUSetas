@@ -36,13 +36,14 @@ import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
-/*
-* @name: MostrarResultados
-* @Author: Adrián Antón García
-* @category: class
-* @Description: Clase que iplementa la funcionalidad de la actividad que muestra los resultados obtenidos tras
-* clasificar una foto
-* */
+/**
+ * Clase que implementa la funcionalidad de la actividad que muestra los resultados obtenidos tras
+ * clasificar una foto.
+ *
+ * @author Adrián Antón García
+ * @name MostrarResultados
+ * @category class
+ */
 
 public class MostrarResultados extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,14 +67,15 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
     //Paramatro que indica la foto cargada
     public int posImagenSeta = 1;
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,13 +144,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         Log.d("nombresSetas", "nombresSetas" + nombresSetas.toString());
     }
 
-    /*
-     * @name: cargarListas
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que carga las diferentes listas con los resultados recibidos.
-     * @param: List<String>, resultados a cargar en las listas.
-     * */
+    /**
+     * Procedimiento que carga las diferentes listas con los resultados recibidos.
+     *
+     * @param List<String>, resultados a cargar en las listas.
+     * @name cargarListas
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     public void cargarListas(List<String> res) {
         for (String e : res) {
@@ -167,14 +170,15 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-     * @name: cargarListaElementos
-     * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Metodo que carga la lista que se le va a pasar al adaptador para que cargue los resultados
+    /**
+     * Método que carga la lista que se le va a pasar al adaptador para que cargue los resultados
      * en el listView, usa el numFoto para cargar la imagen correspondiente al número.
-     * @param: int, número de la foto a cargar (1,2,3,4,5)
-     * */
+     *
+     * @param int, número de la foto a cargar (1,2,3,4,5)
+     * @name cargarListaElementos
+     * @author Adrián Antón García
+     * @category procedure
+     */
 
     public void cargarListaElementos(int numFoto) {
         listaSetas = new ArrayList<>();
@@ -186,12 +190,12 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-     * @name: inflarLista
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que carga los resultados en la lista
-     * */
+    /**
+     * @name inflarLista
+     * @author Adrián Antón García
+     * @category procedimiento
+     * Procedimiento que carga los resultados en la lista
+     */
 
     public void inflarLista() {
         //cargamos la la lista con el número de foto correspondiente
@@ -201,13 +205,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         listViewListaResultados.setAdapter(adaptador);
     }
 
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -227,13 +232,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -242,16 +248,17 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         outState.putString("idioma", idioma);
     }
 
-    /*
-     * @name: onItemClick
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se ejecuta cuando se clica sobre algún elemento del listView.
-     * @Param: AdapterView<?>, Vista padre del elemento pulsado.
-     * @Param: View, Vista del elemento pulsado.
-     * @Param: int, posición en la lista del elemento pulsado.
-     * @Param: id, identificador del elemento pulsado.
-     * */
+    /**
+     * Procedimiento que se ejecuta cuando se clica sobre algún elemento del listView.
+     *
+     * @param AdapterView<?>, Vista padre del elemento pulsado.
+     * @param View,           Vista del elemento pulsado.
+     * @param int,            posición en la lista del elemento pulsado.
+     * @param id,             identificador del elemento pulsado.
+     * @name onItemClick
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -283,16 +290,17 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-     * @name: onItemLongClick
-     * @Author: Adrián Antón García
-     * @category: procedure
-     * @Description: Procedimiento que se ejecuta cuando se mantiene pulsado sobre algún elemento del listView
-     * @Param: AdapterView<?>, Vista padre del elemento pulsado.
-     * @Param: View, Vista del elemento pulsado.
-     * @Param: int, posición en la lista del elemento pulsado.
-     * @Param: id, identificador del elemento pulsado.
-     * */
+    /**
+     * Procedimiento que se ejecuta cuando se mantiene pulsado sobre algún elemento del listView.
+     *
+     * @param AdapterView<?>, Vista padre del elemento pulsado.
+     * @param View,           Vista del elemento pulsado.
+     * @param int,            posición en la lista del elemento pulsado.
+     * @param id,             identificador del elemento pulsado.
+     * @name onItemLongClick
+     * @author Adrián Antón García
+     * @category procedure
+     */
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -323,13 +331,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-    /*
-     * @name: onClick
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
-     * @Param: View, Vista del botón pulsado.
-     * */
+    /**
+     * Procedimiento que se ejecuta cuando se pulsa sobre algún botón.
+     *
+     * @param View, Vista del botón pulsado.
+     * @name onClick
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onClick(View v) {
@@ -353,13 +362,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior.
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -367,13 +377,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior.
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -394,12 +405,13 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    * @name: onBackPressed
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del móvil.
+     *
+     * @name onBackPressed
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -417,13 +429,14 @@ public class MostrarResultados extends AppCompatActivity implements View.OnClick
         }
     }
 
-    /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

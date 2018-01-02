@@ -40,13 +40,14 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: ClaveDicotomicaPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba que los textos de la actividad ClaveDicotomica se muestren correctamente en español,
-* así como los textos de la clave según se vaya avanzando a través de ella.
-* */
+/**
+ * Clase que prueba que los textos de la actividad ClaveDicotomica se muestren correctamente en español,
+ * así como los textos de la clave según se vaya avanzando a través de ella.
+ *
+ * @author Adrián Antón García
+ * @name ClaveDicotomicaPruebasEs
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -57,26 +58,28 @@ public class ClaveDicotomicaPruebasEs {
 
     private UiDevice mDevice;
 
-    /*
-      * @name: setup
-      * @Author: Adrián Antón García
-      * @category: procedimiento test
-      * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-      * externos a la aplicación.
-      * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: claveDicotomicaPruebasEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba que los textos de la actividad ClaveDicotomica se muestren correctamente en español,
-    * así como los textos de la clave según se vaya avanzando a través de ella.
-    * */
+    /**
+     * Procedimiento que prueba que los textos de la actividad ClaveDicotomica se muestren correctamente en español,
+     * así como los textos de la clave según se vaya avanzando a través de ella.
+     *
+     * @name claveDicotomicaPruebasEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void claveDicotomicaPruebasEs() {

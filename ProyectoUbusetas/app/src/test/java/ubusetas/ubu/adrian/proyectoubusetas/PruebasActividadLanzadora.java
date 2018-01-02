@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -23,7 +22,6 @@ import org.robolectric.shadows.ShadowApplication;
 
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.clavedicotomica.MostrarClaves;
-import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarInformacionSeta;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
 
@@ -31,12 +29,13 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 
-/*
-* @name: PruebasActividadLanzadora
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba la actividad lanzadora
-* */
+/**
+ * Clase que prueba la actividad lanzadora.
+ *
+ * @author Adrián Antón García
+ * @name PruebasActividadLanzadora
+ * @category clase
+ */
 
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricTestRunner.class)
@@ -45,13 +44,14 @@ public class PruebasActividadLanzadora {
 
     private Lanzadora lanzadora;
 
-       /*
-    * @name: setupEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad lanzadora en español
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad lanzadora en español
+     * para ser usada por los demás tests.
+     *
+     * @name setupEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
 
     public void setupEs() {
@@ -60,26 +60,29 @@ public class PruebasActividadLanzadora {
         lanzadora = Robolectric.buildActivity(Lanzadora.class, intent).create().get();
     }
 
-    /*
-    * @name: setupEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa la actividad lanzadora en inglés
-    * para ser usada por los demás tests
-    * */
+    /**
+     * Procedimiento que inicializa la actividad lanzadora en inglés
+     * para ser usada por los demás tests.
+     *
+     * @name setupEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     public void setupEn() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.putExtra("idioma", "en");
         lanzadora = Robolectric.buildActivity(Lanzadora.class, intent).create().get();
     }
-    /*
-    * @name: pulsarClasificar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+
+    /**
+     * Procedimiento que pulsa el botón de clasificar y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarClasificar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarClasificar() {
@@ -91,15 +94,17 @@ public class PruebasActividadLanzadora {
 
     }
 
-    /*
-    * @name: pulsarMenuClasificar
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
-    * haya cambiado a la actividad recogerFoto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de clasificar del menú y comprueba que la aplicación
+     * haya cambiado a la actividad recogerFoto.
+     *
+     * @name pulsarMenuClasificar
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
-    public void pulsarMenuClasificar(){
+    public void pulsarMenuClasificar() {
         setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
 
@@ -113,15 +118,17 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuIrClaves
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
-    * haya cambiado a la actividad mostrar claves
-    * */
+    /**
+     * Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+     * haya cambiado a la actividad mostrar claves.
+     *
+     * @name pulsarMenuIrClaves
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
-    public void pulsarMenuIrClaves(){
+    public void pulsarMenuIrClaves() {
         setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
@@ -133,15 +140,17 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuMostrarSetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón del menú de mostrar setas y comprueba que la aplicación
-    * haya cambiado a la actividad mostrar setas
-    * */
+    /**
+     * Procedimiento que pulsa el botón del menú de mostrar setas y comprueba que la aplicación
+     * haya cambiado a la actividad mostrar setas.
+     *
+     * @name pulsarMenuMostrarSetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
-    public void pulsarMenuMostrarSetas(){
+    public void pulsarMenuMostrarSetas() {
         setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
@@ -153,15 +162,17 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: pulsarMenuCambiarIdioma
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de cambiar el idioma del menú
-    * desde la aplicación en español y comprueba que envie el idioma correcto
-    * */
+    /**
+     * Procedimiento que pulsa el botón de cambiar el idioma del menú
+     * desde la aplicación en español y comprueba que envie el idioma correcto.
+     *
+     * @name pulsarMenuCambiarIdioma
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
-    public void pulsarMenuCambiarIdioma(){
+    public void pulsarMenuCambiarIdioma() {
         setupEs();
         ShadowActivity shadowActivity = Shadows.shadowOf(lanzadora);
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
@@ -172,17 +183,18 @@ public class PruebasActividadLanzadora {
         Intent actual = shadowActivity.getNextStartedActivity();
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés
-        assertEquals("en",actual.getExtras().getString("idioma"));
+        assertEquals("en", actual.getExtras().getString("idioma"));
         setupEs();
     }
 
-    /*
-    * @name: pulsarMostrarSetas
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de mostrar setas y comprueba que la aplización
-    * haya cambiado de actividad
-    * */
+    /**
+     * Procedimiento que pulsa el botón de mostrar setas y comprueba que la aplización
+     * haya cambiado de actividad.
+     *
+     * @name pulsarMostrarSetas
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarMostrarSetas() {
@@ -193,13 +205,14 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-        /*
-    * @name: pulsarIrClaves
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
-    * haya cambiado de actividad
-    * */
+    /**
+     * Procedimiento que pulsa el botón de ir claves y comprueba que la aplicación
+     * haya cambiado de actividad.
+     *
+     * @name pulsarIrClaves
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarIrClaves() {
@@ -210,93 +223,95 @@ public class PruebasActividadLanzadora {
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
     }
 
-    /*
-    * @name: comprobarTextosEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que los textos se muestren es español
-    * si la aplicación se ejecuta en ese idioma
-    * */
+    /**
+     * Procedimiento que comprueba que los textos se muestren es español
+     * si la aplicación se ejecuta en ese idioma.
+     *
+     * @name comprobarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
-    @Config(qualifiers="es")
+    @Config(qualifiers = "es")
     public void comprobarTextosEs() {
         setupEs();
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
         //Textos de la página contenedora
         TextView textoClasificar = (TextView) lanzadora.findViewById(R.id.textView_clasificar);
-        assertEquals(textoClasificar.getText(),"Clasificar");
+        assertEquals(textoClasificar.getText(), "Clasificar");
         TextView textoMostrarSetas = (TextView) lanzadora.findViewById(R.id.textView_ir_setas);
-        assertEquals(textoMostrarSetas.getText(),"Mostrar Setas");
+        assertEquals(textoMostrarSetas.getText(), "Mostrar Setas");
         TextView textoIrClaves = (TextView) lanzadora.findViewById(R.id.textView_ir_claves);
-        assertEquals(textoIrClaves.getText(),"Ir claves");
+        assertEquals(textoIrClaves.getText(), "Ir claves");
         //Textos del menú
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
         assertNotNull(nav.getMenu());
-        Menu menu= nav.getMenu();
-        MenuItem item= menu.getItem(0);
+        Menu menu = nav.getMenu();
+        MenuItem item = menu.getItem(0);
         assertNotNull(item);
         MenuItem MenuItemHome = item.getSubMenu().getItem(0);
         MenuItem MenuItemClasificar = item.getSubMenu().getItem(1);
-        MenuItem MenuItemIrClaves= item.getSubMenu().getItem(2);
+        MenuItem MenuItemIrClaves = item.getSubMenu().getItem(2);
         MenuItem MenuItemMostrarSetas = item.getSubMenu().getItem(3);
-        assertEquals(item.getTitle(),"Herramientas");
-        assertEquals(MenuItemHome.getTitle(),"Home");
-        assertEquals(MenuItemClasificar.getTitle(),"Clasificar");
-        assertEquals(MenuItemIrClaves.getTitle(),"Ir claves dicotómicas");
-        assertEquals(MenuItemMostrarSetas.getTitle(),"Información setas");
-        item= menu.getItem(1);
+        assertEquals(item.getTitle(), "Herramientas");
+        assertEquals(MenuItemHome.getTitle(), "Home");
+        assertEquals(MenuItemClasificar.getTitle(), "Clasificar");
+        assertEquals(MenuItemIrClaves.getTitle(), "Ir claves dicotómicas");
+        assertEquals(MenuItemMostrarSetas.getTitle(), "Información setas");
+        item = menu.getItem(1);
         assertNotNull(item);
         MenuItem MenuItemIdioma = item.getSubMenu().getItem(0);
         MenuItem MenuItemAyuda = item.getSubMenu().getItem(1);
-        assertEquals(item.getTitle(),"Opciones");
-        assertEquals(MenuItemIdioma.getTitle(),"Cambiar idioma");
-        assertEquals(MenuItemAyuda.getTitle(),"Ayuda");
+        assertEquals(item.getTitle(), "Opciones");
+        assertEquals(MenuItemIdioma.getTitle(), "Cambiar idioma");
+        assertEquals(MenuItemAyuda.getTitle(), "Ayuda");
 
 
     }
 
-        /*
-    * @name: comprobarTextosEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que comprueba que los textos se muestren es español
-    * si la aplicación se ejecuta en ese idioma
-    * */
+    /**
+     * Procedimiento que comprueba que los textos se muestren es español
+     * si la aplicación se ejecuta en ese idioma.
+     *
+     * @name comprobarTextosEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
-    @Config(qualifiers="en")
+    @Config(qualifiers = "en")
     public void comprobarTextosEn() {
         setupEn();
         //Textos de la página contenedora
         Lanzadora lanzadora = Robolectric.buildActivity(Lanzadora.class).create().get();
         TextView textoClasificar = (TextView) lanzadora.findViewById(R.id.textView_clasificar);
-        assertEquals(textoClasificar.getText(),"Classify");
+        assertEquals(textoClasificar.getText(), "Classify");
         TextView textoMostrarSetas = (TextView) lanzadora.findViewById(R.id.textView_ir_setas);
-        assertEquals(textoMostrarSetas.getText(),"Show mushrooms");
+        assertEquals(textoMostrarSetas.getText(), "Show mushrooms");
         TextView textoIrClaves = (TextView) lanzadora.findViewById(R.id.textView_ir_claves);
-        assertEquals(textoIrClaves.getText(),"Go keys");
+        assertEquals(textoIrClaves.getText(), "Go keys");
         //Textos del menú
         NavigationView nav = (NavigationView) lanzadora.findViewById(R.id.nav_view);
         assertNotNull(nav.getMenu());
-        Menu menu= nav.getMenu();
-        MenuItem item= menu.getItem(0);
+        Menu menu = nav.getMenu();
+        MenuItem item = menu.getItem(0);
         assertNotNull(item);
         MenuItem MenuItemHome = item.getSubMenu().getItem(0);
         MenuItem MenuItemClasificar = item.getSubMenu().getItem(1);
-        MenuItem MenuItemIrClaves= item.getSubMenu().getItem(2);
+        MenuItem MenuItemIrClaves = item.getSubMenu().getItem(2);
         MenuItem MenuItemMostrarSetas = item.getSubMenu().getItem(3);
-        assertEquals(item.getTitle(),"Tools");
-        assertEquals(MenuItemHome.getTitle(),"Home");
-        assertEquals(MenuItemClasificar.getTitle(),"Classify");
-        assertEquals(MenuItemIrClaves.getTitle(),"Go dichotomous keys");
-        assertEquals(MenuItemMostrarSetas.getTitle(),"Mushroom information");
-        item= menu.getItem(1);
+        assertEquals(item.getTitle(), "Tools");
+        assertEquals(MenuItemHome.getTitle(), "Home");
+        assertEquals(MenuItemClasificar.getTitle(), "Classify");
+        assertEquals(MenuItemIrClaves.getTitle(), "Go dichotomous keys");
+        assertEquals(MenuItemMostrarSetas.getTitle(), "Mushroom information");
+        item = menu.getItem(1);
         assertNotNull(item);
         MenuItem MenuItemIdioma = item.getSubMenu().getItem(0);
         MenuItem MenuItemAyuda = item.getSubMenu().getItem(1);
-        assertEquals(item.getTitle(),"Options");
-        assertEquals(MenuItemIdioma.getTitle(),"Change idiom");
-        assertEquals(MenuItemAyuda.getTitle(),"Help");
+        assertEquals(item.getTitle(), "Options");
+        assertEquals(MenuItemIdioma.getTitle(), "Change idiom");
+        assertEquals(MenuItemAyuda.getTitle(), "Help");
     }
 }

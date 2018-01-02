@@ -36,14 +36,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: MostrarInformacionSetaPruebasEn
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba que se carguen todos los textos en inglés
-* de la actividad MostrarInformacionSeta,
-* tanto de la ayuda, como del menú y el propio contenido de la actividad.
-* */
+/**
+ * Clase que prueba que se carguen todos los textos en inglés
+ * de la actividad MostrarInformacionSeta,
+ * tanto de la ayuda, como del menú y el propio contenido de la actividad.
+ *
+ * @author Adrián Antón García
+ * @name MostrarInformacionSetaPruebasEn
+ * @category clase
+ */
 
 
 @LargeTest
@@ -54,27 +55,29 @@ public class MostrarInformacionSetaPruebasEn {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: mostrarInformacionSetaPruebasEn
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba que se carguen todos los textos en inglés
-    * de la actividad MostrarInformacionSeta,
-    * tanto de la ayuda, como del menú y el propio contenido de la actividad.
-    * */
+    /**
+     * Procedimiento que prueba que se carguen todos los textos en inglés
+     * de la actividad MostrarInformacionSeta,
+     * tanto de la ayuda, como del menú y el propio contenido de la actividad.
+     *
+     * @name mostrarInformacionSetaPruebasEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void mostrarInformacionSetaPruebasEn() {

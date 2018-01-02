@@ -36,14 +36,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: MostrarResultadosPruebasEs
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
-* tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
-* resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
-* */
+/**
+ * Clase que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
+ * tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
+ * resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
+ *
+ * @author Adrián Antón García
+ * @name MostrarResultadosPruebasEs
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -53,27 +54,29 @@ public class MostrarResultadosPruebasEn {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: mostrarResultadosPruebasEs
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
-    * tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
-    * resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
-    * */
+    /**
+     * Procedimiento que MostrarResultadosPulsarItems que se carguen todos los textos en español de la actividad MostrarResultados,
+     * tanto de la ayuda, como del menú y el propio contenido de la actividad. Además comprueba que se muestren los
+     * resultados correctos trás haber cargado la imágen cargada en el test de RecogerFotoPruebaGaleria.
+     *
+     * @name mostrarResultadosPruebasEs
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void mostrarResultadosPruebasEs() {

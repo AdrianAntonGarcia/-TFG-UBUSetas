@@ -22,17 +22,18 @@ import java.util.Locale;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 import ubusetas.ubu.adrian.proyectoubusetas.basedatos.AccesoDatosExternos;
 import ubusetas.ubu.adrian.proyectoubusetas.lanzador.Lanzadora;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.AdaptadorTarjetasClaves;
-import ubusetas.ubu.adrian.proyectoubusetas.tarjetasClaves.TarjetaClave;
+import ubusetas.ubu.adrian.proyectoubusetas.tarjetasclaves.AdaptadorTarjetasClaves;
+import ubusetas.ubu.adrian.proyectoubusetas.tarjetasclaves.TarjetaClave;
 import ubusetas.ubu.adrian.proyectoubusetas.clasificador.RecogerFoto;
 import ubusetas.ubu.adrian.proyectoubusetas.informacion.MostrarSetas;
 
-/*
-* @name: MostrarClaves
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que muestra un listado de las claves dicotómicas de la aplicación.
-* */
+/**
+ * Clase que muestra un listado de las claves dicotómicas de la aplicación.
+ *
+ * @author Adrián Antón García
+ * @name MostrarClaves
+ * @category clase
+ */
 
 public class MostrarClaves extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,14 +52,15 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
     //Idioma de la aplicación
     private String idioma;
 
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +110,13 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
 
     }
 
-    /*
-     * @name: inicializarTarjetas
-     * @Author: Adrián Antón García
-     * @category: Procedimiento
-     * @Description: Procedimiento que inicializa las tarjetas de las claves
-     * */
+    /**
+     * Procedimiento que inicializa las tarjetas de las claves
+     *
+     * @name inicializarTarjetas
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     private void inicializarTarjetas() {
         //40 tarjetas
@@ -128,13 +131,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         }
     }
 
-            /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -152,13 +156,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -167,13 +172,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         outState.putString("idioma", idioma);
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -181,13 +187,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -207,12 +214,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
 
         return super.onOptionsItemSelected(item);
     }
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
+     *
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -222,7 +231,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
             //lo cerramos
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            Intent intent = new Intent(MostrarClaves.this,Lanzadora.class);
+            Intent intent = new Intent(MostrarClaves.this, Lanzadora.class);
             intent.putExtra("idioma", idioma);
             this.startActivity(intent);
             //si el menu esta cerrado llamamos al constructor padre
@@ -230,13 +239,14 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -269,7 +279,7 @@ public class MostrarClaves extends AppCompatActivity implements NavigationView.O
             this.startActivity(intent);
             //finalizamos la actividad actual
             this.finish();
-        }else if( id == R.id.menu_ayuda){
+        } else if (id == R.id.menu_ayuda) {
             //genero la ayuda del menú lateral
             final Dialog dialog = new Dialog(MostrarClaves.this);
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

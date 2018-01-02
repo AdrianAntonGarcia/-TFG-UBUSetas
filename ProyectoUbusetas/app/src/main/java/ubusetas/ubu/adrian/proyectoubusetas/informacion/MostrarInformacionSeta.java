@@ -36,12 +36,13 @@ import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarComparativa;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.MostrarResultados;
 import ubusetas.ubu.adrian.proyectoubusetas.resultados.TouchImageView;
 
-/*
-* @name: DBsetasManager
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que muestra información relativa a la seta pulsada
-* */
+/**
+ * Clase que muestra información relativa a la seta pulsada
+ *
+ * @author Adrián Antón García
+ * @name DBsetasManager
+ * @category clase
+ */
 
 public class MostrarInformacionSeta extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ImageView.OnClickListener {
 
@@ -76,14 +77,16 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
     private Bitmap bit;
 
     private int actividadPrevia;
-    /*
-    * @name: onCreate
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
-    * y los relaciona con el contexto.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+
+    /**
+     * Procedimiento que se ejecuta cuando se carga la clase, inicializa los elementos
+     * y los relaciona con el contexto.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onCreate
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,13 +175,14 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /*
-     * @name: restaurarCampos
-     * @Author: Adrián Antón García
-     * @category: procedimiento
-     * @Description: Procedimiento que se restaura el bitmap al girar la pantalla.
-     * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-     * */
+    /**
+     * Procedimiento que se restaura el bitmap al girar la pantalla.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name restaurarCampos
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     private void restaurarCampos(Bundle savedInstanceState) {
 
@@ -203,13 +207,14 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         }
     }
 
-    /*
-    * @name: onSaveInstanceState
-    * @Author: Adrián Antón García
-    * @category: procedimiento
-    * @Description: Procedimiento que se ejecuta cuando se destruye la actividad.
-    * @param: Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
-    * */
+    /**
+     * Procedimiento que se ejecuta cuando se destruye la actividad.
+     *
+     * @param Bundle, Bundle donde se guardan los datos cuando se cierra la actividad.
+     * @name onSaveInstanceState
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -218,13 +223,14 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         outState.putString("idioma", idioma);
     }
 
-    /*
-    * @name: onCreateOptionsMenu
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado para rellenar el menú superior
-    * @param: Menu, El menú superior
-    * */
+    /**
+     * Método que es llamado para rellenar el menú superior.
+     *
+     * @param Menu, El menú superior
+     * @name onCreateOptionsMenu
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -232,13 +238,15 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         getMenuInflater().inflate(R.menu.opciones, menu);
         return true;
     }
-    /*
-    * @name: onOptionsItemSelected
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que es llamado cuando se pulsa algún elemento del menú superior
-    * @param: MenuItem, el menu item
-    * */
+
+    /**
+     * Método que es llamado cuando se pulsa algún elemento del menú superior.
+     *
+     * @param MenuItem, el menu item
+     * @name onOptionsItemSelected
+     * @author Adrián Antón García
+     * @category método
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -259,13 +267,15 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    * @name: onClick
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa un imageView.
-    * @param: Vista del imageView pulsado
-    * */
+    /**
+     * Procedimiento que se ejectua cuando se pulsa un imageView.
+     *
+     * @param Vista del imageView pulsado
+     * @name onClick
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -281,12 +291,14 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
                 break;
         }
     }
-    /*
-    * @name: onBackPressed
-    * @Author: Adrián Antón García
-    * @category: Procedimiento
-    * @Description: Procedimiento que se ejectua cuando se pulsa el boton volver del movil.
-    * */
+
+    /**
+     * Procedimiento que se ejectua cuando se pulsa el boton volver del móvil.
+     *
+     * @name onBackPressed
+     * @author Adrián Antón García
+     * @category Procedimiento
+     */
 
     @Override
     public void onBackPressed() {
@@ -316,14 +328,14 @@ public class MostrarInformacionSeta extends AppCompatActivity implements Navigat
         }
     }
 
-
-    /*
-    * @name: onNavigationItemSelected
-    * @Author: Adrián Antón García
-    * @category: Metodo
-    * @Description: Metodo que se activa cuando pulsamos un botón del menú.
-    * @Param: MenuItem, Item pulsado del menú.
-    * */
+    /**
+     * Método que se activa cuando pulsamos un botón del menú.
+     *
+     * @param MenuItem, Item pulsado del menú.
+     * @name onNavigationItemSelected
+     * @author Adrián Antón García
+     * @category Método
+     */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

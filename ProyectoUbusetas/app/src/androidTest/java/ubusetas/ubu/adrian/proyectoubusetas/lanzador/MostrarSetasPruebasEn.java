@@ -36,6 +36,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Clase que prueba que la actividad MostrarSetas se muestre correctamente en inglés.
+ * Pulsando todos los elementos y comprobando los textos en inglés.
+ *
+ * @author Adrián Antón García
+ * @name MostrarSetasPruebasEn
+ * @category clase
+ */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MostrarSetasPruebasEn {
@@ -44,10 +53,29 @@ public class MostrarSetasPruebasEn {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
+
+    /**
+     * Procedimiento que prueba que la actividad MostrarSetas se muestre correctamente en inglés.
+     * Pulsando todos los elementos y comprobando los textos en inglés.
+     *
+     * @name mostrarSetasPruebasEn
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
+
     @Test
     public void mostrarSetasPruebasEn() {
         ViewInteraction floatingActionButton = onView(

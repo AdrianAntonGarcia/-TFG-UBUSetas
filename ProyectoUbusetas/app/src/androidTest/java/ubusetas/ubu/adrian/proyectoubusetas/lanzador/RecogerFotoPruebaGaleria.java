@@ -24,7 +24,6 @@ import org.junit.runner.RunWith;
 import ubusetas.ubu.adrian.proyectoubusetas.R;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -32,13 +31,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: RecogerFotoPruebaGaleria
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
-* del movil en la actividad RecogerFoto
-* */
+/**
+ * Clase que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
+ * del movil en la actividad RecogerFoto.
+ *
+ * @author Adrián Antón García
+ * @name RecogerFotoPruebaGaleria
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -48,26 +48,28 @@ public class RecogerFotoPruebaGaleria {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-    * @name: setup
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-    * externos a la aplicación.
-    * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: recogerFotoGaleria
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
-    * del movil en la actividad RecogerFoto.
-    * */
+    /**
+     * Procedimiento que MostrarResultadosPulsarItems que se cargue una imágen correctamente desde la galería
+     * del movil en la actividad RecogerFoto.
+     *
+     * @name recogerFotoGaleria
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void recogerFotoGaleria() {
@@ -114,7 +116,6 @@ public class RecogerFotoPruebaGaleria {
                                 3),
                         isDisplayed()));
         floatingActionButton4.perform(click());
-
 
 
     }

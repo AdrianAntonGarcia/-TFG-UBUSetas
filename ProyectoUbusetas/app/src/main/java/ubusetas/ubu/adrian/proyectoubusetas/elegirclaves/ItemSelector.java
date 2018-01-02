@@ -1,47 +1,51 @@
 package ubusetas.ubu.adrian.proyectoubusetas.elegirclaves;
 
-/*
-* @name: ItemSelector
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que implementa los elementos del selector
-* */
+/**
+ * Clase que implementa los elementos del selector
+ *
+ * @author Adrián Antón García
+ * @name ItemSelector
+ * @category clase
+ */
 
 public class ItemSelector {
 
     //Texto del elemento
     private String texto;
 
-    /*
-    * @name: ItemSelector
-    * @Author: Adrián Antón García
-    * @category: constructor
-    * @Description: Constructor que inicializa el elemento.
-    * */
+    /**
+     * Constructor que inicializa el elemento.
+     *
+     * @name ItemSelector
+     * @author Adrián Antón García
+     * @category constructor
+     */
 
     public ItemSelector(String texto) {
         this.texto = texto;
     }
 
-    /*
-    * @name: getTexto
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que devuelve el texto del elemento.
-    * @return: String, texto del elemento.
-    * */
+    /**
+     * Método que devuelve el texto del elemento.
+     *
+     * @return String, texto del elemento.
+     * @name getTexto
+     * @author Adrián Antón García
+     * @category método
+     */
 
     public String getTexto() {
         return texto;
     }
 
-    /*
-    * @name: setTexto
-    * @Author: Adrián Antón García
-    * @category: método
-    * @Description: Método que carga el texto del elemento.
-    * @param: String, texto del elemento.
-    * */
+    /**
+     * Método que carga el texto del elemento.
+     *
+     * @param String, texto del elemento.
+     * @name setTexto
+     * @author Adrián Antón García
+     * @category método
+     */
 
     public void setTexto(String texto) {
         this.texto = texto;

@@ -1,12 +1,13 @@
 package ubusetas.ubu.adrian.proyectoubusetas.resultados;
 
-/*
-* @name: SetasLista
-* @Author: Adrián Antón García
-* @category: class
-* @Description: Clase que implementa el contenido de que va a tener la lista de
-* imagenes que se muestran como resultado trás clasificar una foto.
-* */
+/**
+ * Clase que implementa el contenido de que va a tener la lista de
+ * imágenes que se muestran como resultado tras clasificar una foto.
+ *
+ * @author Adrián Antón García
+ * @name SetasLista
+ * @category class
+ */
 
 public class SetasLista {
 
@@ -18,14 +19,15 @@ public class SetasLista {
 
     public String nombre;
 
-        /*
-    * @name: ItemSelector
-    * @Author: Adrián Antón García
-    * @category: constructor
-    * @Description: Constructor que inicializa el elemento.
-    * @param: String, parh de la imágen
-    * @param: String, nombre de la seta
-    * */
+    /**
+     * Constructor que inicializa el elemento de la lista de resultados.
+     *
+     * @param String, parh de la imagen
+     * @param String, nombre de la seta
+     * @name ItemSelector
+     * @author Adrián Antón García
+     * @category constructor
+     */
 
     public SetasLista(String path, String nombre) {
         super();
@@ -33,20 +35,29 @@ public class SetasLista {
         this.nombre = nombre;
     }
 
-    /*
-    * @name: getNombre
-    * @Author: Adrián Antón García
-    * @category: constructor
-    * @Description: Constructor que inicializa el elemento.
-    * @param: String, parh de la imágen
-    * @param: String, nombre de la seta
-    * */
+    /**
+     * Método que devuelve el nombre del elemento.
+     *
+     * @return String, nombre de la seta
+     * @name getNombre
+     * @author Adrián Antón García
+     * @category método
+     */
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
 
-    public String getPath(){
+    /**
+     * Método que devuelve el path del elemento.
+     *
+     * @return String, path de la imagen
+     * @name getPath
+     * @author Adrián Antón García
+     * @category método
+     */
+
+    public String getPath() {
         return path;
     }
 }

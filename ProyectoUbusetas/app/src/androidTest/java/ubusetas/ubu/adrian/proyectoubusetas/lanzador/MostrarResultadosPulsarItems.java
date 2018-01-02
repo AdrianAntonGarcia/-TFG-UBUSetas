@@ -36,13 +36,14 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
-/*
-* @name: MostrarResultadosPulsarItems
-* @Author: Adrián Antón García
-* @category: clase
-* @Description: Clase que prueba que funcionen correctamentes los diferentes resultados de la lista
-* al ser pulsados.
-* */
+/**
+ * Clase que prueba que funcionen correctamentes los diferentes resultados de la lista
+ * al ser pulsados.
+ *
+ * @author Adrián Antón García
+ * @name MostrarResultadosPulsarItems
+ * @category clase
+ */
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -52,26 +53,28 @@ public class MostrarResultadosPulsarItems {
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
     private UiDevice mDevice;
 
-    /*
-      * @name: setup
-      * @Author: Adrián Antón García
-      * @category: procedimiento test
-      * @Description: Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
-      * externos a la aplicación.
-      * */
+    /**
+     * Procedimiento que inicializa el mDevice para tenecer acceso a los elementos
+     * externos a la aplicación.
+     *
+     * @name setup
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Before
     public void setup() throws UiObjectNotFoundException {
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*
-    * @name: pulsarItems
-    * @Author: Adrián Antón García
-    * @category: procedimiento test
-    * @Description: Procedimiento que prueba que funcionen correctamentes los diferentes resultados de la lista
-    * al ser pulsados. También prueba el boton de refrecar las imágenes.
-    * */
+    /**
+     * Procedimiento que prueba que funcionen correctamentes los diferentes resultados de la lista
+     * al ser pulsados. También prueba el boton de refrecar las imágenes.
+     *
+     * @name pulsarItems
+     * @author Adrián Antón García
+     * @category procedimiento test
+     */
 
     @Test
     public void pulsarItems() {

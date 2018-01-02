@@ -28,12 +28,30 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+/**
+ * Clase que prueba que en la actividad MostrarSetas se puedan pulsar
+ * los elementos de la lista que se muestra.
+ *
+ * @author Adrián Antón García
+ * @name MostrarSetasPruebasPulsarTarjetas
+ * @category clase
+ */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MostrarSetasPruebasPulsarTarjetas {
 
     @Rule
     public ActivityTestRule<Lanzadora> mActivityTestRule = new ActivityTestRule<>(Lanzadora.class);
+
+    /**
+     * Procedimiento que prueba que en la actividad MostrarSetas se puedan pulsar
+     * los elementos de la lista que se muestra.
+     *
+     * @name pulsar20tarjetas
+     * @author Adrián Antón García
+     * @category procedimiento
+     */
 
     @Test
     public void pulsar20tarjetas() {
@@ -48,7 +66,7 @@ public class MostrarSetasPruebasPulsarTarjetas {
         floatingActionButton.perform(click());
         ViewInteraction recyclerView;
 
-        for(int i =0;i<19;++i) {
+        for (int i = 0; i < 19; ++i) {
             recyclerView = onView(
                     allOf(withId(R.id.recycler_view_lista_setas),
                             childAtPosition(
@@ -57,8 +75,6 @@ public class MostrarSetasPruebasPulsarTarjetas {
             recyclerView.perform(actionOnItemAtPosition(i, click()));
             pressBack();
         }
-
-
 
 
     }

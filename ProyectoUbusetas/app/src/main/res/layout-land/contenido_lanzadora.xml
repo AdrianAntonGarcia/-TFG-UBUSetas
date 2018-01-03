@@ -94,7 +94,7 @@
         android:layout_alignStart="@+id/boton_ir_setas_lanzadora"
         android:layout_alignTop="@+id/imageView_lanzadora"
         android:layout_marginTop="42dp"
-        android:text="@string/autor"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />

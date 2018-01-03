@@ -325,13 +325,13 @@ public class ElegirClaves extends AppCompatActivity implements NavigationView.On
         switch (v.getId()) {
             case R.id.boton_obtener:
                 marcados = adaptador.obtenerSeleccionados();
-                if (Locale.getDefault().getCountry().equals("ES")) {
+                if (idioma.equals("es")) {
                     textoSeleccionados.setText("Géneros seleccionados: " + marcados.toString());
                 } else {
                     textoSeleccionados.setText("Selected genres: " + marcados.toString());
                 }
                 if (marcados.size() < 2) {
-                    if (Locale.getDefault().getCountry().equals("ES")) {
+                    if (idioma.equals("es")) {
                         textoSeleccionados.setText(textoSeleccionados.getText() + " Todavía no se han seleccionado 2 o mas géneros.");
                     } else {
                         textoSeleccionados.setText(textoSeleccionados.getText() + " Two or more genera have not yet been selected.");

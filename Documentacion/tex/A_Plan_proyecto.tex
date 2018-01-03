@@ -490,8 +490,8 @@ Este sprint se desarrollo entre los días 14 y 21 de diciembre de 2017. Se reali
 Este sprint se dedico a realizar pruebas unitarias y de intergación sobre todas las actividades de la aplicación Android.
 
 También se estudio la herramienta monkeyrunner para crear una serie de eventos aleatorios sobre la aplicación y comprobar la robustez de esta.
-
-\begin{figure}[h]
+\newpage
+\begin{figure}[ht]
     \begin{center}%
         \begin{center}%
           \includegraphics[width=0.9\textwidth]{imagenesAnexos/imagenesPlanificacion/sprint14}%
@@ -500,7 +500,7 @@ También se estudio la herramienta monkeyrunner para crear una serie de eventos 
         \end{center}%
   	\end{center}%
 \end{figure}%
-
+\newpage
 \begin{figure}[h]
     \begin{center}%
         \begin{center}%
@@ -512,17 +512,87 @@ También se estudio la herramienta monkeyrunner para crear una serie de eventos 
 \end{figure}%
 
 \newpage
-\newpage
 \section{Estudio de viabilidad}
-viabilidad
-adads
-ad
-da
+
+En este apartado se va a hacer un estudio sobre la viabilidad económica y legal del proyecto.
+
 \subsection{Viabilidad económica}
-asdsda
-asds
+
+En esta sección se va a hacer una aproximación de los costes que supondría para una empresa el desarrollo de este proyecto
+
+\subsubsection{Coste del personal}
+
+La realización de este proyecto a necesitado de cuatro meses en los que estaría empleado un desarrollador. Vamos a suponer que este desarrollador tiene un salario bruto de 1500 euros.
+
+Ahora habrá que calcular los gastos de seguridad social\footnote{\url{http://www.seg-social.es/Internet_1/Trabajadores/CotizacionRecaudaci10777/Basesytiposdecotiza36537/index.htm}}, tanto por parte de la empresa como del trabajador:
+
+Por parte de la empresa:
+
+\begin{itemize}
+	\item Contingencias comunes: 23,6\%
+	\item Desempleo: 5,5\%
+	\item Fogasa: 0,2\%
+	\item Formación profesional: 0,6\%
+\end{itemize}
+
+Por parte del trabajador:
+
+\begin{itemize}
+	\item Contingencias comunes: 4,7\%
+	\item Desempleo: 1,55\%
+	\item Formación profesional: 0,1\%
+\end{itemize}
+
+Hacen un total del 29,9\% por parte de la empresa y el 6,35\% por parte del trabajador.
+
+\tablaSmallSinColores{Costes de personal}{p{6.4cm} p{2.15cm} p{8cm}}{costespersonales}{
+  \multicolumn{1}{p{4.5cm}}{\textbf{Concepto}} & \textbf{Coste{}}\\
+ }
+ {
+  Salario mensual neto  & \multicolumn{1}{r}{1.224,75}\\
+  Retención IRPF (12\%) & \multicolumn{1}{r}{180}\\
+  Seguridad social (Empleado) (6,35\%) & \multicolumn{1}{r}{95,25}\\
+  Salario mensual bruto  & \multicolumn{1}{r}{1.500}\\\hline
+  Salario total (4 meses)  & \multicolumn{1}{r}{6.000}\\\hline
+  Seguridad social (Empresa) (29,9\%) & \multicolumn{1}{r}{448,5}\\\hline
+  Coste total mensual de la empresa & \multicolumn{1}{r}{1794}\\\hline
+  }
+  
+\subsubsection{Coste informáticos}
+
+A nivel de software no hay gastos ya que todas las librerías son gratuitas y no necesitamos pagar ningún servidor para mantener nuestra aplicación. A nivel hardware solamente se ha usado mi ordenador portátil por valor de 700 euros. La amortización es de 5 años y se ha usado 4 meses por lo que el coste es el siguiente:
+
+\[(700euros/(12 meses * 4 periodos))* 4 meses=58,33euros\]
+
+\subsubsection{Coste total}
+
+En la siguiente tabla se recoge el coste total del proyecto.
+
+ \tablaSmallSinColores{Costes totales}{p{6.4cm} p{2.15cm} p{8cm}}{costestotales}{
+  \multicolumn{1}{p{4.5cm}}{\textbf{Concepto}} & \textbf{Coste {}}\\
+ }
+ {
+  Salario empleado  & \multicolumn{1}{r}{6000}\\
+  Seguridad social & \multicolumn{1}{r}{1794}\\
+  Costes hardware(6,35\%) & \multicolumn{1}{r}{58,33}\\
+  Total & \multicolumn{1}{r}{7852,33}\\\hline
+  }
+
 \subsection{Viabilidad legal}
-aada
-adads
-addd
+
+
+En esta sección se recogerá una tabla con las distintas licencias de las librerías usadas en el proyecto.
+
+\tablaSmallSinColores{Licencias}{p{6.4cm} p{2.15cm} p{8cm}}{licencias}{
+  \multicolumn{1}{p{4.5cm}}{\textbf{Librería}} & \textbf{Licencia}\\
+ }
+ {
+  Tensorflow & \multicolumn{1}{r}{Apache 2.0 opensource license}\\
+  Apache jena & \multicolumn{1}{r}{Apache License 2.0}\\
+  Json & \multicolumn{1}{r}{Libre}\\
+  Jaunt & \multicolumn{1}{r}{Libre mensualmente}\\
+  SQlite & \multicolumn{1}{r}{Libre}\\
+  }
+  
+Respecto a la licencia de Jaunt, hay que mencionar que es una librería que hay que descargar cada mes, ya que se actualiza y deja de funcionar pasado ese tiempo.
 

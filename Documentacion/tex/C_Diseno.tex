@@ -270,6 +270,7 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
   	\end{center}%
 \end{figure}%
 %9
+
 \begin{figure}[h]
     \begin{center}%
         \begin{center}%
@@ -280,24 +281,180 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
   	\end{center}%
 \end{figure}%
 
-\newpage
+\clearpage
+
 \section{Diseño procedimental}
 
-DISEÑO PROCEDIMENTAL
+Sección en la que se van a explicar los pasos para realizar los procesos más relevantes de la aplicación Android.
+
+\subsection{Clasificar imagen}
+
+Para clasificar una imagen desde la aplicación Andrroi, el usuario deberá seguir estos pasos:
+
+\begin{itemize}
+	\item Paso 1: Iniciar la aplicación.
+	\item Paso 2: Pulsar sobre el botón de \textit{clasificar} disponible en la actividad lanzadora o en el menú.
+	\item Paso 3: Pulsar sobre el botón de galería o cámara disponibles en la siguiente actividad para cargar la imagen, bien desde la galería o desde la cámara de fotos del móvil.
+	\item Paso 4: Introducir una imagen de una seta.
+	\item Paso 5: En este momento, aparecerá el botón de clasificar. Pulsar sobre este botón.
+	\item Paso 6: La aplicación mostrará un listado de las especies más probables clasificadas para esa imagen.
+\end{itemize}
+
+\subsection{Selección de géneros para usar la clave dicotómica}
+
+Una vez el usuario haya clasificado una imagen, podrá acceder a una clave dicotómica filtrada según los resultados obtenidos. El usuario podrá elegir los géneros de setas sobre los que aplicar la clave, si lo desea podrá aplicarla sobre todos los disponibles.
+
+\begin{itemize}
+	\item Paso 1: Realizar los pasos del procedimiento \textit{Clasificar imagen}.
+	\item Paso 2: Pulsar sobre el botón de acceso a la clave dicotómica.
+	\item Paso 3: Seleccionar de la lista los géneros deseados. Para ello primero se eligen los géneros pulsando sobre ellos y después se pulsa sobre el botón de seleccionar.
+	\item Paso 4: Pulsar sobre el botón \textit{ir clave dicotómica}.
+	\item Paso 5: En este momento, se mostrarán las preguntas relacionadas con los géneros seleccionados.
+\end{itemize}
+
+\subsection{Seleccionar clave dicotómica}
+
+El usuario podrá seleccionar una clave de las disponibles en la aplicación.
+
+\begin{itemize}
+	\item Paso 1: Iniciar la aplicación.
+	\item Paso 2: Pulsar sobre el botón de \textit{ir claves} disponible en la actividad lanzadora o en el menú.
+	\item Paso 3: Pulsar sobre la clave dicotómica del género de seta deseado.
+	\item Paso 4: En este momento, se mostrarán las preguntas relacionadas con la clave seleccionada.
+\end{itemize}
+\subsection{Acceder a información de especie de seta}
+
+El usuario podrá acceder a la información de una especie de seta recogida por la aplicación. Esta acción se podrá realizar de las siguientes dos formas:
+
+\subsubsection{Forma 1}
+
+\begin{itemize}
+	\item Paso 1: Iniciar la aplicación.
+	\item Paso 2: Pulsar sobre el botón de \textit{mostrar setas} disponible en la actividad lanzadora o en el menú.
+	\item Paso 3: Pulsar sobre la especie de seta deseada.
+	\item Paso 4: En este momento, se mostrará información describiendo la especie pulsada.
+\end{itemize}
+
+\subsubsection{Forma 2}
+
+\begin{itemize}
+	\item Paso 1: Realizar los pasos del procedimiento \textit{Clasificar imagen}.
+	\item Paso 2: Mantener pulsado uno de los resultados
+	\item Paso 3: En este momento, se mostrará información describiendo la especie pulsada.
+\end{itemize}
+
+\subsection{Responder una clave dicotómica}
+
+El usuario podrá responder las preguntas de la clave dicotómica. Esta acción se podrá realizar de las siguientes dos formas:
+
+\subsubsection{Forma 1}
+
+\begin{itemize}
+	\item Paso 1: Realizar los pasos del procedimiento \textit{Seleccionar clave dicotómica}.
+	\item Paso 2: Ir respondiendo a las preguntas que va realizando la aplicación.
+	\item Paso 3: El usuario podrá volver a la pregunta anterior pulsando el botón de volver.
+	\item Paso 4: Una vez se hayan respondido todas las preguntas, se mostrará el género o especie clasificado por la clave, según esta sea la clave de géneros o una de especies.
+	\item Paso 5: Si la aplicación tiene una clave dicotómica del género clasificado, se notificará al usuario y aparecerá un botón que le redirija a la clave que discrimina las especies de ese género.
+\end{itemize}
+
+\subsubsection{Forma 2}
+
+\begin{itemize}
+	\item Paso 1: Realizar los pasos del procedimiento \textit{Selección de géneros para usar la clave dicotómica}.
+	\item Paso 2: Ir respondiendo a las preguntas que va realizando la aplicación.
+	\item Paso 3: El usuario podrá volver a la pregunta anterior pulsando el botón de volver.
+	\item Paso 4: Una vez se hayan respondido todas las preguntas, se mostrará el género clasificado por la clave
+	\item Paso 5: Si la aplicación tiene una clave dicotómica del género clasificado, se notificará al usuario y aparecerá un botón que le redirija a la clave que discrimina las especies de ese género.
+\end{itemize}
+
+\section{Diseño arquitectónico}
+
+En esta sección se va a mostrar la estructura de paquetes seguida tanto en el proyecto Android como en el Java.
+
+\subsection{Proyecto Java}
+
+A continuación se muestra una descripción de los paquetes del proyecto java y como se relacionan entre sí.
+
+\begin{itemize}
+	\item Paquete \textit{basedatossql}: Contiene las clases necesarias para crear y manejar la base de datos SQlite.
+	\item Paquete \textit{creador}: Contiene la clase que contiene el \textit{main} del proyecto. Hace uso de los paquetes dbpedia y webscraping para extraer toda la información necesaria por la aplicación.
+	\item Paquete \textit{dbpedia}: Contiene las clases necesarias para extraer la información de la DBpedia. Hace uso del paquete traductor para traducir al inglés la información. Hace uso del paquete basededatossql para almacenar la información consultada en la base de datos.
+	\item Paquete \textit{traductor}: Contiene las clases necesarias para implementar un traductor automático.
+	\item Paquete \textit{webscraping}: Contiene las clases necesarias realizar la extracción de las claves dicotómicas mediante técnicas de \textit{Web Scraping}.Hace uso del paquete traductor para traducir las claves dicotómicas.
+\end{itemize}
+
+En la figura \ref{figDiagramaPaquetesJava} se muestra el diagrama de paquetes del proyecto Java.
 
 \begin{figure}[h]
     \begin{center}%
         \begin{center}%
-          \includegraphics[width=1\textwidth]{imagenesAnexos/imagenesDiseno/DiagramaClasesAndroidTarjetasSetas}%
-          \caption{Diagrama de clases del paquete tarjetassetas.}%
-          \label{figDiagramaClasesAndroidTarjetasSetas}%
+          \includegraphics[width=1\textwidth]{imagenesAnexos/imagenesDiseno/DiagramaPaquetesJava}%
+          \caption{Diagrama de paquetes del proyecto Java.}%
+          \label{figDiagramaPaquetesJava}%
         \end{center}%
   	\end{center}%
 \end{figure}%
 
 \newpage
-\section{Diseño arquitectónico}
+\subsection{Proyecto Android}
 
-DISEÑO ARQUITECTÓNICO
+A continuación se muestra una descripción de los paquetes del proyecto Android y como se relacionan entre sí.
 
-\newpage
+\begin{itemize}
+
+	%1-PAQUETE BASEDATOS
+	
+	\item Paquete \textit{basedatos}: Paquete que contiene todas las clases necesarias para acceder a los datos de la aplicación.
+	
+	%2-PAQUETE CLASIFICADOR
+	
+	\item Paquete \textit{clasificador}: Paquete que contiene las clases y actividades relacionadas con la implementación y uso del clasificador de imágenes.
+	
+	%3-PAQUETE CLAVEDICOTOMICA
+	
+	\item Paquete \textit{clavedicotomica}: Paquete que contiene las clases relacionadas con mostrar las claves dicotómicas. Hace uso del paquete base de datos para extraer las claves dicotómicas del fichero serializado. Usa el paquete tarjetasclaves para implementar el listado de claves.
+	
+	%4-PAQUETE ELEGIRCLAVES
+	
+	\item Paquete \textit{elegirclaves}: Paquete que contiene las clases relacionadas con el filtrado de géneros de la clave general. 
+	
+	%5-PAQUETE INFORMACION
+	
+	\item Paquete \textit{informacion}: Paquete que contiene las clases relacionadas con mostrar la información de las distintas especies manejadas por la aplicación. Hace uso del paquete basedatos para extraer la información de la base de datos SQlite y acceder a las imágenes de las setas, situadas en los directorios externos. Usa el paquete tarjetassetas para implementar el listado de especies de setas.
+	
+	%6-PAQUETE LANZADOR
+	
+	\item Paquete \textit{lanzador}: Paquete que recoje la clase lanzadora de la aplicación.
+	
+	%7-PAQUETE RESULTADOS
+	
+	\item Paquete \textit{resultados}: Paquete que contiene las clases relacionadas con mostrar los resultados obtenidos por el clasificador. Hace uso del paquete basedatos para acceder a las imágenes de las setas, situadas en los directorios externos.
+	
+	%8-PAQUETE TARJETASCLAVES
+	
+	\item Paquete \textit{tarjetasclaves}: Paquete que contiene las clases relacionadas con mostrar el listado de claves dicotómicas disponibles en la aplicación.
+	
+	%9-PAQUETE TARJETASCLAVES
+	
+	\item Paquete \textit{tarjetassetas}: Paquete que contiene las clases relacionadas con mostrar el listado de especies disponibles en la aplicación.
+	
+\end{itemize}
+
+En la figura \ref{figDiagramaPaquetesAndroid} se muestra el diagrama de paquetes del proyecto Android. 
+\begin{figure}[h]
+    \begin{center}%
+        \begin{center}%
+          \includegraphics[width=1\textwidth]{imagenesAnexos/imagenesDiseno/DiagramaPaquetesAndroid}%
+          \caption{Diagrama de paquetes del proyecto Android.}%
+          \label{figDiagramaPaquetesAndroid}%
+        \end{center}%
+  	\end{center}%
+\end{figure}%
+
+\section{Diseño de la interfaz}
+
+En esta sección se van a explicar los pasos seguidos para implementar la interfaz de la aplicación Android.
+
+\subsection{Prototipado}
+
+El prototipado de la aplicación se realizó de manera manual, dibujando un diseño inicial de lo que iba a ser la interfaz de cada actividad. A continuación se muestran las tarjetas de las diferentes actividades.

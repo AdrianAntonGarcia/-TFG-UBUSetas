@@ -4,14 +4,18 @@ import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.ResultSet;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
+import basedatossql.CreadorBD;
+import webscraping.CreadorClaves;
 
 /**
+ * Clase que contiene los métodos necesarios realizar consultas a la web
+ * semantica dbpedia
+ * 
  * @name DBpedia
  * @author Adrian Anton Garcia
  * @category class
- * @Description Clase que contiene los métodos necesarios realizar consultas a
- *              la web semantica dbpedia
  */
 
 public class DBpedia {
@@ -19,14 +23,23 @@ public class DBpedia {
 	// logger del BDsql
 	@SuppressWarnings("unused")
 	private final static Logger logger = Logger.getLogger(DBpedia.class);
-	
+
 	QueryExecution lanzadorQuery = null;
 
+	public static void main(String[] args) {
+		PropertyConfigurator.configure("log4j.properties");
+		// Creación de la Base de datos SQlite
+		CreadorBD creador = new CreadorBD();
+		creador.crearBaseDatos();
+
+	}
+	
 	/**
+	 * Constructor que inicializa la clase DBpedia
+	 * 
 	 * @name DBpedia
 	 * @author Adrian Anton Garcia
 	 * @category constructor
-	 * @Description Constructor que inicializa la clase DBpedia
 	 */
 
 	public DBpedia() {
@@ -34,11 +47,11 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que lanza la consulta pasada por parametro a la dbpedia
+	 * 
 	 * @name lanzarConsulta
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que lanza la consulta pasada por parametro a la
-	 *              dbpedia
+	 * @category Método
 	 * @param String,
 	 *            consulta a lanzar
 	 * @return ResultSet, resultset que contiene el resultado de la consulta
@@ -52,11 +65,12 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que obtiene la consulta para conseguir el genero de una seta
+	 * llamando a la dbpedia con su nombre completo
+	 * 
 	 * @name getDataQueryGenero
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que obtiene la consulta para conseguir el genero de una seta llamando a la
-	 *              dbpedia con su nombre completo
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, Consulta para obtener el genero de la web Semántica
@@ -69,11 +83,12 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que obtiene la consulta para conseguir el genero de una seta
+	 * llamando a la debepedia solo con la primeta parte del nombre
+	 * 
 	 * @name getDataQueryGenero
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que obtiene la consulta para conseguir el genero de una seta llamando a la
-	 *              debepedia solo con la primeta parte del nombre
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, Genero conseguido de la web Semántica
@@ -86,11 +101,11 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que obtiene la consulta para conseguir el genero de una seta
+	 * 
 	 * @name getDataQueryEnlace
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que obtiene la consulta para conseguir el genero de
-	 *              una seta
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, Consulta para obtener el genero de la seta
@@ -103,11 +118,11 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método obtiene la consulta para conseguir la comestibilidad de una seta
+	 * 
 	 * @name getDataQueryComestible
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo obtiene la consulta para conseguir la
-	 *              comestibilidad de una seta
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, consulta de la comestibilidad de la seta
@@ -120,11 +135,12 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que consigue la descripcion en español de la seta introducida como
+	 * parametro
+	 * 
 	 * @name getDataQueryDescriptionEsp
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que consigue la descripcion en español de la seta
-	 *              introducida como parametro
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, Consulta de la web Semántica
@@ -139,11 +155,12 @@ public class DBpedia {
 	}
 
 	/**
+	 * Método que obtiene la consulta para conseguir la descripcion en ingles de
+	 * la seta introducida como parametro
+	 * 
 	 * @name getDataQueryDescriptionEn
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que obtiene la consulta para conseguir la descripcion en ingles de la seta
-	 *              introducida como parametro
+	 * @category Método
 	 * @param String,
 	 *            seta a consultar
 	 * @return String, Consulta de la web Semántica
@@ -158,10 +175,11 @@ public class DBpedia {
 	}
 
 	/**
+	 * Procedimiento que cierra la conexion con la web semantica
+	 * 
 	 * @name close
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que cierra la conexion con la web semantica
 	 */
 
 	public void close() {

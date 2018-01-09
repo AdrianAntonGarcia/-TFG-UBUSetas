@@ -11,16 +11,16 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import dbpedia.DBpedia;
 import traductor.Translator;
 
 /**
+ * Clase que crea la base de datos a partir de BDsql y DBpedia
+ * 
  * @name CreadorBD
  * @author Adrian Anton Garcia
  * @category class
- * @Description Clase que crea la base de datos a partir de BDsql y DBpedia
  */
 
 public class CreadorBD {
@@ -33,7 +33,7 @@ public class CreadorBD {
 	private BDsql bd = null;
 
 	// urls para crear la base de datos
-	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\ExtraccionDatos\\src\\main\\java\\nombresSetas.txt";
+	private String urlFichero = "src\\main\\java\\nombresSetas.txt";
 	private String urlBaseDatos = "jdbc:sqlite:C:\\sqlite\\DBsetas\\DBsetas.db";
 	// String connectionUrl
 	// ="jdbc:sqlserver://localhost:1433;databaseName=DBsetas;user=sa;password=adrian1";
@@ -45,10 +45,11 @@ public class CreadorBD {
 	String nombreTablaClaves = "TablaClaves";
 
 	/**
+	 * Constructor que inicializa la clase CreadorBD
+	 * 
 	 * @name CreadorBD
 	 * @author Adrian Anton Garcia
 	 * @category constructor
-	 * @Description Constructor que inicializa la clase CreadorBD
 	 */
 
 	public CreadorBD() {
@@ -57,11 +58,12 @@ public class CreadorBD {
 	}
 
 	/**
+	 * método que devuelve la url donde se encuentra el fichero con los nombres
+	 * de las setas
+	 * 
 	 * @name getUrlFichero
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que devuelve la url donde se encuentra el fichero con
-	 *              los nombres de las setas
+	 * @category método
 	 * @return String, instancia de la base de datos
 	 */
 
@@ -70,11 +72,11 @@ public class CreadorBD {
 	}
 
 	/**
+	 * método que devuelve la url donde se encuentra la base de datos
+	 * 
 	 * @name getUrlBaseDatos
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que devuelve la url donde se encuentra la base de
-	 *              datos
+	 * @category método
 	 * @return String, la url de la base de datos
 	 */
 
@@ -83,10 +85,11 @@ public class CreadorBD {
 	}
 
 	/**
+	 * método que devuelve la instancia de la base de datos usada
+	 * 
 	 * @name getBaseDatos
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que devuelve la instancia de la base de datos usada
+	 * @category método
 	 * @return BDsql, instancia de la base de datos
 	 */
 
@@ -95,10 +98,11 @@ public class CreadorBD {
 	}
 
 	/**
+	 * método que devuelve la instancia de la web semantica usada
+	 * 
 	 * @name getWebSemantica
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description metodo que devuelve la instancia de la web semantica usada
+	 * @category método
 	 * @return BDsql, instancia de la web semantica
 	 */
 
@@ -156,13 +160,13 @@ public class CreadorBD {
 	}
 
 	/**
+	 * Procedimiento que hace uso de la web semántica para consultar la
+	 * comestibilidad de la seta que se pasa por parametro e inserta una fila de
+	 * esa seta con su comestiblidad.
+	 * 
 	 * @name insertarComestibilidad
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que hace uso de la web semántica para
-	 *              consultar la comestibilidad de la seta que se pasa por
-	 *              parametro e inserta una fila de esa seta con su
-	 *              comestiblidad.
 	 * @param String,
 	 *            nombre de la seta a insertar la comestibilidad
 	 */
@@ -206,12 +210,13 @@ public class CreadorBD {
 	}
 
 	/**
+	 * Procedimiento que hace uso de la web semántica para consultar el link de
+	 * la seta que se pasa por parametro e inserta una fila de esa seta con el
+	 * link.
+	 * 
 	 * @name insertarLinks
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que hace uso de la web semántica para
-	 *              consultar el link de la seta que se pasa por parametro e
-	 *              inserta una fila de esa seta con el link.
 	 * @param String,
 	 *            nombre de la seta a insertar el link
 	 */
@@ -238,12 +243,13 @@ public class CreadorBD {
 	}
 
 	/**
+	 * Procedimiento que hace uso de la web semántica para consultar el genero
+	 * de la seta que se pasa por parametro e inserta una fila de esa seta con
+	 * la especie.
+	 * 
 	 * @name insertarGeneros
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que hace uso de la web semántica para
-	 *              consultar el genero de la seta que se pasa por parametro e
-	 *              inserta una fila de esa seta con la especie.
 	 * @param String,
 	 *            nombre de la seta a insertar la especie
 	 */
@@ -276,12 +282,13 @@ public class CreadorBD {
 	}
 
 	/**
+	 * Procedimiento que hace uso de la web semántica para consultar las
+	 * descripciones de la seta que se pasa por parametro e inserta una fila de
+	 * esa seta con la descripción.
+	 * 
 	 * @name insertarDescripciones
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que hace uso de la web semántica para
-	 *              consultar las descripciones de la seta que se pasa por
-	 *              parametro e inserta una fila de esa seta con la descripción.
 	 * @param String,
 	 *            nombre de la seta a insertar las descripciones
 	 */
@@ -337,11 +344,12 @@ public class CreadorBD {
 	}
 
 	/**
+	 * método que lee las setas del fichero y devuelve una lista con todos los
+	 * nombres de las setas contenidas en ese fichero
+	 * 
 	 * @name leeFichero
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que lee las setas del fichero y devuelve una lista
-	 *              con todos los nombres de las setas contenidas en ese fichero
+	 * @category método
 	 * @param String,
 	 *            nombre del fichero a leer
 	 * @return List<String>, lista de nombres de las setas leidas del fichero

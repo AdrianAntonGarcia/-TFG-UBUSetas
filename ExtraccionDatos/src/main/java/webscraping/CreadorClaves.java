@@ -14,10 +14,12 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
+ * Clase que contiene los Métodos necesarios para serializar las claves
+ * dicotomicas.
+ * 
  * @name GeneradorClaves
  * @author Adrian Anton Garcia
  * @category class
- * @Description Clase que contiene los metodos necesarios para serializar las claves dicotomicas
  */
 
 public class CreadorClaves implements Serializable {
@@ -26,37 +28,48 @@ public class CreadorClaves implements Serializable {
 
 	private final static Logger logger = Logger.getLogger(CreadorClaves.class);
 
-	private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\ExtraccionDatos\\src\\main\\java\\generosEnlaces.txt";
+	//private String urlFichero = "C:\\Users\\adrit\\Dropbox\\Universidad5\\Proyecto Ubu\\Java\\workspaceSetas\\ExtraccionDatos\\src\\main\\java\\generosEnlaces.txt";
 
-	private String nombreFichero = "claves.dat";
+	private String urlFichero = "src\\main\\java\\generosEnlaces.txt";
 	
+	private String nombreFichero = "claves.dat";
+
 	private String nombreFicheroEn = "clavesEn.dat";
 
 	private String nodoInicial = "1";
 
 	public TreeMap<String, ArrayList<Object>> claves;
-	
+
 	public TreeMap<String, ArrayList<Object>> clavesEn;
+	
+	public static void main(String[] args) {
+		// Generación de las claves dicotómicas
+		PropertyConfigurator.configure("log4j.properties");
+		CreadorClaves generador = new CreadorClaves();
+		generador.generarClavesFicheroEs();
+		generador.generarClavesFicheroEn();
+	}
 
 	/**
+	 * Constructor de generadorClaves, inicializa el mapa de claves a serializar
+	 * 
 	 * @name GeneradorClaves
 	 * @author Adrian Anton Garcia
 	 * @category constructor
-	 * @Description Constructor de generadorClaves, inicializa el mapa de claves a serialozar
 	 */
-	
+
 	public CreadorClaves() {
 		claves = new TreeMap<String, ArrayList<Object>>();
 		clavesEn = new TreeMap<String, ArrayList<Object>>();
 	}
 
-
 	/**
+	 * Procedimiento que serializa las claves dicotómicas en el fichero
+	 * claves.dat
+	 * 
 	 * @name generarClavesFichero
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que serializa las claves dicotómicas en el
-	 *              fichero claves.dat
 	 */
 
 	public void generarClavesFicheroEs() {
@@ -92,13 +105,14 @@ public class CreadorClaves implements Serializable {
 		}
 
 	}
-	
+
 	/**
+	 * Procedimiento que serializa las claves dicotómicas en inglés en el
+	 * fichero clavesEn.dat
+	 * 
 	 * @name generarClavesFicheroEn
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que serializa las claves dicotómicas en inglés en el
-	 *              fichero clavesEn.dat
 	 */
 
 	public void generarClavesFicheroEn() {
@@ -136,11 +150,12 @@ public class CreadorClaves implements Serializable {
 	}
 
 	/**
+	 * Método que lee el fichero de los generos con las claves y carga un
+	 * treemap
+	 * 
 	 * @name leerFichero
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que lee el fichero de los generos con las claves y
-	 *              carga un treemap
+	 * @category Método
 	 */
 
 	public TreeMap<String, String> leerFichero() {

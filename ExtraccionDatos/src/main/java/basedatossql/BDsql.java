@@ -4,11 +4,13 @@ import java.sql.*;
 import org.apache.log4j.Logger;
 
 /**
+ * Clase que contiene los Métodos necesarios para acceder a una base de datos
+ * SQL y manejarla
+ * 
  * @name BDsql
  * @author Adrian Anton Garcia
  * @category class
- * @Description Clase que contiene los métodos necesarios para acceder a una
- *              base de datos SQL y manejarla
+ * 
  */
 
 public class BDsql {
@@ -27,10 +29,12 @@ public class BDsql {
 	private int tamTablaClaves = 1;
 
 	/**
+	 * Constructor que inicializa la clase BDsql
+	 * 
 	 * @name BDsql
 	 * @author Adrian Anton Garcia
 	 * @category constructor
-	 * @Description Constructor que inicializa la clase BDsql
+	 * 
 	 */
 
 	public BDsql() {
@@ -38,10 +42,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Método que devuele el tamaño de la tabla descripciones
+	 * 
 	 * @name getTamTablaDescripciones
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuele el tamaño de la tabla descripciones
+	 * @category Método
 	 * @return int, el tamaño de la tabla
 	 */
 
@@ -50,10 +55,12 @@ public class BDsql {
 	}
 
 	/**
+	 * Método que devuele el tamaño de la tabla Generos
+	 * 
 	 * @name getTamTablaGeneros
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuele el tamaño de la tabla Generos
+	 * @category Método
+	 *
 	 * @return int, el tamaño de la tabla
 	 */
 
@@ -62,10 +69,12 @@ public class BDsql {
 	}
 
 	/**
+	 * Método que devuele el tamaño de la tabla Enlaces
+	 * 
 	 * @name getTamTablaEnlaces
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuele el tamaño de la tabla Enlaces
+	 * @category Método
+	 * 
 	 * @return int, el tamaño de la tabla
 	 */
 
@@ -74,10 +83,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Método que devuele el tamaño de la tabla Claves
+	 * 
 	 * @name getTamTablaClaves
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuele el tamaño de la tabla Claves
+	 * @category Método
 	 * @return int, el tamaño de la tabla
 	 */
 
@@ -86,11 +96,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que borra la tabla pasada por parametro de la base de datos
+	 * 
 	 * @name borrarTablaSetas
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que borra la tabla pasada por parametro de la
-	 *              base de datos
 	 * @param String,
 	 *            nombre de la tabla a borrar
 	 */
@@ -116,11 +126,12 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que crea la tabla pasada por parametro de la base de datos
+	 * 
 	 * @name crearTablaDescripciones
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que crea la tabla pasada por parametro de la
-	 *              base de datos
+	 * 
 	 * @param String,
 	 *            nombre de la tabla a crear
 	 */
@@ -149,11 +160,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que crea la tabla pasada por parametro de la base de datos
+	 * 
 	 * @name crearTablaDescripciones
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que crea la tabla pasada por parametro de la
-	 *              base de datos
 	 * @param String,
 	 *            nombre de la tabla a crear
 	 */
@@ -181,11 +192,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que crea la tabla pasada por parametro de la base de datos
+	 * 
 	 * @name crearTablaComestible
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que crea la tabla pasada por parametro de la
-	 *              base de datos
 	 * @param String,
 	 *            nombre de la tabla a crear
 	 */
@@ -213,11 +224,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que crea la tabla pasada por parametro de la base de datos
+	 * 
 	 * @name crearTablaEnlaces
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que crea la tabla pasada por parametro de la
-	 *              base de datos
 	 * @param String,
 	 *            nombre de la tabla a crear
 	 */
@@ -244,10 +255,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que inserta una fila en la tabla descripciones
+	 * 
 	 * @name insertarFilaDescripciones
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que inserta una fila en la tabla descripciones
 	 * @param String,
 	 *            nombre de la tabla a insertar
 	 * @param String,
@@ -290,10 +302,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que inserta una fila en la tabla comestible
+	 * 
 	 * @name insertarFilaComestible
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que inserta una fila en la tabla comestible
 	 * @param String,
 	 *            nombre de la tabla a insertar
 	 * @param String,
@@ -333,10 +346,12 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que inserta una fila en la tabla de especies
+	 * 
 	 * @name insertarFilaEspecies
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que inserta una fila en la tabla de especies
+	 * 
 	 * @param String,
 	 *            nombre de la tabla a insertar
 	 * @param String,
@@ -375,10 +390,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que inserta una fila en la tabla de enlaces
+	 * 
 	 * @name insertarFilaEnlaces
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que inserta una fila en la tabla de enlaces
 	 * @param String,
 	 *            nombre de la tabla a insertar
 	 * @param String,
@@ -417,10 +433,11 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que conecta con la base de datos
+	 * 
 	 * @name conectarseBaseDatos
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que conecta con la base de datos
 	 * @param String,
 	 *            url de la base de datos a conectarse
 	 */
@@ -440,10 +457,12 @@ public class BDsql {
 	}
 
 	/**
+	 * Procedimiento que cierra la conexion con la base de datos
+	 * 
 	 * @name close
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que cierra la conexion con la base de datos
+	 * 
 	 */
 
 	public void close() {

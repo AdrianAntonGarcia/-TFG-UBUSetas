@@ -1,24 +1,27 @@
 package webscraping;
 
 import java.util.*;
+
+import org.apache.log4j.PropertyConfigurator;
+
 import com.jaunt.*;
 
+import basedatossql.CreadorBD;
 import traductor.Translator;
 
 /**
+ * Clase que guarda la estructura de una clave dicotómica y tiene los métodos
+ * para cargarla de la url proporcionada y acceder a sus elementos. Esta
+ * preparada para funcionar con las claves de la página web
+ * http://www.avelinosetas.info
+ * 
  * @name ClaveDicotomica
  * @author Adrian Anton Garcia
  * @category class
- * @Description Clase que guarda la estructura de una clave dicotómica y tiene
- *              los métodos para cargarla de la url proporcionada y acceder a
- *              sus elementos. Esta preparada para funcionar con las claves de
- *              la página web http://www.avelinosetas.info
  */
 
 public class ClaveDicotomica {
 
-	
-	
 	// User agent para hacer uso de las funciones de web scraping de jaunt.
 	private UserAgent userAgent;
 	// Mapa que contiene la estructura de padre hijos de los nodos.
@@ -27,16 +30,24 @@ public class ClaveDicotomica {
 	private Map<String, ArrayList<String>> contenidoNodos;
 	// Mapa que relaciona el genero con el nodo que lo contiene.
 	private Map<String, String> generosNodos;
-	//Traductor para traducir las claves
+	// Traductor para traducir las claves
 	private Translator traductor;
 
+	public static void main(String[] args) {
+		// Generación de las claves dicotómicas
+		PropertyConfigurator.configure("log4j.properties");
+		CreadorClaves generador = new CreadorClaves();
+		generador.generarClavesFicheroEs();
+		generador.generarClavesFicheroEn();
+	}
+	
 	/**
+	 * Constructor que inicializa todos los mapas de la clave, la url, el
+	 * userAgent e inicializa el primer nodo de la estructura.
+	 * 
 	 * @name ClaveDicotomica
 	 * @author Adrian Anton Garcia
 	 * @category constructor
-	 * @Description Constructor que inicializa todos los mapas de la clave, la
-	 *              url, el userAgent e inicializa el primer nodo de la
-	 *              estructura.
 	 * @param String,
 	 *            la url de la clave a cargar.
 	 */
@@ -56,43 +67,55 @@ public class ClaveDicotomica {
 	}
 
 	/**
+	 * Método que devuelve el mapa con la estructura de la clave dicotómica
+	 * 
 	 * @name getArbolNodos
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuelve el mapa con la estructura de la clave dicotómica
-	 * @return Map<String, ArrayList<String>>, mapa con la estructura de la clave dicotómica
-	 *            
+	 * @category Método
+	 * @return Map<String, ArrayList<String>>, mapa con la estructura de la
+	 *         clave dicotómica
+	 * 
 	 */
-	
-	public Map<String, ArrayList<String>> getArbolNodos(){
+
+	public Map<String, ArrayList<String>> getArbolNodos() {
 		return this.arbolNodos;
 	}
-	
+
 	/**
+	 * Método que devuelve el mapa con el contenido de los nodos de la clave
+	 * 
 	 * @name getContenidoNodos
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuelve el mapa con el contenido de los nodos de la clave
-	 * @return Map<String, ArrayList<String>>, mapa con el contenido de los nodos de la clave
+	 * @category Método
+	 * @return Map<String, ArrayList<String>>, mapa con el contenido de los
+	 *         nodos de la clave
 	 */
-	
-	public Map<String, ArrayList<String>> getContenidoNodos(){
+
+	public Map<String, ArrayList<String>> getContenidoNodos() {
 		return this.contenidoNodos;
 	}
-	
+
 	/**
+	 * Método que devuelve el mapa con los nodos que contienen los generos
+	 * 
 	 * @name getGenerosNodos
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuelve el mapa con los nodos que contienen los generos
+	 * @category Método
 	 * @return Map<String, String>, mapa con los nodos que contienen los generos
 	 */
-	
-	public Map<String, String> getGenerosNodos(){
+
+	public Map<String, String> getGenerosNodos() {
 		this.generosNodos.remove("&nbsp;");
 		return this.generosNodos;
 	}
-	
+
+	/**
+	 * Método devuelve el html de una página web.
+	 * 
+	 * @name getInnetHtml
+	 * @author Adrian Anton Garcia
+	 * @category Método
+	 */
 
 	public String getInnetHtml(String url) {
 		try {
@@ -104,14 +127,15 @@ public class ClaveDicotomica {
 	}
 
 	/**
+	 * Procedimiento que explora de forma recursiva el html de la url
+	 * proporcionada por el nodo padre que se introduce, añade un elemento a
+	 * cada mapa de la clave con los nuevos nodos de los hijos del padre. De
+	 * forma recursiva llama de nuevo al procedimiento pasando como nodos padres
+	 * los hijos.
+	 * 
 	 * @name cargarClaveDicotomica
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que explora de forma recursiva el html de la
-	 *              url proporcionada por el nodo padre que se introduce, añade
-	 *              un elemento a cada mapa de la clave con los nuevos nodos de
-	 *              los hijos del padre. De forma recursiva llama de nuevo al
-	 *              procedimiento pasando como nodos padres los hijos.
 	 * @param String,
 	 *            El nodo padre del que se van a cargar los hijos
 	 */
@@ -127,7 +151,7 @@ public class ClaveDicotomica {
 		try {
 			// recojo las filas de la página del nodo padre.
 			String urlVisitar = contenidoNodos.get(nodoPadre).get(1);
-			if (urlVisitar != "null" ) {
+			if (urlVisitar != "null") {
 				userAgent.visit(urlVisitar);
 				Elements filas = userAgent.doc.findEach("<tr>");
 				System.out.println("Found " + filas.size() + " filas:");
@@ -219,15 +243,16 @@ public class ClaveDicotomica {
 	}
 
 	/**
+	 * Procedimiento que explora de forma recursiva el html de la url
+	 * proporcionada por el nodo padre que se introduce, añade un elemento a
+	 * cada mapa de la clave con los nuevos nodos de los hijos del padre. De
+	 * forma recursiva llama de nuevo al procedimiento pasando como nodos padres
+	 * los hijos. Este procedimiento carga las claves dicotómicas traducidas al
+	 * inglés.
+	 * 
 	 * @name cargarClaveDicotomicaEn
 	 * @author Adrian Anton Garcia
 	 * @category procedimiento
-	 * @Description Procedimiento que explora de forma recursiva el html de la
-	 *              url proporcionada por el nodo padre que se introduce, añade
-	 *              un elemento a cada mapa de la clave con los nuevos nodos de
-	 *              los hijos del padre. De forma recursiva llama de nuevo al
-	 *              procedimiento pasando como nodos padres los hijos. Este procedimiento
-	 *              carga las claves dicotómicas traducidas al inglés
 	 * @param String,
 	 *            El nodo padre del que se van a cargar los hijos
 	 */
@@ -242,11 +267,11 @@ public class ClaveDicotomica {
 		String textoEnlace = "null";
 		ArrayList<String> contenidos;
 		ArrayList<String> nodosHijos = new ArrayList<String>();
-		
+
 		try {
 			// recojo las filas de la página del nodo padre.
 			String urlVisitar = contenidoNodos.get(nodoPadre).get(1);
-			if (urlVisitar != "null" ) {
+			if (urlVisitar != "null") {
 				userAgent.visit(urlVisitar);
 				Elements filas = userAgent.doc.findEach("<tr>");
 				System.out.println("Found " + filas.size() + " filas:");
@@ -282,7 +307,7 @@ public class ClaveDicotomica {
 							preguntaEn = traductor.callUrlAndParseResult("es", "en", preguntaEs);
 						} catch (NotFound ex) {
 							preguntaEn = "null" + nodoPadre;
-						}catch (Exception ex) {
+						} catch (Exception ex) {
 							System.err.println("Error al traducir");
 						}
 						System.out.println("Pregunta en inglés:");
@@ -339,15 +364,17 @@ public class ClaveDicotomica {
 			System.err.println(e);
 		}
 	}
+
 	/**
+	 * Método que devuelve los mapas de la clave en un array de objetos
+	 * 
 	 * @name devolverMapas
 	 * @author Adrian Anton Garcia
-	 * @category metodo
-	 * @Description Metodo que devuelve los mapas de la clave en un array de objetos
+	 * @category Método
 	 * @return ArrayList<Object>, array list con los mapas de la clave
 	 */
-	
-	public ArrayList<Object> devolverMapas(){
+
+	public ArrayList<Object> devolverMapas() {
 		ArrayList<Object> mapas = new ArrayList<Object>();
 		mapas.add(this.arbolNodos);
 		mapas.add(this.contenidoNodos);
@@ -356,34 +383,18 @@ public class ClaveDicotomica {
 	}
 
 
-	public static void main(String[] args) {
-		String url1 = "http://www.avelinosetas.info/Claves/xerocomus/xerocomus01.html";
-
-		ClaveDicotomica clave = new ClaveDicotomica(url1, "1");
-
-		clave.cargarClaveDicotomica("1");
-		
-		
-		System.out.println(clave.getGenerosNodos());
-	
-	}
-
-	/*public void leerFichero(){
-        ArrayList<Object> claves = new ArrayList<Object>();
-        try {
-            FileInputStream fis = new FileInputStream(nombreFichero);
-            ObjectInputStream is = new ObjectInputStream(fis);
-            claves = (ArrayList<Object>) is.readObject();
-            is.close();
-            fis.close();
-        }catch(Exception ex){
-           System.out.println(ex.getMessage());
-        }
-        Map<String, ArrayList<String>> arbolNodos2 = (Map<String, ArrayList<String>>) claves.get(0);
-        Map<String, ArrayList<String>> contenidoNodos2= (Map<String, ArrayList<String>>) claves.get(1);
-        Map<String, String> generosNodos2= (Map<String, String>) claves.get(2);
-        System.out.println(arbolNodos2.toString());
-        System.out.println(contenidoNodos2.toString());
-        System.out.println(generosNodos2.toString());
-	}*/
+	/*
+	 * public void leerFichero(){ ArrayList<Object> claves = new
+	 * ArrayList<Object>(); try { FileInputStream fis = new
+	 * FileInputStream(nombreFichero); ObjectInputStream is = new
+	 * ObjectInputStream(fis); claves = (ArrayList<Object>) is.readObject();
+	 * is.close(); fis.close(); }catch(Exception ex){
+	 * System.out.println(ex.getMessage()); } Map<String, ArrayList<String>>
+	 * arbolNodos2 = (Map<String, ArrayList<String>>) claves.get(0); Map<String,
+	 * ArrayList<String>> contenidoNodos2= (Map<String, ArrayList<String>>)
+	 * claves.get(1); Map<String, String> generosNodos2= (Map<String, String>)
+	 * claves.get(2); System.out.println(arbolNodos2.toString());
+	 * System.out.println(contenidoNodos2.toString());
+	 * System.out.println(generosNodos2.toString()); }
+	 */
 }

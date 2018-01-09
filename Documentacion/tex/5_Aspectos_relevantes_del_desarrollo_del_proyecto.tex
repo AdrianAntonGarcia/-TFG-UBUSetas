@@ -41,7 +41,7 @@ Se decidió empezar por la tarea de generar el clasificador de imágenes ya que 
 	\item Reentrenar los nuevos modelos Mobilenet mediante Tensorflow, lo que nos permitiría ejecutar los clasificadores en el propio dispositivo móvil.
 \end{itemize}
 
-Elegí empezar por estudiar la tercera propuesta y ver si era posible ejecutar los modelos en el propio teléfono móvil. Esta propuesta tiene la ventaja de que el usuario no necesita estar conectado a un servidor Web, característica importante si pensamos que esta aplicación se usaría en zonas con poca cobertura.
+Elegí empezar por estudiar la tercera propuesta y ver si era posible ejecutar los modelos en el propio teléfono móvil. Esta propuesta tiene la ventaja de que el usuario no necesita estar conectado a un servidor Web, característica importante si pensamos que esta aplicación se usara en zonas con poca cobertura.
 
 La preocupación principal era saber si los modelos se iban a poder ejecutar en el propio móvil de una manera rápida, ya que es un proceso costoso, y que nos proporcionara los resultados deseados. Después de estudiar la tecnología Tensorflow y cómo implementarla en una aplicación Android probé varios varios modelos preentrenados de prueba que proporcionan en los ejemplos de Tensorflow\footnote{\url{https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android}} y vi que la aplicación se ejecutaba correctamente en diferentes modelos de móvil simulados y en mi propio teléfono.
 
@@ -51,9 +51,9 @@ Después de realizar pruebas con modelos preentrenados y ejemplos empecé a estu
 
 Gracias a estos scripts y a los ejemplos encontrados de Tensorflow en Android conseguí reentrenar los primeros modelos y clasificar las primeras imágenes en el propio móvil.
 
-Las imágenes usadas para entrenar los modelos se sacaron de los repositorios Imagenet y Enciclopedia of Life, recopilando aproximadamente entre 30 y 80 fotos por cada especie de seta. En total se han usado 9400 fotografías para reentrenar el clasificador completo divididas en 171 especies de setas.
+Las imágenes usadas para entrenar los modelos se sacaron de los repositorios Imagenet y Enciclopedia of Life, recopilando aproximadamente entre 30 y 80 fotos por cada especie de seta. En total se han usado 9400 fotografías para reentrenar el clasificador completo divididas en 172 especies de setas.
 
-Las primeras pruebas se ejecutaron con un modelo Mobilenet v1-224 reentrenado, que diferenciaba 118 especies de setas, en un teléfono móvil Samsung galaxy S5. La aplicación lograba ejecutarse fluidamente y se consiguió una precisión (61,5\%)\ref{figMobilenet1} en la validación cruzada con 4000 pasos de reentrenamiento:
+Las primeras pruebas se ejecutaron con un modelo Mobilenet v1-224 reentrenado, que diferenciaba 118 especies de setas, en un teléfono móvil Samsung galaxy S5. La aplicación lograba ejecutarse fluidamente y se consiguió una precisión (61,5\%) \ref{figMobilenet1} en la validación cruzada con 4000 pasos de reentrenamiento:
 
 \begin{figure}[h]
     \begin{center}%
@@ -78,12 +78,12 @@ Para Mobilenet contábamos con los modelos mostrados en la figura \ref{figCompar
         \begin{center}%
           \includegraphics[width=1\textwidth]{comparativaMobilenet}%
           \caption{Comparativa modelos Mobilenet}%
-          \label{figComparativaMobilenet.}%
+          \label{figComparativaMobilenet}%
         \end{center}%
   	\end{center}%
 \end{figure}%
 \newpage
-Se realizaron pruebas con los diferentes modelos y al final opte por usar el modelo Mobilenet v1 224 ya que se ejecutaba de forma suficientemente fluida y proporciona una precision superior a los demás modelos Mobilenet. 
+Se realizaron pruebas con los diferentes modelos y al final opté por usar el modelo Mobilenet v1 224 ya que se ejecutaba de forma suficientemente fluida y proporciona una precision superior a los demás modelos Mobilenet. 
 
 Respecto al modelo Inception su peso era de 75 Megabytes en contra de los 17 Megabytes que ocupaba el modelo Mobilenet y los resultados obtenidos \ref{figInception1} en validación cruzada eran parecidos entrenados en las mismas condiciones. 
 
@@ -98,9 +98,9 @@ Respecto al modelo Inception su peso era de 75 Megabytes en contra de los 17 Meg
   	\end{center}%
 \end{figure}%
 
-Una vez elegido el modelo se procedió a escalar el modelo aumentando el número de especies a diferenciar, pasando de clasificar 118 especies a un total de 171. Este aumento provoco un ligero descenso en la precisión del clasificador que se solvento aplicando técnicas de Data augmentation a la hora de entrenar el modelo. La precisión obtenida final fue de un 59,4\% \ref{figMobilenet2} en validación cruzada de media entre todas las categorías de especies de setas.
+Una vez elegido el modelo se procedió a escalar el modelo aumentando el número de especies a diferenciar, pasando de clasificar 118 especies a un total de 172. Este aumento provoco un ligero descenso en la precisión del clasificador que se solvento aplicando técnicas de Data augmentation a la hora de entrenar el modelo. La precisión obtenida final fue de un 59,4\% \ref{figMobilenet2} en validación cruzada de media entre todas las categorías de especies de setas.
 
-Se probó a aumentar el número de pasos de entrenamiento pero esto no provocaba un ascenso de la precisión sino que se mantenía constante y provocaba el riesgo de que se sobre entrenara el modelo por lo que se decidio dejar el parámetro en 4000 pasos.
+Se probó a aumentar el número de pasos de entrenamiento pero esto no provocaba un ascenso de la precisión sino que se mantenía constante y provocaba el riesgo de que se sobre-entrenara el modelo por lo que se decidió dejar el parámetro en 4000 pasos.
 
 El tiempo necesario para entrenar este modelos con un procesador i7 4790, fue de 5 horas 55 minutos.
 
@@ -118,11 +118,11 @@ El tiempo necesario para entrenar este modelos con un procesador i7 4790, fue de
 
 La siguiente tarea que se decidió afrontar después de implementar el clasificador de imágenes fue la parte de Web semántica. En esta tarea había que recopilar información de las diferentes especies de setas, de alguna Web semántica, con el objetivo de crear fichas para cada especie que pudiera consultar el usuario en cualquier momento.
 
-La principal dificultad que se encontró en este apartado y que determino el uso de la DBpedia como Web semántica, fue encontrar un repositorio que contuviera información suficiente de todas las especies sin excepción.El alto número de especies que podía clasificar la aplicación dificultaba esta tarea. Este requisito era necesario para automatizar la extracción de datos y que todas las especies tuvieran su ficha de información.
+La principal dificultad que se encontró en este apartado y que determinó el uso de la DBpedia como Web semántica, fue encontrar un repositorio que contuviera información suficiente de todas las especies sin excepción.El alto número de especies que podía clasificar la aplicación dificultaba esta tarea. Este requisito era necesario para automatizar la extracción de datos y que todas las especies tuvieran su ficha de información.
 
 La DBpedia era la única que recopilaba información suficiente de todas las especies al completo y nos proporcionaba la información mínima deseada como era una descripción de la especie y la comestibilidad de esta.
 
-Otra opción que se contemplo fue la de usar web scraping en vez de consultas a una web semántica, pero esta opción se descarto ya que no se logro encontrar un repositorio con todas la especies y que contuviera más información que la que proporcionaba por la DBpedia.
+Otra opción que se contempló fue la de usar \textit{web scraping} en vez de consultas a una web semántica, pero esta opción se descarto ya que no se logró encontrar un repositorio con todas la especies y que contuviera más información que la que proporcionaba por la DBpedia.
 
 Gracias al lenguaje de consultas SparQL y la librería Apache Jena para Java se implemento un programa en Windows que realizaba consultas a la DBpedia y nos devolvía la información necesaria.
 
@@ -132,7 +132,7 @@ Para mostrar imágenes comparativas de las especies se usaron una parte de las i
 
 Una vez recopilada la información de las diferentes especies, la aplicación era capaz de clasificar las cinco especies más probables respecto a la imagen de la seta introducida, mostrar imágenes comparativas de las especies y mostrar información de cada especie.
 
-De cara a la internacionalización de la aplicación se implemento un método que tradujera automáticamente mediante el traductor de Google la información de la DBpedia en caso de no estar disponible en el idioma deseado. Por ejemplo, había veces que la información no se encontraba disponible en Español por lo que se traducía desde la versión en inglés.
+De cara a la internacionalización de la aplicación se implementó un método que tradujera automáticamente mediante el traductor de Google la información de la DBpedia en caso de no estar disponible en el idioma deseado. Por ejemplo, había veces que la información no se encontraba disponible en Español por lo que se traducía desde la versión en inglés.
 
 \section{Clave dicotómica}
 
@@ -143,7 +143,7 @@ El último apartado a tratar era el de implementar una clave dicotómica que nos
 	\item Estructurar esa clave dicotómica de una forma que se pudiera manejar para implementarse en la aplicación Android.
 \end{itemize}
 
-Después de buscar en diferentes páginas web, se encontró una (\url{http://www.avelinosetas.info/claves.php}) que contenía una serie de claves dicotómicas para diferentes especies y una clave que discriminaba entre 108 géneros de setas. De las claves encontradas fue la que más géneros contemplaba. Para que los géneros de la clave y del clasificador coincidieran se recopilaron imágenes de las especies que no se contemplaban en el clasificador para reentrenarlo y que pudiera discriminar entre 171 especies distintas.
+Después de buscar en diferentes páginas web, se encontró una (\url{http://www.avelinosetas.info/claves.php}) que contenía una serie de claves dicotómicas para diferentes especies y una clave que discriminaba entre 108 géneros de setas. De las claves encontradas fue la que más géneros contemplaba. Para que los géneros de la clave y del clasificador coincidieran se recopilaron imágenes de las especies que no se contemplaban en el clasificador para reentrenarlo y que pudiera discriminar entre 172 especies distintas.
 
 Esta solución tiene la limitación de que el número de setas discriminado por el clasificador no es el mismo que el de la clave dicotómica.
 
@@ -159,7 +159,7 @@ Para diseñar la interfaz de la aplicación se siguieron las recomendaciones de 
 
 Se han intentado usar colores planos siguiendo las indicaciones de Material Design así como iconos intuitivos para los diferentes botones de la aplicación.
 
-La aplicación esta desarrollada para que se pueda visualizar en vertical como en horizontal. Además se han usado medidas relativas de los elementos para que la aplicación se pueda adaptar a diferentes tamaños de pantalla.
+La aplicación está desarrollada para que se pueda visualizar en vertical como en horizontal. Además se han usado medidas relativas de los elementos para que la aplicación se pueda adaptar a diferentes tamaños de pantalla.
 
 La aplicación cuenta con un menú lateral que nos permite navegar desde cualquier punto de la aplicación a las opciones principales.
 
@@ -167,7 +167,7 @@ Se ha traducido la aplicación al Inglés y Español traduciendo tanto textos ex
 
 Cada actividad de la aplicación cuenta con un menú de ayuda que explica la funcionalidad completa de la actividad en la que te encuentras. El menú lateral cuenta con su propia ayuda.
 
-Respecto al tamaño de la aplicación, este se ha conseguido reducir a un total de 42,6 Megabytes. Para ello se tuvieron que formatear las imágenes de las 171 especies (5 imágenes por especie) de setas a una resolución menor, así como usar el modelo Mobilenet en vez del Inception.
+Respecto al tamaño de la aplicación, este se ha conseguido reducir a un total de 42,6 Megabytes. Para ello se tuvieron que formatear las imágenes de las 172 especies de setas (5 imágenes por especie) a una resolución menor, así como usar el modelo Mobilenet en vez del Inception.
 
 
 

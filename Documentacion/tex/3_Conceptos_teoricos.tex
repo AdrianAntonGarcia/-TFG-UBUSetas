@@ -26,10 +26,14 @@ A continuación se van a describir las partes más características de una seta 
 
 \begin{itemize}
 	\item{Sombrero}: Situado sobre el pie, ejerce la función de protección en la formación y desarrollo de las esporas. El sombrero es un elemento clave a la hora de diferenciar las especies ya que puede adoptar diferentes formas, aspectos y colores.
-	\item{Himenio}: Es la parte situada justo debajo del sobrero y que puede adoptar diferentes formas(láminas, tubos, aguijones o pliegues), estas diferentes formas nos ayudarán a diferenciar entre las especies. La función principal de esta parte es la de crear, desarrollar, almacenar y dispersar las esporas que generan nuevos hongos.
+	\item{Himenio}: Es la parte situada justo debajo del sobrero y que puede adoptar diferentes formas (láminas, tubos, aguijones o pliegues), estas diferentes formas nos ayudarán a diferenciar entre las especies. La función principal de esta parte es la de crear, desarrollar, almacenar y dispersar las esporas que generan nuevos hongos.
+	\item{Lamina}: Son los tabiques del himenio que contienen los basidios\footnote{Estructuras microscópicas que generan las esporas de la seta}.
 	\item{Pie}: Elemento que no tiene por que aparecer en todas las setas y que sujeta al sombrero e himenio.
-	\item{Volva}: Es un fragmento en forma de membrana que envuelve la base del pie en algunas setas. Es un error común cortar el pie de la seta y no conservar la volva que nos podría dar indicios de a que especie pertenece la seta.~\cite{partesSeta}
+	\item{Volva}: Es un fragmento en forma de membrana que envuelve la base del pie en algunas setas. Es un error común cortar el pie de la seta y no conservar la volva que nos podría dar indicios de a qué especie pertenece la seta.
+	\item{Micelio}: El conjunto de hifas, es decir, el hongo propiamente dicho.~\cite{partesSeta}
 \end{itemize}
+
+%http://www.fungiturismo.com/todas-partes-de-seta
 
 En la siguiente figura \ref{figpartesDeLaSeta} se muestran las partes más relevantes de una seta.
 
@@ -37,20 +41,22 @@ En la siguiente figura \ref{figpartesDeLaSeta} se muestran las partes más relev
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{partesDeLaSeta}%
-          \caption{Partes de una seta}%
+          \caption{Partes de una seta \cite{imagenPartesSeta}}%
           \label{figpartesDeLaSeta}%
         \end{center}%
   	\end{center}%
 \end{figure}%
 
+\newpage
+%https://lameleracasarural.files.wordpress.com/2014/11/partesdelaseta.jpg
 \section{Inteligencia Artificial}
 %https://luismejias21.files.wordpress.com/2017/09/inteligencia-artificial-un-enfoque-moderno-stuart-j-russell.pdf
-Hay muchas definiciones para definir lo que es la inteligencia artificial, normalmente aparece bajo las siglas IA o AI (Del inglés Artificial Intelligence), pero de forma general la podemos definir como el desarrollo de algoritmos y métodos que otorgan a las computadoras la capacidad de realizar acciones o tareas como las realizaría un ser humano. La inteligencia artificial se aplica en multitud de campos como puede ser la robótica, automovilismo, reconocimiento de imágenes, medicina, sistemas de apoyo...
+Hay muchas definiciones para definir lo que es la inteligencia artificial, normalmente aparece bajo las siglas IA o AI (del inglés Artificial Intelligence), pero de forma general la podemos definir como el desarrollo de algoritmos y métodos que otorgan a las computadoras la capacidad de realizar acciones o tareas como las realizaría un ser humano. La inteligencia artificial se aplica en multitud de campos como puede ser la robótica, automovilismo, reconocimiento de imágenes, medicina, sistemas de apoyo...
 
-Stuart Russell y Peter Norving\cite{wiki:tiposInteligenciaArtificial}  diferencian estos cuatro tipos de inteligencia artificial:
+Stuart Russell y Peter Norving \cite{wiki:tiposInteligenciaArtificial}  diferencian estos cuatro tipos de inteligencia artificial:
 
 \begin{itemize}
-	\item{Sistemas que piensan como humanos}: Son sistemas que intentan emular el pensamiento humano automatizando actividades que relacionamos con los procesos de pensamiento humano(toma de decisiones, resolución de problemas...), por ejemplo las redes neuronales artificiales.
+	\item{Sistemas que piensan como humanos}: Son sistemas que intentan emular el pensamiento humano automatizando actividades que relacionamos con los procesos de pensamiento humano (toma de decisiones, resolución de problemas...), por ejemplo las redes neuronales artificiales.
 	\item{Sistemas que actúan como humanos}: Este tipo de sistemas intentan imitar el comportamiento humano, por ejemplo la robótica.
 	\item{Sistemas que piensan racionalmente}: Tratan de imitar con lógica el pensamiento lógico racional del ser humano, por ejemplo los sistemas expertos.
 	\item{Sistemas que actúan racionalmente}:Intentan emular de forma racional el comportamiento humano.
@@ -65,18 +71,18 @@ El aprendizaje automático (del inglés Machine Learning) es una rama de la inte
 Hay una gran variedad de algoritmos de aprendizaje automático, a continuación se presentan algunos de los tipos más extendidos:
 \begin{itemize}
 
-	\item{Aprendizaje supervisado}: En estos algoritmos se intenta crear una función que nos de la correspondencia entre los datos de entrada y una de las salidas deseadas. En este tipo de algoritmos se tiene información tanto de los valores de entrada como del los valores deseados.Para entrenar se suelen usar pares en los que un componente son los datos de entrada y otro los valores deseados. Los valores deseados suelen ser denominados como clases.~\cite{wiki:aprendizaheSupervisado}
+	\item{Aprendizaje supervisado}: en estos algoritmos se intenta crear una función que nos dé la correspondencia entre los datos de entrada y una de las salidas deseadas. En este tipo de algoritmos se tiene información tanto de los valores de entrada como del los valores deseados.Para entrenar se suelen usar pares en los que un componente son los datos de entrada y otro los valores deseados. Los valores deseados suelen ser denominados como clases.~\cite{wiki:aprendizaheSupervisado}
 	
-	El valor de salida de la función puede ser un número(Regresión) o una etiqueta de clase(Clasificación).
+	El valor de salida de la función puede ser un número (Regresión) o una etiqueta de clase (Clasificación).
 	
 	Los algoritmos de clasificación usados en este proyecto se corresponderían con este tipo de aprendizaje, siendo las etiquetas de clase las especies de setas que se quieren clasificar.
 	
-	\item{Aprendizaje no supervisado}: El aprendizaje no supervisado se diferencia del supervisado en que no se conoce a priori los resultados deseados. En este tipo de aprendizaje, normalmente, se tratan los datos de entrada como una serie de datos aleatorios y se intentan buscar relaciones ocultas entre ellos.
+	\item{Aprendizaje no supervisado}: el aprendizaje no supervisado se diferencia del supervisado en que no se conoce a priori los resultados deseados. En este tipo de aprendizaje, normalmente, se tratan los datos de entrada como una serie de datos aleatorios y se intentan buscar relaciones ocultas entre ellos.
 	Una forma de aprendizaje no supervisado es el clustering, el cuál se encarga de organizar los datos de entrada en grupos en los que comparten propiedades y los diferencian del resto.~\cite{wiki:aprendizajeNoSupervisado}
 	
 	\item{Aprendizaje semisupervisado}: Este tipo de aprendizaje mezcla las dos técnicas descritas anteriormente. Se usa cuando tenemos tanto datos conocidos como datos de los que no tenemos conocimiento.
 	
-	\item{Aprendizaje por refuerzo}: Este tipo de algoritmos realiza una aprendizaje mediante el modelo de prueba-error, es decir, el algoritmo realiza acciones y a partir de los resultados de estas el algoritmo evalúa cual han sido beneficiosas y cuales no.
+	\item{Aprendizaje por refuerzo}: Este tipo de algoritmos realiza una aprendizaje mediante el modelo de prueba-error, es decir, el algoritmo realiza acciones y a partir de los resultados de estas el algoritmo evalúa cuáles han sido beneficiosas y cuáles no.
 \end{itemize}
 	
 En nuestro proyecto se hace uso del aprendizaje supervisado para entrenar el clasificador de imágenes que reconocerá las especies de las setas.
@@ -86,7 +92,7 @@ En nuestro proyecto se hace uso del aprendizaje supervisado para entrenar el cla
 
 La minería de datos consiste en la aplicación de técnicas de inteligencia artificial sobre grandes cantidades de datos con el objetivo de descubrir patrones o relaciones ocultas entre los datos. La parte de la minería de datos más relevante para nuestro proyecto son los clasificadores previamente introducidos \cite{procesosMineriaDatos}. Básicamente los clasificadores se basan en la hipótesis del aprendizaje inductivo:
 
-Cualquier hipótesis que aproxime bien una función objetivo sobre un conjunto de ejemplos de entrenamiento suficientemente grande también aproximará bien la función objetivo en ejemplos no observados //CITAR UBU
+Cualquier hipótesis que aproxime bien una función objetivo sobre un conjunto de ejemplos de entrenamiento suficientemente grande también aproximará bien la función objetivo en ejemplos no observados,
 
 La míneria de datos, típicamente, consta de los siguientes pasos:
 \begin{itemize}
@@ -124,7 +130,7 @@ En esta sección se explicarán algunos conceptos teóricos sobre redes neuronal
 
 \subsection{Modelo de neurona artificial}
 
-Una neurona artificial de forma general se puede describir según el modelo de Rumelhart y McClelland (1986), el cual define la neurona o elemento de proceso(EP) como un dispostivo el cuál a partir de un conjunto de entradas, vector x, genera una única salida y. \cite{redesNeurnalesUno}
+Una neurona artificial de forma general se puede describir según el modelo de Rumelhart y McClelland (1986), el cual define la neurona o elemento de proceso (EP) como un dispostivo el cuál a partir de un conjunto de entradas, vector x, genera una única salida y. \cite{redesNeurnalesUno}
 
 \begin{figure}[h]
     \begin{center}%
@@ -141,8 +147,8 @@ La neurona artifcial consta de los siguientes elementos:
 
 \begin{itemize}
 	\item{Conjunto de entradas x}: El vector x.
-	\item{Conjunto de pesos sinápticos wij}: Representan la relación entre la neurona i y j.
-	\item{Regla de propagación}: proporciona el potencial postsináptico, hi(t). Se suele representar como una suma ponderada de la siguiente forma \ref{eq:funcionPropagacion}
+	\item{Conjunto de pesos sinápticos $w_{i,j}$ }: Representan la relación entre la neurona i y j.
+	\item{Regla de propagación}: proporciona el potencial postsináptico, $h_i (t)$. Se suele representar como una suma ponderada de la siguiente forma \ref{eq:funcionPropagacion}
 	
 \begin{equation} \label{eq:funcionPropagacion}
 	h_{1}(t)=\sum (w_{1j}*x_{j})
@@ -202,7 +208,7 @@ Este tipo de redes neuronales son muy parecidas a las RNA normales pero tienen d
   	\end{center}%
 \end{figure}%
 
-Las redes neuronales convolucionales organizan sus neuronas en capas de 3 dimensiones normalmente coincidiendo con las características de la imágen, siendo height la altura de la foto, width el ancho y depth los colores de la imágen. Por ejemplo se podría apicar a imágenes de 32x32x3.
+Las redes neuronales convolucionales organizan sus neuronas en capas de 3 dimensiones normalmente coincidiendo con las características de la imágen, siendo height la altura de la foto, width el ancho y depth los colores de la imágen. Por ejemplo se podría aplicar a imágenes de 32x32x3.
 
 \subsection{Tipos de capas}
 
@@ -210,7 +216,7 @@ En este apartado se van a explicar los tres tipos de capas más importantes a la
 %https://ccc.inaoep.mx/~pgomez/deep/presentations/2016Loncomilla.pdf
 \subsubsection{Capas convolucionales}
 
-En estas capas los pixeles de salida son combinaciones lineales de diferentes pixeles de entrada lo que generan nuevos mapas de pixeles mas sencillos y que no son tan sensibles a cambios en las entradas.\cite{redesConvolucionales} Las convoluciones se pueden producir teniendo en cuenta solo 2 dimensiones(el alto y ancho) o teniendo en cuenta las 3 dimensiones (alto, ancho y profundidad). En algunas arquitecturas son llamadas capas RELU, ejecutan la función de activación de las neuronas.
+En estas capas los pixeles de salida son combinaciones lineales de diferentes pixeles de entrada lo que generan nuevos mapas de pixeles mas sencillos y que no son tan sensibles a cambios en las entradas.\cite{redesConvolucionales} Las convoluciones se pueden producir teniendo en cuenta solo 2 dimensiones (el alto y ancho) o teniendo en cuenta las 3 dimensiones (alto, ancho y profundidad). En algunas arquitecturas son llamadas capas RELU, ejecutan la función de activación de las neuronas.
 
 \begin{figure}[h]
     \begin{center}%
@@ -264,9 +270,9 @@ Ante esta pregunta, la respuesta que han aplicado es la de ejecutar los diferent
   	\end{center}%
 \end{figure}%
 
-En la figura \ref{figinception} podemos observar como se aplican las diferentes convoluciones en pararelo. Además podemos observar que se aplican unas convoluciones de 1x1, estas convoluciones tienen el objetivo de reducir el número de parámetros que se usan ya que aunque no reducen el área de los mapas si reducen la profundidad de las capas.\cite{inception}
+En la figura \ref{figinception} podemos observar como se aplican las diferentes convoluciones en pararelo. Además podemos observar que se aplican unas convoluciones de 1x1, estas convoluciones tienen el objetivo de reducir el número de parámetros que se usan ya que aunque no reducen el área de los mapas sí reducen la profundidad de las capas.\cite{inception}
 
-Los modelos inception se construyen concatenando estos bloques o nodos Inception, en teoría cuanta más profundidad se de a estos modelos y más se concatenen más precisos deberían ser los modelos pero esto tiene un coste alto de computación (Aún reduciendo los computos con las convoluciones 1x1) y se corre el riesgo de sobreajustar los modelos.
+Los modelos inception se construyen concatenando estos bloques o nodos Inception, en teoría cuanta más profundidad se dé a estos modelos y más se concatenen más precisos deberían ser los modelos pero esto tiene un coste alto de computación (Aún reduciendo los computos con las convoluciones 1x1) y se corre el riesgo de sobreajustar los modelos.
 
 Actualmente se pueden entrenar diferentes versiones de Inception, en el proyecto hemos trabajado reentrenando la versión 3 del modelo mediante Tensorflow.
 
@@ -294,7 +300,7 @@ La arquitectura de este tipo de modelo, al igual que el modelo Inception explica
 
 \subsection{Arquitectura Modelo Mobilenet}
 
-La arquitectura del modelo Mobilenet se basa en dividir los filtros convolucionales típicos de una RNA totalmente conectada en dos nuevos tipos de filtros, los filtros convolucionales profundos (Del inglés Depthwise Convolutional Filters) y los filtros convolucionales puntuales (Del inglés Pointwise Convolution Filters).
+La arquitectura del modelo Mobilenet se basa en dividir los filtros convolucionales típicos de una RNA totalmente conectada en dos nuevos tipos de filtros, los filtros convolucionales profundos (del inglés Depthwise Convolutional Filters) y los filtros convolucionales puntuales (del inglés Pointwise Convolution Filters).
 
 El objetivo de esta división de fitros es el de minimizar el número de operaciones realizada. La convoluciones normales tienen el siguiente coste \ref{eq:convolucionNormal}:
 
@@ -318,8 +324,7 @@ Y los Pointwise Convolution Filters tienen el siguiente coste \ref{eq:pointwiseF
 
 Si expresamos la convolución como un proceso de dos pasos de filtrado y combinación de los dos filtros anteriores obtenemos la siguiente reducción de costes de computación \ref{eq:convolución}:
 \begin{equation} \label{eq:convolución}
-(DK * DK * M * DF * DF + M * N * DF * DF)/
-(DK * DK * M * N * DF * DF) = (1/N)+(1/(DK*DK))
+\frac{(DK * DK * M * DF * DF + M * N * DF * DF)}{(DK * DK * M * N * DF * DF) }= (1/N)+(1/(DK*DK))
 \end{equation}
 
 Lo que supone una reducción respecto a los filtros convolucionales normales. Esta reducción la podemos observar en la siguiente tabla:
@@ -395,7 +400,7 @@ La técnica más extendida de Web Scraping es analizar la estructura del código
 
 Las claves dicotómicas son herramientas que periten identificar organismos. Las claves pueden determinar animales, plantas, hongos,moneras, protistas o cualquier otro ser vivo. Las claves pueden alcanzar diferentes profundidades identificando el género, especie, familia, entre otros.
 
-La clave dicotómica se basa en ir mostrando al usuario diferentes dilemas(afirmaciones contrapuestas) entre los que deberá ir eligiendo el que más se adecue al organismo a identificar hasta alcanzar la categoría taxonómica\footnote{Grupos en los que se clasifican los seres vivos.} deseada. Estas afirmaciones están enumeradas a lo largo de la clave.
+La clave dicotómica se basa en ir mostrando al usuario diferentes dilemas (afirmaciones contrapuestas) entre los que deberá ir eligiendo el que más se adecue al organismo a identificar hasta alcanzar la categoría taxonómica\footnote{Grupos en los que se clasifican los seres vivos.} deseada. Estas afirmaciones están enumeradas a lo largo de la clave.
 
 \subsection{¿Cómo usar una clave?}
 

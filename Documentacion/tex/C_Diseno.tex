@@ -5,9 +5,9 @@
 En esta sección se van a detallar los diferentes diseños del software que se han desarrollado para implementar el proyecto.
 
 \begin{itemize}
-	\item Diseño de datos: En esta sección se explicará como están implementados los datos y clases desarrolladas tanto en la aplicación Android como en el proyecto Eclipse.
+	\item Diseño de datos: En esta sección se explicará como están implementados los datos y clases desarrolladas tanto en la aplicación Android como en el proyecto de Eclipse.
 	\item Diseño arquitectónico : En esta sección se explicará como están organizados los paquetes de los proyectos y como se interrelacionan entre sí.
-	\item Diseño procedimental: 
+	\item Diseño procedimental: En esta sección se explicarán los procedimientos más relevantes de la aplicación.
 \end{itemize}
 
 Para crear los diferentes diagramas requeridos en los diseños se han utilizado las herramientas \textit{Dia}\footnote{\url{http://dia-installer.de/index.html.es}} y \textit{Astah}\footnote{\url{http://astah.net/}}.
@@ -57,9 +57,9 @@ Este mapa facilita acceder al nodo que contiene el género buscado de seta.
 \end{itemize}
 
 \subsection{Diagramas de clases}
-\subsubsection{Diagramas de clases del proyecto Java}
+\subsubsection{Diagramas de clases del proyecto de Eclipse}
 
-En la figura \ref{figDiagramaClasesJava} podemos observar las clases implementadas en el proyecto java y que dependencias tienen entre sí. A continuación se muestra una breve descripción de la funcionalidad de cada clase y el paquete en el que esta contenida.
+En la figura \ref{figDiagramaClasesJava} podemos observar las clases implementadas en el proyecto de Eclipse y que dependencias tienen entre sí. A continuación se muestra una breve descripción de la funcionalidad de cada clase y el paquete en el que esta contenida.
 
 Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de cada proyecto.
 
@@ -79,7 +79,7 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
 	\end{itemize}
 	\item Paquete \textit{traductor}: Contiene las clases necesarias para implementar un traductor automático.
 	\begin{itemize}
-		\item Clase \textit{Translator}: Clase que permite traducir cualquier texto a través de llamadas al traductor de Google. Clase descargada de \url{http://archana-testing.blogspot.com.es/2016/02/calling-google-translation-api-in-java.html}
+		\item Clase \textit{Translator}: Clase que permite traducir cualquier texto a través de llamadas al traductor de Google. Clase descargada de \href{http://archana-testing.blogspot.com.es/2016/02/calling-google-translation-api-in-java.html}{\textit{archana-testing.}}
 	\end{itemize}
 	\item Paquete \textit{webscraping}: Contiene las clases necesarias realizar la extracción de las claves dicotómicas mediante técnicas de \textit{Web Scraping}.
 	\begin{itemize}
@@ -91,7 +91,7 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{imagenesAnexos/imagenesDiseno/DiagramaClasesJava}%
-          \caption{Diagrama de clases del proyecto Java.}%
+          \caption{Diagrama de clases del proyecto de Eclipse.}%
           \label{figDiagramaClasesJava}%
         \end{center}%
   	\end{center}%
@@ -151,7 +151,7 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
 	
 	%6-PAQUETE LANZADOR
 	
-	\item Paquete \textit{lanzador}: Paquete que recoje la clase lanzadora de la aplicación. Diagrama de clases en la figura \ref{figDiagramaClasesAndroidLanzador}.
+	\item Paquete \textit{lanzador}: Paquete que recoge la clase lanzadora de la aplicación. Diagrama de clases en la figura \ref{figDiagramaClasesAndroidLanzador}.
 	\begin{itemize}
 		\item Clase \textit{Lanzadora}: Clase que arranca la aplicación. Muestra los botones principales para acceder a las funcionalidades más importantes de la aplicación.
 	\end{itemize}
@@ -162,10 +162,10 @@ Para acceder a una descripción de los métodos acceder al \textbf{javadoc} de c
 	\begin{itemize}
 		\item Clase \textit{AdaptadorSetasLista}:Clase que sirve de adaptador al sistema para cargar en cada elemento de la lista una foto y el nombre de la especie de la seta.
 		\item Clase \textit{SetasListaHolder}: Clase que contiene cada par imagenView-TextView de cada elemento de la lista.
-		\item Clase \textit{SetasLista}: Clase que implementa el contenido de que va a tener la lista de imágenes que se muestran como resultado tras clasificar una foto.
+		\item Clase \textit{SetasLista}: Clase que implementa el contenido que va a tener la lista de imágenes que se muestran como resultado tras clasificar una foto.
 		\item Clase \textit{MostrarComparativa}: Clase que muestra la foto introducida por el usuario y la seleccionada.
 		\item Clase \textit{MostrarResultados}: Clase que implementa la funcionalidad de la actividad que muestra los resultados obtenidos tras
- * clasificar una foto.
+clasificar una foto.
 	\end{itemize}
 	
 	%8-PAQUETE TARJETASCLAVES
@@ -369,11 +369,11 @@ El usuario podrá responder las preguntas de la clave dicotómica. Esta acción 
 
 \section{Diseño arquitectónico}
 
-En esta sección se va a mostrar la estructura de paquetes seguida tanto en el proyecto Android como en el Java.
+En esta sección se va a mostrar la estructura de paquetes seguida tanto en el proyecto Android como en el de Eclipse.
 
-\subsection{Proyecto Java}
+\subsection{Proyecto Eclipse}
 
-A continuación se muestra una descripción de los paquetes del proyecto java y como se relacionan entre sí.
+A continuación se muestra una descripción de los paquetes del proyecto de Eclipse y como se relacionan entre sí.
 
 \begin{itemize}
 	\item Paquete \textit{basedatossql}: Contiene las clases necesarias para crear y manejar la base de datos SQlite.
@@ -383,13 +383,13 @@ A continuación se muestra una descripción de los paquetes del proyecto java y 
 	\item Paquete \textit{webscraping}: Contiene las clases necesarias realizar la extracción de las claves dicotómicas mediante técnicas de \textit{Web Scraping}.Hace uso del paquete traductor para traducir las claves dicotómicas.
 \end{itemize}
 
-En la figura \ref{figDiagramaPaquetesJava} se muestra el diagrama de paquetes del proyecto Java.
+En la figura \ref{figDiagramaPaquetesJava} se muestra el diagrama de paquetes del proyecto de Eclipse.
 
 \begin{figure}[h]
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{imagenesAnexos/imagenesDiseno/DiagramaPaquetesJava}%
-          \caption{Diagrama de paquetes del proyecto Java.}%
+          \caption{Diagrama de paquetes del proyecto de Eclipse.}%
           \label{figDiagramaPaquetesJava}%
         \end{center}%
   	\end{center}%

@@ -8,8 +8,8 @@ Autor:
 
 Tutores: 
 
-* José Francisco Díez Pastor
-* Raúl Marticorena
+* Dr. José F. Díez Pastor
+* Dr. Raúl Marticorena Sánchez
 
 Universidad de Burgos
 

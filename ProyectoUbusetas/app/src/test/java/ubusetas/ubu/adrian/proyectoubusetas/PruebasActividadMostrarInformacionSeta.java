@@ -87,9 +87,9 @@ public class PruebasActividadMostrarInformacionSeta {
         assertFalse("texto".equals(texto1.getText()));
 
         TextView texto2 = (TextView) mostrarInformacionSeta.findViewById(R.id.textView_textoDescripcionSeta);
-        assertEquals("\"Agaricus es un género de hongos que contiene tanto especies comestibles " +
+        assertEquals(" Agaricus es un género de hongos que contiene tanto especies comestibles " +
                 "como venenosas, con posiblemente más de 300 " +
-                "miembros en todo el mundo. El género incluye el hongo común (\\\" botón \\ \") (Agaricus bisporus) y el" +
+                "miembros en todo el mundo. El género incluye el hongo común (\\  botón \\  ) (Agaricus bisporus) y el" +
                 " hongo de campo (Agaricus campestris), el cultivado dominante ", texto2.getText());
         assertFalse("texto".equals(texto2.getText()));
 
@@ -106,7 +106,7 @@ public class PruebasActividadMostrarInformacionSeta {
         assertFalse("texto".equals(texto5.getText()));
 
         TextView texto6 = (TextView) mostrarInformacionSeta.findViewById(R.id.textView_textoComestibilidadSeta);
-        assertEquals("desconocido-", texto6.getText());
+        assertEquals("desconocido ", texto6.getText());
         assertFalse("texto".equals(texto6.getText()));
 
         TextView texto7 = (TextView) mostrarInformacionSeta.findViewById(R.id.textView_EnlaceSeta);
@@ -136,16 +136,16 @@ public class PruebasActividadMostrarInformacionSeta {
         assertFalse("texto".equals(texto1.getText()));
 
         TextView texto2 = (TextView) mostrarInformacionSeta.findViewById(R.id.textView_textoDescripcionSeta);
-        assertEquals("\"Agaricus is a genus of mushrooms containing both edible and poisonous " +
+        assertEquals(" Agaricus is a genus of mushrooms containing both edible and poisonous " +
                 "species, with possibly over 300 members worldwide. The genus includes the common " +
-                "(\\\"button\\\") mushroom (Agaricus bisporus) and the field mushroom (Agaricus " +
+                "(\\ button\\ ) mushroom (Agaricus bisporus) and the field mushroom (Agaricus " +
                 "campestris), the dominant cultivated mushrooms of the West. Members of Agaricus " +
                 "are characterized by having a fleshy cap or pileus, from the underside of which " +
                 "grow a number of radiating plates or gills on which are produced the naked spores. " +
                 "They are distinguished from other members of their family, Agaricaceae, by their" +
                 " chocolatebrown spores. Members of Agaricus also have a stem or stipe, which elevates" +
                 " it above the object on which the mushroom grows, or substrate, and a partial veil, " +
-                "which protects the developing gills and later forms a ring or annulus on the stalk.\"@en", texto2.getText());
+                "which protects the developing gills and later forms a ring or annulus on the stalk. @en", texto2.getText());
         assertFalse("texto".equals(texto2.getText()));
 
         TextView texto3 = (TextView) mostrarInformacionSeta.findViewById(R.id.textView_GeneroSeta);
@@ -265,6 +265,6 @@ public class PruebasActividadMostrarInformacionSeta {
         Intent actual = shadowActivity.getNextStartedActivity();
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés
-        assertEquals("en", actual.getExtras().getString("idioma"));
+        assertEquals("es", actual.getExtras().getString("idioma"));
     }
 }

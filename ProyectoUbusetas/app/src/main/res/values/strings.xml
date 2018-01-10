@@ -1,7 +1,7 @@
 <resources>
     <!--Elementos generales -->
     <!--Nombre de la aplicación -->
-    <string name="app_name">Proyecto Ubusetas</string>
+    <string name="app_name">Ubusetas 1.0</string>
     <string name="autor">Adrián Antón García</string>
 
     <!--0-Cadenas de los elementos de la actividad lanzadora-->

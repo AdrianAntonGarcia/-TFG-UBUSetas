@@ -260,6 +260,6 @@ public class PruebasActividadMostrarSetas {
         Intent actual = shadowActivity.getNextStartedActivity();
         assertEquals(expectedIntent.getComponent(), actual.getComponent());
         //Compruebo que el idioma se cambie al inglés
-        assertEquals("en", actual.getExtras().getString("idioma"));
+        assertEquals("es", actual.getExtras().getString("idioma"));
     }
 }

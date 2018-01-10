@@ -47,11 +47,11 @@ La preocupación principal era saber si los modelos se iban a poder ejecutar en 
 
 Esta etapa del proyecto me permitió empezar a familiarizarme con el entorno de programación Android Studio y con las librerías de Tensorflow.
 
-Después de realizar pruebas con modelos preentrenados y ejemplos empecé a estudiar como poder entrenar mi propio modelo de Mobilenet o Inception, con nuestro repositorio de imágenes de setas, para que diferenciara entre las diferentes especies. La solución la encontré en el mismo repositorio de Github\footnote{\url{https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/image_retraining}} de Tensoflow en el que proporcionan un script en python ("retrain.py") para reentrenar ambos modelos pudiendo modificar gran variedad de parámetros y ajustes para crear un modelo personalizado.
+Después de realizar pruebas con modelos preentrenados y ejemplos empecé a estudiar como poder entrenar mi propio modelo de Mobilenet o Inception, con nuestro repositorio de imágenes de setas, para que diferenciara entre las diferentes especies. La solución la encontré en el mismo repositorio de Github\footnote{\url{https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/image_retraining}} de Tensoflow en el que proporcionan un script en python (\textit{retrain.py}) para reentrenar ambos modelos pudiendo modificar gran variedad de parámetros y ajustes para crear un modelo personalizado.
 
 Gracias a estos scripts y a los ejemplos encontrados de Tensorflow en Android conseguí reentrenar los primeros modelos y clasificar las primeras imágenes en el propio móvil.
 
-Las imágenes usadas para entrenar los modelos se sacaron de los repositorios Imagenet y Enciclopedia of Life, recopilando aproximadamente entre 30 y 80 fotos por cada especie de seta. En total se han usado 9400 fotografías para reentrenar el clasificador completo divididas en 172 especies de setas.
+Las imágenes usadas para entrenar los modelos se sacaron de los repositorios Imagenet\footnote{\url{http://www.image-net.org/index}} y Enciclopedia of Life\footnote{\url{http://eol.org}}, recopilando aproximadamente entre 30 y 80 fotos por cada especie de seta. En total se han usado 9400 fotografías para reentrenar el clasificador completo divididas en 171 especies de setas.
 
 Las primeras pruebas se ejecutaron con un modelo Mobilenet v1-224 reentrenado, que diferenciaba 118 especies de setas, en un teléfono móvil Samsung galaxy S5. La aplicación lograba ejecutarse fluidamente y se consiguió una precisión (61,5\%) \ref{figMobilenet1} en la validación cruzada con 4000 pasos de reentrenamiento:
 
@@ -59,7 +59,7 @@ Las primeras pruebas se ejecutaron con un modelo Mobilenet v1-224 reentrenado, q
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{mobilenet1}%
-          \caption{Mobilenet v1-224, 4000 steps, 118 especies.}%
+          \caption{Mobilenet v1-224, 4000 \textit{steps}, 118 especies.}%
           \label{figMobilenet1}%
         \end{center}%
   	\end{center}%
@@ -92,13 +92,13 @@ Respecto al modelo Inception su peso era de 75 Megabytes en contra de los 17 Meg
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{inception1}%
-          \caption{Inception v3, 4000 steps, 118 especies.}%
+          \caption{Inception v3, 4000 \textit{steps}, 118 especies.}%
           \label{figInception1}%
         \end{center}%
   	\end{center}%
 \end{figure}%
 
-Una vez elegido el modelo se procedió a escalar el modelo aumentando el número de especies a diferenciar, pasando de clasificar 118 especies a un total de 172. Este aumento provoco un ligero descenso en la precisión del clasificador que se solvento aplicando técnicas de Data augmentation a la hora de entrenar el modelo. La precisión obtenida final fue de un 59,4\% \ref{figMobilenet2} en validación cruzada de media entre todas las categorías de especies de setas.
+Una vez elegido el modelo se procedió a escalar el modelo aumentando el número de especies a diferenciar, pasando de clasificar 118 especies a un total de 171. Este aumento provoco un ligero descenso en la precisión del clasificador que se solvento aplicando técnicas de Data augmentation a la hora de entrenar el modelo. La precisión obtenida final fue de un 59,4\% \ref{figMobilenet2} en validación cruzada de media entre todas las categorías de especies de setas.
 
 Se probó a aumentar el número de pasos de entrenamiento pero esto no provocaba un ascenso de la precisión sino que se mantenía constante y provocaba el riesgo de que se sobre-entrenara el modelo por lo que se decidió dejar el parámetro en 4000 pasos.
 
@@ -108,7 +108,7 @@ El tiempo necesario para entrenar este modelos con un procesador i7 4790, fue de
     \begin{center}%
         \begin{center}%
           \includegraphics[width=1\textwidth]{mobilenet2}%
-          \caption{Mobilenet v1-224, 4000 steps, 172 especies, con data augmentation.}%
+          \caption[Mobilenet v1-224, 4000 \textit{steps}, 171 especies]{Mobilenet v1-224, 4000 \textit{steps}, 171 especies, con data augmentation.}%
           \label{figMobilenet2}%
         \end{center}%
   	\end{center}%
@@ -143,7 +143,7 @@ El último apartado a tratar era el de implementar una clave dicotómica que nos
 	\item Estructurar esa clave dicotómica de una forma que se pudiera manejar para implementarse en la aplicación Android.
 \end{itemize}
 
-Después de buscar en diferentes páginas web, se encontró una (\url{http://www.avelinosetas.info/claves.php}) que contenía una serie de claves dicotómicas para diferentes especies y una clave que discriminaba entre 108 géneros de setas. De las claves encontradas fue la que más géneros contemplaba. Para que los géneros de la clave y del clasificador coincidieran se recopilaron imágenes de las especies que no se contemplaban en el clasificador para reentrenarlo y que pudiera discriminar entre 172 especies distintas.
+Después de buscar en diferentes páginas web, se encontró una (\url{http://www.avelinosetas.info/claves.php}) que contenía una serie de claves dicotómicas para diferentes especies y una clave que discriminaba entre 108 géneros de setas. De las claves encontradas fue la que más géneros contemplaba. Para que los géneros de la clave y del clasificador coincidieran se recopilaron imágenes de las especies que no se contemplaban en el clasificador para reentrenarlo y que pudiera discriminar entre 171 especies distintas.
 
 Esta solución tiene la limitación de que el número de setas discriminado por el clasificador no es el mismo que el de la clave dicotómica.
 
@@ -155,7 +155,7 @@ Esta tarea se pudo automatizar mediante la herramienta Jaunt para Java revisando
 
 \section{Aspectos de diseño}
 
-Para diseñar la interfaz de la aplicación se siguieron las recomendaciones de Material Design \footnote{\url{https://material.io/guidelines/}}. Se elaboró un prototipado inicial de las diferentes actividades y a partir de ahí se fue elaborando la interfaz final integrando los diferentes modulos de la aplicación (clasificador de imágenes, muestra de información y las claves dicotómicas).
+Para diseñar la interfaz de la aplicación se siguieron las recomendaciones de Material Design\footnote{\url{https://material.io/guidelines/}}. Se elaboró un prototipado inicial de las diferentes actividades y a partir de ahí se fue elaborando la interfaz final integrando los diferentes modulos de la aplicación (clasificador de imágenes, muestra de información y las claves dicotómicas).
 
 Se han intentado usar colores planos siguiendo las indicaciones de Material Design así como iconos intuitivos para los diferentes botones de la aplicación.
 
@@ -167,7 +167,7 @@ Se ha traducido la aplicación al Inglés y Español traduciendo tanto textos ex
 
 Cada actividad de la aplicación cuenta con un menú de ayuda que explica la funcionalidad completa de la actividad en la que te encuentras. El menú lateral cuenta con su propia ayuda.
 
-Respecto al tamaño de la aplicación, este se ha conseguido reducir a un total de 42,6 Megabytes. Para ello se tuvieron que formatear las imágenes de las 172 especies de setas (5 imágenes por especie) a una resolución menor, así como usar el modelo Mobilenet en vez del Inception.
+Respecto al tamaño de la aplicación, este se ha conseguido reducir a un total de 42,6 Megabytes. Para ello se tuvieron que formatear las imágenes de las 171 especies de setas (5 imágenes por especie) a una resolución menor, así como usar el modelo Mobilenet en vez del Inception.
 
 
 

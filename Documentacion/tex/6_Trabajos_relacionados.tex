@@ -4,7 +4,7 @@
 
 \section{Otros proyectos}
 
-Este proyecto partía del trabajo de Máster \textit{Reconocimiento de setas mediante visión artificial y sistema experto IberoSetas 2.0} realizado por Iñaki Arroyo Nebreda en el año 2014. Aunque el trabajo actual contemplaba objetivos parecidos, decidí empezar mi trabajo desde cero ya que se han usado tecnologías diferentes y se ha generado la aplicación desde una perspectiva diferente. \cite{iberosetas}
+Este proyecto partía del trabajo de Máster \textit{Reconocimiento de setas mediante visión artificial y sistema experto IberoSetas 2.0} realizado por Iñaki Arroyo Nebreda en el año 2014. Aunque el trabajo actual contemplaba objetivos parecidos, decidí empezar mi trabajo desde cero ya que se han usado tecnologías diferentes y se ha generado la aplicación desde una perspectiva diferente \cite{iberosetas}.
 
 Para la parte del clasificador, en el trabajo anterior se creo un clasificador de imágenes en un servidor remoto al que debía conectarse la aplicación móvil. Para ello se tuvieron que preprocesar las imágenes para extraer sus características mediante técnicas como el \textit{Bag of words} y a partir de esta información entrenar un clasificador como pudieran ser el J48 o el KNN (\textit{k-nearest neighbor}).
 
@@ -23,3 +23,17 @@ Se ha encontrado una aplicación, que se lanzó a mediados de Octubre de 2017, e
 La principal diferencia de esta aplicación es que necesitas conexión a Internet para clasificar la imagen de la seta, a diferencia de nuestra aplicación, que se clasifica en el propio móvil.
 
 No se han encontrado más aplicaciones que realicen este tipo de clasificación de setas en los dispositivos móviles.
+
+Podemos encontrar una comparativa entre las dos aplicaciones en la siguiente tabla:
+\clearpage
+\tablaSmall{Ubusetas 1.0 vs Identificador Setas 2.17}{l c c}{comparativaAplicaciones}
+{ \multicolumn{1}{l}{Características} & Ubusetas 1.0 & Identificador Setas 2.17 \\}{ 
+Instalación sencilla & Sí & Sí  \\
+Requiere conexión a Internet & No & Sí \\
+Procesamiento en local & Sí & No \\
+Información comestibilidad & Sí & Sí \\
+Descripción seta & Sí & Sí \\
+Velocidad clasificación & Instantánea & Depende del servidor \\
+Mercado setas & No & Sí \\
+Localización GPS & No & Sí \\
+} 

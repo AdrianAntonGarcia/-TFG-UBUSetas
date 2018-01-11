@@ -50,7 +50,7 @@ Manual donde se va a explicar como realizar las tareas que llevaría a cabo el d
 
 \subsection{Realización de las consultas a la DBpedia}
 
-En este apartado se va a explicar los pasos que hay que seguir para descargar la información de las especies de setas, a través del proyecto de Eclipse, y almacenarlas en una base de datos SQlite para su posterior exportación a la aplicación Android.
+En este apartado se van a explicar los pasos que hay que seguir para descargar la información de las especies de setas, a través del proyecto de Eclipse, y almacenarlas en una base de datos SQlite para su posterior exportación a la aplicación Android.
 
 Para realizar esta tarea es necesario haber creado antes una base de datos \textit{SQlite}. En la carpeta \textbackslash Tutoriales se encuentra el pdf llamado "\textit{Instalación SQlite windows"} en el que se explica como instalar y crear una base de datos \textit{SQlite}.
 
@@ -170,7 +170,7 @@ En esta sección se desarrollarán los pasos necesarios para instalar tanto el p
 
 En este apartado se explicará como instalar el proyecto de Eclipse llamado \textit{ExtraccionDatos}. Este proyecto lo podemos encontrar en la carpeta \textit{Proyecto Eclipse}, deberemos extraerlo para poder importarlo.
 
-En el proyecto se ha usado la versión de Eclipse Neon.3 Release (4.6.3). Necesitaremos una versión de Eclipse\footnote{\url{http://www.eclipse.org/downloads/eclipse-packages/}} igual o superior a esta para instalarlo. Además necesitaremos tener instalado Maven en Eclipse \footnote{\url{https://maven.apache.org/install.html}}.
+En el proyecto se ha usado la versión de Eclipse Neon.3 Release (4.6.3). Necesitaremos una versión de Eclipse\footnote{\url{http://www.eclipse.org/downloads/eclipse-packages/}} igual o superior a esta para instalarlo. Además necesitaremos tener instalado Maven en Eclipse\footnote{\url{https://maven.apache.org/install.html}}.
 
 Para instalar el proyecto \textit{ExtraccionDatos} deberemos importarlo como un proyecto Maven de la siguiente forma \ref{figImportacionEclipse} \ref{figImportacionEclipse2}.
 
@@ -226,8 +226,12 @@ Las pruebas implementadas se han desarrollado sobre el proyecto Android. Estas p
 
 \begin{itemize}
 	\item Pruebas Unitarias \ref{figPruebasUnitarias}: Se han creado pruebas unitarias para probar el correcto funcionamiento de los métodos de las actividades de manera individual. En principio estas pruebas solo cubren el 40\% \ref{figCoverageUnitarias} del código debido a que no puedo probar la mayoría de los elementos de la interfaz con estas pruebas. Estas pruebas se han concentrado en probar los elementos más críticos y que no tienen que ver con la interfaz. Estos códigos no accesibles desde las pruebas unitarias se han probado con las pruebas de integración.
+	
+	La herramienta usada para realizar la pruebas unitarias ha sido \textit{Roboelectric}\footnote{\url{http://robolectric.org}}.
 	\item Pruebas de integración \ref{figPruebaIntegracion}: Pruebas que se han creado para comprobar la correcta interacción entre las actividades y el correcto funcionamiento de la interfaz de la aplicación.
-	\item Pruebas de rendimiento: Para las pruebas de rendimiento se uso la herramienta \textit{Monkeyrunner}. Esta herramienta se configuró para que ejecutarán 50.000 eventos aleatorios sobre la aplicación y comprobar si se bloqueaba en algún punto. La aplicación consiguió aguantar todos los eventos.
+	
+	Para las pruebas de integración se ha usado \textit{Espresso}\footnote{\url{https://developer.android.com/training/testing/espresso/index.html}} y \textit{UIautomator}\footnote{\url{https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html}}.
+	\item Pruebas de rendimiento: Para las pruebas de rendimiento se uso la herramienta \textit{Monkeyrunner}\footnote{\url{https://developer.android.com/studio/test/monkeyrunner/index.html}}. Esta herramienta se configuró para que ejecutarán 50.000 eventos aleatorios sobre la aplicación y comprobar si se bloqueaba en algún punto. La aplicación consiguió aguantar todos los eventos.
 \end{itemize}
 
 La descripción de cada prueba se encuentra en el javadoc del proyecto Android.
